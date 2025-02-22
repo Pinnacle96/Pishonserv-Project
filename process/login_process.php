@@ -27,15 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($role === "buyer") {
                 header("Location: ../dashboard/buyer_dashboard.php");
             } elseif ($role === "agent") {
-                header("Location: ../dashboard/agent.php");
+                header("Location: ../dashboard/agent_dashboard.php");
             } elseif ($role === "owner") {
-                header("Location: ../dashboard/owner.php");
+                header("Location: ../dashboard/owner_dashboard.php");
             } elseif ($role === "hotel_owner") {
-                header("Location: ../dashboard/hotel_owner.php");
+                header("Location: ../dashboard/hotel_owner_dashboard.php");
             } elseif ($role === "admin") {
-                header("Location: ../dashboard/admin.php");
+                header("Location: ../dashboard/admin_dashboard.php");
             } elseif ($role === "superadmin") {
-                header("Location: ../dashboard/superadmin.php");
+                header("Location: ../dashboard/superadmin_dashboard.php");
             }
             exit();
         } else {

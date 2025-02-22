@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php //session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,24 +43,108 @@
                 </button>
             </div>
             <ul>
+                <?php
+        $role = $_SESSION['role'] ?? 'buyer'; // Default to 'buyer' if no role is set
+
+        if ($role === 'buyer') { ?>
                 <li class="mb-4"><a href="buyer_dashboard.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-home"></i>
-                        Dashboard</a></li>
+                        Dashboard</a>
+                </li>
                 <li class="mb-4"><a href="buyer_orders.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i
-                            class="fas fa-shopping-cart"></i> My Orders</a></li>
+                            class="fas fa-shopping-cart"></i> My
+                        Orders</a></li>
                 <li class="mb-4"><a href="buyer_wishlist.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-heart"></i>
-                        Wishlist</a></li>
+                        Wishlist</a>
+                </li>
                 <li class="mb-4"><a href="buyer_messages.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-comments"></i>
-                        Messages</a></li>
+                        Messages</a>
+                </li>
                 <li class="mb-4"><a href="buyer_profile.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-user"></i>
-                        Profile</a></li>
+                        Profile</a>
+                </li>
                 <li class="mb-4"><a href="buyer_security.php"
                         class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-lock"></i>
-                        Security</a></li>
+                        Security</a>
+                </li>
+                <?php } elseif ($role === 'agent') { ?>
+                <li class="mb-4"><a href="agent_dashboard.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-home"></i>
+                        Dashboard</a>
+                </li>
+                <li class="mb-4"><a href="agent_properties.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-building"></i> My
+                        Properties</a></li>
+                <li class="mb-4"><a href="agent_inquiries.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-envelope"></i>
+                        Inquiries</a></li>
+                <li class="mb-4"><a href="agent_earnings.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-wallet"></i>
+                        Earnings</a>
+                </li>
+                <?php } elseif ($role === 'owner') { ?>
+                <li class="mb-4"><a href="owner_dashboard.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-home"></i>
+                        Dashboard</a>
+                </li>
+                <li class="mb-4"><a href="owner_listings.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-list"></i> My
+                        Listings</a>
+                </li>
+                <li class="mb-4"><a href="owner_rentals.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-key"></i> Rental
+                        Management</a></li>
+                <li class="mb-4"><a href="owner_messages.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-comments"></i>
+                        Messages</a></li>
+                <?php } elseif ($role === 'hotel_owner') { ?>
+                <li class="mb-4"><a href="hotel_dashboard.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-home"></i>
+                        Dashboard</a>
+                </li>
+                <li class="mb-4"><a href="hotel_rooms.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-hotel"></i> Manage
+                        Rooms</a></li>
+                <li class="mb-4"><a href="hotel_bookings.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-book"></i>
+                        Bookings</a>
+                </li>
+                <li class="mb-4"><a href="hotel_reviews.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-star"></i>
+                        Reviews</a>
+                </li>
+                <?php } elseif ($role === 'admin') { ?>
+                <li class="mb-4"><a href="admin_dashboard.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-home"></i>
+                        Dashboard</a>
+                </li>
+                <li class="mb-4"><a href="admin_users.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-users"></i> Manage
+                        Users</a></li>
+                <li class="mb-4"><a href="admin_properties.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-building"></i>
+                        Manage
+                        Properties</a></li>
+                <li class="mb-4"><a href="admin_transactions.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-money-bill"></i>
+                        Transactions</a></li>
+                <?php } elseif ($role === 'superadmin') { ?>
+                <li class="mb-4"><a href="superadmin_dashboard.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-user-shield"></i>
+                        Superadmin Dashboard</a></li>
+                <li class="mb-4"><a href="superadmin_manage.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-users-cog"></i>
+                        Manage
+                        Admins</a></li>
+                <li class="mb-4"><a href="superadmin_settings.php"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i class="fas fa-cogs"></i> System
+                        Settings</a></li>
+                <?php } ?>
+
                 <li><a href="../process/logout.php" class="text-gray-600 dark:text-gray-300 hover:text-red-500"><i
                             class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>

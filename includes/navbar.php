@@ -33,6 +33,8 @@ $base_path = $is_auth_page ? "../" : "";
                 <li><a href="<?php echo $base_path; ?>about.php" class="hover:text-[#CC9933] transition">About</a></li>
                 <li><a href="<?php echo $base_path; ?>contact.php" class="hover:text-[#CC9933] transition">Contact</a>
                 </li>
+                <li><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
+                </li>
             </ul>
 
             <!-- Create Listing Button -->
@@ -62,6 +64,8 @@ $base_path = $is_auth_page ? "../" : "";
                         class="hover:text-[#CC9933]">About</a></li>
                 <li class="py-3 border-b"><a href="<?php echo $base_path; ?>contact.php"
                         class="hover:text-[#CC9933]">Contact</a></li>
+                <li><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
+                </li>
                 <li class="py-3"><a href="<?php echo $base_path; ?>create-listing.php"
                         class="bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing +</a></li>
             </ul>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     tailwind.config = {
         darkMode: 'class',
@@ -15,7 +21,20 @@
     </script>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+< class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <?php
+if (isset($_SESSION['success'])) {
+    echo "<script>
+        Swal.fire({
+            title: 'Success!',
+            text: '" . $_SESSION['success'] . "',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>";
+    unset($_SESSION['success']); // Remove the message after displaying
+}
+?>
     <div class="flex h-screen">
         <!-- Sidebar -->
         <aside id="sidebar"
@@ -112,17 +131,17 @@
             </div>
         </main>
     </div>
-</body>
+    </body>
 
-<script>
-document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-    document.documentElement.classList.toggle('dark');
-});
+    <script>
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark');
+    });
 
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    document.getElementById('sidebar').classList.toggle('-translate-x-full');
-});
-</script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    });
+    </script>
 
 
 </html>

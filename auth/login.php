@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,47 +17,39 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 class="text-2xl font-bold text-center text-[#092468]">Login to Your Account</h2>
 
-        <form id="loginForm" class="mt-4">
+        <!-- Display Success or Error Messages -->
+        <?php if (isset($_SESSION['error'])): ?>
+        <script>
+        Swal.fire({
+            title: "Error!",
+            text: "<?php echo $_SESSION['error']; unset($_SESSION['error']); ?>",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+        </script>
+        <?php endif; ?>
+
+        <form action="../process/login_process.php" method="POST" class="mt-4">
             <div class="mb-4">
                 <label class="block text-gray-700 font-semibold">Email</label>
-                <input type="email" id="email" name="email" required class="w-full p-3 border rounded mt-1"
+                <input type="email" name="email" required class="w-full p-3 border rounded mt-1"
                     placeholder="Enter your email">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 font-semibold">Password</label>
-                <input type="password" id="password" name="password" required class="w-full p-3 border rounded mt-1"
+                <input type="password" name="password" required class="w-full p-3 border rounded mt-1"
                     placeholder="Enter password">
             </div>
-            <button type="button" onclick="loginUser()"
-                class="bg-[#F4A124] text-white w-full py-3 rounded hover:bg-[#d88b1c]">Login</button>
+            <button type="submit" class="bg-[#F4A124] text-white w-full py-3 rounded hover:bg-[#d88b1c]">Login</button>
         </form>
 
-        <script>
-        function loginUser() {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-
-            fetch("../process/login_process.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: `email=${email}&password=${password}`
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data.includes("success")) {
-                        Swal.fire("Success!", "Login successful!", "success").then(() => {
-                            window.location.href = "../dashboard.php";
-                        });
-                    } else {
-                        Swal.fire("Error!", "Invalid email or password.", "error");
-                    }
-                })
-                .catch(error => console.error("Error:", error));
-        }
-        </script>
-
+        <p class="text-center text-gray-600 mt-4">
+            <a href="forgot_password.php" class="text-blue-500 font-semibold">Forgot Password?</a>
+        </p>
+        <p class="text-center text-gray-600 mt-2">Don't have an account?
+            <a href="register.php" class="text-blue-500 font-semibold">Sign Up</a>
+        </p>
+    </div>
 </body>
 
 </html>

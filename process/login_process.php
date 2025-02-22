@@ -21,6 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $role;
             $_SESSION['profile_image'] = $profile_image;
 
+          // Set success message
+            $_SESSION['success'] = "Login successful! Welcome, $name.";
             // Redirect Based on Role
             if ($role === "buyer") {
                 header("Location: ../dashboard/buyer.php");

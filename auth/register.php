@@ -33,6 +33,9 @@ Swal.fire("Error!", "<?php echo $_SESSION['error']; ?>", "error");
         <input type="file" name="profile_image" id="profile_image" class="w-full p-3 border rounded">
         <button type="submit"
             class="w-full bg-[#CC9933] text-white py-3 rounded hover:bg-[#d88b1c] mt-4">Register</button>
+        <p class="text-center text-gray-600 mt-2">Already have an account?
+            <a href="login.php" class="text-blue-500 font-semibold">Sign in</a>
+        </p>
     </form>
 </div>
 

@@ -44,7 +44,7 @@
         <!-- Adjusted padding to avoid overlap -->
         <h2 class="text-3xl font-bold text-center text-[#092468]">Verify Your Account</h2>
 
-        <form action="../process/otp_process.php" method="POST"
+        <form action="../process/verify_otp_process.php" method="POST"
             class="max-w-lg mx-auto mt-6 bg-white p-6 rounded-lg shadow-lg">
             <input type="text" name="otp" placeholder="Enter OTP" required class="w-full p-3 border rounded mt-2">
             <button type="submit"

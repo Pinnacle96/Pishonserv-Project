@@ -1,5 +1,6 @@
-<?php
-session_start();
+<?php 
+session_start(); // Ensure session is started at the top
+include '../includes/db_connect.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -14,20 +15,30 @@ session_start();
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <!-- SweetAlert for Notifications -->
+    <script>
+    <?php if (isset($_SESSION['success'])): ?>
+    Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "<?php echo $_SESSION['success']; ?>",
+        confirmButtonText: "OK"
+    });
+    <?php unset($_SESSION['success']); endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+    Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "<?php echo $_SESSION['error']; ?>",
+        confirmButtonText: "OK"
+    });
+    <?php unset($_SESSION['error']); endif; ?>
+    </script>
+
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 class="text-2xl font-bold text-center text-[#092468]">Login to Your Account</h2>
-
-        <!-- Display Success or Error Messages -->
-        <?php if (isset($_SESSION['error'])): ?>
-        <script>
-        Swal.fire({
-            title: "Error!",
-            text: "<?php echo $_SESSION['error']; unset($_SESSION['error']); ?>",
-            icon: "error",
-            confirmButtonText: "OK"
-        });
-        </script>
-        <?php endif; ?>
 
         <form action="../process/login_process.php" method="POST" class="mt-4">
             <div class="mb-4">
@@ -50,6 +61,7 @@ session_start();
             <a href="register.php" class="text-blue-500 font-semibold">Sign Up</a>
         </p>
     </div>
+
 </body>
 
 </html>

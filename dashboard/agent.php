@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -21,25 +20,31 @@ session_start();
     </script>
 </head>
 
-< class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <?php
-if (isset($_SESSION['success'])) {
-    echo "<script>
-        Swal.fire({
-            title: 'Success!',
-            text: '" . $_SESSION['success'] . "',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-    </script>";
-    unset($_SESSION['success']); // Remove the message after displaying
-}
-?>
-    <div class="flex h-screen">
+    if (isset($_SESSION['success'])) {
+        echo "<script>
+            Swal.fire({
+                title: 'Success!',
+                text: '" . $_SESSION['success'] . "',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
+
+    <div class="flex flex-col md:flex-row h-screen">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="w-64 bg-white dark:bg-gray-800 shadow-md h-full p-6 fixed md:relative md:block transition-transform transform -translate-x-full md:translate-x-0">
-            <h2 class="text-xl font-bold text-gray-700 dark:text-gray-300 mb-6">Admin Dashboard</h2>
+            class="w-64 md:w-72 bg-white dark:bg-gray-800 shadow-md h-screen p-6 fixed md:relative md:block transition-transform transform -translate-x-full md:translate-x-0">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-700 dark:text-gray-300">Admin Dashboard</h2>
+                <button id="close-menu" class="md:hidden text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
             <ul>
                 <li class="mb-4"><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-500"><i
                             class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -129,19 +134,42 @@ if (isset($_SESSION['success'])) {
                     </table>
                 </div>
             </div>
+
+            <!-- Footer -->
+            <footer class="bg-white dark:bg-gray-800 shadow mt-10 p-4 text-center">
+                <p class="text-gray-600 dark:text-gray-300">&copy; <?php echo date('Y'); ?> Admin Dashboard. All rights
+                    reserved.</p>
+            </footer>
         </main>
     </div>
-    </body>
 
-    <script>
-    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-        document.documentElement.classList.toggle('dark');
-    });
+</body>
 
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('-translate-x-full');
-    });
-    </script>
+<script>
+document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+    document.documentElement.classList.toggle('dark');
+});
 
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('-translate-x-full');
+});
+
+document.getElementById('close-menu').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.add('-translate-x-full');
+});
+
+new Chart(document.getElementById("analyticsChart"), {
+    type: "line",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+            label: "Earnings",
+            data: [5000, 8000, 6000, 12000, 9000],
+            borderColor: "#F4A124",
+            fill: false
+        }]
+    }
+});
+</script>
 
 </html>

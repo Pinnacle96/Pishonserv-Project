@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['success'] = "Login successful! Welcome, $name.";
             // Redirect Based on Role
             if ($role === "buyer") {
-                header("Location: ../dashboard/buyer.php");
+                header("Location: ../dashboard/buyer_dashboard.php");
             } elseif ($role === "agent") {
                 header("Location: ../dashboard/agent.php");
             } elseif ($role === "owner") {

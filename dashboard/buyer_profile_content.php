@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "You must log in first.";
     header("Location: ../auth/login.php");

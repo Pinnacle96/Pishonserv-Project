@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $image = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
-    move_uploaded_file($image_tmp, "../public/images/$image");
+    move_uploaded_file($image_tmp, "../public/uploads/$image");
 
     $stmt = $conn->prepare("INSERT INTO properties (title, price, location, type, description, image, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssi", $title, $price, $location, $type, $description, $image, $owner_id);

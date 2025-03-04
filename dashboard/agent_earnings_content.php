@@ -150,7 +150,7 @@ if (isset($_GET['export_pdf'])) {
             class="bg-[#F4A124] text-white w-full py-3 rounded mt-4 hover:bg-[#d88b1c]">Withdraw</button>
     </form>
 
-    <a href="?export_pdf"
+    <!-- <a href="?export_pdf"
         class="block text-center bg-blue-500 text-white w-full py-3 rounded mt-4 hover:bg-blue-600">Export Transactions
-        to PDF</a>
+        to PDF</a> -->
 </div>

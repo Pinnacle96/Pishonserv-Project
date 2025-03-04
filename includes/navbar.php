@@ -5,24 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <?php
-// Determine if the page is inside "auth/" folder
-$is_auth_page = (strpos($_SERVER['PHP_SELF'], "/auth/") !== false);
+    // Determine if the page is inside "auth/" folder
+    $is_auth_page = (strpos($_SERVER['PHP_SELF'], "/auth/") !== false);
 
-// Set base path accordingly
-$base_path = $is_auth_page ? "../" : "";
-?>
+    // Set base path accordingly
+    $base_path = $is_auth_page ? "../" : "";
+    ?>
 
+    <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
         <div class="container mx-auto flex items-center justify-between py-4 px-6 md:px-10 lg:px-16">
             <!-- Logo -->
             <a href="<?php echo $base_path; ?>index.php" class="flex items-center space-x-2">
                 <img src="<?php echo $base_path; ?>public/images/logo.png" alt="Logo" class="h-12">
-                <!-- <h1 class="text-2xl font-bold text-[#092468]">Pishonserv</h1> -->
             </a>
 
             <!-- Desktop Menu -->

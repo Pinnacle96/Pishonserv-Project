@@ -30,11 +30,16 @@
         <h3 class="text-xl font-bold mb-4">Send a Message</h3>
         <form action="../process/send_message.php" method="POST">
             <input type="hidden" name="sender_id" value="<?php echo $_SESSION['user_id']; ?>">
+            <input type="hidden" name="sender_role" value="<?php echo $_SESSION['role']; ?>">
+
             <label class="block text-gray-600 dark:text-gray-300 mb-2">Select Receiver:</label>
             <select name="receiver_id" required class="w-full p-3 border rounded mb-3">
                 <option value="">Choose a User</option>
                 <?php
-                $user_query = $conn->query("SELECT id, name, role FROM users WHERE id != $agent_id");
+                // Fetch users excluding the current user and based on allowed roles
+                $allowed_roles = ['agent', 'owner', 'hotel_owner'];
+                $roles_list = "'" . implode("','", $allowed_roles) . "'";
+                $user_query = $conn->query("SELECT id, name, role FROM users WHERE id != {$_SESSION['user_id']} AND role IN ($roles_list)");
                 while ($user = $user_query->fetch_assoc()) {
                     echo "<option value='{$user['id']}'>{$user['name']} ({$user['role']})</option>";
                 }

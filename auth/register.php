@@ -24,7 +24,8 @@ endif; ?>
     <h2 class="text-3xl font-bold text-center text-[#092468]">Register</h2>
     <form action="../process/register_process.php" method="POST" enctype="multipart/form-data"
         class="max-w-lg mx-auto mt-6 bg-white p-6 rounded-lg shadow-lg">
-        <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 border rounded mt-2">
+        <input type="text" name="name" placeholder="First Name" required class="w-full p-3 border rounded mt-2">
+        <input type="text" name="lname" placeholder="Last Name" required class="w-full p-3 border rounded mt-2">
         <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded mt-2">
         <input type="text" name="phone" placeholder="Your Phone Number" required class="w-full p-3 border rounded mt-2">
         <input type="password" name="password" placeholder="Password" required class="w-full p-3 border rounded mt-2">

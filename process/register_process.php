@@ -1,6 +1,6 @@
 <?php
 include '../includes/db_connect.php';
-include '../includes/zoho_functions.php'; // Include Zoho API functions
+include '../includes/zoho_functions.php'; // Import Zoho API functions
 //session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -8,48 +8,51 @@ use PHPMailer\PHPMailer\Exception;
 
 // Load Composer's autoloader
 require '../vendor/autoload.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
+    $lname = trim($_POST['lname']);
     $email = trim($_POST['email']);
+    $phone = trim($_POST['phone']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $role = $_POST['role'];
-    $phone = trim($_POST['phone']); // ✅ Capture phone number
     $otp = rand(100000, 999999);
     $otp_expires_at = date("Y-m-d H:i:s", strtotime("+10 minutes"));
-    $image_name = "default.png"; // Default image
+    $image_name = "default.png"; // Default profile image
 
-    // Handle Profile Image Upload
+    // File Upload Logic
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         $image_ext = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
         $allowed_ext = ['jpg', 'jpeg', 'png'];
 
         if (in_array($image_ext, $allowed_ext)) {
             $image_name = uniqid() . "." . $image_ext;
-            $target_file = "../public/uploads/" . $image_name;
-            move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file);
+            $target_dir = "../public/uploads/";
+            move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_dir . $image_name);
         }
     }
 
-    // Insert user into the database (Including Phone Number)
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, phone, otp, otp_expires_at, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    if (!$stmt) die("Prepare failed: " . $conn->error);
-
-    $stmt->bind_param("ssssssss", $name, $email, $password, $role, $phone, $otp, $otp_expires_at, $image_name);
+    // Insert user into database
+    $stmt = $conn->prepare("INSERT INTO users (name, lname, email, phone, password, role, otp, otp_expires_at, profile_image) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $name, $lname, $email, $phone, $password, $role, $otp, $otp_expires_at, $image_name);
 
     if ($stmt->execute()) {
-        $user_id = $stmt->insert_id; // Get newly created user ID
-
-        // 🔹 Call Zoho API to sync user
-        $zoho_contact_id = createZohoContact($name, $email, $phone, $role);
-
-        // 🔹 Store Zoho Contact ID in the database
-        if ($zoho_contact_id) {
-            $stmt = $conn->prepare("UPDATE users SET zoho_contact_id = ? WHERE email = ?");
-            $stmt->bind_param("ss", $zoho_contact_id, $email);
-            $stmt->execute();
-        }
-
+        $user_id = $stmt->insert_id; // Get new user ID
         $_SESSION['email'] = $email;
+
+        // ✅ Send Data to Zoho CRM
+        $zoho_contact_id = createZohoContact($name, $lname, $email, $phone, $role);
+
+        if ($zoho_contact_id) {
+            // Save Zoho Contact ID to database
+            $updateStmt = $conn->prepare("UPDATE users SET zoho_contact_id = ? WHERE id = ?");
+            $updateStmt->bind_param("si", $zoho_contact_id, $user_id);
+            $updateStmt->execute();
+        } else {
+            // If sync fails, mark user for retry
+            error_log("Failed to sync user $email to Zoho.");
+        }
 
         // Send OTP Email
         $mail = new PHPMailer(true);
@@ -74,9 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../auth/verify-otp.php");
             exit();
         } catch (Exception $e) {
-            die("Mail sending failed: " . $mail->ErrorInfo);
+            error_log("Mail sending failed: " . $mail->ErrorInfo);
         }
     } else {
-        $_SESSION['error'] = "Error registering user.";
+        $_SESSION['error'] = "Registration failed. Please try again.";
+        header("Location: ../auth/register.php");
+        exit();
     }
 }

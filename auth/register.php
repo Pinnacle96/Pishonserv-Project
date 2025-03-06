@@ -1,17 +1,21 @@
-<?php include '../includes/db_connect.php'; ?>
-<?php session_start(); ?>
+<?php
+session_start();
+include '../includes/db_connect.php';
+?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php if (isset($_SESSION['success'])): ?>
-<script>
-Swal.fire("Success!", "<?php echo $_SESSION['success']; ?>", "success");
-</script>
-<?php unset($_SESSION['success']); endif; ?>
+    <script>
+        Swal.fire("Success!", "<?php echo $_SESSION['success']; ?>", "success");
+    </script>
+<?php unset($_SESSION['success']);
+endif; ?>
 
 <?php if (isset($_SESSION['error'])): ?>
-<script>
-Swal.fire("Error!", "<?php echo $_SESSION['error']; ?>", "error");
-</script>
-<?php unset($_SESSION['error']); endif; ?>
+    <script>
+        Swal.fire("Error!", "<?php echo $_SESSION['error']; ?>", "error");
+    </script>
+<?php unset($_SESSION['error']);
+endif; ?>
 
 <?php include '../includes/navbar.php'; ?>
 
@@ -22,6 +26,7 @@ Swal.fire("Error!", "<?php echo $_SESSION['error']; ?>", "error");
         class="max-w-lg mx-auto mt-6 bg-white p-6 rounded-lg shadow-lg">
         <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 border rounded mt-2">
         <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded mt-2">
+        <input type="text" name="phone" placeholder="Your Phone Number" required class="w-full p-3 border rounded mt-2">
         <input type="password" name="password" placeholder="Password" required class="w-full p-3 border rounded mt-2">
         <select name="role" class="w-full p-3 border rounded mt-2" required>
             <option value="buyer">Buyer</option>

@@ -48,7 +48,7 @@ $stmt->bind_param("iids", $user_id, $property_id, $amount, $reference);
 $stmt->execute();
 
 // Paystack API Configuration
-$callback_url = "  https://20e9-102-88-33-213.ngrok-free.app/pishonserv.com/dashboard/paystack_callback.php"; // Change to your actual domain
+$callback_url = "https://024d-2c0f-f5c0-600-4868-8581-5b86-70e0-ec1e.ngrok-free.app/pishonserv.com/dashboard/paystack_callback.php"; // Ensure this is correct
 $paystack_url = "https://api.paystack.co/transaction/initialize";
 
 $fields = [
@@ -69,15 +69,38 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Disable SSL verification (for local testing only)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+// Debug: Enable verbose output for cURL
+curl_setopt($ch, CURLOPT_VERBOSE, true);
 $response = curl_exec($ch);
+
+// Check for cURL errors
+if (curl_error($ch)) {
+    die("cURL Error: " . curl_error($ch));
+}
+
+// Debug: Log or display the raw response
+error_log("Paystack Response: " . $response); // Log to error log
+var_dump($response); // Display in browser for testing
+
 curl_close($ch);
 
 $paystack_response = json_decode($response, true);
 
+// Check if json_decode failed
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die("JSON Decode Error: " . json_last_error_msg() . ". Response: " . $response);
+}
+
 // Handle Paystack Response
-if ($paystack_response['status']) {
+if (isset($paystack_response['status']) && $paystack_response['status']) {
     header("Location: " . $paystack_response['data']['authorization_url']);
     exit();
 } else {
-    die("Payment failed: " . $paystack_response['message']);
+    $error_message = isset($paystack_response['message']) ? $paystack_response['message'] : 'Unknown error';
+    die("Payment failed: " . $error_message . ". Response: " . json_encode($paystack_response));
 }

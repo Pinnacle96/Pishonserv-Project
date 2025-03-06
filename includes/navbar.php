@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <?php
+    $is_auth_page = (strpos($_SERVER['PHP_SELF'], "/auth/") !== false);
+    $base_path = $is_auth_page ? "../" : "";
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Platform</title>
@@ -11,14 +15,6 @@
 </head>
 
 <body>
-    <?php
-    // Determine if the page is inside "auth/" folder
-    $is_auth_page = (strpos($_SERVER['PHP_SELF'], "/auth/") !== false);
-
-    // Set base path accordingly
-    $base_path = $is_auth_page ? "../" : "";
-    ?>
-
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
         <div class="container mx-auto flex items-center justify-between py-4 px-6 md:px-10 lg:px-16">

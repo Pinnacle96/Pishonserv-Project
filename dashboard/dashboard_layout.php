@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 // Get user details
 $user_id = $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? 'buyer';
-$user_name = $_SESSION['name'] ?? 'User';
+$user_name = isset($_SESSION['name']) ? $_SESSION['name'] : 'User';
 $profile_image = $_SESSION['profile_image'] ?? 'default.png';
 ?>
 
@@ -26,24 +26,25 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    tailwind.config = {
-        darkMode: 'class'
-    };
+        tailwind.config = {
+            darkMode: 'class'
+        };
     </script>
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
     <?php if (isset($_SESSION['success'])): ?>
-    <script>
-    Swal.fire({
-        title: 'Success!',
-        text: '<?php echo $_SESSION['success']; ?>',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-    </script>
-    <?php unset($_SESSION['success']); endif; ?>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '<?php echo $_SESSION['success']; ?>',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    <?php unset($_SESSION['success']);
+    endif; ?>
 
     <div class="flex flex-col md:flex-row h-screen">
         <!-- Sidebar -->
@@ -108,17 +109,17 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
 </body>
 
 <script>
-document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-    document.documentElement.classList.toggle('dark');
-});
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark');
+    });
 
-function toggleDropdown() {
-    document.getElementById("dropdown-menu").classList.toggle("hidden");
-}
-document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('sidebar').classList
-    .toggle('-translate-x-full'));
-document.getElementById('close-menu').addEventListener('click', () => document.getElementById('sidebar').classList.add(
-    '-translate-x-full'));
+    function toggleDropdown() {
+        document.getElementById("dropdown-menu").classList.toggle("hidden");
+    }
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('sidebar').classList
+        .toggle('-translate-x-full'));
+    document.getElementById('close-menu').addEventListener('click', () => document.getElementById('sidebar').classList.add(
+        '-translate-x-full'));
 </script>
 
 </html>

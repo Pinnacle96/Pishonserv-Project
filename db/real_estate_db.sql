@@ -100,7 +100,7 @@ CREATE TABLE `properties` (
   `images` text DEFAULT NULL,
   `status` enum('pending','available','sold','rented') DEFAULT 'pending',
   `admin_approved` tinyint(1) DEFAULT 0,
-  `listing_type` enum('for_sale','for_rent','short_let') NOT NULL DEFAULT 'for_sale',
+  `listing_type` enum('for_sale','for_rent','short_let', 'hotel') NOT NULL DEFAULT 'for_sale',
   `bedrooms` int(11) DEFAULT 1,
   `bathrooms` int(11) DEFAULT 1,
   `size` varchar(50) DEFAULT 'N/A',

@@ -1,5 +1,7 @@
 <div class="mt-6">
-    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Welcome, <?php echo $_SESSION['name']; ?></h2>
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Welcome,
+        <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?></h2>
+
     <p class="text-gray-600 dark:text-gray-400">Manage your properties, orders, and wishlist.</p>
 
     <!-- Quick Stats -->

@@ -6,8 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $otp = $_POST['otp'];
     $email = $_SESSION['email'];
 
-    // Fetch OTP, expiry, and role
-    $stmt = $conn->prepare("SELECT otp, otp_expires_at, role FROM users WHERE email = ? AND otp = ?");
+    // Fetch OTP, expiry, and full user details
+    $stmt = $conn->prepare("SELECT id, name, email, password, role, profile_image, otp_expires_at FROM users WHERE email = ? AND otp = ?");
     $stmt->bind_param("ss", $email, $otp);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -19,34 +19,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateStmt->bind_param("s", $email);
             $updateStmt->execute();
 
-            // Fetch user role
-            $role = $row['role'];
+            // Set session variables
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['profile_image'] = $row['profile_image'];
 
             // Set success message
             $_SESSION['success'] = "Your email has been verified successfully!";
 
             // Redirect based on role
-            switch ($role) {
+            switch ($row['role']) {
                 case "buyer":
-                    header("Location: ../dashboard/buyer.php");
+                    header("Location: ../dashboard/buyer_dashboard.php");
                     break;
                 case "agent":
-                    header("Location: ../dashboard/agent.php");
-                    break;
                 case "owner":
-                    header("Location: ../dashboard/owner.php");
-                    break;
                 case "hotel_owner":
-                    header("Location: ../dashboard/hotel_owner.php");
+                    header("Location: ../dashboard/agent_dashboard.php");
                     break;
                 case "admin":
-                    header("Location: ../dashboard/admin.php");
+                    header("Location: ../dashboard/admin_dashboard.php");
                     break;
                 case "superadmin":
-                    header("Location: ../dashboard/superadmin.php");
+                    header("Location: ../dashboard/superadmin_dashboard.php");
                     break;
                 default:
-                    header("Location: ../dashboard/default.php");
+                    // Fallback for unknown role (redirect to login)
+                    $_SESSION['error'] = "Role not recognized, please log in again.";
+                    header("Location: ../auth/login.php");
                     break;
             }
             exit();
@@ -61,4 +63,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>

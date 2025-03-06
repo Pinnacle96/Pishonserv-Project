@@ -6,7 +6,7 @@ include 'includes/navbar.php';
 ?>
 
 <!-- Hero Section with Slider -->
-<section class="relative w-full h-[400px] sm:h-[600px] pt-80 sm:pt-24">
+<section class="relative w-full min-h-[500px] sm:min-h-[650px] pt-20 md:pt-20 lg:pt-24 overflow-hidden">
     <div id="hero-slider" class="absolute inset-0 w-full h-full">
         <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-100"
             style="background-image: url('public/images/hero1.jpg');"></div>
@@ -17,13 +17,11 @@ include 'includes/navbar.php';
     </div>
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6 pt-10">
         <h1 class="text-3xl sm:text-5xl font-bold">Find Your Dream Property</h1>
         <p class="text-sm sm:text-lg mt-2">Browse the best real estate deals for Buy, Rent, Shortlet, and more.</p>
 
-        <!-- Search Bar -->
         <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg mt-4 sm:mt-6 w-full max-w-5xl mx-4">
-            <!-- Search Tabs -->
             <div class="flex flex-wrap justify-center sm:justify-between border-b pb-2">
                 <button
                     class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 focus:border-b-4 border-[#CC9933]"
@@ -40,46 +38,40 @@ include 'includes/navbar.php';
                     data-category="project">Project</button>
             </div>
 
-            <!-- Search Form -->
             <form action="properties.php" method="GET"
-                class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mt-2 sm:mt-4">
+                class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mt-2 sm:mt-4 w-full">
                 <input type="hidden" name="category" id="search-category" value="buy">
-
-                <select name="type" class="p-2 sm:p-3 border rounded text-sm sm:text-base">
+                <select name="type" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
                     <option value="">Property Type</option>
                     <option value="house">House</option>
                     <option value="apartment">Apartment</option>
                     <option value="land">Land</option>
                 </select>
-
-                <select name="location" class="p-2 sm:p-3 border rounded text-sm sm:text-base">
+                <select name="location" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
                     <option value="">Select Location</option>
                     <option value="lagos">Lagos</option>
                     <option value="abuja">Abuja</option>
                     <option value="port-harcourt">Port Harcourt</option>
                 </select>
-
-                <select name="bedroom" class="p-2 sm:p-3 border rounded text-sm sm:text-base">
+                <select name="bedroom" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
                     <option value="">Bedrooms</option>
                     <option value="1">1 Bedroom</option>
                     <option value="2">2 Bedrooms</option>
                     <option value="3">3+ Bedrooms</option>
                 </select>
-
-                <input type="number" name="min_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base"
+                <input type="number" name="min_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full"
                     placeholder="Min Price">
-                <input type="number" name="max_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base"
+                <input type="number" name="max_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full"
                     placeholder="Max Price">
-
                 <button type="submit"
-                    class="bg-[#CC9933] text-white px-4 py-2 sm:py-3 rounded hover:bg-[#d88b1c] text-sm sm:text-base">Search</button>
+                    class="bg-[#CC9933] text-white px-4 py-2 sm:py-3 rounded hover:bg-[#d88b1c] text-sm sm:text-base w-full sm:w-auto">Search</button>
             </form>
         </div>
     </div>
 </section>
 
 <!-- Featured Properties Section -->
-<section class="container mx-auto py-12 px-4">
+<section class="container mx-auto py-12 px-4 mt-2">
     <h2 class="text-4xl font-bold text-[#092468] text-center">Featured Properties</h2>
     <p class="text-gray-600 text-center">Check out some of the best listings</p>
 

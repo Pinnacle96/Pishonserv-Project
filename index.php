@@ -22,54 +22,169 @@ include 'includes/navbar.php';
         <p class="text-sm sm:text-lg mt-2">Browse the best real estate deals for Buy, Rent, Shortlet, and more.</p>
 
         <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg mt-4 sm:mt-6 w-full max-w-5xl mx-4">
-            <div class="flex flex-wrap justify-center sm:justify-between border-b pb-2">
+            <div class="flex flex-wrap justify-center sm:justify-between border-b pb-2 gap-2 sm:gap-0">
                 <button
-                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 focus:border-b-4 border-[#CC9933]"
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-[#CC9933] bg-[#FFF3E0] focus:outline-none active"
                     data-category="buy">Buy</button>
-                <button class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2"
+                <button
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-transparent hover:border-[#CC9933] hover:bg-[#FFF3E0] focus:outline-none"
                     data-category="rent">Rent</button>
-                <button class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2"
+                <button
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-transparent hover:border-[#CC9933] hover:bg-[#FFF3E0] focus:outline-none"
                     data-category="shortlet">Shortlet</button>
-                <button class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2"
+                <button
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-transparent hover:border-[#CC9933] hover:bg-[#FFF3E0] focus:outline-none"
                     data-category="hotel">Hotel</button>
-                <button class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2"
+                <button
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-transparent hover:border-[#CC9933] hover:bg-[#FFF3E0] focus:outline-none"
                     data-category="land">Land</button>
-                <button class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2"
+                <button
+                    class="tab-button text-[#092468] font-semibold px-2 sm:px-4 py-1 sm:py-2 border-b-4 border-transparent hover:border-[#CC9933] hover:bg-[#FFF3E0] focus:outline-none"
                     data-category="project">Project</button>
             </div>
 
             <form action="properties.php" method="GET"
-                class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mt-2 sm:mt-4 w-full">
+                class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mt-2 sm:mt-4 w-full text-gray-900">
                 <input type="hidden" name="category" id="search-category" value="buy">
-                <select name="type" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
+                <select name="type"
+                    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">
                     <option value="">Property Type</option>
-                    <option value="house">House</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="land">Land</option>
+                    <option value="apartment"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'apartment' ? 'selected' : ''; ?>>Apartment
+                    </option>
+                    <option value="office"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'office' ? 'selected' : ''; ?>>Office
+                    </option>
+                    <option value="event_center"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'event_center' ? 'selected' : ''; ?>>Event
+                        Center</option>
+                    <option value="hotel"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'hotel' ? 'selected' : ''; ?>>Hotel
+                    </option>
+                    <option value="short_stay"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'short_stay' ? 'selected' : ''; ?>>Short
+                        Stay</option>
+                    <option value="house"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'house' ? 'selected' : ''; ?>>House
+                    </option>
+                    <option value="villa"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'villa' ? 'selected' : ''; ?>>Villa
+                    </option>
+                    <option value="condo"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'condo' ? 'selected' : ''; ?>>Condo
+                    </option>
+                    <option value="townhouse"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'townhouse' ? 'selected' : ''; ?>>Townhouse
+                    </option>
+                    <option value="duplex"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'duplex' ? 'selected' : ''; ?>>Duplex
+                    </option>
+                    <option value="penthouse"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'penthouse' ? 'selected' : ''; ?>>Penthouse
+                    </option>
+                    <option value="studio"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'studio' ? 'selected' : ''; ?>>Studio
+                    </option>
+                    <option value="bungalow"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'bungalow' ? 'selected' : ''; ?>>Bungalow
+                    </option>
+                    <option value="commercial"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'commercial' ? 'selected' : ''; ?>>
+                        Commercial</option>
+                    <option value="warehouse"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'warehouse' ? 'selected' : ''; ?>>Warehouse
+                    </option>
+                    <option value="retail"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'retail' ? 'selected' : ''; ?>>Retail
+                    </option>
+                    <option value="land"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'land' ? 'selected' : ''; ?>>Land</option>
+                    <option value="farmhouse"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'farmhouse' ? 'selected' : ''; ?>>Farmhouse
+                    </option>
+                    <option value="mixed_use"
+                        <?php echo isset($_GET['type']) && $_GET['type'] === 'mixed_use' ? 'selected' : ''; ?>>Mixed Use
+                    </option>
                 </select>
-                <select name="location" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
+                <select name="location"
+                    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">
                     <option value="">Select Location</option>
-                    <option value="lagos">Lagos</option>
-                    <option value="abuja">Abuja</option>
-                    <option value="port-harcourt">Port Harcourt</option>
+                    <option value="lagos"
+                        <?php echo isset($_GET['location']) && $_GET['location'] === 'lagos' ? 'selected' : ''; ?>>Lagos
+                    </option>
+                    <option value="abuja"
+                        <?php echo isset($_GET['location']) && $_GET['location'] === 'abuja' ? 'selected' : ''; ?>>Abuja
+                    </option>
+                    <option value="port-harcourt"
+                        <?php echo isset($_GET['location']) && $_GET['location'] === 'port-harcourt' ? 'selected' : ''; ?>>
+                        Port Harcourt</option>
                 </select>
-                <select name="bedroom" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full">
+                <select name="bedroom"
+                    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">
                     <option value="">Bedrooms</option>
-                    <option value="1">1 Bedroom</option>
-                    <option value="2">2 Bedrooms</option>
-                    <option value="3">3+ Bedrooms</option>
+                    <option value="1"
+                        <?php echo isset($_GET['bedroom']) && $_GET['bedroom'] === '1' ? 'selected' : ''; ?>>1 Bedroom
+                    </option>
+                    <option value="2"
+                        <?php echo isset($_GET['bedroom']) && $_GET['bedroom'] === '2' ? 'selected' : ''; ?>>2 Bedrooms
+                    </option>
+                    <option value="3"
+                        <?php echo isset($_GET['bedroom']) && $_GET['bedroom'] === '3' ? 'selected' : ''; ?>>3+ Bedrooms
+                    </option>
                 </select>
-                <input type="number" name="min_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full"
-                    placeholder="Min Price">
-                <input type="number" name="max_price" class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full"
-                    placeholder="Max Price">
+                <input type="number" name="min_price"
+                    value="<?php echo isset($_GET['min_price']) && $_GET['min_price'] !== '' ? htmlspecialchars($_GET['min_price']) : ''; ?>"
+                    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]"
+                    placeholder="Min Price" min="0">
+                <input type="number" name="max_price"
+                    value="<?php echo isset($_GET['max_price']) && $_GET['max_price'] !== '' ? htmlspecialchars($_GET['max_price']) : ''; ?>"
+                    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]"
+                    placeholder="Max Price" min="0">
                 <button type="submit"
-                    class="bg-[#CC9933] text-white px-4 py-2 sm:py-3 rounded hover:bg-[#d88b1c] text-sm sm:text-base w-full sm:w-auto">Search</button>
+                    class="bg-[#CC9933] text-white px-4 py-2 sm:py-3 rounded hover:bg-[#d88b1c] text-sm sm:text-base w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-[#CC9933]">Search</button>
             </form>
         </div>
     </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const categoryInput = document.getElementById('search-category');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-[#FFF3E0]');
+                btn.classList.add('border-transparent');
+                btn.classList.remove('border-[#CC9933]');
+            });
+
+            this.classList.add('active', 'bg-[#FFF3E0]', 'border-[#CC9933]');
+            this.classList.remove('border-transparent');
+
+            const category = this.getAttribute('data-category');
+            categoryInput.value = category;
+        });
+    });
+
+    // Hero slider functionality (unchanged)
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('opacity-100', i === index);
+            slide.classList.toggle('opacity-0', i !== index);
+        });
+    }
+
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }, 5000);
+});
+</script>
 <!-- Featured Properties Section -->
 <section class="container mx-auto py-12 px-4 mt-2">
     <h2 class="text-4xl font-bold text-[#092468] text-center">Featured Properties</h2>

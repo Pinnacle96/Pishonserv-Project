@@ -28,22 +28,39 @@
                         <tr>
                             <td class="p-3 border">
                                 <div class="w-32 h-24 overflow-hidden">
-                                    <div class="swiper mySwiper w-full h-full rounded">
+                                    <div class="swiper mySwiper w-full h-full rounded" data-id="<?php echo $row['id']; ?>">
                                         <div class="swiper-wrapper">
                                             <?php
-                                            $image_list = explode(",", $row['images']);
-                                            foreach ($image_list as $image): ?>
-                                                <div class="swiper-slide">
-                                                    <img src="../public/uploads/<?php echo $image; ?>"
-                                                        class="w-full h-24 object-cover rounded">
-                                                </div>
-                                            <?php endforeach; ?>
+                                            // Debug: Output raw images string
+                                            echo "<!-- Raw images: " . htmlspecialchars($row['images']) . " -->";
+
+                                            // Trim and explode images string, filter out empty values
+                                            $image_list = array_filter(explode(",", trim($row['images'])));
+                                            if (empty($image_list)) {
+                                                echo "<div class='swiper-slide'><img src='../public/uploads/default.jpg' class='w-full h-24 object-cover rounded' alt='No Image'></div>";
+                                            } else {
+                                                foreach ($image_list as $image) {
+                                                    $image = trim($image); // Remove any whitespace
+                                                    $imagePath = "../public/uploads/" . $image;
+                                                    // Debug: Check if file exists
+                                                    $fileExists = file_exists($imagePath) ? "Yes" : "No";
+                                                    echo "<!-- Image: $image, Exists: $fileExists -->";
+                                            ?>
+                                                    <div class="swiper-slide">
+                                                        <img src="<?php echo $imagePath; ?>"
+                                                            class="w-full h-24 object-cover rounded" alt="Property Image"
+                                                            onerror="this.src='../public/uploads/default.jpg'">
+                                                    </div>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </div>
                                         <div class="swiper-pagination"></div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="p-3 border"><?php echo $row['title']; ?></td>
+                            <td class="p-3 border"><?php echo htmlspecialchars($row['title']); ?></td>
                             <td class="p-3 border">₦<?php echo number_format($row['price'], 2); ?></td>
                             <td class="p-3 border"><?php echo ucfirst($row['listing_type']); ?></td>
                             <td class="p-3 border">
@@ -53,7 +70,6 @@
                                     <span class="text-green-500 font-semibold"><?php echo ucfirst($row['status']); ?></span>
                                 <?php endif; ?>
                             </td>
-
                             <td class="p-3 border">
                                 <a href="agent_edit_property.php?id=<?php echo $row['id']; ?>"
                                     class="text-blue-500">Edit</a> |
@@ -71,17 +87,20 @@
 <!-- Initialize Swiper -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        new Swiper(".mySwiper", {
-            loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            },
-            slidesPerView: 1,
+        // Initialize Swiper for each instance
+        document.querySelectorAll('.mySwiper').forEach(function(swiperElement) {
+            new Swiper(swiperElement, {
+                loop: true,
+                pagination: {
+                    el: swiperElement.querySelector('.swiper-pagination'),
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                slidesPerView: 1,
+            });
         });
     });
 </script>

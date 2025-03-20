@@ -25,42 +25,42 @@
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td class="p-3 border">
-                            <div class="w-32 h-24 overflow-hidden">
-                                <div class="swiper mySwiper w-full h-full rounded">
-                                    <div class="swiper-wrapper">
-                                        <?php 
-                                        $image_list = explode(",", $row['images']); 
-                                        foreach ($image_list as $image): ?>
-                                        <div class="swiper-slide">
-                                            <img src="../public/uploads/<?php echo $image; ?>"
-                                                class="w-full h-24 object-cover rounded">
+                        <tr>
+                            <td class="p-3 border">
+                                <div class="w-32 h-24 overflow-hidden">
+                                    <div class="swiper mySwiper w-full h-full rounded">
+                                        <div class="swiper-wrapper">
+                                            <?php
+                                            $image_list = explode(",", $row['images']);
+                                            foreach ($image_list as $image): ?>
+                                                <div class="swiper-slide">
+                                                    <img src="../public/uploads/<?php echo $image; ?>"
+                                                        class="w-full h-24 object-cover rounded">
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
-                                        <?php endforeach; ?>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="p-3 border"><?php echo $row['title']; ?></td>
-                        <td class="p-3 border">₦<?php echo number_format($row['price'], 2); ?></td>
-                        <td class="p-3 border"><?php echo ucfirst($row['type']); ?></td>
-                        <td class="p-3 border">
-                            <?php if ($row['admin_approved'] == 0): ?>
-                            <span class="text-yellow-500 font-semibold">Pending Approval</span>
-                            <?php else: ?>
-                            <span class="text-green-500 font-semibold"><?php echo ucfirst($row['status']); ?></span>
-                            <?php endif; ?>
-                        </td>
+                            </td>
+                            <td class="p-3 border"><?php echo $row['title']; ?></td>
+                            <td class="p-3 border">₦<?php echo number_format($row['price'], 2); ?></td>
+                            <td class="p-3 border"><?php echo ucfirst($row['listing_type']); ?></td>
+                            <td class="p-3 border">
+                                <?php if ($row['admin_approved'] == 0): ?>
+                                    <span class="text-yellow-500 font-semibold">Pending Approval</span>
+                                <?php else: ?>
+                                    <span class="text-green-500 font-semibold"><?php echo ucfirst($row['status']); ?></span>
+                                <?php endif; ?>
+                            </td>
 
-                        <td class="p-3 border">
-                            <a href="agent_edit_property.php?id=<?php echo $row['id']; ?>"
-                                class="text-blue-500">Edit</a> |
-                            <a href="agent_delete_property.php?id=<?php echo $row['id']; ?>"
-                                class="text-red-500">Delete</a>
-                        </td>
-                    </tr>
+                            <td class="p-3 border">
+                                <a href="agent_edit_property.php?id=<?php echo $row['id']; ?>"
+                                    class="text-blue-500">Edit</a> |
+                                <a href="agent_delete_property.php?id=<?php echo $row['id']; ?>"
+                                    class="text-red-500">Delete</a>
+                            </td>
+                        </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
@@ -70,18 +70,18 @@
 
 <!-- Initialize Swiper -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    new Swiper(".mySwiper", {
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-        },
-        slidesPerView: 1,
+    document.addEventListener("DOMContentLoaded", function() {
+        new Swiper(".mySwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            slidesPerView: 1,
+        });
     });
-});
 </script>

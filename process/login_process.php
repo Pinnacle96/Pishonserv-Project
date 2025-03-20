@@ -21,18 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $role;
             $_SESSION['profile_image'] = $profile_image;
 
-            // Set success message
-            $_SESSION['success'] = "Login successful! Welcome, $name.";
-
-            // Check if user was redirected from a property or checkout page
-            if (isset($_SESSION['redirect_after_login'])) {
-                $redirect_url = $_SESSION['redirect_after_login']; // Store the redirect URL
-                unset($_SESSION['redirect_after_login']); // Remove the session variable
-                header("Location: $redirect_url"); // Redirect user back to where they were
+            // ✅ Check for stored session redirect first
+            if (!empty($_SESSION['redirect_after_login'])) {
+                $redirect_url = $_SESSION['redirect_after_login'];
+                unset($_SESSION['redirect_after_login']); // Clear session value
+                header("Location: ../" . $redirect_url);
                 exit();
             }
 
-            // Redirect Based on Role
+            // ✅ If no session redirect, check cookie
+            if (isset($_COOKIE['redirect_after_login'])) {
+                $redirect_url = $_COOKIE['redirect_after_login'];
+                setcookie("redirect_after_login", "", time() - 3600, "/"); // Clear cookie
+                header("Location: ../" . $redirect_url);
+                exit();
+            }
+
+            // ✅ Default Redirect Based on User Role
             if ($role === "buyer") {
                 header("Location: ../dashboard/buyer_dashboard.php");
             } elseif ($role === "agent" || $role === "owner" || $role === "hotel_owner") {

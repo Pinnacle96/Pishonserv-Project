@@ -1,5 +1,5 @@
 <?php
-include '../includes/db_connect.php';
+include 'db_connect.php';
 include 'zoho_config.php';
 
 function getZohoAccessToken()
@@ -165,5 +165,210 @@ function createZohoProperty($title, $price, $location, $type, $status, $zoho_con
         return $response_data['data'][0]['details']['id']; // Zoho Property ID
     } else {
         die("Zoho API Error: " . json_encode($response_data));
+    }
+}
+function createZohoBooking($user_id, $property_id, $status, $check_in_date, $check_out_date, $days_booked, $total_amount)
+{
+    global $conn;
+
+    $access_token = getZohoAccessToken();
+
+    // Fetch user & property details
+    $stmt = $conn->prepare("SELECT u.name, u.email, u.phone, p.title, p.price, p.location, p.type
+                            FROM bookings b
+                            JOIN users u ON b.user_id = u.id
+                            JOIN properties p ON b.property_id = p.id
+                            WHERE b.user_id = ? AND b.property_id = ?");
+    $stmt->bind_param("ii", $user_id, $property_id);
+    $stmt->execute();
+    $booking = $stmt->get_result()->fetch_assoc();
+
+    if (!$booking) {
+        die("Error: Booking details not found.");
+    }
+
+    $zoho_url = "https://www.zohoapis.com/crm/v2/Deals";
+    $data = [
+        "data" => [[
+            "Deal_Name" => $booking['title'],
+            "Amount" => $booking['price'],
+            "Stage" => ucfirst($status),
+            "Type" => ucfirst($booking['type']),
+            "Account_Name" => $booking['email'],
+            "Closing_Date" => date("Y-m-d", strtotime("+30 days"))
+        ]]
+    ];
+
+    $headers = [
+        "Authorization: Zoho-oauthtoken " . $access_token,
+        "Content-Type: application/json"
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $zoho_url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if (!$response) {
+        die("Error: No response from Zoho API. HTTP Code: $http_code");
+    }
+
+    $response_data = json_decode($response, true);
+
+    if (isset($response_data['data'][0]['code']) && $response_data['data'][0]['code'] == "SUCCESS") {
+        return $response_data['data'][0]['details']['id'];
+    } else {
+        die("Zoho API Error: " . json_encode($response_data));
+    }
+}
+
+function createZohoPayment($user_id, $property_id, $amount, $transaction_id)
+{
+    global $conn;
+
+    // ✅ Fetch User & Property Info
+    $stmt = $conn->prepare("SELECT u.zoho_contact_id, p.title FROM users u 
+                            JOIN properties p ON p.id = ? 
+                            WHERE u.id = ?");
+    $stmt->bind_param("ii", $property_id, $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+
+    if (!$data || !$data['zoho_contact_id']) {
+        error_log("❌ Error: User does not have a Zoho Contact ID. Sync user first.");
+        return false;
+    }
+
+    $zoho_contact_id = $data['zoho_contact_id'];
+    $property_title = $data['title'];
+
+    // ✅ Zoho API Setup
+    $access_token = getZohoAccessToken();
+    $url = "https://www.zohoapis.com/crm/v2/Payments";
+
+    $payment_data = [
+        "data" => [[
+            "Amount" => $amount,
+            "Payment_Status" => "Completed",
+            "Transaction_ID" => $transaction_id,
+            "Contact_Name" => ["id" => $zoho_contact_id], // Link to user in Zoho CRM
+            "Property_Title" => $property_title,
+            "Description" => "Payment for $property_title - Transaction ID: $transaction_id"
+        ]]
+    ];
+
+    $headers = [
+        "Authorization: Zoho-oauthtoken " . $access_token,
+        "Content-Type: application/json"
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payment_data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // ✅ Debugging: Log API Response
+    error_log("🔄 Zoho Payment Response: " . $response);
+
+    if (!$response) {
+        error_log("❌ Error: No response from Zoho API. HTTP Code: $http_code");
+        return false;
+    }
+
+    $response_data = json_decode($response, true);
+    if (isset($response_data['data'][0]['code']) && $response_data['data'][0]['code'] === "SUCCESS") {
+        return $response_data['data'][0]['details']['id']; // Return Zoho Payment ID
+    } else {
+        error_log("❌ Zoho API Error: " . json_encode($response_data));
+        return false;
+    }
+}
+function updateZohoBookingStatus($user_id, $property_id, $status)
+{
+    global $conn;
+
+    // ✅ Get a valid Zoho Access Token
+    $access_token = getZohoAccessToken();
+
+    // ✅ Fetch Zoho Contact ID & Zoho Property ID
+    $stmt = $conn->prepare("SELECT u.zoho_contact_id, p.zoho_property_id 
+                            FROM bookings b
+                            JOIN properties p ON b.property_id = p.id
+                            JOIN users u ON b.user_id = u.id
+                            WHERE b.user_id = ? AND b.property_id = ?");
+    $stmt->bind_param("ii", $user_id, $property_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    $stmt->close();
+
+    if (!$data || !$data['zoho_contact_id'] || !$data['zoho_property_id']) {
+        error_log("❌ Error: Zoho IDs not found for User: $user_id, Property: $property_id.");
+        return false;
+    }
+
+    $zoho_contact_id = $data['zoho_contact_id'];
+    $zoho_property_id = $data['zoho_property_id'];
+
+    // ✅ Debugging: Log the IDs
+    error_log("🔍 Zoho Update - Contact ID: $zoho_contact_id, Property ID: $zoho_property_id");
+
+    // ✅ API URL for Updating Zoho Deals (Bookings)
+    $zoho_url = "https://www.zohoapis.com/crm/v2/Deals/$zoho_property_id";
+
+    // ✅ Prepare Update Data
+    $update_data = [
+        "data" => [[
+            "Stage" => ucfirst($status), // `Confirmed`, `Cancelled`, or `Failed`
+            "Contact_Name" => ["id" => $zoho_contact_id] // Link the deal to the correct user
+        ]]
+    ];
+
+    $headers = [
+        "Authorization: Zoho-oauthtoken " . $access_token,
+        "Content-Type: application/json"
+    ];
+
+    // ✅ Send API Request
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $zoho_url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($update_data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // ✅ Debugging: Log API Response
+    error_log("🔄 Zoho Booking Update Response: " . $response);
+
+    if (!$response) {
+        error_log("❌ Error: No response from Zoho API. HTTP Code: $http_code");
+        return false;
+    }
+
+    $response_data = json_decode($response, true);
+
+    if (isset($response_data['data'][0]['code']) && $response_data['data'][0]['code'] === "SUCCESS") {
+        error_log("✅ Zoho Booking Successfully Updated for User: $user_id, Property: $property_id");
+        return true; // Update was successful
+    } else {
+        error_log("❌ Zoho API Error: " . json_encode($response_data));
+        return false;
     }
 }

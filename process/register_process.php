@@ -1,12 +1,11 @@
 <?php
+session_start();
 include '../includes/db_connect.php';
-include '../includes/zoho_functions.php'; // Import Zoho API functions
-//session_start();
+include '../includes/zoho_functions.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Load Composer's autoloader
 require '../vendor/autoload.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $otp = rand(100000, 999999);
     $otp_expires_at = date("Y-m-d H:i:s", strtotime("+10 minutes"));
     $image_name = "default.png"; // Default profile image
+
+    // Check for previous redirect
+    $redirect_after_login = $_SESSION['redirect_after_login'] ?? '../auth/verify-otp.php';
 
     // File Upload Logic
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
@@ -38,20 +40,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssssss", $name, $lname, $email, $phone, $password, $role, $otp, $otp_expires_at, $image_name);
 
     if ($stmt->execute()) {
-        $user_id = $stmt->insert_id; // Get new user ID
+        $user_id = $stmt->insert_id;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role;
+        $_SESSION['profile_image'] = $image_name;
 
-        // ✅ Send Data to Zoho CRM
+        // ✅ Sync User to Zoho CRM
         $zoho_contact_id = createZohoContact($name, $lname, $email, $phone, $role);
-
         if ($zoho_contact_id) {
-            // Save Zoho Contact ID to database
-            $updateStmt = $conn->prepare("UPDATE users SET zoho_contact_id = ? WHERE id = ?");
-            $updateStmt->bind_param("si", $zoho_contact_id, $user_id);
-            $updateStmt->execute();
+            $stmt = $conn->prepare("UPDATE users SET zoho_contact_id = ? WHERE id = ?");
+            $stmt->bind_param("si", $zoho_contact_id, $user_id);
+            $stmt->execute();
         } else {
-            // If sync fails, mark user for retry
             error_log("Failed to sync user $email to Zoho.");
+        }
+
+        // ✅ Store intended page before OTP verification
+        if (isset($_SESSION['redirect_after_login'])) {
+            $_SESSION['temp_redirect_after_otp'] = $_SESSION['redirect_after_login'];
         }
 
         // Send OTP Email
@@ -73,11 +81,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Body = "<h3>Your OTP Code: <strong>$otp</strong></h3><p>This code expires in 10 minutes.</p>";
 
             $mail->send();
-            $_SESSION['success'] = "Registration successful! Check your email for OTP.";
+            $_SESSION['success'] = "Registration successful! Please verify your email with OTP.";
+
             header("Location: ../auth/verify-otp.php");
             exit();
         } catch (Exception $e) {
             error_log("Mail sending failed: " . $mail->ErrorInfo);
+            $_SESSION['error'] = "Error sending OTP email. Please try again.";
+            header("Location: ../auth/register.php");
+            exit();
         }
     } else {
         $_SESSION['error'] = "Registration failed. Please try again.";

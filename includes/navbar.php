@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Platform</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">;
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 

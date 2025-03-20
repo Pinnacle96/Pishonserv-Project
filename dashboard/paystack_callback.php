@@ -1,23 +1,81 @@
 <?php
 session_start();
-include '../includes/config.php';
-include '../includes/db_connect.php';
 
-// Paystack Secret Key
-$paystack_secret_key = PAYSTACK_SECRET_KEY;
+// ✅ Enable Full Error Reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
 
-// Get Paystack transaction reference
+// ✅ Ensure logs folder exists
+$log_dir = "../logs";
+$log_file = $log_dir . "/paystack_errors.log";
+
+if (!file_exists($log_dir)) {
+    mkdir($log_dir, 0777, true); // Create logs directory if it doesn't exist
+}
+
+// ✅ Set PHP to log errors
+ini_set('error_log', $log_file);
+
+// ✅ Debugging: Log Paystack Callback Trigger
+error_log("🔍 Paystack Callback Triggered with reference: " . ($_GET['reference'] ?? 'NO REFERENCE'));
+
+// ✅ Check if Reference Exists
 $reference = $_GET['reference'] ?? '';
-
 if (!$reference) {
     $_SESSION['error'] = "Invalid transaction reference.";
-    error_log("Invalid reference: " . print_r($_GET, true));
-    header("Location: payment_failed.php");
+    error_log("❌ Invalid transaction reference received.");
+    header("Location: ../dashboard/payment_failed.php");
     exit();
 }
 
-// Verify Paystack payment
+// ✅ Include Database & Config
+include '../includes/config.php';
+include '../includes/db_connect.php';
+include '../includes/zoho_functions.php'; // Import Zoho API functions
+
+// ✅ Fetch Transaction (Ensure it's still pending)
+$stmt = $conn->prepare("SELECT * FROM payments WHERE transaction_id = ? AND status = 'pending'");
+$stmt->bind_param("s", $reference);
+$stmt->execute();
+$transaction = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+
+if (!$transaction) {
+    $_SESSION['error'] = "Transaction not found or already processed.";
+    error_log("❌ Transaction not found or already processed.");
+    header("Location: ../dashboard/payment_failed.php");
+    exit();
+}
+
+$user_id = $transaction['user_id'];
+$property_id = $transaction['property_id'];
+$total_amount = $transaction['amount'];
+
+// ✅ Fetch Property, Owner, and Zoho Details
+$stmt = $conn->prepare("SELECT p.owner_id, p.listing_type, p.zoho_property_id, u.zoho_contact_id 
+                        FROM properties p 
+                        JOIN users u ON p.owner_id = u.id 
+                        WHERE p.id = ?");
+$stmt->bind_param("i", $property_id);
+$stmt->execute();
+$property = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+
+if (!$property) {
+    error_log("❌ Property not found for ID: $property_id");
+    die("Error: Property not found.");
+}
+
+$owner_id = $property['owner_id'];
+$listing_type = $property['listing_type'];
+$zoho_property_id = $property['zoho_property_id'];
+$zoho_contact_id = $property['zoho_contact_id'];
+
+// ✅ Verify Payment with Paystack API
+$paystack_secret_key = PAYSTACK_SECRET_KEY;
 $paystack_url = "https://api.paystack.co/transaction/verify/{$reference}";
+
 $headers = [
     "Authorization: Bearer $paystack_secret_key",
     "Content-Type: application/json"
@@ -27,180 +85,126 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $paystack_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
 $response = curl_exec($ch);
-if (curl_error($ch)) {
-    $error = "cURL Error: " . curl_error($ch);
-    error_log($error);
-    $_SESSION['error'] = $error;
-    header("Location: payment_failed.php");
-    exit();
-}
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 $paystack_response = json_decode($response, true);
-error_log("Paystack Response: " . $response);
 
-if (json_last_error() !== JSON_ERROR_NONE) {
-    $_SESSION['error'] = "JSON Decode Error: " . json_last_error_msg() . ". Response: " . $response;
-    error_log($_SESSION['error']);
-    header("Location: payment_failed.php");
-    exit();
-}
+// ✅ Debugging: Log Paystack Response
+error_log("🔍 Paystack API HTTP Code: " . $http_code);
+error_log("🔍 Paystack Response: " . json_encode($paystack_response, JSON_PRETTY_PRINT));
 
+// 🚨 Ensure Payment is Successful
 if (!$paystack_response['status'] || $paystack_response['data']['status'] !== 'success') {
-    $error_message = $paystack_response['message'] ?? 'Unknown error';
-    $_SESSION['error'] = "Payment verification failed: $error_message";
-    error_log($_SESSION['error']);
-    header("Location: payment_failed.php");
+    $_SESSION['error'] = "Payment verification failed.";
+    error_log("❌ Paystack verification failed.");
+    header("Location: ../dashboard/payment_failed.php");
     exit();
 }
 
-// Get transaction details
-$amount_paid = $paystack_response['data']['amount'] / 100;
-$email = $paystack_response['data']['customer']['email'];
-$transaction_id = $paystack_response['data']['reference'];
+// ✅ Log Successful Payment
+error_log("✅ Paystack Payment Verified Successfully");
 
-// Fetch transaction from the database
-$stmt = $conn->prepare("SELECT * FROM payments WHERE transaction_id = ? AND status = 'pending'");
-$stmt->bind_param("s", $transaction_id);
-$stmt->execute();
-$transaction = $stmt->get_result()->fetch_assoc();
-
-if (!$transaction) {
-    $_SESSION['error'] = "Transaction not found or already processed.";
-    error_log($_SESSION['error']);
-    header("Location: payment_failed.php");
-    exit();
-}
-
-$user_id = $transaction['user_id'];
-$property_id = $transaction['property_id'];
-$total_amount = $transaction['amount'];
-
-$stmt = $conn->prepare("SELECT p.owner_id, u.role FROM properties p JOIN users u ON p.owner_id = u.id WHERE p.id = ?");
-$stmt->bind_param("i", $property_id);
-$stmt->execute();
-$property = $stmt->get_result()->fetch_assoc();
-
-if (!$property) {
-    $_SESSION['error'] = "Property not found.";
-    error_log($_SESSION['error']);
-    header("Location: payment_failed.php");
-    exit();
-}
-
-$owner_id = $property['owner_id'];
+// ✅ Calculate Earnings (80% to Owner, 20% to Platform)
 $platform_fee = 0.20 * $total_amount;
-$owner_amount = 0.80 * $total_amount;
+$owner_earnings = 0.80 * $total_amount;
+$superadmin_id = 9; // Replace with actual superadmin ID
 
-// Update payment status
-$stmt = $conn->prepare("UPDATE payments SET status = 'completed' WHERE transaction_id = ?");
-$stmt->bind_param("s", $transaction_id);
+// ✅ Get the `booking_id`
+$stmt = $conn->prepare("SELECT id FROM bookings WHERE property_id = ? AND user_id = ?");
+$stmt->bind_param("ii", $property_id, $user_id);
 $stmt->execute();
+$booking = $stmt->get_result()->fetch_assoc();
+$stmt->close();
 
-// Update wallet for the property owner
-$stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
-if ($stmt) {
-    $stmt->bind_param("di", $owner_amount, $owner_id);
-    if (!$stmt->execute()) {
-        error_log("Failed to update owner wallet: " . $stmt->error);
-    } else {
-        error_log("Owner wallet updated: +₦" . $owner_amount . " for user_id=" . $owner_id);
-    }
-} else {
-    error_log("Prepare failed for owner wallet update: " . $conn->error);
+if (!$booking) {
+    error_log("❌ Booking ID not found for property: $property_id and user: $user_id");
+    die("Error: Booking ID not found.");
 }
 
-// Update wallet for superadmin
-$stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
-if ($stmt) {
+$booking_id = $booking['id'];
+
+// 🚨 Begin Transaction to Ensure Atomicity
+$conn->begin_transaction();
+
+try {
+    // ✅ Check if Wallet Exists for Owner
+    $stmt = $conn->prepare("SELECT id FROM wallets WHERE user_id = ?");
+    $stmt->bind_param("i", $owner_id);
+    $stmt->execute();
+    $wallet_exists = $stmt->get_result()->num_rows > 0;
+    $stmt->close();
+
+    if ($wallet_exists) {
+        // Update existing wallet balance
+        $stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
+        $stmt->bind_param("di", $owner_earnings, $owner_id);
+    } else {
+        // Insert new wallet record
+        $stmt = $conn->prepare("INSERT INTO wallets (user_id, balance) VALUES (?, ?)");
+        $stmt->bind_param("id", $owner_id, $owner_earnings);
+    }
+    $stmt->execute();
+    $stmt->close();
+
+    // ✅ Update Platform Wallet (Superadmin Earnings)
+    $stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
     $stmt->bind_param("di", $platform_fee, $superadmin_id);
-    if (!$stmt->execute()) {
-        error_log("Failed to update superadmin wallet: " . $stmt->error);
+    $stmt->execute();
+    $stmt->close();
+
+    // ✅ Insert Transactions (Owner's Earnings & Platform Fee)
+    $stmt = $conn->prepare("INSERT INTO transactions (user_id, amount, transaction_type, type, status, description) 
+                            VALUES (?, ?, 'booking', 'credit', 'completed', ?)");
+    $description = "Earnings from property booking";
+    $stmt->bind_param("ids", $owner_id, $owner_earnings, $description);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $conn->prepare("INSERT INTO transactions (user_id, amount, transaction_type, type, status, description) 
+                            VALUES (?, ?, 'booking', 'credit', 'completed', ?)");
+    $description = "Platform commission from booking";
+    $stmt->bind_param("ids", $superadmin_id, $platform_fee, $description);
+    $stmt->execute();
+    $stmt->close();
+
+    // ✅ Update Payment Status
+    $stmt = $conn->prepare("UPDATE payments SET status = 'completed' WHERE transaction_id = ?");
+    $stmt->bind_param("s", $reference);
+    $stmt->execute();
+    $stmt->close();
+
+    // ✅ Update Booking Status to Confirmed
+    $stmt = $conn->prepare("UPDATE bookings SET status = 'confirmed' WHERE id = ?");
+    $stmt->bind_param("i", $booking_id);
+    $stmt->execute();
+    $stmt->close();
+
+    // ✅ Sync Payment & Booking with Zoho CRM
+    if ($zoho_contact_id && $zoho_property_id) {
+        updateZohoBookingStatus($zoho_contact_id, $zoho_property_id, 'confirmed');
     } else {
-        error_log("Superadmin wallet updated: +₦" . $platform_fee . " for user_id=" . $superadmin_id);
+        error_log("⚠️ Warning: Zoho CRM IDs missing, unable to sync.");
     }
-} else {
-    error_log("Prepare failed for superadmin wallet update: " . $conn->error);
-}
 
+    // 🚀 Commit Transaction if Everything is Successful
+    $conn->commit();
 
-// Fetch the current type of the property
-$stmt = $conn->prepare("SELECT listing_type FROM properties WHERE id = ?");
-$stmt->bind_param("i", $property_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$property = $result->fetch_assoc();
+    // ✅ Debugging: Log Success Redirection
+    error_log("✅ Redirecting to payment_success.php");
 
-if (!$property) {
-    error_log("Property not found for id: " . $property_id);
-    $_SESSION['error'] = "Property not found.";
-    header("Location: payment_failed.php");
+    // ✅ Redirect on Success
+    $_SESSION['success'] = "Payment successful! Booking confirmed.";
+    header("Location: ../dashboard/payment_success.php?reference=$reference");
+    exit();
+} catch (Exception $e) {
+    // ❌ Rollback Changes on Failure
+    $conn->rollback();
+
+    error_log("❌ Transaction failed: " . $e->getMessage());
+
+    $_SESSION['error'] = "Transaction failed. Please contact support.";
+    header("Location: ../dashboard/payment_failed.php");
     exit();
 }
-
-$current_type = $property['listing_type'];
-$new_status = '';
-
-// Determine the new status based on the property type
-switch ($current_type) {
-    case 'for_sale':
-        $new_status = 'sold';
-        break;
-    case 'for_rent':
-        $new_status = 'rented';
-        break;
-    case 'short_let':
-    case 'hotel':
-        $new_status = 'booked';
-        break;
-    default:
-        error_log("Unknown property type: " . $current_type);
-        $_SESSION['error'] = "Invalid property type.";
-        header("Location: payment_failed.php");
-        exit();
-}
-
-// Update the property status
-$stmt = $conn->prepare("UPDATE properties SET status = ? WHERE id = ?");
-$stmt->bind_param("si", $new_status, $property_id);
-if ($stmt->execute()) {
-    error_log("Property status updated to '$new_status' for property_id=$property_id");
-} else {
-    error_log("Failed to update property status: " . $stmt->error);
-}
-
-
-// Store success message
-$_SESSION['success'] = "Payment successful! Property has been purchased.";
-
-// Log session details for debugging
-error_log("Session data before redirect: " . print_r($_SESSION, true));
-
-// Recover user_id if not set
-if (!isset($_SESSION['user_id'])) {
-    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? LIMIT 1");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $user = $stmt->get_result()->fetch_assoc();
-    if ($user) {
-        $_SESSION['user_id'] = $user['id'];
-        error_log("Recovered user_id: " . $_SESSION['user_id']);
-    } else {
-        error_log("User not found for email: $email");
-        $_SESSION['error'] = "User not found. Please log in.";
-        header("Location: payment_failed.php");
-        exit();
-    }
-}
-
-// Log redirect URL
-$redirect_url = "payment_success.php?reference=$transaction_id&user_id=" . $_SESSION['user_id'];
-error_log("Redirect URL: " . $redirect_url);
-
-// Redirect to payment_success.php with user_id
-header("Location: " . $redirect_url);
-exit();

@@ -2,55 +2,41 @@
 session_start();
 include '../includes/db_connect.php';
 
+// ✅ Enable Error Reporting for Debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', 'paystack_success_errors.log'); // Log errors to a file
 
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-    $stmt = $conn->prepare("SELECT name, profile_image FROM users WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+// ✅ Debugging: Log session and GET data
+error_log("🔍 Payment Success - Session: " . print_r($_SESSION, true));
+error_log("🔍 Payment Success - GET: " . print_r($_GET, true));
 
-    if ($user) {
-        $_SESSION['name'] = $user['name'];
-        $_SESSION['profile_image'] = $user['profile_image'] ?? 'default.png';
-    }
-}
-
-
-// Debug: Log session and GET data
-error_log("Session data: " . print_r($_SESSION, true));
-error_log("GET data: " . print_r($_GET, true));
-
-// Ensure user is logged in or restore session from URL
+// ✅ Ensure user is logged in or restore session from GET
 if (!isset($_SESSION['user_id'])) {
     $user_id = trim($_GET['user_id'] ?? '');
     if ($user_id === '') {
-        error_log("No user_id in session or URL. GET user_id is empty. URL: " . print_r($_SERVER['REQUEST_URI'], true));
-        die("User not logged in or invalid user ID. Please log in and try again.");
+        error_log("❌ User not logged in. No user_id in session or GET.");
+        $_SESSION['error'] = "User session expired. Please log in again.";
+        header("Location: ../auth/login.php");
+        exit();
     }
     $_SESSION['user_id'] = $user_id;
-    error_log("Restored user_id from GET: " . $_SESSION['user_id']);
+    error_log("✅ Restored user_id from GET: " . $_SESSION['user_id']);
 }
 
-// Redirect if session is still missing (shouldn’t happen after above check)
-if (!isset($_SESSION['user_id'])) {
-    error_log("No user_id in session or URL after restoration. Redirecting to login.");
-    header("Location: ../auth/login.php");
+$user_id = $_SESSION['user_id'];
+
+// ✅ Get transaction reference
+$reference = trim($_GET['reference'] ?? '');
+if (!$reference) {
+    error_log("❌ Invalid transaction reference.");
+    $_SESSION['error'] = "Invalid transaction reference.";
+    header("Location: ../dashboard/payment_failed.php");
     exit();
 }
 
-// Get transaction reference
-$reference = trim($_GET['reference'] ?? '');
-if (!$reference) {
-    error_log("Invalid transaction reference. URL: " . print_r($_SERVER['REQUEST_URI'], true));
-    die("Invalid transaction reference.");
-}
-
-// Debug: Log the received parameters
-error_log("Fetching transaction for user_id: " . $_SESSION['user_id'] . ", reference: " . $reference);
-
-// Fetch transaction details
+// ✅ Fetch transaction details
 $stmt = $conn->prepare("
     SELECT p.title, p.location, p.price, t.amount, t.status, t.created_at 
     FROM payments t 
@@ -59,28 +45,40 @@ $stmt = $conn->prepare("
     AND t.user_id = ? 
     AND LOWER(TRIM(t.status)) = 'completed'
 ");
-
-// 🛠️ Fix: Corrected bind_param order (string, int) instead of (int, string)
-$stmt->bind_param("si", $reference, $_SESSION['user_id']);
+$stmt->bind_param("si", $reference, $user_id);
 $stmt->execute();
-
-// Debug: Log any SQL errors
-if ($conn->error) {
-    error_log("Database error during prepare/execute: " . $conn->error);
-}
-
 $transaction = $stmt->get_result()->fetch_assoc();
+$stmt->close();
 
-// Debug: Log the query result
-error_log("Transaction query result: " . print_r($transaction, true));
+// ✅ Debugging: Log transaction details
+error_log("🔍 Transaction query result: " . print_r($transaction, true));
 
 if (!$transaction) {
-    // Additional debugging: Try querying directly in the database
-    $result = $conn->query("SELECT * FROM payments WHERE TRIM(transaction_id) = '" . $conn->real_escape_string($reference) . "' AND user_id = " . intval($_SESSION['user_id']) . " AND LOWER(TRIM(status)) = 'completed'");
-    error_log("Manual query result: " . print_r($result->fetch_all(MYSQLI_ASSOC), true));
-    error_log("Transaction not found for user_id: " . $_SESSION['user_id'] . ", reference: " . $reference . ". Database state: " . print_r($conn->error, true));
-    die("Transaction details not found.");
+    // Check database manually
+    $result = $conn->query("SELECT * FROM payments WHERE TRIM(transaction_id) = '" . $conn->real_escape_string($reference) . "' AND user_id = " . intval($user_id) . " AND LOWER(TRIM(status)) = 'completed'");
+    error_log("🔍 Manual query result: " . print_r($result->fetch_all(MYSQLI_ASSOC), true));
+
+    error_log("❌ Transaction not found for user_id: $user_id, reference: $reference");
+    $_SESSION['error'] = "Transaction not found or not completed.";
+    header("Location: ../dashboard/payment_failed.php");
+    exit();
 }
+
+// ✅ Fetch User Details
+$stmt = $conn->prepare("SELECT name, profile_image FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
+if ($user) {
+    $_SESSION['name'] = $user['name'];
+    $_SESSION['profile_image'] = $user['profile_image'] ?? 'default.png';
+}
+
+// ✅ Debugging: Log final confirmation
+error_log("✅ Payment Success - Displaying confirmation page");
 
 ?>
 
@@ -92,9 +90,22 @@ if (!$transaction) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Success - Real Estate Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <!-- ✅ SweetAlert2 Success Message -->
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Payment Successful ✅',
+            text: 'Your payment has been confirmed!',
+            confirmButtonColor: '#092468',
+            confirmButtonText: 'OK'
+        });
+    </script>
+
     <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg text-center">
         <h1 class="text-3xl font-bold text-green-600">Payment Successful ✅</h1>
         <p class="text-gray-700 mt-2">Thank you! Your payment has been confirmed.</p>

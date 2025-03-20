@@ -1,0 +1,420 @@
+[20-Mar-2025 08:57:47 UTC] 🔍 Paystack Callback Triggered with reference: TXN_b22bd6ed2c37963acc9a
+[20-Mar-2025 08:57:48 UTC] 🔍 Paystack API HTTP Code: 200
+[20-Mar-2025 08:57:48 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4794558841,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_b22bd6ed2c37963acc9a",
+        "receipt_number": null,
+        "amount": 40000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-03-20T08:57:44.000Z",
+        "created_at": "2025-03-20T08:57:37.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.43.114",
+        "metadata": {
+            "referrer": "http:\/\/127.0.0.1\/"
+        },
+        "log": {
+            "start_time": 1742461061,
+            "time_spent": 5,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 4
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 5
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_0046pl0kkt",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_cMe3NS2DpKNulUcfs6gl",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 250173494,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_mcqs4xz212donlm",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-03-20T08:57:44.000Z",
+        "createdAt": "2025-03-20T08:57:37.000Z",
+        "requested_amount": 40000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-03-20T08:57:37.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[20-Mar-2025 08:57:48 UTC] ✅ Paystack Payment Verified Successfully
+[20-Mar-2025 08:57:49 UTC] ❌ Transaction failed: Unknown column 'z.zoho_deal_id' in 'field list'
+[20-Mar-2025 09:05:29 UTC] 🔍 Paystack Callback Triggered with reference: TXN_7e6a38eeabb7c85af025
+[20-Mar-2025 09:05:29 UTC] 🔍 Paystack API HTTP Code: 200
+[20-Mar-2025 09:05:29 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4794578705,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_7e6a38eeabb7c85af025",
+        "receipt_number": null,
+        "amount": 60000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-03-20T09:05:25.000Z",
+        "created_at": "2025-03-20T09:05:12.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.43.114",
+        "metadata": {
+            "referrer": "http:\/\/127.0.0.1\/"
+        },
+        "log": {
+            "start_time": 1742461516,
+            "time_spent": 11,
+            "attempts": 2,
+            "authentication": "3DS",
+            "errors": 1,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "error",
+                    "message": "Error: Insufficient Funds",
+                    "time": 3
+                },
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 7
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 8
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 10
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window closed",
+                    "time": 11
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 11
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_yui806ceob",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_7yl7nqMcyALSB2gDblLB",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 250173494,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_mcqs4xz212donlm",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-03-20T09:05:25.000Z",
+        "createdAt": "2025-03-20T09:05:12.000Z",
+        "requested_amount": 60000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-03-20T09:05:12.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[20-Mar-2025 09:05:29 UTC] ✅ Paystack Payment Verified Successfully
+[20-Mar-2025 09:05:30 UTC] ❌ Transaction failed: Unknown column 'z.zoho_deal_id' in 'field list'
+[20-Mar-2025 09:10:27 UTC] 🔍 Paystack Callback Triggered with reference: TXN_3209574e4028310b132d
+[20-Mar-2025 09:10:28 UTC] 🔍 Paystack API HTTP Code: 200
+[20-Mar-2025 09:10:28 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4794590080,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_3209574e4028310b132d",
+        "receipt_number": null,
+        "amount": 20000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-03-20T09:10:24.000Z",
+        "created_at": "2025-03-20T09:10:17.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.43.114",
+        "metadata": {
+            "referrer": "http:\/\/127.0.0.1\/"
+        },
+        "log": {
+            "start_time": 1742461821,
+            "time_spent": 5,
+            "attempts": 1,
+            "authentication": "3DS",
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 3
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 4
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 5
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window closed",
+                    "time": 5
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_qnlxbre18d",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_7yl7nqMcyALSB2gDblLB",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 250173494,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_mcqs4xz212donlm",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-03-20T09:10:24.000Z",
+        "createdAt": "2025-03-20T09:10:17.000Z",
+        "requested_amount": 20000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-03-20T09:10:17.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[20-Mar-2025 09:10:28 UTC] ✅ Paystack Payment Verified Successfully
+[20-Mar-2025 09:10:29 UTC] ❌ Error: Zoho IDs not found for User: 6560565000000970001, Property: 6560565000000998013.
+[20-Mar-2025 09:10:29 UTC] ✅ Redirecting to payment_success.php
+[20-Mar-2025 09:17:57 UTC] 🔍 Paystack Callback Triggered with reference: TXN_b32dc5601dfb478b7d85
+[20-Mar-2025 09:17:58 UTC] 🔍 Paystack API HTTP Code: 200
+[20-Mar-2025 09:17:58 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4794605812,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_b32dc5601dfb478b7d85",
+        "receipt_number": null,
+        "amount": 40000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-03-20T09:17:54.000Z",
+        "created_at": "2025-03-20T09:17:45.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.43.114",
+        "metadata": {
+            "referrer": "http:\/\/127.0.0.1\/"
+        },
+        "log": {
+            "start_time": 1742462270,
+            "time_spent": 6,
+            "attempts": 1,
+            "authentication": "3DS",
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 4
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 5
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 6
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window closed",
+                    "time": 6
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_lnoffkdn9k",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_7yl7nqMcyALSB2gDblLB",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 250173494,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_mcqs4xz212donlm",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-03-20T09:17:54.000Z",
+        "createdAt": "2025-03-20T09:17:45.000Z",
+        "requested_amount": 40000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-03-20T09:17:45.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[20-Mar-2025 09:17:58 UTC] ✅ Paystack Payment Verified Successfully
+[20-Mar-2025 09:18:00 UTC] ❌ Error: Zoho IDs not found for User: 6560565000000970001, Property: 6560565000000998013.
+[20-Mar-2025 09:18:00 UTC] ✅ Redirecting to payment_success.php

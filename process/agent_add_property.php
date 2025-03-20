@@ -1,76 +1,64 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
+echo "<pre>";
+var_dump(ini_get('post_max_size'));
+var_dump(ini_get('upload_max_filesize'));
+var_dump($_SERVER['CONTENT_LENGTH']);
+echo "</pre>";
+
 include '../includes/db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-   $price = number_format($_POST['price'], 2, '.', ''); // Format price Ensure price is stored correctly
-    $location = $_POST['location'];
-    $type = $_POST['type'];
-    $description = $_POST['description'];
-    $owner_id = $_SESSION['user_id']; // Logged-in agent
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    die("Error: Invalid request method.");
+}
 
-    $imagePaths = []; // Store all uploaded image paths
+// Validate & sanitize input
+$title = isset($_POST['title']) ? trim($_POST['title']) : null;
+$price = isset($_POST['price']) ? (float) $_POST['price'] : null;
+$location = isset($_POST['location']) ? trim($_POST['location']) : null;
+$type = isset($_POST['type']) ? trim($_POST['type']) : null;
+$description = isset($_POST['description']) ? trim($_POST['description']) : null;
+$owner_id = $_SESSION['user_id'] ?? null;
 
-    // Image Upload Handling
-    if (!empty($_FILES['images']['name'][0])) {
-        $uploadDir = '../public/uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true); // Create upload directory if not exists
-        }
+// Prevent submission if fields are empty
+if (!$title || !$price || !$location || !$type || !$description || !$owner_id) {
+    die("Error: All fields are required.");
+}
 
-        foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
-            $fileName = uniqid() . '_' . $_FILES['images']['name'][$key];
-            $filePath = $uploadDir . $fileName;
-
-            // Compress and Save Image
-            if (compressImage($tmp_name, $filePath, 30)) {
-                $imagePaths[] = $fileName; // Save file path
-            }
-        }
+// Image Upload Handling
+$imagePaths = [];
+if (!empty($_FILES['images']['name'][0])) {
+    $uploadDir = '../public/uploads/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
 
-    // Store in database (images as comma-separated values)
-    $imageString = implode(',', $imagePaths);
+    foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
+        $fileName = uniqid() . '_' . $_FILES['images']['name'][$key];
+        $filePath = $uploadDir . $fileName;
 
-    $stmt = $conn->prepare("INSERT INTO properties (title, price, location, type, description, owner_id, images) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdsssis", $title, $price, $location, $type, $description, $owner_id, $imageString);
-
-    if ($stmt->execute()) {
-        $_SESSION['success'] = "Property added successfully!";
-    } else {
-        $_SESSION['error'] = "Error adding property.";
+        if (move_uploaded_file($tmp_name, $filePath)) {
+            $imagePaths[] = $fileName;
+        } else {
+            die("Error uploading image: " . $_FILES['images']['name'][$key]);
+        }
     }
+}
 
+$imageString = implode(',', $imagePaths);
+
+$stmt = $conn->prepare("INSERT INTO properties 
+    (title, price, location, type, description, owner_id, images, status, admin_approved) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', 0)");
+$stmt->bind_param("sdsssis", $title, $price, $location, $type, $description, $owner_id, $imageString);
+
+if ($stmt->execute()) {
+    $_SESSION['success'] = "Property added successfully! Pending admin approval.";
     header("Location: ../dashboard/agent_properties.php");
     exit();
+} else {
+    die("Error inserting property: " . $stmt->error);
 }
-
-// Function to compress image to 5KB
-function compressImage($source, $destination, $quality) {
-    $info = getimagesize($source);
-
-    if ($info['mime'] == 'image/jpeg') {
-        $image = imagecreatefromjpeg($source);
-    } elseif ($info['mime'] == 'image/png') {
-        $image = imagecreatefrompng($source);
-    } else {
-        return false; // Unsupported format
-    }
-
-    // Reduce file size to 5KB
-    $fileSize = filesize($source);
-    while ($fileSize > 5120) { // 5KB = 5120 Bytes
-        ob_start();
-        imagejpeg($image, null, $quality);
-        $compressedImage = ob_get_clean();
-        file_put_contents($destination, $compressedImage);
-        $fileSize = filesize($destination);
-        $quality -= 5; // Reduce quality in steps
-        if ($quality < 10) break; // Prevent too much quality loss
-    }
-
-    imagedestroy($image);
-    return true;
-}
-?>

@@ -1,0 +1,36 @@
+[20-Mar-2025 09:14:24 UTC] 🔍 Payment Success - Session: Array
+(
+    [success] => Payment successful! Booking confirmed.
+)
+
+[20-Mar-2025 09:14:24 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_3209574e4028310b132d
+)
+
+[20-Mar-2025 09:14:24 UTC] ❌ User not logged in. No user_id in session or GET.
+[20-Mar-2025 09:18:00 UTC] 🔍 Payment Success - Session: Array
+(
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[20-Mar-2025 09:18:00 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_b32dc5601dfb478b7d85
+)
+
+[20-Mar-2025 09:18:00 UTC] 🔍 Transaction query result: Array
+(
+    [title] => hthehee
+    [location] => Ikeja
+    [price] => 200000.00
+    [amount] => 400000.00
+    [status] => completed
+    [created_at] => 2025-03-20 10:17:42
+)
+
+[20-Mar-2025 09:18:00 UTC] ✅ Payment Success - Displaying confirmation page

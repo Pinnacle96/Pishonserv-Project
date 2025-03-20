@@ -2,6 +2,11 @@
 session_start();
 include '../includes/db_connect.php';
 
+require '../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sender_id = $_POST['sender_id'];
     $receiver_id = $_POST['receiver_id'];
@@ -25,18 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_stmt = $conn->prepare("SELECT email FROM users WHERE id = ?");
         $user_stmt->bind_param("i", $receiver_id);
         $user_stmt->execute();
-        $user_result = $user_stmt->get_result();
-        $receiver_email = ($user_result->fetch_assoc())['email'];
-
         // Send Email Notification
-        require '../vendor/autoload.php';
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
 
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io'; 
+            $mail->Host = 'sandbox.smtp.mailtrap.io';
             $mail->SMTPAuth = true;
             $mail->Username = 'your_mailtrap_username';
             $mail->Password = 'your_mailtrap_password';
@@ -61,4 +60,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../dashboard/agent_messages.php");
     exit();
 }
-?>

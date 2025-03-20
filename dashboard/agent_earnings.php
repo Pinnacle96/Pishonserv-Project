@@ -16,9 +16,9 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
     exit();
 }
 
+
 // Load the agent content for all allowed roles
 $page_content = __DIR__ . "/agent_earnings_content.php";
 
 // Include the dashboard layout
 include 'dashboard_layout.php';
-?>

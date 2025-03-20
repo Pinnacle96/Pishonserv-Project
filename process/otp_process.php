@@ -14,43 +14,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($row = $result->fetch_assoc()) {
         if (strtotime($row['otp_expires_at']) > time()) {
-            // Update user verification status
+            // ✅ Update user verification status
             $updateStmt = $conn->prepare("UPDATE users SET email_verified = 1, otp = NULL WHERE email = ?");
             $updateStmt->bind_param("s", $email);
             $updateStmt->execute();
 
-            // Set session variables
+            // ✅ Set session variables
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
             $_SESSION['profile_image'] = $row['profile_image'];
 
-            // Set success message
+            // ✅ Set success message
             $_SESSION['success'] = "Your email has been verified successfully!";
 
-            // Redirect based on role
-            switch ($row['role']) {
-                case "buyer":
-                    header("Location: ../dashboard/buyer_dashboard.php");
-                    break;
-                case "agent":
-                case "owner":
-                case "hotel_owner":
-                    header("Location: ../dashboard/agent_dashboard.php");
-                    break;
-                case "admin":
-                    header("Location: ../dashboard/admin_dashboard.php");
-                    break;
-                case "superadmin":
-                    header("Location: ../dashboard/superadmin_dashboard.php");
-                    break;
-                default:
-                    // Fallback for unknown role (redirect to login)
-                    $_SESSION['error'] = "Role not recognized, please log in again.";
-                    header("Location: ../auth/login.php");
-                    break;
+            // ✅ Check if there's a redirect URL (e.g., for booking or checkout)
+            if (isset($_SESSION['redirect_after_login'])) {
+                $redirect_url = $_SESSION['redirect_after_login'];
+                unset($_SESSION['redirect_after_login']); // Clear after use
+            } else {
+                // ✅ Default role-based dashboard redirection
+                switch ($row['role']) {
+                    case "buyer":
+                        $redirect_url = "../dashboard/buyer_dashboard.php";
+                        break;
+                    case "agent":
+                    case "owner":
+                    case "hotel_owner":
+                        $redirect_url = "../dashboard/agent_dashboard.php";
+                        break;
+                    case "admin":
+                        $redirect_url = "../dashboard/admin_dashboard.php";
+                        break;
+                    case "superadmin":
+                        $redirect_url = "../dashboard/superadmin_dashboard.php";
+                        break;
+                    default:
+                        $redirect_url = "../auth/login.php"; // Fallback
+                        $_SESSION['error'] = "Role not recognized, please log in again.";
+                        break;
+                }
             }
+
+            // ✅ Redirect user
+            header("Location: $redirect_url");
             exit();
         } else {
             $_SESSION['error'] = "OTP expired. Please request a new OTP.";

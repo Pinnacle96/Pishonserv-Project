@@ -79,7 +79,7 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
                     </button>
                     <i class="fas fa-bell text-gray-600 dark:text-gray-300 cursor-pointer"></i>
                     <div class="relative">
-                        <img src="../public/images/<?php echo $profile_image; ?>" alt="Profile"
+                        <img src="../public/uploads/<?php echo $profile_image; ?>" alt="Profile"
                             class="w-10 h-10 rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown-menu"
                             class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 shadow-lg rounded-md">

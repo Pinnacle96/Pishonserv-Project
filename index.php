@@ -170,83 +170,6 @@ include 'includes/navbar.php';
     </div>
 </section>
 
-<!-- Image Slider Script -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Image slider functionality
-        document.querySelectorAll('.slider').forEach(slider => {
-            let images = slider.querySelectorAll('.slider-image');
-            let index = 0;
-
-            function showImage(i) {
-                images.forEach(img => img.classList.add('hidden'));
-                images[i].classList.remove('hidden');
-            }
-            showImage(index);
-
-            slider.closest('.relative').querySelector('.prev').addEventListener('click', function() {
-                index = (index > 0) ? index - 1 : images.length - 1;
-                showImage(index);
-            });
-
-            slider.closest('.relative').querySelector('.next').addEventListener('click', function() {
-                index = (index < images.length - 1) ? index + 1 : 0;
-                showImage(index);
-            });
-        });
-
-        // Wishlist functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.wishlist-btn').forEach(button => {
-                button.addEventListener('click', async function() {
-                    const isLoggedIn =
-                        <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?> ===
-                        true;
-                    if (!isLoggedIn) {
-                        window.location.href = 'auth/login.php';
-                        return;
-                    }
-
-                    const propertyId = this.getAttribute('data-property-id');
-                    const isInWishlist = this.getAttribute('data-in-wishlist') === '1';
-
-                    try {
-                        const response = await fetch('wishlist_toggle.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                property_id: propertyId,
-                                action: isInWishlist ? 'remove' : 'add'
-                            })
-                        });
-
-                        if (!response.ok) {
-                            console.error("Network response was not ok:", response
-                                .statusText);
-                            return;
-                        }
-
-                        const data = await response.json();
-                        if (data.success) {
-                            this.setAttribute('data-in-wishlist', data.inWishlist ?
-                                '1' : '0');
-                            this.innerHTML = data.inWishlist ? '❤️' : '🤍';
-                            this.classList.toggle('text-red-500', data.inWishlist);
-                            this.classList.toggle('text-gray-500', !data.inWishlist);
-                        } else {
-                            console.error("Wishlist action failed:", data.message);
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                    }
-                });
-            });
-        });
-    })
-</script>
-
 <!-- How It Works Section -->
 <section class="container mx-auto py-12 px-4">
     <h2 class="text-4xl font-bold text-[#092468] text-center">How It Works</h2>
@@ -335,7 +258,82 @@ include 'includes/navbar.php';
             class="mt-4 inline-block bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing</a>
     </div>
 </section>
+<!-- Image Slider Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Image slider functionality
+    document.querySelectorAll('.slider').forEach(slider => {
+        let images = slider.querySelectorAll('.slider-image');
+        let index = 0;
 
+        function showImage(i) {
+            images.forEach(img => img.classList.add('hidden'));
+            images[i].classList.remove('hidden');
+        }
+        showImage(index);
+
+        slider.closest('.relative').querySelector('.prev').addEventListener('click', function() {
+            index = (index > 0) ? index - 1 : images.length - 1;
+            showImage(index);
+        });
+
+        slider.closest('.relative').querySelector('.next').addEventListener('click', function() {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            showImage(index);
+        });
+    });
+
+    // Wishlist functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            button.addEventListener('click', async function() {
+                const isLoggedIn =
+                    <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?> ===
+                    true;
+                if (!isLoggedIn) {
+                    window.location.href = 'auth/login.php';
+                    return;
+                }
+
+                const propertyId = this.getAttribute('data-property-id');
+                const isInWishlist = this.getAttribute('data-in-wishlist') === '1';
+
+                try {
+                    const response = await fetch('wishlist_toggle.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            property_id: propertyId,
+                            action: isInWishlist ? 'remove' : 'add'
+                        })
+                    });
+
+                    if (!response.ok) {
+                        console.error("Network response was not ok:", response
+                            .statusText);
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (data.success) {
+                        this.setAttribute('data-in-wishlist', data.inWishlist ?
+                            '1' : '0');
+                        this.innerHTML = data.inWishlist ? '❤️' : '🤍';
+                        this.classList.toggle('text-red-500', data.inWishlist);
+                        this.classList.toggle('text-gray-500', !data.inWishlist);
+                    } else {
+                        console.error("Wishlist action failed:", data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+})
+</script>
 
 <?php include 'includes/footer.php'; ?>
 }

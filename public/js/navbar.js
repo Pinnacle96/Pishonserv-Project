@@ -30,4 +30,23 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Button clicked!");
     mobileMenu.classList.toggle("hidden");
   });
+
+  const userMenuBtn = document.getElementById("user-menu-btn");
+  const userDropdown = document.getElementById("user-dropdown");
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      userDropdown.classList.toggle("hidden");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      if (
+        !userMenuBtn.contains(event.target) &&
+        !userDropdown.contains(event.target)
+      ) {
+        userDropdown.classList.add("hidden");
+      }
+    });
+  }
 });

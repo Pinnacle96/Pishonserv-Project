@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Platform</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">;
+    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -35,11 +35,90 @@
                 </li>
             </ul>
 
-            <!-- Create Listing Button -->
-            <a href="<?php echo $base_path; ?>create-listing.php"
-                class="hidden md:inline-block bg-[#CC9933] text-white px-5 py-3 rounded-lg hover:bg-[#d88b1c] transition">
-                Create Listing +
-            </a>
+            <!-- Right Section: User and Create Listing -->
+            <div class="flex items-center space-x-4">
+                <!-- User Dropdown -->
+                <div class="relative">
+                    <button id="user-menu-btn" class="flex items-center text-[#092468] focus:outline-none">
+                        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['name']) && isset($_SESSION['profile_image'])): ?>
+                            <!-- Logged In: Show User Image and Name -->
+                            <img src="<?php echo $base_path . 'public/uploads/' . htmlspecialchars($_SESSION['profile_image']); ?>"
+                                alt="Profile" class="w-8 h-8 rounded-full mr-2 object-cover">
+                            <span class="text-lg font-medium"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
+                        <?php else: ?>
+                            <!-- Not Logged In: Show User Icon -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        <?php endif; ?>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="user-dropdown"
+                        class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-50">
+                        <?php if (!isset($_SESSION['user_id'])): ?>
+                            <!-- Not Logged In -->
+                            <a href="<?php echo $base_path; ?>auth/login.php"
+                                class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign In</a>
+                            <a href="<?php echo $base_path; ?>auth/register.php"
+                                class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign Up</a>
+                        <?php else: ?>
+                            <!-- Logged In (Role-Based Menu) -->
+                            <?php
+                            $user_role = isset($_SESSION['role']) ? $_SESSION['role'] : 'buyer'; // Default to 'buyer'
+                            if ($user_role === 'buyer') {
+                                echo '
+                                    <a href="' . $base_path . 'dashboard/buyer_dashboard.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Dashboard</a>
+                                    <a href="' . $base_path . 'dashboard/buyer_orders.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">My Orders</a>
+                                    <a href="' . $base_path . 'dashboard/buyer_wishlist.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Wishlist</a>
+                                    <a href="' . $base_path . 'dashboard/buyer_messages.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Messages</a>
+                                    <a href="' . $base_path . 'dashboard/buyer_profile.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Profile</a>
+                                    <a href="' . $base_path . 'dashboard/buyer_security.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Security</a>
+                                ';
+                            } elseif (in_array($user_role, ['agent', 'owner', 'hotel_owner'])) {
+                                echo '
+                                    <a href="' . $base_path . 'dashboard/agent_dashboard.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Dashboard</a>
+                                    <a href="' . $base_path . 'dashboard/agent_properties.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Properties</a>
+                                    <a href="' . $base_path . 'dashboard/agent_inquiries.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Inquiries</a>
+                                    <a href="' . $base_path . 'dashboard/agent_earnings.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Earnings</a>
+                                    <a href="' . $base_path . 'dashboard/agent_transaction.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Transactions</a>
+                                ';
+                            } elseif ($user_role === 'admin') {
+                                echo '
+                                    <a href="' . $base_path . 'dashboard/admin_dashboard.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Dashboard</a>
+                                    <a href="' . $base_path . 'dashboard/admin_users.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Manage Users</a>
+                                    <a href="' . $base_path . 'dashboard/admin_properties.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Manage Properties</a>
+                                    <a href="' . $base_path . 'dashboard/admin_transactions.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Transactions</a>
+                                    <a href="' . $base_path . 'dashboard/admin_messages.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Messages</a>
+                                ';
+                            } elseif ($user_role === 'superadmin') {
+                                echo '
+                                    <a href="' . $base_path . 'dashboard/superadmin_dashboard.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Superadmin Dashboard</a>
+                                    <a href="' . $base_path . 'dashboard/admin_users.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Manage Users</a>
+                                    <a href="' . $base_path . 'dashboard/admin_properties.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Manage Properties</a>
+                                    <a href="' . $base_path . 'dashboard/admin_transactions.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Transactions</a>
+                                    <a href="' . $base_path . 'dashboard/admin_messages.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Messages</a>
+                                    <a href="' . $base_path . 'dashboard/superadmin_manage.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Manage Admins</a>
+                                    <a href="' . $base_path . 'dashboard/superadmin_reports.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Reports & Analytics</a>
+                                    <a href="' . $base_path . 'dashboard/sync_to_zoho.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sync Existing User</a>
+                                    <a href="' . $base_path . 'dashboard/superadmin_settings.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">System Settings</a>
+                                ';
+                            }
+                            ?>
+                            <a href="<?php echo $base_path; ?>process/logout.php"
+                                class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Create Listing Button (Desktop Only) -->
+                <a href="<?php echo $base_path; ?>create-listing.php"
+                    class="hidden md:inline-block bg-[#CC9933] text-white px-5 py-3 rounded-lg hover:bg-[#d88b1c] transition">
+                    Create Listing +
+                </a>
+            </div>
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn" class="md:hidden text-[#092468] focus:outline-none">
@@ -62,10 +141,13 @@
                         class="hover:text-[#CC9933]">About</a></li>
                 <li class="py-3 border-b"><a href="<?php echo $base_path; ?>contact.php"
                         class="hover:text-[#CC9933]">Contact</a></li>
-                <li><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
-                </li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>career.php"
+                        class="hover:text-[#CC9933]">Career</a></li>
                 <li class="py-3"><a href="<?php echo $base_path; ?>create-listing.php"
                         class="bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing +</a></li>
             </ul>
         </div>
     </nav>
+</body>
+
+</html>

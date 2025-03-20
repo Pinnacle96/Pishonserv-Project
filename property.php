@@ -37,7 +37,6 @@ if (isset($_SESSION['user_id'])) {
     $in_wishlist = $stmt->get_result()->num_rows > 0;
     $stmt->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +88,10 @@ if (isset($_SESSION['user_id'])) {
 
                 <!-- Wishlist & Inquiry -->
                 <div class="mt-6 flex space-x-4">
-                    <button class="wishlist-btn text-gray-500 hover:text-red-500 transition"
+                    <button
+                        class="wishlist-btn <?php echo $in_wishlist ? 'text-red-500' : 'text-gray-500'; ?> hover:text-red-500 transition"
                         data-property-id="<?php echo $property['id']; ?>"
-                        onclick="toggleWishlist(this, <?php echo $property['id']; ?>)">
+                        data-in-wishlist="<?php echo $in_wishlist ? '1' : '0'; ?>">
                         <?php echo $in_wishlist ? '❤️ Added to Wishlist' : '🤍 Add to Wishlist'; ?>
                     </button>
                     <a href="contact-agent.php?id=<?php echo $property['owner_id']; ?>"
@@ -107,11 +107,9 @@ if (isset($_SESSION['user_id'])) {
                         <label class="block font-semibold">Check-in Date:</label>
                         <input type="date" name="check_in_date" required class="w-full p-2 border rounded mt-1"
                             value="<?php echo isset($_SESSION['booking_data']['check_in_date']) ? $_SESSION['booking_data']['check_in_date'] : ''; ?>">
-
                         <label class="block font-semibold mt-2">Check-out Date:</label>
                         <input type="date" name="check_out_date" required class="w-full p-2 border rounded mt-1"
                             value="<?php echo isset($_SESSION['booking_data']['check_out_date']) ? $_SESSION['booking_data']['check_out_date'] : ''; ?>">
-
                         <button type="submit"
                             class="mt-4 bg-[#092468] text-white px-4 py-2 rounded hover:bg-blue-700 w-full">
                             Book Now
@@ -123,7 +121,6 @@ if (isset($_SESSION['user_id'])) {
                         Book Now
                     </a>
                 <?php endif; ?>
-
             </div>
         </div>
     </section>
@@ -168,11 +165,9 @@ if (isset($_SESSION['user_id'])) {
 
 </html>
 
-
 <script>
     function checkBookingLogin(propertyId) {
         <?php if (!isset($_SESSION['user_id'])): ?>
-            // Store the intended page before login
             var redirectUrl = "book_property.php?property_id=" + propertyId;
             document.cookie = "redirect_after_login=" + redirectUrl + "; path=/";
             window.location.href = "auth/login.php";
@@ -183,6 +178,7 @@ if (isset($_SESSION['user_id'])) {
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        // Image slider functionality
         let images = document.querySelectorAll('.slider-image');
         let index = 0;
 
@@ -191,14 +187,60 @@ if (isset($_SESSION['user_id'])) {
             images[i].classList.remove('hidden');
         }
 
-        document.querySelector('.prev').addEventListener('click', function() {
-            index = (index > 0) ? index - 1 : images.length - 1;
-            showImage(index);
-        });
+        if (images.length > 1) {
+            document.querySelector('.prev').addEventListener('click', function() {
+                index = (index > 0) ? index - 1 : images.length - 1;
+                showImage(index);
+            });
 
-        document.querySelector('.next').addEventListener('click', function() {
-            index = (index < images.length - 1) ? index + 1 : 0;
-            showImage(index);
+            document.querySelector('.next').addEventListener('click', function() {
+                index = (index < images.length - 1) ? index + 1 : 0;
+                showImage(index);
+            });
+        }
+
+        // Wishlist functionality
+        document.querySelector('.wishlist-btn').addEventListener('click', async function() {
+            // Check if user is logged in
+            const isLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+            if (!isLoggedIn) {
+                alert('Please log in or register to add properties to your wishlist.');
+                window.location.href = 'auth/login.php';
+                return;
+            }
+
+            const propertyId = this.getAttribute('data-property-id');
+            const isInWishlist = this.getAttribute('data-in-wishlist') === '1';
+
+            try {
+                const response = await fetch('wishlist_toggle.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        property_id: propertyId,
+                        action: isInWishlist ? 'remove' : 'add'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                if (data.success) {
+                    this.setAttribute('data-in-wishlist', data.inWishlist ? '1' : '0');
+                    this.innerHTML = data.inWishlist ? '❤️ Added to Wishlist' : '🤍 Add to Wishlist';
+                    this.classList.toggle('text-red-500', data.inWishlist);
+                    this.classList.toggle('text-gray-500', !data.inWishlist);
+                } else {
+                    alert(data.message || 'Failed to update wishlist.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while updating the wishlist.');
+            }
         });
     });
 </script>

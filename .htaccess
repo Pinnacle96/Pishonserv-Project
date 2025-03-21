@@ -1,0 +1,15 @@
+# 🔒 Password protection
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile "C:/wamp64/www/pishonserv.com/.htpasswd"
+Require valid-user
+
+# 🌐 Remove .php from URLs
+RewriteEngine On
+
+# If the requested file doesn't exist as is...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+# ...internally rewrite it to the .php file
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]

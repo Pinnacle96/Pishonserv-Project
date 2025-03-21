@@ -1,14 +1,8 @@
 <?php
+ob_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-
-// Debug upload limits
-echo "<pre>";
-var_dump(ini_get('post_max_size'));
-var_dump(ini_get('upload_max_filesize'));
-var_dump($_SERVER['CONTENT_LENGTH']);
-echo "</pre>";
 
 include '../includes/db_connect.php';
 
@@ -16,128 +10,103 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     die("Error: Invalid request method.");
 }
 
-// Validate & sanitize input
-$title = isset($_POST['title']) ? trim($_POST['title']) : null;
-$price = isset($_POST['price']) ? (float)$_POST['price'] : null;
-$location = isset($_POST['location']) ? trim($_POST['location']) : null;
-$listing_type = isset($_POST['listing_type']) ? trim($_POST['listing_type']) : null;
-$type = isset($_POST['type']) ? trim($_POST['type']) : null;
-$bedrooms = isset($_POST['bedrooms']) ? (int)$_POST['bedrooms'] : null;
-$bathrooms = isset($_POST['bathrooms']) ? (int)$_POST['bathrooms'] : null;
-$size = isset($_POST['size']) ? trim($_POST['size']) : null;
-$garage = isset($_POST['garage']) ? (int)$_POST['garage'] : null;
-$description = isset($_POST['description']) ? trim($_POST['description']) : null;
+// ✅ Fetch and Sanitize Inputs
+$title = trim($_POST['title'] ?? '');
+$price = (float) ($_POST['price'] ?? 0);
+$location = trim($_POST['location'] ?? '');
+$listing_type = trim($_POST['listing_type'] ?? '');
+$type = trim($_POST['type'] ?? '');
+$bedrooms = (int) ($_POST['bedrooms'] ?? 0);
+$bathrooms = (int) ($_POST['bathrooms'] ?? 0);
+$size = trim($_POST['size'] ?? '');
+$garage = (int) ($_POST['garage'] ?? 0);
+$description = trim($_POST['description'] ?? '');
 $owner_id = $_SESSION['user_id'] ?? null;
 
-// Prevent submission if required fields are empty or invalid
-if (!$title || !$price || !$location || !$listing_type || !$type || $bedrooms === null || $bathrooms === null || !$size || $garage === null || !$description || !$owner_id) {
-    die("Error: All fields are required.");
+// ✅ Validate Required Fields
+if (!$title || !$price || !$location || !$listing_type || !$type || $bedrooms < 0 || $bathrooms < 0 || !$size || $garage < 0 || !$description || !$owner_id) {
+    error_log("❌ Error: Missing required fields.");
+    header("Location: ../dashboard/agent_properties.php?error=missing_fields");
+    exit();
 }
 
-// Additional validation
-if ($price < 0) {
-    die("Error: Price cannot be negative.");
-}
-if ($bedrooms < 0) {
-    die("Error: Bedrooms cannot be negative.");
-}
-if ($bathrooms < 0) {
-    die("Error: Bathrooms cannot be negative.");
-}
-if ($garage < 0) {
-    die("Error: Garage spaces cannot be negative.");
-}
-
-// Validate listing_type and type against allowed values
-$valid_listing_types = ['for_sale', 'for_rent', 'short_let'];
-$valid_types = [
-    'apartment',
-    'office',
-    'event_center',
-    'hotel',
-    'short_stay',
-    'house',
-    'villa',
-    'condo',
-    'townhouse',
-    'duplex',
-    'penthouse',
-    'studio',
-    'bungalow',
-    'commercial',
-    'warehouse',
-    'retail',
-    'land',
-    'farmhouse',
-    'mixed_use'
-];
-if (!in_array($listing_type, $valid_listing_types)) {
-    die("Error: Invalid listing type selected.");
-}
-if (!in_array($type, $valid_types)) {
-    die("Error: Invalid property type selected.");
-}
-
-// Image Upload Handling
+// ✅ Initialize Image Paths
 $imagePaths = [];
+
 if (!empty($_FILES['images']['name'][0])) {
     $uploadDir = '../public/uploads/';
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
 
-    $maxImages = 7;
-    if (count($_FILES['images']['name']) > $maxImages) {
-        die("Error: You can upload a maximum of $maxImages images.");
+    if (count($_FILES['images']['name']) > 7) {
+        error_log("❌ Error: Too many images uploaded.");
+        header("Location: ../dashboard/agent_properties.php?error=max_files");
+        exit();
     }
 
     foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
         if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
-            $fileName = uniqid() . '_' . basename($_FILES['images']['name'][$key]);
-            $filePath = $uploadDir . $fileName;
+            // ✅ Generate a unique filename
+            $fileExtension = pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION);
+            $uniqueName = uniqid() . '_' . basename($_FILES['images']['name'][$key]);
+            $filePath = $uploadDir . $uniqueName;
 
             if (move_uploaded_file($tmp_name, $filePath)) {
-                $imagePaths[] = $fileName;
+                $imagePaths[] = $uniqueName; // ✅ Store filename correctly
             } else {
-                die("Error uploading image: " . $_FILES['images']['name'][$key]);
+                error_log("❌ Failed to upload image: " . $_FILES['images']['name'][$key]);
             }
         } else {
-            die("Error with file upload: " . $_FILES['images']['error'][$key]);
+            error_log("❌ Image Upload Error: " . $_FILES['images']['error'][$key]);
         }
     }
 }
 
-$imageString = implode(',', $imagePaths);
+// ✅ Ensure `$imageString` is a Proper Comma-Separated String
+$imageString = count($imagePaths) > 0 ? implode(',', $imagePaths) : "default.jpg";
 
-// Prepare and execute SQL query
+// ✅ Debugging: Log the final image string before inserting into the database
+error_log("✅ Final Image String: '$imageString'");
+
+// ✅ Prepare and Execute SQL Query
 $stmt = $conn->prepare("INSERT INTO properties 
     (title, price, location, listing_type, type, bedrooms, bathrooms, size, garage, description, images, owner_id, status, admin_approved) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', 0)");
+
+if (!$stmt) {
+    error_log("❌ SQL Prepare Error: " . $conn->error);
+    header("Location: ../dashboard/agent_properties.php?error=sql_error");
+    exit();
+}
+
+// ✅ Corrected Binding for `images` Column
 $stmt->bind_param(
-    "sdsssiiissii",  // Corrected to 12 characters
-    $title,          // s (string)
-    $price,          // d (double)
-    $location,       // s (string)
-    $listing_type,   // s (string)
-    $type,           // s (string)
-    $bedrooms,       // i (integer)
-    $bathrooms,      // i (integer)
-    $size,           // s (string)
-    $garage,         // i (integer)
-    $description,    // s (string)
-    $imageString,    // s (string)
-    $owner_id        // i (integer)
+    "sdsssiiisssi",
+    $title,
+    $price,
+    $location,
+    $listing_type,
+    $type,
+    $bedrooms,
+    $bathrooms,
+    $size,
+    $garage,
+    $description,
+    $imageString,
+    $owner_id
 );
 
+// ✅ Execute and Debug
 if ($stmt->execute()) {
     $_SESSION['success'] = "Property added successfully! Pending admin approval.";
-    $stmt->close();
-    $conn->close();
-    header("Location: ../dashboard/agent_properties.php");
+    error_log("✅ Property added with ID: " . $stmt->insert_id);
+    header("Location: ../dashboard/agent_properties.php?success=true");
+    ob_end_flush();
     exit();
 } else {
-    $error = $stmt->error;
-    $stmt->close();
-    $conn->close();
-    die("Error inserting property: " . $error);
+    error_log("❌ SQL Execution Error: " . $stmt->error);
+    header("Location: ../dashboard/agent_properties.php?error=db_insert_failed");
+    ob_end_flush();
+    exit();
 }

@@ -1,3 +1,7 @@
+<?php
+include __DIR__ . '/../includes/db_connect.php'; //nsure site status is checked before rendering
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +16,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -31,8 +36,8 @@
                 <li><a href="<?php echo $base_path; ?>about.php" class="hover:text-[#CC9933] transition">About</a></li>
                 <li><a href="<?php echo $base_path; ?>contact.php" class="hover:text-[#CC9933] transition">Contact</a>
                 </li>
-                <li><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
-                </li>
+                <!-- <li><a href="<//?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
+                </li> -->
             </ul>
 
             <!-- Right Section: User and Create Listing -->
@@ -114,7 +119,7 @@
                 </div>
 
                 <!-- Create Listing Button (Desktop Only) -->
-                <a href="<?php echo $base_path; ?>create-listing.php"
+                <a href="<?php echo $base_path; ?>dashboard/agent_properties.php"
                     class="hidden md:inline-block bg-[#CC9933] text-white px-5 py-3 rounded-lg hover:bg-[#d88b1c] transition">
                     Create Listing +
                 </a>
@@ -141,9 +146,9 @@
                         class="hover:text-[#CC9933]">About</a></li>
                 <li class="py-3 border-b"><a href="<?php echo $base_path; ?>contact.php"
                         class="hover:text-[#CC9933]">Contact</a></li>
-                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>career.php"
-                        class="hover:text-[#CC9933]">Career</a></li>
-                <li class="py-3"><a href="<?php echo $base_path; ?>create-listing.php"
+                <!-- <li class="py-3 border-b"><a href="<//?php echo $base_path; ?>career.php"
+                        class="hover:text-[#CC9933]">Career</a></li> -->
+                <li class="py-3"><a href="<?php echo $base_path; ?>dashboard/agent_properties.php"
                         class="bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing +</a></li>
             </ul>
         </div>

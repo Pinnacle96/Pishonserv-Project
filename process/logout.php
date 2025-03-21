@@ -1,7 +1,6 @@
 <?php
 session_start();
-session_unset(); // Remove all session variables
-session_destroy(); // Destroy the session
-header("Location: ../auth/login.php"); // Redirect to login page
+session_unset();
+session_destroy();
+header("Location: /pishonserv.com/auth/login.php");
 exit();
-?>

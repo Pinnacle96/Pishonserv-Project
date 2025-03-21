@@ -31,6 +31,5 @@ if (isset($_GET['id'])) {
     }
 }
 
-header("Location: ../superadmin/superadmin_manage.php");
+header("Location: ../dashboard/superadmin_manage.php");
 exit();
-?>

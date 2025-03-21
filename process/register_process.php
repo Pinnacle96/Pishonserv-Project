@@ -65,21 +65,95 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send OTP Email
         $mail = new PHPMailer(true);
         try {
+            // SMTP Configuration
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = 'smtppro.zoho.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'dd769cbbedffe8';
-            $mail->Password = '3f933c457af86c';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 2525;
+            $mail->Username = 'pishonserv@pishonserv.com';
+            $mail->Password = 'Serv@4321@Ikeja';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
 
-            $mail->setFrom('no-reply@realestate.com', 'Real Estate App');
+            // Sender and Recipient
+            $mail->setFrom('pishonserv@pishonserv.com', 'PISHONSERV');
             $mail->addAddress($email, $name);
 
+            // Email Content
             $mail->isHTML(true);
             $mail->Subject = 'Verify Your Email - OTP Code';
-            $mail->Body = "<h3>Your OTP Code: <strong>$otp</strong></h3><p>This code expires in 10 minutes.</p>";
 
+            // Comprehensive Email Body
+            $mail->Body = '
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verify Your Email - OTP Code</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                max-width: 600px;
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+            h3 {
+                color: #333;
+            }
+            .otp-code {
+                font-size: 24px;
+                font-weight: bold;
+                color: #007BFF;
+                margin: 20px 0;
+            }
+            .footer {
+                margin-top: 20px;
+                font-size: 14px;
+                color: #777;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Verify Your Email Address</h3>
+            <p>Thank you for registering with us! To complete your registration, please use the One-Time Password (OTP) below to verify your email address.</p>
+
+            <div class="otp-code">
+                Your OTP Code: <strong>' . $otp . '</strong>
+            </div>
+
+            <p>This code is valid for <strong>10 minutes</strong>. If you did not request this OTP, please ignore this email or contact our support team immediately.</p>
+
+            <p>If you have any questions or need assistance, feel free to reach out to us at <a href="mailto:pishonserv@pishonserv.com">support@pishonserv.com</a>.</p>
+
+            <div class="footer">
+                <p>Best regards,</p>
+                <p><strong>The PISHONSERV Team</strong></p>
+            </div>
+        </div>
+    </body>
+    </html>
+    ';
+
+            // Plain Text Version (Fallback)
+            $mail->AltBody = "Verify Your Email Address\n\n"
+                . "Thank you for registering with us! To complete your registration, please use the One-Time Password (OTP) below to verify your email address.\n\n"
+                . "Your OTP Code: $otp\n\n"
+                . "This code is valid for 10 minutes. If you did not request this OTP, please ignore this email or contact our support team immediately.\n\n"
+                . "If you have any questions or need assistance, feel free to reach out to us at support@pishonserv.com.\n\n"
+                . "Best regards,\n"
+                . "The PISHONSERV Team";
+
+            // Send Email
             $mail->send();
             $_SESSION['success'] = "Registration successful! Please verify your email with OTP.";
 

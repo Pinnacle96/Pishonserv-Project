@@ -5,23 +5,27 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include '../includes/db_connect.php';
 
+// Allowed roles
 $allowed_roles = ['agent', 'owner', 'hotel_owner'];
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], $allowed_roles)) {
     header("Location: ../auth/login.php");
     exit();
 }
 
+// Get Property ID & User ID
 $property_id = intval($_GET['id']);
 $user_id = intval($_SESSION['user_id']);
 
-// Fetch property details
+// Fetch Property Details
 $stmt = $conn->prepare("SELECT * FROM properties WHERE id = ? AND owner_id = ?");
 $stmt->bind_param("ii", $property_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $property = $result->fetch_assoc();
+$stmt->close();
 
 if (!$property) {
+    error_log("Property not found or unauthorized access!"); // Debugging
     $_SESSION['error'] = "Property not found!";
     header("Location: agent_properties.php");
     exit();
@@ -29,16 +33,25 @@ if (!$property) {
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $price = $_POST['price'];
-    $location = $_POST['location'];
-    $type = $_POST['type'];
-    $status = $_POST['status'];
-    $description = $_POST['description'];
+    error_log("Form submitted!"); // Debugging
+
+    // Fetch & sanitize input fields
+    $title = trim($_POST['title']);
+    $price = floatval($_POST['price']);
+    $location = trim($_POST['location']);
+    $listing_type = trim($_POST['listing_type']);
+    $type = trim($_POST['type']);
+    $status = trim($_POST['status']);
+    $bedrooms = intval($_POST['bedrooms']);
+    $bathrooms = intval($_POST['bathrooms']);
+    $size = trim($_POST['size']);
+    $garage = intval($_POST['garage']);
+    $description = trim($_POST['description']);
     $new_images = [];
 
-    // Handle image upload
+    // Image Upload Handling
     if (!empty($_FILES['images']['name'][0])) {
+        error_log("Processing file uploads..."); // Debugging
         $target_dir = "../public/uploads/";
 
         // Delete old images
@@ -52,12 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Process new images
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
-            $image_name = uniqid() . "_" . basename($_FILES['images']['name'][$key]);
-            $image_path = $target_dir . $image_name;
+            if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
+                $image_name = uniqid() . "_" . basename($_FILES['images']['name'][$key]);
+                $image_path = $target_dir . $image_name;
 
-            // Compress & Move Uploaded File
-            if (compressImage($tmp_name, $image_path, 50)) { // Compress to 50% quality
-                $new_images[] = $image_name;
+                // Compress & Move Uploaded File
+                if (compressImage($tmp_name, $image_path, 50)) { // Compress to 50% quality
+                    $new_images[] = $image_name;
+                }
             }
         }
     }
@@ -65,28 +80,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Convert images array to string for storage
     $image_string = empty($new_images) ? $property['images'] : implode(',', $new_images);
 
-    // Update property in database
+    // Update property
     $updateStmt = $conn->prepare("UPDATE properties 
-        SET title=?, price=?, location=?, type=?, status=?, description=?, images=?, admin_approved=0 
+        SET title=?, price=?, location=?, listing_type=?, type=?, status=?, bedrooms=?, bathrooms=?, size=?, garage=?, description=?, images=? 
         WHERE id=? AND owner_id=?");
-    $updateStmt->bind_param("sdssssssi", $title, $price, $location, $type, $status, $description, $image_string, $property_id, $user_id);
+    $updateStmt->bind_param(
+        "sdsssiiissssii",
+        $title,
+        $price,
+        $location,
+        $listing_type,
+        $type,
+        $status,
+        $bedrooms,
+        $bathrooms,
+        $size,
+        $garage,
+        $description,
+        $image_string,
+        $property_id,
+        $user_id
+    );
 
     if ($updateStmt->execute()) {
-        $_SESSION['success'] = "Property updated successfully. Pending admin approval!";
+        error_log("Property updated successfully!"); // Debugging
+        $_SESSION['success'] = "Property updated successfully!";
     } else {
+        error_log("Database update failed: " . $updateStmt->error); // Debugging
         $_SESSION['error'] = "Failed to update property!";
     }
+
+    // Close connections and redirect
+    $updateStmt->close();
     header("Location: agent_properties.php");
     exit();
 }
 
 // Image Compression Function
-function compressImage($source, $destination, $quality) {
+function compressImage($source, $destination, $quality)
+{
     $info = getimagesize($source);
     if (!$info) return false;
 
     switch ($info['mime']) {
-        case 'image/jpeg': 
+        case 'image/jpeg':
             $image = imagecreatefromjpeg($source);
             break;
         case 'image/png':
@@ -99,7 +136,7 @@ function compressImage($source, $destination, $quality) {
             $image = imagecreatefromgif($source);
             break;
         default:
-            return false; 
+            return false;
     }
 
     // Reduce file size progressively
@@ -122,6 +159,6 @@ function compressImage($source, $destination, $quality) {
     return true;
 }
 
-$page_content = __DIR__ . "/agent_edit_property_content.php"; 
-include 'dashboard_layout.php'; 
-?>
+// Include dashboard layout
+$page_content = __DIR__ . "/agent_edit_property_content.php";
+include 'dashboard_layout.php';

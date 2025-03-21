@@ -1,11 +1,31 @@
 <?php
-include '../includes/db_connect.php';
+include '../includes/db_connect.php'; // Includes $site_status from system_settings
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Check site status and restrict login to superadmin only in maintenance/inactive mode
+    if (in_array($site_status, ['maintenance', 'inactive'])) {
+        $stmt = $conn->prepare("SELECT role FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($role);
+
+        if ($stmt->num_rows > 0) {
+            $stmt->fetch();
+            if ($role !== 'superadmin') {
+                $_SESSION['error'] = "Login is restricted to superadmins only during maintenance or inactive mode.";
+                header("Location: ../auth/login.php");
+                exit();
+            }
+        }
+        $stmt->close();
+    }
+
+    // Existing login logic
     $stmt = $conn->prepare("SELECT id, name, email, password, role, profile_image FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -21,10 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $role;
             $_SESSION['profile_image'] = $profile_image;
 
+            // Ensure session is written and closed before redirect
+            session_write_close();
+
             // ✅ Check for stored session redirect first
             if (!empty($_SESSION['redirect_after_login'])) {
                 $redirect_url = $_SESSION['redirect_after_login'];
-                unset($_SESSION['redirect_after_login']); // Clear session value
+                unset($_SESSION['redirect_after_login']);
                 header("Location: ../" . $redirect_url);
                 exit();
             }
@@ -32,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // ✅ If no session redirect, check cookie
             if (isset($_COOKIE['redirect_after_login'])) {
                 $redirect_url = $_COOKIE['redirect_after_login'];
-                setcookie("redirect_after_login", "", time() - 3600, "/"); // Clear cookie
+                setcookie("redirect_after_login", "", time() - 3600, "/");
                 header("Location: ../" . $redirect_url);
                 exit();
             }

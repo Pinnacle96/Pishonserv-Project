@@ -1,67 +1,68 @@
-<?php 
-session_start(); // Ensure session is started at the top
-include '../includes/db_connect.php'; 
+<?php
+session_start(); // Start session at the top
+include '../includes/db_connect.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php include '../includes/navbar.php'; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Pishonserv</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center text-[#092468] mb-6">Login to Your Account</h2>
 
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-
-    <!-- SweetAlert for Notifications -->
-    <script>
-    <?php if (isset($_SESSION['success'])): ?>
-    Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "<?php echo $_SESSION['success']; ?>",
-        confirmButtonText: "OK"
-    });
-    <?php unset($_SESSION['success']); endif; ?>
-
-    <?php if (isset($_SESSION['error'])): ?>
-    Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "<?php echo $_SESSION['error']; ?>",
-        confirmButtonText: "OK"
-    });
-    <?php unset($_SESSION['error']); endif; ?>
-    </script>
-
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 class="text-2xl font-bold text-center text-[#092468]">Login to Your Account</h2>
-
-        <form action="../process/login_process.php" method="POST" class="mt-4">
-            <div class="mb-4">
+        <form action="../process/login_process.php" method="POST" class="space-y-4">
+            <div>
                 <label class="block text-gray-700 font-semibold">Email</label>
-                <input type="email" name="email" required class="w-full p-3 border rounded mt-1"
+                <input type="email" name="email" required
+                    class="w-full p-3 border rounded mt-1 focus:outline-none focus:ring-2 focus:ring-[#F4A124] transition duration-200"
                     placeholder="Enter your email">
             </div>
-            <div class="mb-4">
+            <div>
                 <label class="block text-gray-700 font-semibold">Password</label>
-                <input type="password" name="password" required class="w-full p-3 border rounded mt-1"
-                    placeholder="Enter password">
+                <input type="password" name="password" required
+                    class="w-full p-3 border rounded mt-1 focus:outline-none focus:ring-2 focus:ring-[#F4A124] transition duration-200"
+                    placeholder="Enter your password">
             </div>
-            <button type="submit" class="bg-[#F4A124] text-white w-full py-3 rounded hover:bg-[#d88b1c]">Login</button>
+            <button type="submit"
+                class="bg-[#F4A124] text-white w-full py-3 rounded hover:bg-[#d88b1c] focus:outline-none focus:ring-2 focus:ring-[#F4A124] transition duration-200">
+                Login
+            </button>
         </form>
 
         <p class="text-center text-gray-600 mt-4">
-            <a href="forgot_password.php" class="text-blue-500 font-semibold">Forgot Password?</a>
+            <a href="forgot_password.php" class="text-blue-500 font-semibold hover:underline">Forgot Password?</a>
         </p>
-        <p class="text-center text-gray-600 mt-2">Don't have an account?
-            <a href="register.php" class="text-blue-500 font-semibold">Sign Up</a>
+        <p class="text-center text-gray-600 mt-2">
+            Don't have an account?
+            <a href="register.php" class="text-blue-500 font-semibold hover:underline">Sign Up</a>
         </p>
     </div>
 
+    <!-- SweetAlert2 Notifications -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            <?php if (isset($_SESSION['success'])): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '<?php echo addslashes($_SESSION['success']); ?>',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#092468'
+                });
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: '<?php echo addslashes($_SESSION['error']); ?>',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#092468'
+                });
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>

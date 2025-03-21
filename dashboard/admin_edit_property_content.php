@@ -4,6 +4,8 @@
     <form action="" method="POST" enctype="multipart/form-data"
         class="bg-white dark:bg-gray-800 mt-6 p-6 rounded shadow-md">
 
+        <input type="hidden" name="property_id" value="<?php echo $property['id']; ?>">
+
         <!-- Property Title -->
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Title</label>
@@ -29,13 +31,12 @@
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Property Type</label>
             <select name="type" class="w-full p-3 border rounded mt-1">
-                <option value="house" <?php if ($property['type'] == 'house') echo 'selected'; ?>>House</option>
-                <option value="apartment" <?php if ($property['type'] == 'apartment') echo 'selected'; ?>>Apartment
-                </option>
-                <option value="land" <?php if ($property['type'] == 'land') echo 'selected'; ?>>Land</option>
-                <option value="shortlet" <?php if ($property['type'] == 'shortlet') echo 'selected'; ?>>Shortlet
-                </option>
-                <option value="hotel" <?php if ($property['type'] == 'hotel') echo 'selected'; ?>>Hotel</option>
+                <?php
+                $property_types = ["house", "apartment", "land", "shortlet", "hotel"];
+                foreach ($property_types as $type) {
+                    echo "<option value='$type' " . (($property['type'] == $type) ? 'selected' : '') . ">" . ucfirst($type) . "</option>";
+                }
+                ?>
             </select>
         </div>
 
@@ -43,25 +44,54 @@
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Listing Type</label>
             <select name="listing_type" class="w-full p-3 border rounded mt-1">
-                <option value="for_sale" <?php if ($property['listing_type'] == 'for_sale') echo 'selected'; ?>>For Sale
-                </option>
-                <option value="for_rent" <?php if ($property['listing_type'] == 'for_rent') echo 'selected'; ?>>For Rent
-                </option>
-                <option value="short_let" <?php if ($property['listing_type'] == 'short_let') echo 'selected'; ?>>Short
-                    Let</option>
+                <?php
+                $listing_types = ["for_sale", "for_rent", "short_let"];
+                foreach ($listing_types as $listing) {
+                    echo "<option value='$listing' " . (($property['listing_type'] == $listing) ? 'selected' : '') . ">" . ucfirst(str_replace("_", " ", $listing)) . "</option>";
+                }
+                ?>
             </select>
-
         </div>
 
         <!-- Property Status -->
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Status</label>
             <select name="status" class="w-full p-3 border rounded mt-1">
-                <option value="available" <?php if ($property['status'] == 'available') echo 'selected'; ?>>Available
-                </option>
-                <option value="sold" <?php if ($property['status'] == 'sold') echo 'selected'; ?>>Sold</option>
-                <option value="rented" <?php if ($property['status'] == 'rented') echo 'selected'; ?>>Rented</option>
+                <?php
+                $statuses = ["available", "sold", "rented"];
+                foreach ($statuses as $status) {
+                    echo "<option value='$status' " . (($property['status'] == $status) ? 'selected' : '') . ">" . ucfirst($status) . "</option>";
+                }
+                ?>
             </select>
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold">Bedrooms</label>
+            <input type="number" name="bedrooms" value="<?php echo $property['bedrooms']; ?>" min="0"
+                class="w-full p-3 border rounded mt-1">
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold">Bathrooms</label>
+            <input type="number" name="bathrooms" value="<?php echo $property['bathrooms']; ?>" min="0"
+                class="w-full p-3 border rounded mt-1">
+        </div>
+
+        <!-- Size -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold">Size (sqft/acres)</label>
+            <input type="text" name="size" value="<?php echo $property['size']; ?>"
+                class="w-full p-3 border rounded mt-1">
+        </div>
+
+        <!-- Garage -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold">Garage</label>
+            <input type="number" name="garage" value="<?php echo $property['garage']; ?>" min="0"
+                class="w-full p-3 border rounded mt-1">
         </div>
 
         <!-- Description -->
@@ -71,17 +101,15 @@
                 class="w-full p-3 border rounded mt-1"><?php echo htmlspecialchars($property['description']); ?></textarea>
         </div>
 
-        <!-- Current Images -->
+        <!-- Current Images Preview -->
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Current Images</label>
             <div class="grid grid-cols-3 gap-2">
-                <?php 
+                <?php
                 if (!empty($property['images'])) {
                     $images = explode(',', $property['images']);
                     foreach ($images as $image) {
-                        if (!empty($image)) {
-                            echo "<img src='../public/uploads/$image' class='w-24 h-24 object-cover rounded' onerror=\"this.onerror=null; this.src='../public/uploads/default.png';\">";
-                        }
+                        echo "<img src='../public/uploads/$image' class='w-24 h-24 object-cover rounded' onerror=\"this.onerror=null; this.src='../public/uploads/default.png';\">";
                     }
                 } else {
                     echo "<p class='text-gray-500'>No images available.</p>";
@@ -93,9 +121,13 @@
         <!-- Upload New Images -->
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Upload New Images (Max 7)</label>
-            <input type="file" name="images[]" multiple accept="image/*" class="w-full p-3 border rounded mt-1">
+            <input type="file" name="images[]" multiple accept="image/*" class="w-full p-3 border rounded mt-1"
+                onchange="previewNewImages(event)">
             <small class="text-gray-500">Uploading new images will replace the existing ones.</small>
         </div>
+
+        <!-- New Images Preview -->
+        <div id="newImagesPreview" class="grid grid-cols-3 gap-2 mt-2"></div>
 
         <!-- Admin Approval -->
         <div class="mb-4">
@@ -112,3 +144,22 @@
         </button>
     </form>
 </div>
+
+<!-- JavaScript: Image Preview Before Upload -->
+<script>
+    function previewNewImages(event) {
+        const previewDiv = document.getElementById('newImagesPreview');
+        previewDiv.innerHTML = ''; // Clear existing previews
+
+        for (let file of event.target.files) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'w-24 h-24 object-cover rounded';
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

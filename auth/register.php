@@ -30,7 +30,7 @@ endif; ?>
         <input type="text" name="phone" placeholder="Your Phone Number" required class="w-full p-3 border rounded mt-2">
         <input type="password" name="password" placeholder="Password" required class="w-full p-3 border rounded mt-2">
         <select name="role" class="w-full p-3 border rounded mt-2" required>
-            <option value="buyer">Buyer</option>
+            <option value="buyer">Customer</option>
             <option value="agent">Agent</option>
             <option value="owner">Property Owner</option>
             <option value="hotel_owner">Hotel Owner</option>

@@ -3,20 +3,20 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include '../includes/db_connect.php';
 
-// Allowed roles
+include '../includes/db_connect.php';
+include '../includes/config.php'; // Include LOCATIONIQ_API_KEY
+
 $allowed_roles = ['agent', 'owner', 'hotel_owner'];
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], $allowed_roles)) {
     header("Location: ../auth/login.php");
     exit();
 }
 
-// Get Property ID & User ID
 $property_id = intval($_GET['id']);
 $user_id = intval($_SESSION['user_id']);
 
-// Fetch Property Details
+// Fetch property details
 $stmt = $conn->prepare("SELECT * FROM properties WHERE id = ? AND owner_id = ?");
 $stmt->bind_param("ii", $property_id, $user_id);
 $stmt->execute();
@@ -25,17 +25,20 @@ $property = $result->fetch_assoc();
 $stmt->close();
 
 if (!$property) {
-    error_log("Property not found or unauthorized access!"); // Debugging
     $_SESSION['error'] = "Property not found!";
     header("Location: agent_properties.php");
     exit();
 }
 
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    error_log("Form submitted!"); // Debugging
+// ✅ Process form submission
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // ✅ CSRF token validation
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $_SESSION['error'] = "Invalid CSRF token!";
+        header("Location: agent_edit_property.php?id=" . $property_id);
+        exit();
+    }
 
-    // Fetch & sanitize input fields
     $title = trim($_POST['title']);
     $price = floatval($_POST['price']);
     $location = trim($_POST['location']);
@@ -49,9 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = trim($_POST['description']);
     $new_images = [];
 
-    // Image Upload Handling
+    // ✅ Image Upload Handling
     if (!empty($_FILES['images']['name'][0])) {
-        error_log("Processing file uploads..."); // Debugging
         $target_dir = "../public/uploads/";
 
         // Delete old images
@@ -63,29 +65,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // Process new images
         foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
             if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
                 $image_name = uniqid() . "_" . basename($_FILES['images']['name'][$key]);
                 $image_path = $target_dir . $image_name;
 
-                // Compress & Move Uploaded File
-                if (compressImage($tmp_name, $image_path, 50)) { // Compress to 50% quality
+                if (compressImage($tmp_name, $image_path, 50)) {
                     $new_images[] = $image_name;
                 }
             }
         }
     }
 
-    // Convert images array to string for storage
     $image_string = empty($new_images) ? $property['images'] : implode(',', $new_images);
 
-    // Update property
+    // ✅ Fetch lat/lon from LocationIQ
+    $lat = null;
+    $lon = null;
+    $locationiq_key = LOCATIONIQ_API_KEY;
+    $encoded_location = urlencode($location);
+    $geo_url = "https://us1.locationiq.com/v1/search.php?key={$locationiq_key}&q={$encoded_location}&format=json";
+
+    $geo_response = @file_get_contents($geo_url);
+    if ($geo_response !== false) {
+        $geo_data = json_decode($geo_response, true);
+        if (isset($geo_data[0]['lat']) && isset($geo_data[0]['lon'])) {
+            $lat = $geo_data[0]['lat'];
+            $lon = $geo_data[0]['lon'];
+        }
+    }
+
+    // ✅ Update property
     $updateStmt = $conn->prepare("UPDATE properties 
-        SET title=?, price=?, location=?, listing_type=?, type=?, status=?, bedrooms=?, bathrooms=?, size=?, garage=?, description=?, images=? 
+        SET title=?, price=?, location=?, listing_type=?, type=?, status=?, bedrooms=?, bathrooms=?, size=?, garage=?, description=?, images=?, latitude=?, longitude=? 
         WHERE id=? AND owner_id=?");
+
     $updateStmt->bind_param(
-        "sdsssiiissssii",
+        "sdsssiiisssddii",
         $title,
         $price,
         $location,
@@ -98,25 +114,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $garage,
         $description,
         $image_string,
+        $lat,
+        $lon,
         $property_id,
         $user_id
     );
 
     if ($updateStmt->execute()) {
-        error_log("Property updated successfully!"); // Debugging
-        $_SESSION['success'] = "Property updated successfully!";
+        $_SESSION['success'] = "✅ Property updated successfully!";
     } else {
-        error_log("Database update failed: " . $updateStmt->error); // Debugging
-        $_SESSION['error'] = "Failed to update property!";
+        $_SESSION['error'] = "❌ Failed to update property!";
     }
 
-    // Close connections and redirect
     $updateStmt->close();
     header("Location: agent_properties.php");
     exit();
 }
 
-// Image Compression Function
+// ✅ Image Compression Function
 function compressImage($source, $destination, $quality)
 {
     $info = getimagesize($source);
@@ -139,26 +154,18 @@ function compressImage($source, $destination, $quality)
             return false;
     }
 
-    // Reduce file size progressively
-    $target_quality = $quality;
-    do {
-        ob_start();
-        if ($info['mime'] == 'image/png') {
-            imagepng($image, null, $target_quality);
-        } else {
-            imagejpeg($image, null, $target_quality);
-        }
-        $compressed_image = ob_get_clean();
-        $size = strlen($compressed_image);
-        $target_quality -= 5;
-    } while ($size > 5120 && $target_quality > 10); // 5KB = 5120 bytes
-
-    file_put_contents($destination, $compressed_image);
+    ob_start();
+    if ($info['mime'] == 'image/png') {
+        imagepng($image, null, 9);
+    } else {
+        imagejpeg($image, null, $quality);
+    }
+    $compressed = ob_get_clean();
+    file_put_contents($destination, $compressed);
     imagedestroy($image);
-
     return true;
 }
 
-// Include dashboard layout
+// ✅ Load edit UI
 $page_content = __DIR__ . "/agent_edit_property_content.php";
 include 'dashboard_layout.php';

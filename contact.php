@@ -59,8 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - PishonServ Real Estate</title>
-    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <style>
         body {
             background: #f5f7fa;

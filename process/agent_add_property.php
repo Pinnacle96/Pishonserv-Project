@@ -5,12 +5,21 @@ ini_set('display_errors', 1);
 session_start();
 
 include '../includes/db_connect.php';
+include '../includes/config.php'; // ✅ LOCATIONIQ_API_KEY
 
+// ✅ Check Request Method
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     die("Error: Invalid request method.");
 }
 
-// ✅ Fetch and Sanitize Inputs
+// ✅ Validate CSRF Token
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    $_SESSION['error'] = "Invalid CSRF token!";
+    header("Location: ../dashboard/agent_properties.php");
+    exit();
+}
+
+// ✅ Sanitize Inputs
 $title = trim($_POST['title'] ?? '');
 $price = (float) ($_POST['price'] ?? 0);
 $location = trim($_POST['location'] ?? '');
@@ -22,15 +31,33 @@ $size = trim($_POST['size'] ?? '');
 $garage = (int) ($_POST['garage'] ?? 0);
 $description = trim($_POST['description'] ?? '');
 $owner_id = $_SESSION['user_id'] ?? null;
+$latitude = null;
+$longitude = null;
 
 // ✅ Validate Required Fields
 if (!$title || !$price || !$location || !$listing_type || !$type || $bedrooms < 0 || $bathrooms < 0 || !$size || $garage < 0 || !$description || !$owner_id) {
-    error_log("❌ Error: Missing required fields.");
+    error_log("❌ Missing required fields.");
     header("Location: ../dashboard/agent_properties.php?error=missing_fields");
     exit();
 }
 
-// ✅ Initialize Image Paths
+// 🌍 LocationIQ API: Get Coordinates
+try {
+    $encodedLocation = urlencode($location);
+    $url = "https://us1.locationiq.com/v1/search.php?key=" . LOCATIONIQ_API_KEY . "&q=$encodedLocation&format=json";
+
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+
+    if (!empty($data[0])) {
+        $latitude = $data[0]['lat'];
+        $longitude = $data[0]['lon'];
+    }
+} catch (Exception $e) {
+    error_log("⚠️ LocationIQ API error: " . $e->getMessage());
+}
+
+// ✅ Handle Images
 $imagePaths = [];
 
 if (!empty($_FILES['images']['name'][0])) {
@@ -40,39 +67,36 @@ if (!empty($_FILES['images']['name'][0])) {
     }
 
     if (count($_FILES['images']['name']) > 7) {
-        error_log("❌ Error: Too many images uploaded.");
+        error_log("❌ Too many images uploaded.");
         header("Location: ../dashboard/agent_properties.php?error=max_files");
         exit();
     }
 
     foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
         if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
-            // ✅ Generate a unique filename
             $fileExtension = pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION);
             $uniqueName = uniqid() . '_' . basename($_FILES['images']['name'][$key]);
             $filePath = $uploadDir . $uniqueName;
 
             if (move_uploaded_file($tmp_name, $filePath)) {
-                $imagePaths[] = $uniqueName; // ✅ Store filename correctly
+                $imagePaths[] = $uniqueName;
             } else {
                 error_log("❌ Failed to upload image: " . $_FILES['images']['name'][$key]);
             }
         } else {
-            error_log("❌ Image Upload Error: " . $_FILES['images']['error'][$key]);
+            error_log("❌ Upload Error: " . $_FILES['images']['error'][$key]);
         }
     }
 }
 
-// ✅ Ensure `$imageString` is a Proper Comma-Separated String
 $imageString = count($imagePaths) > 0 ? implode(',', $imagePaths) : "default.jpg";
 
-// ✅ Debugging: Log the final image string before inserting into the database
-error_log("✅ Final Image String: '$imageString'");
-
-// ✅ Prepare and Execute SQL Query
-$stmt = $conn->prepare("INSERT INTO properties 
-    (title, price, location, listing_type, type, bedrooms, bathrooms, size, garage, description, images, owner_id, status, admin_approved) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', 0)");
+// ✅ Insert into DB
+$stmt = $conn->prepare("INSERT INTO properties (
+    title, price, location, listing_type, type,
+    bedrooms, bathrooms, size, garage, description, images, owner_id,
+    status, admin_approved, latitude, longitude
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?)");
 
 if (!$stmt) {
     error_log("❌ SQL Prepare Error: " . $conn->error);
@@ -80,9 +104,8 @@ if (!$stmt) {
     exit();
 }
 
-// ✅ Corrected Binding for `images` Column
 $stmt->bind_param(
-    "sdsssiiisssi",
+    "sdsssiiisssiss",
     $title,
     $price,
     $location,
@@ -94,10 +117,11 @@ $stmt->bind_param(
     $garage,
     $description,
     $imageString,
-    $owner_id
+    $owner_id,
+    $latitude,
+    $longitude
 );
 
-// ✅ Execute and Debug
 if ($stmt->execute()) {
     $_SESSION['success'] = "Property added successfully! Pending admin approval.";
     error_log("✅ Property added with ID: " . $stmt->insert_id);

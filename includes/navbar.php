@@ -1,6 +1,8 @@
 <?php
-include __DIR__ . '/../includes/db_connect.php'; //nsure site status is checked before rendering
-?>
+include __DIR__ . '/../includes/db_connect.php'; //nsu
+include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM functions
+?>re site status is checked before rendering
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +19,19 @@ include __DIR__ . '/../includes/db_connect.php'; //nsure site status is checked 
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .slider-image {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .property-details p {
+            line-height: 1.6;
+        }
+
+        .key-features li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 
 <body>

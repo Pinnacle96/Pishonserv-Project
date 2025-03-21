@@ -573,3 +573,6 @@ include 'includes/navbar.php';
 </script>
 
 <?php include 'includes/footer.php'; ?>
+</body>
+
+</html>

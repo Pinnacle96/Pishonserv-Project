@@ -9,7 +9,9 @@ include '../includes/db_connect.php';
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold text-center text-[#092468] mb-6">Login to Your Account</h2>
 
-        <form action="../process/login_process.php" method="POST" class="space-y-4">
+        <form action="../process/login_process.php" method="POST" class="space-y-4" enctype="multipart/form-data">
+            <?php echo csrf_token_input(); ?>
+
             <div>
                 <label class="block text-gray-700 font-semibold">Email</label>
                 <input type="email" name="email" required

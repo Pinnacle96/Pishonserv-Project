@@ -4,6 +4,7 @@
     <!-- Form Action: Include Property ID in the URL -->
     <form action="agent_edit_property.php?id=<?php echo $property['id'] ?? ''; ?>" method="POST"
         enctype="multipart/form-data" class="bg-white dark:bg-gray-800 mt-6 p-6 rounded shadow-md">
+        <?php echo csrf_token_input(); ?>
         <input type="hidden" name="property_id" value="<?php echo $property['id'] ?? ''; ?>">
 
         <!-- Title -->

@@ -3,6 +3,7 @@
 
     <form action="../process/agent_add_property.php" method="POST" enctype="multipart/form-data"
         class="bg-white dark:bg-gray-800 mt-6 p-6 rounded shadow-md">
+        <?php echo csrf_token_input(); ?>
 
         <div class="mb-4">
             <label class="block text-gray-700 font-semibold">Title</label>

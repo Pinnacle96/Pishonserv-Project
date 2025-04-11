@@ -24,10 +24,10 @@
             <div>
                 <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-[#CC9933]">Home</a></li>
-                    <li><a href="#" class="hover:text-[#CC9933]">Properties</a></li>
-                    <li><a href="#" class="hover:text-[#CC9933]">Agents</a></li>
-                    <li><a href="#" class="hover:text-[#CC9933]">Contact</a></li>
+                    <li><a href="index.php" class="hover:text-[#CC9933]">Home</a></li>
+                    <li><a href="properties.php" class="hover:text-[#CC9933]">Properties</a></li>
+                    <li><a href="about.php" class="hover:text-[#CC9933]">About Us</a></li>
+                    <li><a href="contact.php" class="hover:text-[#CC9933]">Contact</a></li>
                 </ul>
             </div>
 
@@ -66,30 +66,48 @@
     </a>
 </footer>
 
-<!-- ✅ Zoho SalesIQ -->
+<!-- ✅ Zoho SalesIQ Optimized Async Load -->
 <script>
-    window.$zoho = window.$zoho || {};
-    $zoho.salesiq = $zoho.salesiq || {
-        ready: function() {}
-    };
+    document.addEventListener('DOMContentLoaded', function() {
+        let zohoLoaded = false;
+
+        window.addEventListener('scroll', function lazyLoadZoho() {
+            if (!zohoLoaded) {
+                var zohoScript = document.createElement('script');
+                zohoScript.src =
+                    "https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78";
+                zohoScript.async = true;
+                document.body.appendChild(zohoScript);
+                zohoLoaded = true;
+                console.log('Zoho Chat Loading...');
+            }
+            window.removeEventListener('scroll', lazyLoadZoho);
+        });
+
+        // Optional Timeout Check (Failsafe)
+        setTimeout(function() {
+            if (!window.$zoho || !$zoho.salesiq) {
+                console.warn('Zoho Chat failed to load within 7 seconds.');
+            }
+        }, 7000);
+    });
 </script>
-<script id="zsiqscript"
-    src="https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78"
-    defer></script>
 
 <?php if (isset($_SESSION['name']) && isset($_SESSION['user_id'])): ?>
     <script>
-        $zoho.salesiq.ready = function() {
-            $zoho.salesiq.visitor.name('<?php echo addslashes($_SESSION['name']); ?>');
-            $zoho.salesiq.visitor.email('user_<?php echo $_SESSION['user_id']; ?>@pishonserv.com');
+        window.$zoho = window.$zoho || {};
+        $zoho.salesiq = $zoho.salesiq || {
+            ready: function() {
+                $zoho.salesiq.visitor.name('<?php echo addslashes($_SESSION['name']); ?>');
+                $zoho.salesiq.visitor.email('user_<?php echo $_SESSION['user_id']; ?>@pishonserv.com');
+            }
         };
     </script>
 <?php endif; ?>
 
-<!-- Scripts -->
-
+<!-- Your Project Scripts -->
 <script src="<?php echo $base_path; ?>public/js/slider.js"></script>
 <script src="<?php echo $base_path; ?>public/js/script.js"></script>
 <script src="<?php echo $base_path; ?>public/js/navbar.js"></script>
 <script src="<?php echo $base_path; ?>public/js/search.js"></script>
-<script src="<?php echo $base_path; ?>public/js/testimonials.js"></script>
+<!-- <script src="<//?php echo $base_path; ?>public/js/testimonials.js"></script> -->

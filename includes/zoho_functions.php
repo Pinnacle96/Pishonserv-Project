@@ -2,6 +2,7 @@
 include 'db_connect.php';
 include 'zoho_config.php';
 
+// Zoho Access Token Management
 function getZohoAccessToken()
 {
     global $conn;
@@ -11,24 +12,24 @@ function getZohoAccessToken()
     $token_data = $result->fetch_assoc();
 
     if (!$token_data) {
-        die("Error: No Zoho Access Token Found.");
+        error_log("No Zoho Access Token Found.");
+        return false;
     }
 
     $access_token = $token_data['access_token'];
     $refresh_token = $token_data['refresh_token'];
 
-    $test_url = "https://www.zohoapis.com/crm/v2/Leads?per_page=1";
     $headers = ["Authorization: Zoho-oauthtoken $access_token"];
+    $test_url = "https://www.zohoapis.com/crm/v2/Leads?per_page=1";
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $test_url);
+    $ch = curl_init($test_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     $test_response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    if ($http_code === 200) {
+    if ($http_code === 200 && !isset(json_decode($test_response, true)['code'])) {
         return $access_token;
     }
 
@@ -40,8 +41,7 @@ function getZohoAccessToken()
         'grant_type' => 'refresh_token'
     ];
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $refresh_url);
+    $ch = curl_init($refresh_url);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($refresh_data));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -50,9 +50,9 @@ function getZohoAccessToken()
     curl_close($ch);
 
     $new_token_data = json_decode($response, true);
-
     if (!isset($new_token_data['access_token'])) {
-        die("Error: Unable to refresh Zoho Access Token. Response: " . json_encode($new_token_data));
+        error_log("Unable to refresh Zoho Access Token: " . json_encode($new_token_data));
+        return false;
     }
 
     $new_access_token = $new_token_data['access_token'];
@@ -62,7 +62,6 @@ function getZohoAccessToken()
 
     return $new_access_token;
 }
-
 function createZohoLead($name, $lname, $email, $phone, $role)
 {
     global $conn;

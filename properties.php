@@ -258,6 +258,7 @@ function getLocationCoordinates($location, $api_key)
                         $firstImage = !empty($images[0]) ? "public/uploads/{$images[0]}" : 'public/uploads/default.jpg';
                         $status = ucfirst($property['status'] ?? 'unknown');
                         $listingType = ucfirst(str_replace(['for_sale', 'for_rent', 'short_let'], ['Sale', 'Rent', 'Short Let'], $property['listing_type'] ?? 'unknown'));
+
                         $statusClass = match ($property['status']) {
                             'available' => 'bg-green-500',
                             'booked' => 'bg-yellow-500',
@@ -265,10 +266,10 @@ function getLocationCoordinates($location, $api_key)
                             'rented' => 'bg-blue-500',
                             default => 'bg-gray-500'
                         };
+
                         $agentImage = $property['agent_image'] ? "public/uploads/{$property['agent_image']}" : 'public/uploads/default.png';
                         $agentName = $property['agent_name'] ?? 'Unknown Agent';
 
-                        // LocationIQ Integration
                         $coords = getLocationCoordinates($property['location'], LOCATIONIQ_API_KEY);
                         $mapUrl = $coords ? "https://maps.locationiq.com/v3/staticmap?key=" . LOCATIONIQ_API_KEY . "&center={$coords['lat']},{$coords['lon']}&zoom=15&size=300x200&markers=size:mid|color:red|{$coords['lat']},{$coords['lon']}" : null;
 
@@ -281,51 +282,82 @@ function getLocationCoordinates($location, $api_key)
                             $wishlistStmt->close();
                         }
 
+                        // Fetch all booking dates
+                        $booking_info = "";
+                        if ($property['status'] === 'booked') {
+                            $bookingStmt = $conn->prepare("SELECT check_in_date, check_out_date FROM bookings WHERE property_id = ? ORDER BY id DESC");
+                            $bookingStmt->bind_param('i', $property['id']);
+                            $bookingStmt->execute();
+                            $bookingResult = $bookingStmt->get_result();
+
+                            if ($bookingResult->num_rows > 0) {
+                                while ($bookingData = $bookingResult->fetch_assoc()) {
+                                    $start_date = !empty($bookingData['check_in_date']) ? date('M d, Y', strtotime($bookingData['check_in_date'])) : null;
+                                    $end_date = !empty($bookingData['check_out_date']) ? date('M d, Y', strtotime($bookingData['check_out_date'])) : null;
+
+                                    if ($start_date && $end_date) {
+                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date to $end_date</p>";
+                                    } elseif ($start_date) {
+                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date</p>";
+                                    } elseif ($end_date) {
+                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Available until $end_date</p>";
+                                    }
+                                }
+                            } else {
+                                $booking_info = "<p class='text-sm text-red-500 mt-1'>Currently Booked</p>";
+                            }
+                            $bookingStmt->close();
+                        }
+
                         echo "
-                        <div class='property-card border rounded-lg shadow-lg bg-white'>
-                            <div class='relative w-full h-64 overflow-hidden'>
-                                <span class='status-badge $statusClass'>$status</span>
-                                <span class='listing-type-badge'>$listingType</span>
-                                <div class='slider' id='slider-{$property['id']}'>";
+                <div class='property-card border rounded-lg shadow-lg bg-white'>
+                    <div class='relative w-full h-64 overflow-hidden'>
+                        <span class='status-badge $statusClass'>$status</span>
+                        <span class='listing-type-badge'>$listingType</span>
+                        <div class='slider' id='slider-{$property['id']}'>";
                         foreach ($images as $index => $image) {
                             $hiddenClass = $index === 0 ? '' : 'hidden';
                             echo "<img src='public/uploads/$image' class='w-full h-64 object-cover slider-image $hiddenClass' alt='Property Image'>";
                         }
-                        echo "      </div>
-                                <button class='absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full prev' data-slider='slider-{$property['id']}'>‹</button>
-                                <button class='absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full next' data-slider='slider-{$property['id']}'>›</button>
+                        echo "</div>
+                        <button class='absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full prev' data-slider='slider-{$property['id']}'>‹</button>
+                        <button class='absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full next' data-slider='slider-{$property['id']}'>›</button>
+                    </div>
+                    <div class='p-4'>
+                        <p class='text-[#CC9933] font-semibold text-lg'>₦" . number_format($property['price'], 2) . "</p>
+                        <h3 class='text-[#092468] text-xl font-bold'>{$property['title']} ({$property['type']})</h3>
+                        <p class='text-gray-600'>{$property['location']}</p>
+                        $booking_info
+                        <div class='mt-2 flex flex-wrap text-gray-500 text-sm'>
+                            <span class='mr-2'>🛏️ {$property['bedrooms']} Beds</span>
+                            <span class='mr-2'>🛁 {$property['bathrooms']} Baths</span>
+                            <span class='mr-2'>📏 {$property['size']}</span>
+                            <span class='mr-2'>🚗 {$property['garage']} Garage</span>
+                        </div>
+                        <div class='map-container mt-4'>
+                            " . ($mapUrl ? "<img src='$mapUrl' alt='Property Map' loading='lazy'>" : "<p class='text-gray-500'>Map unavailable</p>") . "
+                        </div>
+                        <div class='flex justify-between items-center mt-4'>
+                            <div class='flex items-center'>
+                                <a href='agent_profile.php?id={$property['owner_id']}' class='flex items-center'>
+    <img src='$agentImage' class='w-10 h-10 rounded-full mr-3' alt='Agent'>
+    <span class='text-sm text-gray-700'>$agentName</span>
+</a>
                             </div>
-                            <div class='p-4'>
-                                <p class='text-[#CC9933] font-semibold text-lg'>₦" . number_format($property['price'], 2) . "</p>
-                                <h3 class='text-[#092468] text-xl font-bold'>{$property['title']} ({$property['type']})</h3>
-                                <p class='text-gray-600'>{$property['location']}</p>
-                                <div class='mt-2 flex flex-wrap text-gray-500 text-sm'>
-                                    <span class='mr-2'>🛏️ {$property['bedrooms']} Beds</span>
-                                    <span class='mr-2'>🛁 {$property['bathrooms']} Baths</span>
-                                    <span class='mr-2'>📏 {$property['size']}</span>
-                                    <span class='mr-2'>🚗 {$property['garage']} Garage</span>
-                                </div>
-                                <div class='map-container mt-4'>
-                                    " . ($mapUrl ? "<img src='$mapUrl' alt='Property Map' loading='lazy'>" : "<p class='text-gray-500'>Map unavailable</p>") . "
-                                </div>
-                                <div class='flex justify-between items-center mt-4'>
-                                    <div class='flex items-center'>
-                                        <img src='$agentImage' class='w-10 h-10 rounded-full mr-3' alt='Agent'>
-                                        <span class='text-sm text-gray-700'>$agentName</span>
-                                    </div>
-                                    <button class='wishlist-btn " . ($isInWishlist ? 'text-red-500' : 'text-gray-500') . " hover:text-red-500 transition' 
-                                            data-property-id='{$property['id']}' 
-                                            data-in-wishlist='" . ($isInWishlist ? '1' : '0') . "'>
-                                        " . ($isInWishlist ? '❤️' : '🤍') . "
-                                    </button>
-                                </div>
-                                <a href='property.php?id={$property['id']}' class='mt-4 block text-center bg-[#CC9933] text-white px-4 py-2 rounded hover:bg-[#d88b1c]'>View Details</a>
-                            </div>
-                        </div>";
+                            <button class='wishlist-btn " . ($isInWishlist ? 'text-red-500' : 'text-gray-500') . " hover:text-red-500 transition' 
+                                    data-property-id='{$property['id']}' 
+                                    data-in-wishlist='" . ($isInWishlist ? '1' : '0') . "'>
+                                " . ($isInWishlist ? '❤️' : '🤍') . "
+                            </button>
+                        </div>
+                        <a href='property.php?id={$property['id']}' class='mt-4 block text-center bg-[#CC9933] text-white px-4 py-2 rounded hover:bg-[#d88b1c]'>View Details</a>
+                    </div>
+                </div>";
                     }
                 } else {
                     echo "<p class='text-center text-gray-600 col-span-full'>No properties found matching your criteria.</p>";
                 }
+
                 $stmt->close();
                 $total_stmt->close();
                 ?>
@@ -344,15 +376,21 @@ function getLocationCoordinates($location, $api_key)
                 <?php endif; ?>
             </div>
         </section>
+
+
     </div>
 
     <?php include 'includes/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            // Toggle Filters Mobile
             const filterToggle = document.getElementById('filter-toggle');
             const filters = document.getElementById('filters');
+
             if (filterToggle && filters) {
                 filterToggle.addEventListener('click', () => {
                     filters.classList.toggle('hidden');
@@ -361,6 +399,7 @@ function getLocationCoordinates($location, $api_key)
                 });
             }
 
+            // Slider Functionality
             document.querySelectorAll('.slider').forEach(slider => {
                 const images = slider.querySelectorAll('.slider-image');
                 let index = 0;
@@ -369,6 +408,7 @@ function getLocationCoordinates($location, $api_key)
                     images.forEach(img => img.classList.add('hidden'));
                     images[i].classList.remove('hidden');
                 }
+
                 showImage(index);
 
                 const parent = slider.closest('.relative');
@@ -376,31 +416,33 @@ function getLocationCoordinates($location, $api_key)
                     index = (index > 0) ? index - 1 : images.length - 1;
                     showImage(index);
                 });
+
                 parent.querySelector('.next').addEventListener('click', () => {
                     index = (index < images.length - 1) ? index + 1 : 0;
                     showImage(index);
                 });
             });
 
+            // Wishlist Toggle
             document.querySelectorAll('.wishlist-btn').forEach(button => {
                 button.addEventListener('click', async function() {
+
                     const isLoggedIn =
                         <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+                    const currentPage = window.location.href; // Get current page url
+
                     if (!isLoggedIn) {
                         Swal.fire({
-                            title: 'Login Required',
-                            text: 'Please log in or register to add properties to your wishlist.',
+                            title: 'Login Required!',
+                            text: 'Please log in to save properties to your wishlist.',
                             icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Login',
-                            cancelButtonText: 'Register',
-                            confirmButtonColor: '#092468',
-                            cancelButtonColor: '#CC9933'
+                            confirmButtonText: 'Login Now',
+                            confirmButtonColor: '#092468'
                         }).then(result => {
-                            if (result.isConfirmed) window.location.href =
-                                'auth/login.php';
-                            else if (result.dismiss === Swal.DismissReason.cancel)
-                                window.location.href = 'auth/register.php';
+                            if (result.isConfirmed) {
+                                window.location.href = 'auth/login.php?redirect=' +
+                                    encodeURIComponent(currentPage);
+                            }
                         });
                         return;
                     }
@@ -414,11 +456,13 @@ function getLocationCoordinates($location, $api_key)
                             headers: {
                                 'Content-Type': 'application/json'
                             },
+                            credentials: 'include', // Send cookies with request
                             body: JSON.stringify({
                                 property_id: propertyId,
                                 action: isInWishlist ? 'remove' : 'add'
                             })
                         });
+
                         const data = await response.json();
 
                         if (data.success) {
@@ -434,7 +478,9 @@ function getLocationCoordinates($location, $api_key)
                                 confirmButtonColor: '#092468'
                             });
                         }
+
                     } catch (error) {
+                        console.error('Wishlist Error:', error);
                         Swal.fire({
                             title: 'Error',
                             text: 'An error occurred while updating the wishlist.',
@@ -446,6 +492,8 @@ function getLocationCoordinates($location, $api_key)
             });
         });
     </script>
+
+
 </body>
 
 </html>

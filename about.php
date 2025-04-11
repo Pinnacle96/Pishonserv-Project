@@ -11,105 +11,105 @@ include 'includes/navbar.php';
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
 
     <style>
-        body {
-            background: #f5f7fa;
-            color: #092468;
+    body {
+        background: #f5f7fa;
+        color: #092468;
+    }
+
+    /* Hero Section */
+    .hero-bg {
+        background: linear-gradient(to bottom, rgba(9, 36, 104, 0.8), rgba(9, 36, 104, 0.5)), url('public/images/hero1.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero-content {
+        min-height: 100%;
+        /* Ensures it fills the hero section */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        /* Hero Section */
-        .hero-bg {
-            background: linear-gradient(to bottom, rgba(9, 36, 104, 0.8), rgba(9, 36, 104, 0.5)), url('public/images/hero1.jpg');
-            background-size: cover;
-            background-position: center;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
         }
 
-        .hero-content {
-            min-height: 100%;
-            /* Ensures it fills the hero section */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
+    }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+    .animate-hero-title {
+        animation: scaleIn 0.8s ease-out forwards;
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .animate-hero-text {
+        animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    }
 
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
+    .animate-section-title {
+        animation: scaleIn 0.6s ease-out forwards;
+    }
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+    .animate-card {
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
 
-        .animate-hero-title {
-            animation: scaleIn 0.8s ease-out forwards;
-        }
+    /* Card Hover */
+    .team-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .animate-hero-text {
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
-        }
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(9, 36, 104, 0.2);
+    }
 
-        .animate-section-title {
-            animation: scaleIn 0.6s ease-out forwards;
-        }
+    /* Button Styling */
+    .btn-primary {
+        background-color: #F4A124;
+        transition: all 0.3s ease;
+    }
 
-        .animate-card {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
+    .btn-primary:hover {
+        background-color: #d88b1c;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(244, 161, 36, 0.3);
+    }
 
-        /* Card Hover */
-        .team-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    /* Social Icons */
+    .social-icon {
+        color: #092468;
+        transition: color 0.3s ease;
+    }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(9, 36, 104, 0.2);
-        }
+    .social-icon:hover {
+        color: #F4A124;
+    }
 
-        /* Button Styling */
-        .btn-primary {
-            background-color: #F4A124;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #d88b1c;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(244, 161, 36, 0.3);
-        }
-
-        /* Social Icons */
-        .social-icon {
-            color: #092468;
-            transition: color 0.3s ease;
-        }
-
-        .social-icon:hover {
-            color: #F4A124;
-        }
-
-        /* Navbar Spacing */
-        .content-start {
-            padding-top: 5rem;
-            /* Matches navbar height */
-        }
+    /* Navbar Spacing */
+    .content-start {
+        padding-top: 5rem;
+        /* Matches navbar height */
+    }
     </style>
 </head>
 
@@ -128,9 +128,12 @@ include 'includes/navbar.php';
     <section class="container mx-auto py-16 px-4">
         <h2 class="text-4xl md:text-5xl font-bold text-[#092468] text-center animate-section-title">Who We Are</h2>
         <p class="text-gray-600 text-lg text-center mt-4 mb-12 max-w-3xl mx-auto animate-card">
-            PishonServ is a premier real estate platform designed to simplify buying, renting, and listing properties.
-            With a commitment to excellence, we leverage technology and personalized service to connect property seekers
-            and owners seamlessly.
+            <strong>Pishonserv</strong> is your premier destination for finding the perfect property to rent or buy.
+            Whether you’re looking for a short-term rental or a long-term investment, we specialize in offering a
+            diverse range of high-quality properties that cater to all your needs.
+            <br>
+            <strong>Quality Listings:</strong> Each property in our portfolio is vetted to meet our high standards of
+            quality, comfort, and aesthetic appeal.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-10">
             <div class="bg-white p-6 rounded-lg shadow-md animate-card" style="animation-delay: 0.2s;">
@@ -158,7 +161,7 @@ include 'includes/navbar.php';
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-10">
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.2s;">
-                <img src="public/uploads/team1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mx-auto mb-4"
+                <img src="public/teams/team1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mx-auto mb-4"
                     onerror="this.src='public/uploads/default.png'">
                 <h3 class="text-xl font-semibold text-[#092468]">Jane Doe</h3>
                 <p class="text-gray-600 mb-3">Founder & CEO</p>
@@ -176,7 +179,7 @@ include 'includes/navbar.php';
             </div>
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.4s;">
-                <img src="public/uploads/team2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mx-auto mb-4"
+                <img src="public/teams/team2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mx-auto mb-4"
                     onerror="this.src='public/uploads/default.png'">
                 <h3 class="text-xl font-semibold text-[#092468]">John Smith</h3>
                 <p class="text-gray-600 mb-3">Chief Operations Officer</p>
@@ -194,7 +197,7 @@ include 'includes/navbar.php';
             </div>
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.6s;">
-                <img src="public/uploads/team3.jpg" alt="Emily Johnson" class="w-24 h-24 rounded-full mx-auto mb-4"
+                <img src="public/teams/team3.jpg" alt="Emily Johnson" class="w-24 h-24 rounded-full mx-auto mb-4"
                     onerror="this.src='public/uploads/default.png'">
                 <h3 class="text-xl font-semibold text-[#092468]">Emily Johnson</h3>
                 <p class="text-gray-600 mb-3">Head of Sales</p>

@@ -108,7 +108,7 @@ function formatDescription($description)
                         data-in-wishlist="<?php echo $in_wishlist ? '1' : '0'; ?>">
                         <?php echo $in_wishlist ? '❤️ Added to Wishlist' : '🤍 Add to Wishlist'; ?>
                     </button>
-                    <a href="contact-agent.php?id=<?php echo $property['owner_id']; ?>"
+                    <a href="agent_profile.php?id=<?php echo $property['owner_id']; ?>"
                         class="bg-[#CC9933] text-white px-4 py-2 rounded hover:bg-[#d88b1c] text-lg">
                         Contact Agent
                     </a>

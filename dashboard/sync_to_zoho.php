@@ -1,27 +1,26 @@
 <?php
 session_start();
 include '../includes/db_connect.php';
-include '../includes/zoho_functions.php'; // Contains API functions
+include '../includes/zoho_functions.php'; // Updated Zoho functions
 
 // Ensure superadmin is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'superadmin') {
     die("Error: Unauthorized access.");
 }
 
-// Track sync status
 $sync_success = true;
 $error_messages = [];
 
-// Sync Users to Zoho CRM
-$userQuery = "SELECT id, name, lname, email, phone, role FROM users WHERE zoho_contact_id IS NULL";
+// Sync Users to Zoho CRM (Leads)
+$userQuery = "SELECT id, name, lname, email, phone, role FROM users WHERE zoho_lead_id IS NULL";
 $userResult = $conn->query($userQuery);
 
 while ($user = $userResult->fetch_assoc()) {
-    $zoho_contact_id = createZohoContact($user['name'], $user['lname'], $user['email'], $user['phone'], $user['role']);
+    $zoho_lead_id = createZohoLead($user['name'], $user['lname'], $user['email'], $user['phone'], $user['role']);
 
-    if ($zoho_contact_id) {
-        $stmt = $conn->prepare("UPDATE users SET zoho_contact_id = ? WHERE id = ?");
-        $stmt->bind_param("si", $zoho_contact_id, $user['id']);
+    if ($zoho_lead_id) {
+        $stmt = $conn->prepare("UPDATE users SET zoho_lead_id = ? WHERE id = ?");
+        $stmt->bind_param("si", $zoho_lead_id, $user['id']);
         $stmt->execute();
     } else {
         $sync_success = false;
@@ -30,46 +29,42 @@ while ($user = $userResult->fetch_assoc()) {
 }
 
 // Sync Properties to Zoho CRM
-$propertyQuery = "SELECT p.id, p.title, p.price, p.location, p.type, p.status, u.zoho_contact_id
+$propertyQuery = "SELECT p.id, p.title, p.price, p.location, p.type, p.status, p.listing_type, u.zoho_lead_id
                   FROM properties p 
                   JOIN users u ON p.owner_id = u.id
-                  WHERE p.zoho_property_id IS NULL";
+                  WHERE p.zoho_property_id IS NULL OR p.zoho_product_id IS NULL";
 $propertyResult = $conn->query($propertyQuery);
 
 while ($property = $propertyResult->fetch_assoc()) {
-    if (!$property['zoho_contact_id']) {
+    if (!$property['zoho_lead_id']) {
         $sync_success = false;
-        $error_messages[] = "⚠️ Skipped property: " . $property['title'] . " (Owner not synced to Zoho CRM)";
+        $error_messages[] = "⚠️ Skipped property: " . $property['title'] . " (Owner not synced to Zoho)";
         continue;
     }
 
-    $zoho_property_id = createZohoProperty(
+    $success = createZohoProperty(
         $property['title'],
         $property['price'],
         $property['location'],
-        $property['type'],
+        $property['listing_type'],
         $property['status'],
-        $property['zoho_contact_id']
+        $property['type'],
+        $property['zoho_lead_id'],
+        null, // $user_id is not needed here
+        $property['id']
     );
 
-    if ($zoho_property_id) {
-        $stmt = $conn->prepare("UPDATE properties SET zoho_property_id = ? WHERE id = ?");
-        $stmt->bind_param("si", $zoho_property_id, $property['id']);
-        $stmt->execute();
-    } else {
+    if (!$success) {
         $sync_success = false;
         $error_messages[] = "❌ ERROR: Could not sync property " . $property['title'];
     }
 }
-
-// Show SweetAlert and Redirect
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoho Sync Status</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -84,7 +79,7 @@ while ($property = $propertyResult->fetch_assoc()) {
                 timer: 3000,
                 showConfirmButton: false
             }).then(() => {
-                window.location.href = "superadmin_dashboard.php"; // Redirect
+                window.location.href = "superadmin_dashboard.php";
             });
         <?php else: ?>
             Swal.fire({
@@ -94,7 +89,7 @@ while ($property = $propertyResult->fetch_assoc()) {
                 timer: 5000,
                 showConfirmButton: true
             }).then(() => {
-                window.location.href = "superadmin_dashboard.php"; // Redirect
+                window.location.href = "superadmin_dashboard.php";
             });
         <?php endif; ?>
     </script>

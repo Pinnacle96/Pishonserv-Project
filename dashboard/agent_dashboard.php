@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+
 // Define allowed roles
 $allowed_roles = ['agent', 'owner', 'hotel_owner'];
 
@@ -21,4 +22,3 @@ $page_content = __DIR__ . "/agent_content.php";
 
 // Include the dashboard layout
 include 'dashboard_layout.php';
-?>

@@ -2,87 +2,101 @@
 session_start();
 include 'includes/db_connect.php';
 include 'includes/navbar.php';
-include 'includes/config.php'; // Contains LOCATIONIQ_API_KEY constant
+include 'includes/config.php'; // LOCATIONIQ_API_KEY
 
-// Pagination settings
+// Pagination Config
 $properties_per_page = 6;
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($page - 1) * $properties_per_page;
 
-// Sanitize search parameters
-$category = isset($_GET['category']) ? trim($_GET['category']) : '';
-$type = isset($_GET['type']) ? trim($_GET['type']) : '';
-$location = isset($_GET['location']) ? trim($_GET['location']) : '';
-$bedroom = isset($_GET['bedroom']) ? (int)$_GET['bedroom'] : '';
-$min_price = isset($_GET['min_price']) ? (float)$_GET['min_price'] : '';
-$max_price = isset($_GET['max_price']) ? (float)$_GET['max_price'] : '';
+// Fetch & Sanitize Search Filters
+$category  = isset($_GET['category'])  ? trim($_GET['category'])  : '';
+$type      = isset($_GET['type'])      ? trim($_GET['type'])      : '';
+$location  = isset($_GET['location'])  ? trim($_GET['location'])  : '';
+$bedroom   = isset($_GET['bedroom']) && $_GET['bedroom'] !== '' ? (int)$_GET['bedroom'] : null;
+$min_price = isset($_GET['min_price']) && $_GET['min_price'] !== '' ? (float)$_GET['min_price'] : null;
+$max_price = isset($_GET['max_price']) && $_GET['max_price'] !== '' ? (float)$_GET['max_price'] : null;
 
-// Build SQL query with prepared statements
-$query = "SELECT p.*, u.name AS agent_name, u.profile_image AS agent_image 
-          FROM properties p 
-          JOIN users u ON p.owner_id = u.id 
-          WHERE p.admin_approved = 1";
+// CATEGORY MAP for Database Values
+$category_map = [
+    'buy' => 'for_sale',
+    'rent' => 'for_rent',
+    'shortlet' => 'short_let',
+    'hotel' => 'hotel',
+    'land' => 'land',
+    'project' => 'project'
+];
+
+if (isset($category_map[$category])) {
+    $category = $category_map[$category];
+}
+
+// Build Filters Dynamically
+$filters = " WHERE p.admin_approved = 1";
 $params = [];
 $types = '';
 
 if ($category) {
-    $category = str_replace(['buy', 'rent', 'shortlet'], ['for_sale', 'for_rent', 'short_let'], $category);
-    $query .= " AND p.listing_type = ?";
+    $filters .= " AND p.listing_type = ?";
     $params[] = $category;
     $types .= 's';
 }
 if ($type) {
-    $query .= " AND p.type = ?";
+    $filters .= " AND p.type = ?";
     $params[] = $type;
     $types .= 's';
 }
 if ($location) {
-    $query .= " AND p.location LIKE ?";
+    $filters .= " AND p.location LIKE ?";
     $params[] = "%$location%";
     $types .= 's';
 }
-if ($bedroom !== '') {
-    $query .= " AND p.bedrooms >= ?";
+if (!is_null($bedroom)) {
+    $filters .= " AND p.bedrooms >= ?";
     $params[] = $bedroom;
     $types .= 'i';
 }
-if ($min_price !== '') {
-    $query .= " AND p.price >= ?";
+if (!is_null($min_price)) {
+    $filters .= " AND p.price >= ?";
     $params[] = $min_price;
     $types .= 'd';
 }
-if ($max_price !== '') {
-    $query .= " AND p.price <= ?";
+if (!is_null($max_price)) {
+    $filters .= " AND p.price <= ?";
     $params[] = $max_price;
     $types .= 'd';
 }
 
-// Total properties for pagination
-$total_query = "SELECT COUNT(*) as total FROM properties p WHERE p.admin_approved = 1" .
-    ($params ? " AND " . substr($query, strpos($query, 'WHERE') + 22, strpos($query, 'ORDER') - strpos($query, 'WHERE') - 22) : "");
+// Copy original filters params for total query
+$total_params = $params;
+$total_types = $types;
+
+// Total Count Query
+$total_query = "SELECT COUNT(*) as total FROM properties p JOIN users u ON p.owner_id = u.id" . $filters;
+
 $total_stmt = $conn->prepare($total_query);
-if ($params) {
-    $total_stmt->bind_param($types, ...$params);
+if (!empty($total_params)) {
+    $total_stmt->bind_param($total_types, ...$total_params);
 }
 $total_stmt->execute();
 $total_result = $total_stmt->get_result();
 $total_properties = $total_result->fetch_assoc()['total'];
 $total_pages = ceil($total_properties / $properties_per_page);
 
-// Main query with pagination
-$query .= " ORDER BY p.created_at DESC LIMIT ?, ?";
+// Main Data Query
+$query = "SELECT p.*, u.name AS agent_name, u.profile_image AS agent_image
+          FROM properties p
+          JOIN users u ON p.owner_id = u.id" . $filters . " ORDER BY p.created_at DESC LIMIT ?, ?";
+
 $params[] = $offset;
 $params[] = $properties_per_page;
 $types .= 'ii';
 
 $stmt = $conn->prepare($query);
-if ($params) {
-    $stmt->bind_param($types, ...$params);
-}
+$stmt->bind_param($types, ...$params);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// LocationIQ function to get coordinates
 function getLocationCoordinates($location, $api_key)
 {
     $url = "https://api.locationiq.com/v1/autocomplete.php?key=" . $api_key . "&q=" . urlencode($location) . "&limit=1";
@@ -92,7 +106,7 @@ function getLocationCoordinates($location, $api_key)
         return null;
     }
     $data = json_decode($response, true);
-    if ($data && !empty($data)) {
+    if (!empty($data)) {
         error_log("Coordinates for $location: lat={$data[0]['lat']}, lon={$data[0]['lon']}");
         return ['lat' => $data[0]['lat'], 'lon' => $data[0]['lon']];
     }
@@ -100,7 +114,6 @@ function getLocationCoordinates($location, $api_key)
     return null;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,34 +190,61 @@ function getLocationCoordinates($location, $api_key)
         <aside class="hidden md:block col-span-1 bg-white p-6 rounded-lg shadow" id="filters">
             <h2 class="text-lg font-semibold text-[#092468] mb-4">Filter Results</h2>
             <form action="properties.php" method="GET" class="space-y-4">
-                <input type="hidden" name="category" value="<?php echo htmlspecialchars($category); ?>">
+
+                <input type="hidden" name="category" value="<?php echo htmlspecialchars($category ?? ''); ?>">
+
                 <select name="type" class="w-full p-3 border rounded text-sm md:text-base">
                     <option value="">Property Type</option>
                     <?php
-                    $types = ['apartment', 'office', 'event_center', 'hotel', 'short_stay', 'house', 'villa', 'condo', 'townhouse', 'duplex', 'penthouse', 'studio', 'bungalow', 'commercial', 'warehouse', 'retail', 'land', 'farmhouse', 'mixed_use'];
+                    $types = [
+                        'apartment',
+                        'office',
+                        'event_center',
+                        'hotel',
+                        'short_stay',
+                        'house',
+                        'villa',
+                        'condo',
+                        'townhouse',
+                        'duplex',
+                        'penthouse',
+                        'studio',
+                        'bungalow',
+                        'commercial',
+                        'warehouse',
+                        'retail',
+                        'land',
+                        'farmhouse',
+                        'mixed_use'
+                    ];
                     foreach ($types as $t) {
-                        echo "<option value='$t'" . ($type === $t ? ' selected' : '') . ">" . ucfirst(str_replace('_', ' ', $t)) . "</option>";
+                        $selected = ($type === $t) ? 'selected' : '';
+                        echo "<option value='$t' $selected>" . ucfirst(str_replace('_', ' ', $t)) . "</option>";
                     }
                     ?>
                 </select>
-                <input type="text" name="location" value="<?php echo htmlspecialchars($location); ?>"
+
+                <input type="text" name="location" value="<?php echo htmlspecialchars($location ?? ''); ?>"
                     class="w-full p-3 border rounded text-sm md:text-base" placeholder="Location">
+
                 <select name="bedroom" class="w-full p-3 border rounded text-sm md:text-base">
                     <option value="">Bedrooms</option>
-                    <option value="1" <?php echo $bedroom === 1 ? 'selected' : ''; ?>>1 Bedroom</option>
-                    <option value="2" <?php echo $bedroom === 2 ? 'selected' : ''; ?>>2 Bedrooms</option>
-                    <option value="3" <?php echo $bedroom === 3 ? 'selected' : ''; ?>>3+ Bedrooms</option>
+                    <option value="1" <?php echo ($bedroom === 1) ? 'selected' : ''; ?>>1 Bedroom</option>
+                    <option value="2" <?php echo ($bedroom === 2) ? 'selected' : ''; ?>>2 Bedrooms</option>
+                    <option value="3" <?php echo ($bedroom === 3) ? 'selected' : ''; ?>>3+ Bedrooms</option>
                 </select>
-                <input type="number" name="min_price"
-                    value="<?php echo $min_price !== '' ? htmlspecialchars($min_price) : ''; ?>"
+
+                <input type="number" name="min_price" value="<?php echo htmlspecialchars($min_price ?? ''); ?>"
                     class="w-full p-3 border rounded text-sm md:text-base" placeholder="Min Price" step="0.01">
-                <input type="number" name="max_price"
-                    value="<?php echo $max_price !== '' ? htmlspecialchars($max_price) : ''; ?>"
+
+                <input type="number" name="max_price" value="<?php echo htmlspecialchars($max_price ?? ''); ?>"
                     class="w-full p-3 border rounded text-sm md:text-base" placeholder="Max Price" step="0.01">
+
                 <button type="submit"
                     class="w-full bg-[#CC9933] text-white py-3 rounded hover:bg-[#d88b1c] text-sm md:text-base">
                     Apply Filters
                 </button>
+
             </form>
         </aside>
 

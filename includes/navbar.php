@@ -1,8 +1,8 @@
 <?php
 include __DIR__ . '/../includes/db_connect.php'; //nsu
-include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM functions
-?>re site status is checked before rendering
+include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM functions re site status is checked before rendering
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">

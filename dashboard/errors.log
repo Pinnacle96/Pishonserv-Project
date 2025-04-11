@@ -76,3 +76,9 @@
 [20-Mar-2025 09:17:47 UTC] 🔍 Paystack API HTTP Code: 200
 [20-Mar-2025 09:17:47 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/2c87ega6k5q94ly","access_code":"2c87ega6k5q94ly","reference":"TXN_b32dc5601dfb478b7d85"}}
 [20-Mar-2025 09:17:47 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/2c87ega6k5q94ly
+[21-Mar-2025 12:09:23 UTC] 🔍 Entering checkout.php with URL: /pishonserv.com/dashboard/checkout.php?property_id=18&check_in=2025-08-01&check_out=2025-08-07&booking_id=50
+[21-Mar-2025 12:09:23 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-08-01, Check-out: 2025-08-07
+[21-Mar-2025 12:09:26 UTC] 🔑 Paystack Secret Key: SET
+[21-Mar-2025 12:09:27 UTC] 🔍 Paystack API HTTP Code: 200
+[21-Mar-2025 12:09:27 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/idwgay7fn1djcse","access_code":"idwgay7fn1djcse","reference":"TXN_9b5ccf5bc9af52530139"}}
+[21-Mar-2025 12:09:27 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/idwgay7fn1djcse

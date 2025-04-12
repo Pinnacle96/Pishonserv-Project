@@ -1,0 +1,630 @@
+[12-Apr-2025 08:57:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'mou_file' in 'field list' in C:\wamp64\www\pishonserv.com\process\register_process.php:136
+Stack trace:
+#0 C:\wamp64\www\pishonserv.com\process\register_process.php(136): mysqli->prepare('INSERT INTO use...')
+#1 {main}
+  thrown in C:\wamp64\www\pishonserv.com\process\register_process.php on line 136
+[12-Apr-2025 09:28:39 UTC] OTP email sent successfully to info.thevoltagenetwork@gmail.com
+[12-Apr-2025 09:28:44 UTC] MOU email sent successfully to info.thevoltagenetwork@gmail.com and superadmin
+[12-Apr-2025 09:44:20 UTC] OTP email sent successfully to edulabtechnologies16@gmail.com
+[12-Apr-2025 09:44:24 UTC] MOU email sent successfully to edulabtechnologies16@gmail.com
+[12-Apr-2025 09:44:28 UTC] MOU notification sent successfully to superadmin
+[12-Apr-2025 09:53:26 UTC] OTP email sent successfully to info.thevoltagenetwork@gmail.com
+[12-Apr-2025 09:53:26 UTC] Attempting to send MOU email to user: info.thevoltagenetwork@gmail.com
+[12-Apr-2025 09:53:30 UTC] MOU email sent successfully to info.thevoltagenetwork@gmail.com
+[12-Apr-2025 09:53:30 UTC] Attempting to send MOU notification to superadmin
+[12-Apr-2025 09:53:34 UTC] MOU notification sent successfully to superadmin
+[12-Apr-2025 09:57:17 UTC] OTP email sent successfully to request.rln@gmail.com
+[12-Apr-2025 10:38:33 UTC] Approval script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:38:33 UTC] User 9 with role superadmin passed auth check
+[12-Apr-2025 10:38:33 UTC] Invalid request method: GET
+[12-Apr-2025 10:38:36 UTC] Approval script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:38:36 UTC] User 9 with role superadmin passed auth check
+[12-Apr-2025 10:38:36 UTC] Invalid request method: GET
+[12-Apr-2025 10:38:38 UTC] Approval script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:38:38 UTC] User 9 with role superadmin passed auth check
+[12-Apr-2025 10:38:38 UTC] Invalid request method: GET
+[12-Apr-2025 10:38:40 UTC] Approval script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:38:40 UTC] User 9 with role superadmin passed auth check
+[12-Apr-2025 10:38:40 UTC] Invalid request method: GET
+[12-Apr-2025 10:44:33 UTC] 2025-04-12 10:44:33 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:44:33 UTC] 2025-04-12 10:44:33 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 10:44:33 UTC] 2025-04-12 10:44:33 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 10:44:33 UTC] 2025-04-12 10:44:33 [Approval Script] Invalid method: GET
+[12-Apr-2025 10:44:39 UTC] 2025-04-12 10:44:39 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:44:39 UTC] 2025-04-12 10:44:39 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 10:44:39 UTC] 2025-04-12 10:44:39 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 10:44:39 UTC] 2025-04-12 10:44:39 [Approval Script] Invalid method: GET
+[12-Apr-2025 10:44:46 UTC] 2025-04-12 10:44:46 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:44:46 UTC] 2025-04-12 10:44:46 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 10:44:46 UTC] 2025-04-12 10:44:46 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 10:44:46 UTC] 2025-04-12 10:44:46 [Approval Script] Invalid method: GET
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] Request method: GET
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] GET data: Array
+(
+    [action] => approve
+    [id] => 25
+)
+
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] POST data: Array
+(
+)
+
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] CSRF check passed (or skipped for GET)
+[12-Apr-2025 10:48:41 UTC] 2025-04-12 10:48:41 [Approval Script] Invalid inputs: property_id=0, action=approve
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Request method: GET
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] GET data: Array
+(
+    [action] => approve
+    [id] => 25
+)
+
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] POST data: Array
+(
+)
+
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] CSRF check passed (or skipped for GET)
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Inputs valid: property_id=25, action=approve
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Fetching property ID: 25
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Property found: title=Luxury 4 Bedroom Duplex in Prime Lekki, owner_id=39, zoho_lead_id=6560565000001317001
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Updating property ID: 25 to admin_approved=1, status=pending_approval
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Property ID: 25 approved successfully
+[12-Apr-2025 10:52:48 UTC] 2025-04-12 10:52:48 [Approval Script] Starting Zoho sync for property ID: 25
+[12-Apr-2025 10:52:54 UTC] Zoho Product Response: {"data":[{"code":"MANDATORY_NOT_FOUND","details":{"api_name":"Product_Name"},"message":"required field not found","status":"error"}]}
+[12-Apr-2025 10:52:54 UTC] Zoho Product creation failed: {"data":[{"code":"MANDATORY_NOT_FOUND","details":{"api_name":"Product_Name"},"message":"required field not found","status":"error"}]}
+[12-Apr-2025 10:52:54 UTC] 2025-04-12 10:52:48 [Approval Script] Zoho sync failed for property ID: 25: Failed to create product in Zoho CRM: {"data":[{"code":"MANDATORY_NOT_FOUND","details":{"api_name":"Product_Name"},"message":"required field not found","status":"error"}]}
+[12-Apr-2025 10:52:58 UTC] 2025-04-12 10:52:48 [Approval Script] Notified superadmin of Zoho sync failure
+[12-Apr-2025 10:52:58 UTC] 2025-04-12 10:52:48 [Approval Script] Completed for property ID: 25
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Request method: GET
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] GET data: Array
+(
+    [action] => approve
+    [id] => 25
+)
+
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] POST data: Array
+(
+)
+
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] CSRF check passed (or skipped for GET)
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Inputs valid: property_id=25, action=approve
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Fetching property ID: 25
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Property found: title=Luxury 4 Bedroom Duplex in Prime Lekki, owner_id=39, zoho_lead_id=6560565000001317001
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Updating property ID: 25 to admin_approved=1, status=available
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Property ID: 25 approved successfully
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Approval Script] Starting Zoho sync for property ID: 25
+[12-Apr-2025 11:14:45 UTC] 2025-04-12 11:14:45 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_rent, status=available, type=apartment, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:14:48 UTC] 2025-04-12 11:14:45 [Zoho Sync] Mapped Offer_Type: Rent
+[12-Apr-2025 11:14:50 UTC] 2025-04-12 11:14:45 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:14:50 UTC] 2025-04-12 11:14:45 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Rent","Availability_Status":"Available","Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:14:52 UTC] 2025-04-12 11:14:45 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:14:51+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:14:51+01:00","id":"6560565000001325001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:14:52 UTC] 2025-04-12 11:14:45 [Zoho Sync] Product created: zoho_product_id=6560565000001325001
+[12-Apr-2025 11:14:52 UTC] 2025-04-12 11:14:45 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","Amount":150000000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000001317001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Zoho Sync] Deal response: HTTP 202, {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Zoho Sync] Warning: Deal creation failed, continuing with product: {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Zoho Sync] Database updated: zoho_product_id=6560565000001325001, zoho_property_id=null, property_id=25
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Zoho Sync] Successfully synced property ID 25 to Zoho
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Approval Script] Zoho sync successful for property ID: 25
+[12-Apr-2025 11:14:53 UTC] 2025-04-12 11:14:45 [Approval Script] Completed for property ID: 25
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Session data: user_id=9, role=superadmin, csrf_token=1919a24e20536cd8f0806868ae4d04bb79bf9dfad62b127f6b9a54ca03a7a584
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] User 9 (superadmin) authorized
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Request method: GET
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] GET data: Array
+(
+    [action] => approve
+    [id] => 25
+)
+
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] POST data: Array
+(
+)
+
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] CSRF check passed (or skipped for GET)
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Inputs valid: property_id=25, action=approve
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Fetching property ID: 25
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Property found: title=Luxury 4 Bedroom Duplex in Prime Lekki, owner_id=39, zoho_lead_id=6560565000001317001
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Updating property ID: 25 to admin_approved=1, status=available
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Property ID: 25 approved successfully
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Approval Script] Starting Zoho sync for property ID: 25
+[12-Apr-2025 11:34:15 UTC] 2025-04-12 11:34:15 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:34:17 UTC] 2025-04-12 11:34:15 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:34:18 UTC] 2025-04-12 11:34:15 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:34:18 UTC] 2025-04-12 11:34:15 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:34:19 UTC] 2025-04-12 11:34:15 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:34:18+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:34:18+01:00","id":"6560565000001326001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:34:19 UTC] 2025-04-12 11:34:15 [Zoho Sync] Product created: zoho_product_id=6560565000001326001
+[12-Apr-2025 11:34:19 UTC] 2025-04-12 11:34:15 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","Amount":150000000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000001317001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Zoho Sync] Deal response: HTTP 202, {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Zoho Sync] Warning: Deal creation failed, continuing with product: {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Zoho Sync] Database updated: zoho_product_id=6560565000001326001, zoho_deal_id=null, property_id=25
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Zoho Sync] Successfully synced property ID 25 to Zoho
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Approval Script] Zoho sync successful for property ID: 25
+[12-Apr-2025 11:34:20 UTC] 2025-04-12 11:34:15 [Approval Script] Completed for property ID: 25
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Found 14 properties to sync
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Apart (ID: 3)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Apart (ID: 3): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: House (ID: 4)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property House (ID: 4): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Apartment (ID: 5)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 5): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Shorlet (ID: 6)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Shorlet (ID: 6): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Short Let (ID: 7)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Short Let (ID: 7): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Luxury Apartment (ID: 8)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury Apartment (ID: 8): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: fjfdsfsdfsadf (ID: 12)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property fjfdsfsdfsadf (ID: 12): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Luke (ID: 13)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Luke (ID: 13): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: dfdkdgkafgfgfagafgfg (ID: 15)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property dfdkdgkafgfgfagafgfg (ID: 15): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: dfadsfdssdfjklsafsdfsd (ID: 16)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property dfadsfdssdfjklsafsdfsd (ID: 16): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 17): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: hthehee (ID: 18)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property hthehee (ID: 18): Size must be a non-negative number.
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Luxuries 2 Bedroom flat (ID: 24)
+[12-Apr-2025 11:41:05 UTC] 2025-04-12 11:41:05 [Zoho Sync] Inputs: title=Luxuries 2 Bedroom flat, price=40000.00, location=lekki phase 1, listing_type=for_rent, status=available, type=apartment, bedrooms=2, bathrooms=3, size=200, description=Luxurious 2-Bedroom Flat in the Heart of [Location]
+
+Welcome to your dream home! This stunning 2-bedroom flat offers the perfect blend of modern elegance and comfort, designed to cater to your every need. Located in the prestigious [Neighborhood/Area], this property provides easy access to [landmarks, amenities, or transportation hubs], making it an ideal choice for professionals, couples, or small families.
+
+Key Features:
+Spacious Living Areas: The open-plan living and dining area is bathed in natural light, creating a warm and inviting atmosphere. High ceilings and large windows enhance the sense of space.
+
+Gourmet Kitchen: The fully equipped kitchen features top-of-the-line appliances, sleek countertops, and ample storage space, perfect for culinary enthusiasts.
+
+Luxurious Bedrooms: Two generously sized bedrooms with plush carpeting, built-in wardrobes, and en-suite bathrooms offer a private retreat for relaxation.
+
+Modern Bathrooms: Elegantly designed bathrooms with premium fixtures, rainfall showers, and designer tiles provide a spa-like experience.
+
+Balcony with Stunning Views: Step out onto the private balcony to enjoy breathtaking views of [cityscape, park, or waterfront].
+
+Smart Home Technology: Integrated smart home features, including automated lighting, climate control, and security systems, ensure convenience and peace of mind.
+
+Premium Finishes: High-quality finishes, including hardwood flooring, designer lighting, and custom cabinetry, add a touch of sophistication throughout the flat.
+
+Building Amenities:
+24/7 concierge and security services
+
+State-of-the-art fitness center
+
+Rooftop terrace with panoramic views
+
+Swimming pool and jacuzzi
+
+Private parking and electric vehicle charging stations
+
+Location Highlights:
+Minutes away from [shopping malls, restaurants, schools, or parks]
+
+Excellent transport links, including [bus stops, train stations, or major highways]
+
+Vibrant neighborhood with a mix of cultural, dining, and entertainment options
+
+This luxurious 2-bedroom flat is more than just a home—it’s a lifestyle. Don’t miss the opportunity to own a piece of paradise in one of the most sought-after locations. Schedule a viewing today and experience the epitome of modern living!, garage_spaces=1, zoho_lead_id=6560565000000966001, user_id=3, property_id=24
+[12-Apr-2025 11:41:06 UTC] 2025-04-12 11:41:05 [Zoho Sync] Mapped Offer_Type: Rent
+[12-Apr-2025 11:41:07 UTC] 2025-04-12 11:41:05 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:41:07 UTC] 2025-04-12 11:41:05 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxuries 2 Bedroom flat","Unit_Price":40000,"Location":"lekki phase 1","Offer_Type":"Rent","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":2,"Bathrooms":3,"Size":200,"Description":"Luxurious 2-Bedroom Flat in the Heart of [Location]\r\n\r\nWelcome to your dream home! This stunning 2-bedroom flat offers the perfect blend of modern elegance and comfort, designed to cater to your every need. Located in the prestigious [Neighborhood\/Area], this property provides easy access to [landmarks, amenities, or transportation hubs], making it an ideal choice for professionals, couples, or small families.\r\n\r\nKey Features:\r\nSpacious Living Areas: The open-plan living and dining area is bathed in natural light, creating a warm and inviting atmosphere. High ceilings and large windows enhance the sense of space.\r\n\r\nGourmet Kitchen: The fully equipped kitchen features top-of-the-line appliances, sleek countertops, and ample storage space, perfect for culinary enthusiasts.\r\n\r\nLuxurious Bedrooms: Two generously sized bedrooms with plush carpeting, built-in wardrobes, and en-suite bathrooms offer a private retreat for relaxation.\r\n\r\nModern Bathrooms: Elegantly designed bathrooms with premium fixtures, rainfall showers, and designer tiles provide a spa-like experience.\r\n\r\nBalcony with Stunning Views: Step out onto the private balcony to enjoy breathtaking views of [cityscape, park, or waterfront].\r\n\r\nSmart Home Technology: Integrated smart home features, including automated lighting, climate control, and security systems, ensure convenience and peace of mind.\r\n\r\nPremium Finishes: High-quality finishes, including hardwood flooring, designer lighting, and custom cabinetry, add a touch of sophistication throughout the flat.\r\n\r\nBuilding Amenities:\r\n24\/7 concierge and security services\r\n\r\nState-of-the-art fitness center\r\n\r\nRooftop terrace with panoramic views\r\n\r\nSwimming pool and jacuzzi\r\n\r\nPrivate parking and electric vehicle charging stations\r\n\r\nLocation Highlights:\r\nMinutes away from [shopping malls, restaurants, schools, or parks]\r\n\r\nExcellent transport links, including [bus stops, train stations, or major highways]\r\n\r\nVibrant neighborhood with a mix of cultural, dining, and entertainment options\r\n\r\nThis luxurious 2-bedroom flat is more than just a home\u2014it\u2019s a lifestyle. Don\u2019t miss the opportunity to own a piece of paradise in one of the most sought-after locations. Schedule a viewing today and experience the epitome of modern living!","Garage_Spaces":1,"Vendor_Contact_Name":{"id":"6560565000000966001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:41:09 UTC] 2025-04-12 11:41:05 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:41:08+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:41:08+01:00","id":"6560565000001315011","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:41:09 UTC] 2025-04-12 11:41:05 [Zoho Sync] Product created: zoho_product_id=6560565000001315011
+[12-Apr-2025 11:41:09 UTC] 2025-04-12 11:41:05 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luxuries 2 Bedroom flat","Amount":40000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000000966001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:41:09+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:41:09+01:00","id":"6560565000001327001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync] Deal created: zoho_deal_id=6560565000001327001
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync] Database updated: zoho_product_id=6560565000001315011, zoho_deal_id=6560565000001327001, property_id=24
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync] Successfully synced property ID 24 to Zoho
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Property Luxuries 2 Bedroom flat (ID: 24) synced successfully
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 11:41:10 UTC] 2025-04-12 11:41:10 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:41:11 UTC] 2025-04-12 11:41:10 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:41:13 UTC] 2025-04-12 11:41:10 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001326001","Offer_Type":"Sale","$approved":true,"Garage_Spaces":2,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:34:18+01:00","Created_Time":"2025-04-12T12:34:18+01:00","Lead_Name":null,"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":4,"$in_merge":false,"Locked__s":false,"Bathrooms":5,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1.5E+8,"Location":"Lekki Phase 1, Lagos, Nigeria"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:41:13 UTC] 2025-04-12 11:41:10 [Zoho Sync] Duplicate product found: title=Luxury 4 Bedroom Duplex in Prime Lekki
+[12-Apr-2025 11:41:13 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:41:13 UTC] 2025-04-12 11:41:05 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Found 13 properties to sync
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Apart (ID: 3)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Apart (ID: 3): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: House (ID: 4)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property House (ID: 4): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Apartment (ID: 5)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 5): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Shorlet (ID: 6)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Shorlet (ID: 6): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Short Let (ID: 7)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Short Let (ID: 7): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Luxury Apartment (ID: 8)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury Apartment (ID: 8): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: fjfdsfsdfsadf (ID: 12)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property fjfdsfsdfsadf (ID: 12): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Luke (ID: 13)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Luke (ID: 13): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: dfdkdgkafgfgfagafgfg (ID: 15)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property dfdkdgkafgfgfagafgfg (ID: 15): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: dfadsfdssdfjklsafsdfsd (ID: 16)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property dfadsfdssdfjklsafsdfsd (ID: 16): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 17): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: hthehee (ID: 18)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Invalid size: N/A
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property hthehee (ID: 18): Size must be a non-negative number.
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 11:41:22 UTC] 2025-04-12 11:41:22 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:41:27 UTC] 2025-04-12 11:41:22 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:41:30 UTC] 2025-04-12 11:41:22 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001326001","Offer_Type":"Sale","$approved":true,"Garage_Spaces":2,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:34:18+01:00","Created_Time":"2025-04-12T12:34:18+01:00","Lead_Name":null,"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":4,"$in_merge":false,"Locked__s":false,"Bathrooms":5,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1.5E+8,"Location":"Lekki Phase 1, Lagos, Nigeria"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:41:30 UTC] 2025-04-12 11:41:22 [Zoho Sync] Duplicate product found: title=Luxury 4 Bedroom Duplex in Prime Lekki
+[12-Apr-2025 11:41:30 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:41:30 UTC] 2025-04-12 11:41:22 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Found 13 properties to sync
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Apart (ID: 3)
+[12-Apr-2025 11:44:48 UTC] 2025-04-12 11:44:48 [Zoho Sync] Inputs: title=Apart, price=10000000.00, location=Ikeja, listing_type=for_sale, status=sold, type=apartment, bedrooms=1, bathrooms=1, size=200, description=gfshgh, garage_spaces=0, zoho_lead_id=6560565000000966001, user_id=3, property_id=3
+[12-Apr-2025 11:44:50 UTC] 2025-04-12 11:44:48 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:44:51 UTC] 2025-04-12 11:44:48 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:44:51 UTC] 2025-04-12 11:44:48 [Zoho Sync] Product data: {"data":[{"Product_Name":"Apart","Unit_Price":10000000,"Location":"Ikeja","Offer_Type":"Sale","Availability_Status":"Sold","Property_Type":"apartment","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"gfshgh","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000966001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:44:53 UTC] 2025-04-12 11:44:48 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:44:52+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:44:52+01:00","id":"6560565000001328001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:44:53 UTC] 2025-04-12 11:44:48 [Zoho Sync] Product created: zoho_product_id=6560565000001328001
+[12-Apr-2025 11:44:53 UTC] 2025-04-12 11:44:48 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Apart","Amount":10000000,"Stage":"Sold","Type":"Apartment","Contact_Name":{"id":"6560565000000966001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:44:53+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:44:53+01:00","id":"6560565000001326007","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync] Deal created: zoho_deal_id=6560565000001326007
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync] Database updated: zoho_product_id=6560565000001328001, zoho_deal_id=6560565000001326007, property_id=3
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync] Successfully synced property ID 3 to Zoho
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Apart (ID: 3) synced successfully
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: House (ID: 4)
+[12-Apr-2025 11:44:54 UTC] 2025-04-12 11:44:54 [Zoho Sync] Inputs: title=House, price=50000000.00, location=Lagos, listing_type=for_sale, status=available, type=house, bedrooms=1, bathrooms=1, size=200, description=fdgdhggj, garage_spaces=0, zoho_lead_id=6560565000000966001, user_id=3, property_id=4
+[12-Apr-2025 11:44:56 UTC] 2025-04-12 11:44:54 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:44:57 UTC] 2025-04-12 11:44:54 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:44:57 UTC] 2025-04-12 11:44:54 [Zoho Sync] Product data: {"data":[{"Product_Name":"House","Unit_Price":50000000,"Location":"Lagos","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"house","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fdgdhggj","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000966001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:44:58 UTC] 2025-04-12 11:44:54 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:44:57+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:44:57+01:00","id":"6560565000001322002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:44:58 UTC] 2025-04-12 11:44:54 [Zoho Sync] Product created: zoho_product_id=6560565000001322002
+[12-Apr-2025 11:44:58 UTC] 2025-04-12 11:44:54 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"House","Amount":50000000,"Stage":"Available","Type":"House","Contact_Name":{"id":"6560565000000966001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:54 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:44:58+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:44:58+01:00","id":"6560565000001311012","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:54 [Zoho Sync] Deal created: zoho_deal_id=6560565000001311012
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:54 [Zoho Sync] Database updated: zoho_product_id=6560565000001322002, zoho_deal_id=6560565000001311012, property_id=4
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:54 [Zoho Sync] Successfully synced property ID 4 to Zoho
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property House (ID: 4) synced successfully
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Apartment (ID: 5)
+[12-Apr-2025 11:44:59 UTC] 2025-04-12 11:44:59 [Zoho Sync] Inputs: title=Apartment, price=1000000.00, location=Lagos, listing_type=for_rent, status=sold, type=apartment, bedrooms=1, bathrooms=1, size=200, description=fdhsjhklulsul, garage_spaces=0, zoho_lead_id=6560565000000969001, user_id=7, property_id=5
+[12-Apr-2025 11:45:01 UTC] 2025-04-12 11:44:59 [Zoho Sync] Mapped Offer_Type: Rent
+[12-Apr-2025 11:45:02 UTC] 2025-04-12 11:44:59 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:02 UTC] 2025-04-12 11:44:59 [Zoho Sync] Product data: {"data":[{"Product_Name":"Apartment","Unit_Price":1000000,"Location":"Lagos","Offer_Type":"Rent","Availability_Status":"Sold","Property_Type":"apartment","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fdhsjhklulsul","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000969001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:04 UTC] 2025-04-12 11:44:59 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:03+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:03+01:00","id":"6560565000001329001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:04 UTC] 2025-04-12 11:44:59 [Zoho Sync] Product created: zoho_product_id=6560565000001329001
+[12-Apr-2025 11:45:04 UTC] 2025-04-12 11:44:59 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Apartment","Amount":1000000,"Stage":"Sold","Type":"Apartment","Contact_Name":{"id":"6560565000000969001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:59 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:05+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:05+01:00","id":"6560565000001330001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:59 [Zoho Sync] Deal created: zoho_deal_id=6560565000001330001
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:59 [Zoho Sync] Database updated: zoho_product_id=6560565000001329001, zoho_deal_id=6560565000001330001, property_id=5
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:59 [Zoho Sync] Successfully synced property ID 5 to Zoho
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Apartment (ID: 5) synced successfully
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Shorlet (ID: 6)
+[12-Apr-2025 11:45:05 UTC] 2025-04-12 11:45:05 [Zoho Sync] Inputs: title=Shorlet, price=200000.00, location=Ikeja, listing_type=short_let, status=available, type=apartment, bedrooms=1, bathrooms=1, size=200, description=fdgsshgjhkjlhklgfhshfdgdfg, garage_spaces=0, zoho_lead_id=6560565000000970001, user_id=9, property_id=6
+[12-Apr-2025 11:45:07 UTC] 2025-04-12 11:45:05 [Zoho Sync] Mapped Offer_Type: Short Let
+[12-Apr-2025 11:45:08 UTC] 2025-04-12 11:45:05 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:08 UTC] 2025-04-12 11:45:05 [Zoho Sync] Product data: {"data":[{"Product_Name":"Shorlet","Unit_Price":200000,"Location":"Ikeja","Offer_Type":"Short Let","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fdgsshgjhkjlhklgfhshfdgdfg","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000970001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:09 UTC] 2025-04-12 11:45:05 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:08+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:08+01:00","id":"6560565000001331001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:09 UTC] 2025-04-12 11:45:05 [Zoho Sync] Product created: zoho_product_id=6560565000001331001
+[12-Apr-2025 11:45:09 UTC] 2025-04-12 11:45:05 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Shorlet","Amount":200000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000000970001"},"Closing_Date":"2025-04-19"}]}
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:45:05 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:10+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:10+01:00","id":"6560565000001325006","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:45:05 [Zoho Sync] Deal created: zoho_deal_id=6560565000001325006
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:45:05 [Zoho Sync] Database updated: zoho_product_id=6560565000001331001, zoho_deal_id=6560565000001325006, property_id=6
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:45:05 [Zoho Sync] Successfully synced property ID 6 to Zoho
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Shorlet (ID: 6) synced successfully
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Short Let (ID: 7)
+[12-Apr-2025 11:45:11 UTC] 2025-04-12 11:45:11 [Zoho Sync] Inputs: title=Short Let, price=200000.00, location=Ogba, listing_type=for_sale, status=available, type=short_stay, bedrooms=1, bathrooms=1, size=200, description=djkfdjkgjklgkjl, garage_spaces=0, zoho_lead_id=6560565000000970001, user_id=9, property_id=7
+[12-Apr-2025 11:45:12 UTC] 2025-04-12 11:45:11 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:45:13 UTC] 2025-04-12 11:45:11 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:13 UTC] 2025-04-12 11:45:11 [Zoho Sync] Product data: {"data":[{"Product_Name":"Short Let","Unit_Price":200000,"Location":"Ogba","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"short_stay","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"djkfdjkgjklgkjl","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000970001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:14 UTC] 2025-04-12 11:45:11 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:14+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:14+01:00","id":"6560565000001321002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:14 UTC] 2025-04-12 11:45:11 [Zoho Sync] Product created: zoho_product_id=6560565000001321002
+[12-Apr-2025 11:45:14 UTC] 2025-04-12 11:45:11 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Short Let","Amount":200000,"Stage":"Available","Type":"Short_stay","Contact_Name":{"id":"6560565000000970001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:45:11 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:15+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:15+01:00","id":"6560565000001332001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:45:11 [Zoho Sync] Deal created: zoho_deal_id=6560565000001332001
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:45:11 [Zoho Sync] Database updated: zoho_product_id=6560565000001321002, zoho_deal_id=6560565000001332001, property_id=7
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:45:11 [Zoho Sync] Successfully synced property ID 7 to Zoho
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Short Let (ID: 7) synced successfully
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Luxury Apartment (ID: 8)
+[12-Apr-2025 11:45:16 UTC] 2025-04-12 11:45:16 [Zoho Sync] Inputs: title=Luxury Apartment, price=200000.00, location=Ogba, listing_type=for_sale, status=available, type=apartment, bedrooms=1, bathrooms=1, size=200, description=hdfadjfasdjkfaskldjfa, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=8
+[12-Apr-2025 11:45:17 UTC] 2025-04-12 11:45:16 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:45:18 UTC] 2025-04-12 11:45:16 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:18 UTC] 2025-04-12 11:45:16 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury Apartment","Unit_Price":200000,"Location":"Ogba","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"hdfadjfasdjkfaskldjfa","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000961001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:19 UTC] 2025-04-12 11:45:16 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:18+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:18+01:00","id":"6560565000001333001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:19 UTC] 2025-04-12 11:45:16 [Zoho Sync] Product created: zoho_product_id=6560565000001333001
+[12-Apr-2025 11:45:19 UTC] 2025-04-12 11:45:16 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luxury Apartment","Amount":200000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000000961001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:45:16 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:20+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:20+01:00","id":"6560565000001334001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:45:16 [Zoho Sync] Deal created: zoho_deal_id=6560565000001334001
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:45:16 [Zoho Sync] Database updated: zoho_product_id=6560565000001333001, zoho_deal_id=6560565000001334001, property_id=8
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:45:16 [Zoho Sync] Successfully synced property ID 8 to Zoho
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Luxury Apartment (ID: 8) synced successfully
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: fjfdsfsdfsadf (ID: 12)
+[12-Apr-2025 11:45:21 UTC] 2025-04-12 11:45:21 [Zoho Sync] Inputs: title=fjfdsfsdfsadf, price=234.00, location=Berger, listing_type=for_sale, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=fgfgdhfjhjkd, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=12
+[12-Apr-2025 11:45:23 UTC] 2025-04-12 11:45:21 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:45:25 UTC] 2025-04-12 11:45:21 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:25 UTC] 2025-04-12 11:45:21 [Zoho Sync] Product data: {"data":[{"Product_Name":"fjfdsfsdfsadf","Unit_Price":234,"Location":"Berger","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fgfgdhfjhjkd","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000961001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:26 UTC] 2025-04-12 11:45:21 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:25+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:25+01:00","id":"6560565000001311024","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:26 UTC] 2025-04-12 11:45:21 [Zoho Sync] Product created: zoho_product_id=6560565000001311024
+[12-Apr-2025 11:45:26 UTC] 2025-04-12 11:45:21 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"fjfdsfsdfsadf","Amount":234,"Stage":"Available","Type":"Hotel","Contact_Name":{"id":"6560565000000961001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:45:21 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:26+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:26+01:00","id":"6560565000001322007","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:45:21 [Zoho Sync] Deal created: zoho_deal_id=6560565000001322007
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:45:21 [Zoho Sync] Database updated: zoho_product_id=6560565000001311024, zoho_deal_id=6560565000001322007, property_id=12
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:45:21 [Zoho Sync] Successfully synced property ID 12 to Zoho
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property fjfdsfsdfsadf (ID: 12) synced successfully
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Luke (ID: 13)
+[12-Apr-2025 11:45:27 UTC] 2025-04-12 11:45:27 [Zoho Sync] Inputs: title=Luke, price=450000.00, location=Ogba, listing_type=short_let, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=sdaggfgfdh, garage_spaces=0, zoho_lead_id=6560565000000970001, user_id=9, property_id=13
+[12-Apr-2025 11:45:29 UTC] 2025-04-12 11:45:27 [Zoho Sync] Mapped Offer_Type: Short Let
+[12-Apr-2025 11:45:34 UTC] 2025-04-12 11:45:27 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:34 UTC] 2025-04-12 11:45:27 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luke","Unit_Price":450000,"Location":"Ogba","Offer_Type":"Short Let","Availability_Status":"Available","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"sdaggfgfdh","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000970001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:37 UTC] 2025-04-12 11:45:27 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:36+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:36+01:00","id":"6560565000001319011","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:37 UTC] 2025-04-12 11:45:27 [Zoho Sync] Product created: zoho_product_id=6560565000001319011
+[12-Apr-2025 11:45:37 UTC] 2025-04-12 11:45:27 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luke","Amount":450000,"Stage":"Available","Type":"Hotel","Contact_Name":{"id":"6560565000000970001"},"Closing_Date":"2025-04-19"}]}
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:45:27 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:40+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:40+01:00","id":"6560565000001335001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:45:27 [Zoho Sync] Deal created: zoho_deal_id=6560565000001335001
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:45:27 [Zoho Sync] Database updated: zoho_product_id=6560565000001319011, zoho_deal_id=6560565000001335001, property_id=13
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:45:27 [Zoho Sync] Successfully synced property ID 13 to Zoho
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property Luke (ID: 13) synced successfully
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: dfdkdgkafgfgfagafgfg (ID: 15)
+[12-Apr-2025 11:45:42 UTC] 2025-04-12 11:45:42 [Zoho Sync] Inputs: title=dfdkdgkafgfgfagafgfg, price=1230000.00, location=Ogba, listing_type=short_let, status=booked, type=hotel, bedrooms=1, bathrooms=1, size=200, description=fsdgfhgjhjdhjhfgfg, garage_spaces=0, zoho_lead_id=6560565000000970001, user_id=9, property_id=15
+[12-Apr-2025 11:45:44 UTC] 2025-04-12 11:45:42 [Zoho Sync] Mapped Offer_Type: Short Let
+[12-Apr-2025 11:45:45 UTC] 2025-04-12 11:45:42 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:45 UTC] 2025-04-12 11:45:42 [Zoho Sync] Product data: {"data":[{"Product_Name":"dfdkdgkafgfgfagafgfg","Unit_Price":1230000,"Location":"Ogba","Offer_Type":"Short Let","Availability_Status":"Booked","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fsdgfhgjhjdhjhfgfg","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000970001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:47 UTC] 2025-04-12 11:45:42 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:46+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:46+01:00","id":"6560565000001336001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:47 UTC] 2025-04-12 11:45:42 [Zoho Sync] Product created: zoho_product_id=6560565000001336001
+[12-Apr-2025 11:45:47 UTC] 2025-04-12 11:45:42 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"dfdkdgkafgfgfagafgfg","Amount":1230000,"Stage":"Booked","Type":"Hotel","Contact_Name":{"id":"6560565000000970001"},"Closing_Date":"2025-04-19"}]}
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:45:42 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:48+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:48+01:00","id":"6560565000001313011","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:45:42 [Zoho Sync] Deal created: zoho_deal_id=6560565000001313011
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:45:42 [Zoho Sync] Database updated: zoho_product_id=6560565000001336001, zoho_deal_id=6560565000001313011, property_id=15
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:45:42 [Zoho Sync] Successfully synced property ID 15 to Zoho
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property dfdkdgkafgfgfagafgfg (ID: 15) synced successfully
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: dfadsfdssdfjklsafsdfsd (ID: 16)
+[12-Apr-2025 11:45:48 UTC] 2025-04-12 11:45:48 [Zoho Sync] Inputs: title=dfadsfdssdfjklsafsdfsd, price=120000.00, location=Berger, listing_type=for_sale, status=available, type=apartment, bedrooms=1, bathrooms=1, size=200, description=vfsgsfafhadgjfhsfhjks, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=16
+[12-Apr-2025 11:45:50 UTC] 2025-04-12 11:45:48 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:45:51 UTC] 2025-04-12 11:45:48 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:51 UTC] 2025-04-12 11:45:48 [Zoho Sync] Product data: {"data":[{"Product_Name":"dfadsfdssdfjklsafsdfsd","Unit_Price":120000,"Location":"Berger","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"vfsgsfafhadgjfhsfhjks","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000961001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:45:53 UTC] 2025-04-12 11:45:48 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:52+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:52+01:00","id":"6560565000001311029","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:53 UTC] 2025-04-12 11:45:48 [Zoho Sync] Product created: zoho_product_id=6560565000001311029
+[12-Apr-2025 11:45:53 UTC] 2025-04-12 11:45:48 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"dfadsfdssdfjklsafsdfsd","Amount":120000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000000961001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:45:48 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:53+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:53+01:00","id":"6560565000001317011","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:45:48 [Zoho Sync] Deal created: zoho_deal_id=6560565000001317011
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:45:48 [Zoho Sync] Database updated: zoho_product_id=6560565000001311029, zoho_deal_id=6560565000001317011, property_id=16
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:45:48 [Zoho Sync] Successfully synced property ID 16 to Zoho
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property dfadsfdssdfjklsafsdfsd (ID: 16) synced successfully
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 11:45:54 UTC] 2025-04-12 11:45:54 [Zoho Sync] Inputs: title=Apartment, price=500000.00, location=Ogba, listing_type=for_sale, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=A kings room, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=17
+[12-Apr-2025 11:45:56 UTC] 2025-04-12 11:45:54 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:45:57 UTC] 2025-04-12 11:45:54 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"fdhsjhklulsul","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001329001","Offer_Type":"Rent","$approved":true,"Garage_Spaces":0,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:45:03+01:00","Created_Time":"2025-04-12T12:45:03+01:00","Lead_Name":null,"Product_Name":"Apartment","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":1,"$in_merge":false,"Locked__s":false,"Bathrooms":1,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1000000,"Location":"Lagos"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:45:57 UTC] 2025-04-12 11:45:54 [Zoho Sync] Duplicate product found: title=Apartment
+[12-Apr-2025 11:45:57 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 17): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:45:57 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: hthehee (ID: 18)
+[12-Apr-2025 11:45:57 UTC] 2025-04-12 11:45:57 [Zoho Sync] Inputs: title=hthehee, price=200000.00, location=Ikeja, listing_type=short_let, status=booked, type=hotel, bedrooms=1, bathrooms=1, size=200, description=fdgdfhghgjsj, garage_spaces=0, zoho_lead_id=6560565000000970001, user_id=9, property_id=18
+[12-Apr-2025 11:45:58 UTC] 2025-04-12 11:45:57 [Zoho Sync] Mapped Offer_Type: Short Let
+[12-Apr-2025 11:45:59 UTC] 2025-04-12 11:45:57 [Zoho Sync] Product search response: HTTP 204, 
+[12-Apr-2025 11:45:59 UTC] 2025-04-12 11:45:57 [Zoho Sync] Product data: {"data":[{"Product_Name":"hthehee","Unit_Price":200000,"Location":"Ikeja","Offer_Type":"Short Let","Availability_Status":"Booked","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"fdgdfhghgjsj","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000970001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 11:46:01 UTC] 2025-04-12 11:45:57 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:45:59+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:45:59+01:00","id":"6560565000001311034","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:46:01 UTC] 2025-04-12 11:45:57 [Zoho Sync] Product created: zoho_product_id=6560565000001311034
+[12-Apr-2025 11:46:01 UTC] 2025-04-12 11:45:57 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"hthehee","Amount":200000,"Stage":"Booked","Type":"Hotel","Contact_Name":{"id":"6560565000000970001"},"Closing_Date":"2025-04-19"}]}
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:45:57 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T12:46:01+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T12:46:01+01:00","id":"6560565000001335013","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:45:57 [Zoho Sync] Deal created: zoho_deal_id=6560565000001335013
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:45:57 [Zoho Sync] Database updated: zoho_product_id=6560565000001311034, zoho_deal_id=6560565000001335013, property_id=18
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:45:57 [Zoho Sync] Successfully synced property ID 18 to Zoho
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Property hthehee (ID: 18) synced successfully
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 11:46:02 UTC] 2025-04-12 11:46:02 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:46:03 UTC] 2025-04-12 11:46:02 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:46:05 UTC] 2025-04-12 11:46:02 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001326001","Offer_Type":"Sale","$approved":true,"Garage_Spaces":2,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:34:18+01:00","Created_Time":"2025-04-12T12:34:18+01:00","Lead_Name":null,"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":4,"$in_merge":false,"Locked__s":false,"Bathrooms":5,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1.5E+8,"Location":"Lekki Phase 1, Lagos, Nigeria"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:46:05 UTC] 2025-04-12 11:46:02 [Zoho Sync] Duplicate product found: title=Luxury 4 Bedroom Duplex in Prime Lekki
+[12-Apr-2025 11:46:05 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:46:05 UTC] 2025-04-12 11:44:48 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Found 2 properties to sync
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 11:49:29 UTC] 2025-04-12 11:49:29 [Zoho Sync] Inputs: title=Apartment, price=500000.00, location=Ogba, listing_type=for_sale, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=A kings room, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=17
+[12-Apr-2025 11:49:31 UTC] 2025-04-12 11:49:29 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:49:32 UTC] 2025-04-12 11:49:29 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"fdhsjhklulsul","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001329001","Offer_Type":"Rent","$approved":true,"Garage_Spaces":0,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:45:03+01:00","Created_Time":"2025-04-12T12:45:03+01:00","Lead_Name":null,"Product_Name":"Apartment","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":1,"$in_merge":false,"Locked__s":false,"Bathrooms":1,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1000000,"Location":"Lagos"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:49:32 UTC] 2025-04-12 11:49:29 [Zoho Sync] Duplicate product found: title=Apartment
+[12-Apr-2025 11:49:32 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 17): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:49:32 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 11:49:32 UTC] 2025-04-12 11:49:32 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 11:49:34 UTC] 2025-04-12 11:49:32 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 11:49:35 UTC] 2025-04-12 11:49:32 [Zoho Sync] Product search response: HTTP 200, {"data":[{"Owner":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","$currency_symbol":"USD","$field_states":null,"$review_process":{"approve":false,"reject":false,"resubmit":false},"Property_Images":null,"$layout_id":{"name":"Standard","id":"6560565000000091009"},"Product_Active":true,"Last_Activity_Time":null,"Record_Image":null,"Modified_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"$review":null,"Product_Code":null,"$state":"save","$process_flow":false,"$locked_for_me":false,"id":"6560565000001326001","Offer_Type":"Sale","$approved":true,"Garage_Spaces":2,"$approval":{"delegate":false,"takeover":false,"approve":false,"reject":false,"resubmit":false},"Modified_Time":"2025-04-12T12:34:18+01:00","Created_Time":"2025-04-12T12:34:18+01:00","Lead_Name":null,"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","$taxable":true,"$editable":true,"Property_Type":"Apartment","Size_e_g_sqft_acres":null,"$orchestration":false,"Bedrooms":4,"$in_merge":false,"Locked__s":false,"Bathrooms":5,"Created_By":{"name":"Pishonserv","id":"6560565000000494001","email":"pishonserv@pishonserv.com"},"Tag":[],"$approval_state":"approved","Unit_Price":1.5E+8,"Location":"Lekki Phase 1, Lagos, Nigeria"}],"info":{"per_page":200,"count":1,"page":1,"sort_by":"id","sort_order":"desc","more_records":false}}
+[12-Apr-2025 11:49:35 UTC] 2025-04-12 11:49:32 [Zoho Sync] Duplicate product found: title=Luxury 4 Bedroom Duplex in Prime Lekki
+[12-Apr-2025 11:49:35 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): A product with this title already exists in Zoho CRM.
+[12-Apr-2025 11:49:35 UTC] 2025-04-12 11:49:29 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Found 2 properties to sync
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 12:00:45 UTC] 2025-04-12 12:00:45 [Zoho Sync] Inputs: title=Apartment, price=500000.00, location=Ogba, listing_type=for_sale, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=A kings room, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=17
+[12-Apr-2025 12:00:49 UTC] 2025-04-12 12:00:45 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 12:00:49 UTC] 2025-04-12 12:00:45 [Zoho Sync] Product data: {"data":[{"Product_Name":"Apartment","Unit_Price":500000,"Location":"Ogba","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"A kings room","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000961001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 12:00:50 UTC] 2025-04-12 12:00:45 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001329001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:50 UTC] 2025-04-12 12:00:45 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001329001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:50 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] ❌ ERROR: Could not sync property Apartment (ID: 17): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001329001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:50 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 12:00:50 UTC] 2025-04-12 12:00:50 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 12:00:51 UTC] 2025-04-12 12:00:50 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 12:00:51 UTC] 2025-04-12 12:00:50 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 12:00:52 UTC] 2025-04-12 12:00:50 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001326001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:52 UTC] 2025-04-12 12:00:50 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001326001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:52 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001326001"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 12:00:52 UTC] 2025-04-12 12:00:45 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Script started for session: 8ujvp8jkb0j0t63kp4of5a1mej
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Found 2 properties to sync
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Processing property: Apartment (ID: 17)
+[12-Apr-2025 12:29:14 UTC] 2025-04-12 12:29:14 [Zoho Sync] Inputs: title=Apartment, price=500000.00, location=Ogba, listing_type=for_sale, status=available, type=hotel, bedrooms=1, bathrooms=1, size=200, description=A kings room, garage_spaces=0, zoho_lead_id=6560565000000961001, user_id=20, property_id=17
+[12-Apr-2025 12:29:16 UTC] 2025-04-12 12:29:14 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 12:29:16 UTC] 2025-04-12 12:29:14 [Zoho Sync] Using unique Product_Name: Apartment (ID 17)
+[12-Apr-2025 12:29:16 UTC] 2025-04-12 12:29:14 [Zoho Sync] Product data: {"data":[{"Product_Name":"Apartment (ID 17)","Unit_Price":500000,"Location":"Ogba","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"hotel","Bedrooms":1,"Bathrooms":1,"Size":200,"Description":"A kings room","Garage_Spaces":0,"Vendor_Contact_Name":{"id":"6560565000000961001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 12:29:17 UTC] 2025-04-12 12:29:14 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T13:29:16+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T13:29:16+01:00","id":"6560565000001338002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 12:29:17 UTC] 2025-04-12 12:29:14 [Zoho Sync] Product created: zoho_product_id=6560565000001338002
+[12-Apr-2025 12:29:17 UTC] 2025-04-12 12:29:14 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Apartment (ID 17)","Amount":500000,"Stage":"Available","Type":"Hotel","Contact_Name":{"id":"6560565000000961001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync] Deal response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T13:29:17+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T13:29:17+01:00","id":"6560565000001326019","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync] Deal created: zoho_deal_id=6560565000001326019
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync] Database updated: zoho_product_id=6560565000001338002, zoho_deal_id=6560565000001326019, property_id=17
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync] Successfully synced property ID 17 to Zoho
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Property Apartment (ID: 17) synced successfully
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 12:29:18 UTC] 2025-04-12 12:29:18 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 12:29:20 UTC] 2025-04-12 12:29:18 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 12:29:20 UTC] 2025-04-12 12:29:18 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 12:29:20 UTC] 2025-04-12 12:29:18 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 12:29:21 UTC] 2025-04-12 12:29:18 [Zoho Sync] Product response: HTTP 201, {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-12T13:29:20+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-12T13:29:20+01:00","id":"6560565000001332013","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[12-Apr-2025 12:29:21 UTC] 2025-04-12 12:29:18 [Zoho Sync] Product created: zoho_product_id=6560565000001332013
+[12-Apr-2025 12:29:21 UTC] 2025-04-12 12:29:18 [Zoho Sync] Deal data: {"data":[{"Deal_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Amount":150000000,"Stage":"Available","Type":"Apartment","Contact_Name":{"id":"6560565000001317001"},"Closing_Date":"2025-05-12"}]}
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:18 [Zoho Sync] Deal response: HTTP 202, {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:18 [Zoho Sync] Warning: Deal creation failed, continuing with product: {"data":[{"code":"INVALID_DATA","details":{"api_name":"Contact_Name"},"message":"invalid data","status":"error"}]}
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:18 [Zoho Sync] Database updated: zoho_product_id=6560565000001332013, zoho_deal_id=null, property_id=25
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:18 [Zoho Sync] Successfully synced property ID 25 to Zoho
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25) synced successfully
+[12-Apr-2025 12:29:23 UTC] 2025-04-12 12:29:14 [Zoho Sync Script] Script completed: sync_success=true
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Script started for session: 0gmdbrs7qd015v4f7djnueeotl
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Found 1 properties to sync
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 18:10:30 UTC] 2025-04-12 18:10:30 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 18:10:32 UTC] 2025-04-12 18:10:30 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 18:10:32 UTC] 2025-04-12 18:10:30 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 18:10:32 UTC] 2025-04-12 18:10:30 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 18:10:33 UTC] 2025-04-12 18:10:30 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:33 UTC] 2025-04-12 18:10:30 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:33 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:33 UTC] 2025-04-12 18:10:30 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Script started for session: 0gmdbrs7qd015v4f7djnueeotl
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Found 1 properties to sync
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 18:10:44 UTC] 2025-04-12 18:10:44 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 18:10:45 UTC] 2025-04-12 18:10:44 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 18:10:45 UTC] 2025-04-12 18:10:44 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 18:10:45 UTC] 2025-04-12 18:10:44 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 18:10:47 UTC] 2025-04-12 18:10:44 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:47 UTC] 2025-04-12 18:10:44 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:47 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:47 UTC] 2025-04-12 18:10:44 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Script started for session: 0gmdbrs7qd015v4f7djnueeotl
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Found 1 properties to sync
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 18:10:50 UTC] 2025-04-12 18:10:50 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 18:10:52 UTC] 2025-04-12 18:10:50 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 18:10:52 UTC] 2025-04-12 18:10:50 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 18:10:52 UTC] 2025-04-12 18:10:50 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 18:10:53 UTC] 2025-04-12 18:10:50 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:53 UTC] 2025-04-12 18:10:50 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:53 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:10:53 UTC] 2025-04-12 18:10:50 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Script started for session: 0gmdbrs7qd015v4f7djnueeotl
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Found 1 properties to sync
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 18:12:36 UTC] 2025-04-12 18:12:36 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 18:12:37 UTC] 2025-04-12 18:12:36 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 18:12:37 UTC] 2025-04-12 18:12:36 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 18:12:37 UTC] 2025-04-12 18:12:36 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 18:12:38 UTC] 2025-04-12 18:12:36 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:12:38 UTC] 2025-04-12 18:12:36 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:12:38 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:12:38 UTC] 2025-04-12 18:12:36 [Zoho Sync Script] Script completed: sync_success=false
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Script started for session: 0gmdbrs7qd015v4f7djnueeotl
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Superadmin 9 authorized
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Checking properties table columns
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Columns found: zoho_property_id=no, zoho_deal_id=yes
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Starting user sync
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Found 0 users to sync
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Starting property sync
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Found 1 properties to sync
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Processing property: Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25)
+[12-Apr-2025 18:20:48 UTC] 2025-04-12 18:20:48 [Zoho Sync] Inputs: title=Luxury 4 Bedroom Duplex in Prime Lekki, price=150000000.00, location=Lekki Phase 1, Lagos, Nigeria, listing_type=for_sale, status=available, type=apartment, bedrooms=4, bathrooms=5, size=350, description=Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication., garage_spaces=2, zoho_lead_id=6560565000001317001, user_id=39, property_id=25
+[12-Apr-2025 18:20:49 UTC] 2025-04-12 18:20:48 [Zoho Sync] Mapped Offer_Type: Sale
+[12-Apr-2025 18:20:49 UTC] 2025-04-12 18:20:48 [Zoho Sync] Using unique Product_Name: Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)
+[12-Apr-2025 18:20:49 UTC] 2025-04-12 18:20:48 [Zoho Sync] Product data: {"data":[{"Product_Name":"Luxury 4 Bedroom Duplex in Prime Lekki (ID 25)","Unit_Price":150000000,"Location":"Lekki Phase 1, Lagos, Nigeria","Offer_Type":"Sale","Availability_Status":"Available","Property_Type":"apartment","Bedrooms":4,"Bathrooms":5,"Size":350,"Description":"Discover unparalleled elegance in this luxury 4-bedroom duplex located in the heart of Lekki Phase 1. This architectural masterpiece boasts spacious living areas, high-end finishes, and modern amenities. Features include a gourmet kitchen with granite countertops, en-suite bedrooms with walk-in closets, a private study, and a lush backyard perfect for relaxation. Enjoy 24\/7 security, ample parking for 2 cars, and proximity to top schools, malls, and business hubs. Ideal for discerning buyers seeking comfort and sophistication.","Garage_Spaces":2,"Vendor_Contact_Name":{"id":"6560565000001317001"},"Property_Active":true,"Listing_Date":"2025-04-12"}]}
+[12-Apr-2025 18:20:50 UTC] 2025-04-12 18:20:48 [Zoho Sync] Product response: HTTP 202, {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:20:50 UTC] 2025-04-12 18:20:48 [Zoho Sync] Product creation failed: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:20:50 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] ❌ ERROR: Could not sync property Luxury 4 Bedroom Duplex in Prime Lekki (ID: 25): Failed to create product in Zoho CRM: {"data":[{"code":"DUPLICATE_DATA","details":{"api_name":"Product_Name","id":"6560565000001332013"},"message":"duplicate data","status":"error"}]}
+[12-Apr-2025 18:20:50 UTC] 2025-04-12 18:20:48 [Zoho Sync Script] Script completed: sync_success=false

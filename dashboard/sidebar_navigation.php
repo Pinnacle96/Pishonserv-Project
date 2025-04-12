@@ -25,6 +25,7 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
                 <li><a href="buyer_security.php" class="sidebar-link"><i class="fas fa-lock"></i> Security</a></li>
         <?php } elseif (in_array($user_role, ['agent', 'owner', 'hotel_owner'])) { ?>
                 <li><a href="agent_dashboard.php" class="sidebar-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="agent_mou.php" class="sidebar-link"><i class="fas fa-envelope"></i> Download MOU</a></li>
                 <li><a href="agent_properties.php" class="sidebar-link"><i class="fas fa-building"></i> Properties</a></li>
                 <li><a href="agent_inquiries.php" class="sidebar-link"><i class="fas fa-envelope"></i> Inquiries</a></li>
                 <!-- <li><a href="view_inquiry.php" class="sidebar-link"><i class="fas fa-envelope"></i> view inquiry</a></li> -->

@@ -4,112 +4,117 @@ include 'includes/db_connect.php';
 include 'includes/navbar.php';
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - PishonServ Real Estate</title>
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-    body {
-        background: #f5f7fa;
-        color: #092468;
-    }
-
-    /* Hero Section */
-    .hero-bg {
-        background: linear-gradient(to bottom, rgba(9, 36, 104, 0.8), rgba(9, 36, 104, 0.5)), url('public/images/hero1.jpg');
-        background-size: cover;
-        background-position: center;
-    }
-
-    .hero-content {
-        min-height: 100%;
-        /* Ensures it fills the hero section */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
+        body {
+            background: #f5f7fa;
+            color: #092468;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes scaleIn {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
+        /* Hero Section */
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(9, 36, 104, 0.8), rgba(9, 36, 104, 0.5)), url('public/images/hero1.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
-        to {
-            opacity: 1;
-            transform: scale(1);
+        .hero-content {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-    }
 
-    .animate-hero-title {
-        animation: scaleIn 0.8s ease-out forwards;
-    }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
 
-    .animate-hero-text {
-        animation: fadeInUp 0.8s ease-out 0.2s forwards;
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .animate-section-title {
-        animation: scaleIn 0.6s ease-out forwards;
-    }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
 
-    .animate-card {
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    /* Card Hover */
-    .team-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .animate-hero-title {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
 
-    .team-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(9, 36, 104, 0.2);
-    }
+        .animate-hero-text {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
 
-    /* Button Styling */
-    .btn-primary {
-        background-color: #F4A124;
-        transition: all 0.3s ease;
-    }
+        .animate-section-title {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
 
-    .btn-primary:hover {
-        background-color: #d88b1c;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(244, 161, 36, 0.3);
-    }
+        .animate-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
 
-    /* Social Icons */
-    .social-icon {
-        color: #092468;
-        transition: color 0.3s ease;
-    }
+        /* Card Hover */
+        .team-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .social-icon:hover {
-        color: #F4A124;
-    }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(9, 36, 104, 0.2);
+        }
 
-    /* Navbar Spacing */
-    .content-start {
-        padding-top: 5rem;
-        /* Matches navbar height */
-    }
+        /* Button Styling */
+        .btn-primary {
+            background-color: #F4A124;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #d88b1c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(244, 161, 36, 0.3);
+        }
+
+        /* Social Icons */
+        .social-icon {
+            color: #092468;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #F4A124;
+        }
+
+        /* Navbar Spacing */
+        .content-start {
+            padding-top: 5rem;
+        }
     </style>
 </head>
 
@@ -117,7 +122,7 @@ include 'includes/navbar.php';
     <!-- Hero Section -->
     <section class="relative w-full min-h-[400px] sm:min-h-[500px] hero-bg content-start overflow-hidden">
         <div class="relative z-10 hero-content text-center text-white px-6 py-40">
-            <h1 class="text-3xl sm:text-5xl font-bold animate-hero-title ">About PishonServ</h1>
+            <h1 class="text-3xl sm:text-5xl font-bold animate-hero-title">About PishonServ</h1>
             <p class="text-sm sm:text-lg mt-4 max-w-2xl animate-hero-text">
                 Connecting you to your dream property with trust, innovation, and excellence.
             </p>
@@ -162,7 +167,7 @@ include 'includes/navbar.php';
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.2s;">
                 <img src="public/teams/team1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mx-auto mb-4"
-                    onerror="this.src='public/uploads/default.png'">
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">Jane Doe</h3>
                 <p class="text-gray-600 mb-3">Founder & CEO</p>
                 <div class="flex justify-center space-x-4">
@@ -180,7 +185,7 @@ include 'includes/navbar.php';
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.4s;">
                 <img src="public/teams/team2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mx-auto mb-4"
-                    onerror="this.src='public/uploads/default.png'">
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">John Smith</h3>
                 <p class="text-gray-600 mb-3">Chief Operations Officer</p>
                 <div class="flex justify-center space-x-4">
@@ -198,7 +203,7 @@ include 'includes/navbar.php';
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.6s;">
                 <img src="public/teams/team3.jpg" alt="Emily Johnson" class="w-24 h-24 rounded-full mx-auto mb-4"
-                    onerror="this.src='public/uploads/default.png'">
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">Emily Johnson</h3>
                 <p class="text-gray-600 mb-3">Head of Sales</p>
                 <div class="flex justify-center space-x-4">
@@ -225,7 +230,7 @@ include 'includes/navbar.php';
             <p class="text-lg mt-4 max-w-2xl mx-auto animate-card">
                 Explore properties, list your own, or connect with us today!
             </p>
-            <a href="/pishonserv.com/index.php"
+            <a href="/index.php"
                 class="mt-6 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold animate-card"
                 style="animation-delay: 0.2s;">
                 Back to Home
@@ -233,8 +238,34 @@ include 'includes/navbar.php';
         </div>
     </section>
 
-
     <?php include 'includes/footer.php'; ?>
+
+    <!-- Page-Specific JavaScript Error Handling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure Zoho SalesIQ loads
+            if (!window.$zoho || !window.$zoho.salesiq) {
+                console.warn('Zoho SalesIQ not initialized. Loading fallback...');
+                window.$zoho = window.$zoho || {};
+                window.$zoho.salesiq = window.$zoho.salesiq || {
+                    ready: function() {}
+                };
+                var zohoScript = document.createElement('script');
+                zohoScript.id = 'zsiqscript';
+                zohoScript.src =
+                    'https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78';
+                zohoScript.async = true;
+                document.body.appendChild(zohoScript);
+            }
+
+            // Timeout to check if Zoho loaded
+            setTimeout(function() {
+                if (!document.querySelector('.zsiq_floatmain')) {
+                    console.error('Zoho SalesIQ widget failed to load on About page.');
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 
 </html>

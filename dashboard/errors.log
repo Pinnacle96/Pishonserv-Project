@@ -1022,3 +1022,15 @@ Stack trace:
 [07-May-2025 08:25:13 UTC] 🔍 Paystack API HTTP Code: 200
 [07-May-2025 08:25:13 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/mysftjg8h1o2d1b","access_code":"mysftjg8h1o2d1b","reference":"TXN_e53c491bf8c150b59a0b"}}
 [07-May-2025 08:25:13 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/mysftjg8h1o2d1b
+[09-May-2025 12:34:38 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=25&check_in=2025-05-26&check_out=2025-05-29&booking_id=113
+[09-May-2025 12:34:38 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-26, Check-out: 2025-05-29
+[09-May-2025 12:34:38 UTC] 🔑 Paystack Secret Key: SET
+[09-May-2025 12:34:39 UTC] 🔍 Paystack API HTTP Code: 0
+[09-May-2025 12:34:39 UTC] 🔍 Paystack Response: null
+[09-May-2025 12:34:39 UTC] ❌ Paystack Payment Error: null
+[09-May-2025 12:39:45 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=49&check_in=2025-05-09&check_out=2025-05-11&booking_id=114
+[09-May-2025 12:39:45 UTC] 🔍 Checking overlapping bookings for Property ID: 49, Check-in: 2025-05-09, Check-out: 2025-05-11
+[09-May-2025 12:39:45 UTC] 🔑 Paystack Secret Key: SET
+[09-May-2025 12:39:45 UTC] 🔍 Paystack API HTTP Code: 0
+[09-May-2025 12:39:45 UTC] 🔍 Paystack Response: null
+[09-May-2025 12:39:45 UTC] ❌ Paystack Payment Error: null

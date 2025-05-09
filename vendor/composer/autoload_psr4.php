@@ -6,7 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-<<<<<<< HEAD
+    'Svg\\' => array($vendorDir . '/dompdf/php-svg-lib/src/Svg'),
+    'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'Rize\\' => array($vendorDir . '/rize/uri-template/src/Rize'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
@@ -14,6 +15,7 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
@@ -41,13 +43,7 @@ return array(
     'GPBMetadata\\Google\\Cloud\\' => array($vendorDir . '/google/common-protos/metadata/Cloud'),
     'GPBMetadata\\Google\\Api\\' => array($vendorDir . '/google/common-protos/metadata/Api'),
     'GPBMetadata\\ApiCore\\' => array($vendorDir . '/google/gax/metadata/ApiCore'),
-    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
-=======
-    'Svg\\' => array($vendorDir . '/dompdf/php-svg-lib/src/Svg'),
-    'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
-    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
-    'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'FontLib\\' => array($vendorDir . '/dompdf/php-font-lib/src/FontLib'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
->>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
 );

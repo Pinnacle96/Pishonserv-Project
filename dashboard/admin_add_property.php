@@ -3,6 +3,7 @@ session_start();
 include '../includes/db_connect.php';
 include '../includes/config.php';
 include '../includes/zoho_functions.php';
+include '../includes/vision_helper.php';
 
 $log_prefix = date('Y-m-d H:i:s') . " [Admin Add Property] ";
 
@@ -13,6 +14,41 @@ if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'supe
     exit();
 }
 $admin_id = $_SESSION['user_id'];
+
+function compressImage($src, $dest, $targetKB = 50)
+{
+    $info = getimagesize($src);
+    switch ($info['mime']) {
+        case 'image/jpeg':
+            $img = imagecreatefromjpeg($src);
+            break;
+        case 'image/png':
+            $img = imagecreatefrompng($src);
+            break;
+        case 'image/gif':
+            $img = imagecreatefromgif($src);
+            break;
+        default:
+            return false;
+    }
+    list($w, $h) = $info;
+    $max = 1200;
+    $ratio = min($max / $w, $max / $h, 1);
+    $nw = (int)($w * $ratio);
+    $nh = (int)($h * $ratio);
+    $resized = imagecreatetruecolor($nw, $nh);
+    imagecopyresampled($resized, $img, 0, 0, 0, 0, $nw, $nh, $w, $h);
+    $q = 90;
+    while ($q > 10) {
+        imagejpeg($resized, $dest, $q);
+        clearstatcache();
+        if (filesize($dest) / 1024 <= $targetKB) break;
+        $q -= 5;
+    }
+    imagejpeg($resized, $dest, $q);
+    imagedestroy($img);
+    return true;
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // ✅ CSRF Token Check
@@ -71,11 +107,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $upload_dir = "../public/uploads/";
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
     if (!empty($_FILES['images']['name'][0])) {
+        if (count($_FILES['images']['name']) > 7) {
+            $_SESSION['error'] = "You can upload up to 7 images only.";
+            header("Location: admin_properties.php");
+            exit();
+        }
+
         foreach ($_FILES['images']['tmp_name'] as $k => $tmp_name) {
             if (!empty($tmp_name) && is_uploaded_file($tmp_name)) {
                 $image_name = uniqid() . "_" . basename($_FILES['images']['name'][$k]);
                 $image_path = $upload_dir . $image_name;
                 if (compressImage($tmp_name, $image_path, 50)) {
+                    if (!isImageSafe($image_path)) {
+                        unlink($image_path);
+                        $_SESSION['error'] = "❌ One or more images are inappropriate and were blocked.";
+                        header("Location: admin_properties.php");
+                        exit();
+                    }
                     $images_array[] = $image_name;
                 }
             }
@@ -159,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 );
                 $_SESSION['success'] = "✅ Property added and synced with Zoho.";
             } else {
-                $_SESSION['error'] = "⚠️ Missing Zoho Lead ID for admin.";
+                $_SESSION['error'] = "⚠️ Property added, but Zoho Lead ID is missing.";
             }
         } catch (Exception $e) {
             $_SESSION['error'] = "❌ Property added but Zoho sync failed: " . $e->getMessage();
@@ -168,43 +216,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['error'] = "❌ Insert failed: " . $stmt->error;
         $stmt->close();
     }
-}
 
-function compressImage($src, $dest, $targetKB = 50)
-{
-    $info = getimagesize($src);
-    switch ($info['mime']) {
-        case 'image/jpeg':
-            $img = imagecreatefromjpeg($src);
-            break;
-        case 'image/png':
-            $img = imagecreatefrompng($src);
-            break;
-        case 'image/gif':
-            $img = imagecreatefromgif($src);
-            break;
-        default:
-            return false;
-    }
-    list($w, $h) = $info;
-    $max = 1200;
-    $ratio = min($max / $w, $max / $h, 1);
-    $nw = (int)($w * $ratio);
-    $nh = (int)($h * $ratio);
-    $resized = imagecreatetruecolor($nw, $nh);
-    imagecopyresampled($resized, $img, 0, 0, 0, 0, $nw, $nh, $w, $h);
-    $q = 90;
-    while ($q > 10) {
-        imagejpeg($resized, $dest, $q);
-        clearstatcache();
-        if (filesize($dest) / 1024 <= $targetKB) break;
-        $q -= 5;
-    }
-    imagejpeg($resized, $dest, $q);
-    imagedestroy($img);
-    return true;
+    // ✅ Redirect regardless of outcome
+    header("Location: admin_properties.php");
+    exit();
 }
-
 
 // View layout
 $page_content = __DIR__ . "/admin_add_property_content.php";

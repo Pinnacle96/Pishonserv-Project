@@ -7,3 +7,45 @@
 2025-05-09 12:29:49 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
 Response: 
 2025-05-09 12:29:49 [Zoho Sync] ✅ DB updated: property_id=49, product_id=6560565000001803001, deal_id=
+✅ Token refreshed successfully.
+2025-05-09 13:47:52 [Zoho Sync] Mapped Offer Type: Hotel
+2025-05-09 13:47:52 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001804002
+2025-05-09 13:47:52 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 13:47:52 [Zoho Sync] ✅ DB updated: property_id=50, product_id=6560565000001804002, deal_id=
+2025-05-09 13:57:44 [Zoho Sync] Mapped Offer Type: Sale
+2025-05-09 13:57:44 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001800006
+2025-05-09 13:57:44 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 13:57:44 [Zoho Sync] ✅ DB updated: property_id=51, product_id=6560565000001800006, deal_id=
+2025-05-09 14:02:59 [Zoho Sync] Mapped Offer Type: Rent
+2025-05-09 14:02:59 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001807001
+2025-05-09 14:02:59 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 14:02:59 [Zoho Sync] ✅ DB updated: property_id=52, product_id=6560565000001807001, deal_id=
+2025-05-09 14:10:33 [Zoho Sync] Invalid property data: title=rrrrrrrrr, price=40000, location=No 4, Adake Estate, Ikeja lagos, listing_type=hotel, status=, type=hotel
+2025-05-09 14:15:25 [Zoho Sync] Invalid property data: title=fffffff, price=30000, location=No 4, Adake Estate, Ikeja lagos, listing_type=hotel, status=, type=hotel
+2025-05-09 14:17:16 [Zoho Sync] Invalid property data: title=rtrtteytytry, price=2000, location=Allen Junction, Ikeja, listing_type=short_let, status=, type=apartment
+2025-05-09 14:21:01 [Zoho Sync] Invalid property data: title=rrrrrrrr, price=3000, location=No 4, Adake Estate, Ikeja lagos, listing_type=hotel, status=, type=hotel
+2025-05-09 14:22:08 [Zoho Sync] Invalid property data: title=dsgagfhgjhjh, price=40000, location=Allen Junction, Ikeja, listing_type=for_sale, status=, type=apartment
+2025-05-09 14:31:34 [Zoho Sync] Mapped Offer Type: Hotel
+2025-05-09 14:31:34 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001799006
+2025-05-09 14:31:34 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 14:31:34 [Zoho Sync] ✅ DB updated: property_id=58, product_id=6560565000001799006, deal_id=
+2025-05-09 14:46:41 [Zoho Sync] Mapped Offer Type: Hotel
+2025-05-09 14:46:41 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001808001
+2025-05-09 14:46:41 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 14:46:41 [Zoho Sync] ✅ DB updated: property_id=59, product_id=6560565000001808001, deal_id=
+✅ Token refreshed successfully.
+2025-05-09 14:52:31 [Zoho Sync] Mapped Offer Type: Sale
+2025-05-09 14:52:31 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001811001
+2025-05-09 14:52:31 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 14:52:31 [Zoho Sync] ✅ DB updated: property_id=60, product_id=6560565000001811001, deal_id=
+2025-05-09 15:11:49 [Zoho Sync] Mapped Offer Type: Hotel
+2025-05-09 15:11:49 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001817001
+2025-05-09 15:11:49 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 15:11:49 [Zoho Sync] ✅ DB updated: property_id=61, product_id=6560565000001817001, deal_id=

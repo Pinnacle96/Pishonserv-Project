@@ -10,7 +10,11 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
 }
 
 // Restrict to agent, owner, or hotel_owner roles
+<<<<<<< HEAD
 $allowed_roles = ['agent', 'owner', 'hotel_owner', 'developer'];
+=======
+$allowed_roles = ['agent', 'owner', 'hotel_owner'];
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
 if (!in_array($_SESSION['role'], $allowed_roles)) {
     $_SESSION['error'] = "You do not have permission to access this page.";
     header("Location: ../index.php");

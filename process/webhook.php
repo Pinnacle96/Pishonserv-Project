@@ -74,5 +74,8 @@ if ($event['event'] == 'charge.success') {
 
 http_response_code(200);
 echo 'Webhook received but no action taken';
+<<<<<<< HEAD
 
 ?>
+=======
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5

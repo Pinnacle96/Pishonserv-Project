@@ -16,6 +16,7 @@ try {
     include '../includes/db_connect.php';
     include '../includes/zoho_functions.php';
     require '../vendor/autoload.php';
+<<<<<<< HEAD
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         throw new Exception("Invalid request method.");
@@ -49,12 +50,41 @@ if (!in_array($role, $valid_roles)) {
     throw new Exception("Invalid role selected.");
 }
 
+=======
+
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
+        throw new Exception("Invalid request method.");
+    }
+
+    // Store form data
+    $_SESSION['form_data'] = [
+        'name' => trim($_POST['name'] ?? ''),
+        'lname' => trim($_POST['lname'] ?? ''),
+        'email' => trim($_POST['email'] ?? ''),
+        'phone' => trim($_POST['phone'] ?? ''),
+        'address' => trim($_POST['address'] ?? ''),
+        'nin' => trim($_POST['nin'] ?? ''),
+        'role' => $_POST['role'] ?? '',
+        'agree_mou' => isset($_POST['agree_mou'])
+    ];
+
+    // Sanitize and validate inputs
+    $name = trim($_POST['name'] ?? '');
+    $lname = trim($_POST['lname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $address = trim($_POST['address'] ?? '');
+    $nin = trim($_POST['nin'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $role = $_POST['role'] ?? '';
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
     $otp = rand(100000, 999999);
     $otp_expires_at = date("Y-m-d H:i:s", strtotime("+10 minutes"));
     $image_name = "default.png";
     $mou_file = null;
     $mou_path = null;
 
+<<<<<<< HEAD
     if (empty($name) || empty($lname) || empty($email) || empty($phone) || empty($address) || empty($state) || empty($city) || empty($nin) || empty($password) || empty($role)) {
         throw new Exception("All required fields must be filled.");
     }
@@ -80,6 +110,35 @@ if (!in_array($role, $valid_roles)) {
     }
     $stmt->close();
 
+=======
+    // Input validation
+    if (empty($name) || empty($lname) || empty($email) || empty($phone) || empty($address) || empty($nin) || empty($password) || empty($role)) {
+        throw new Exception("All required fields must be filled.");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        throw new Exception("Invalid email format.");
+    }
+
+    if (!preg_match('/^[0-9]{11}$/', $nin)) {
+        throw new Exception("NIN must be exactly 11 digits.");
+    }
+
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    if (!$stmt) {
+        throw new Exception("Database prepare error: " . $conn->error);
+    }
+    $stmt->bind_param("s", $email);
+    if (!$stmt->execute()) {
+        throw new Exception("Database execute error: " . $stmt->error);
+    }
+    if ($stmt->get_result()->num_rows > 0) {
+        throw new Exception("Email already registered.");
+    }
+    $stmt->close();
+
+    // Handle profile image upload
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png'];
@@ -100,12 +159,23 @@ if (!in_array($role, $valid_roles)) {
         }
     }
 
+<<<<<<< HEAD
     $logoPath = realpath(__DIR__ . '/../public/images/logo.png');
     $logoSrc = $logoPath && file_exists($logoPath)
         ? 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath))
         : '../public/images/logo.png';
 
     if (in_array($role, ['agent', 'owner', 'hotel_owner', 'developer'])) {
+=======
+    // Define logo path
+    $logoPath = realpath(__DIR__ . '/../pulic/images/logo.png');
+    $logoSrc = $logoPath && file_exists($logoPath)
+        ? 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath))
+        : '../pulic/images/logo.png';
+
+    // Handle MOU
+    if (in_array($role, ['agent', 'owner', 'hotel_owner'])) {
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
         if (!isset($_POST['agree_mou']) || empty(trim($_POST['signed_name'] ?? ''))) {
             throw new Exception("You must agree to the MOU and provide a signed name.");
         }
@@ -119,12 +189,65 @@ if (!in_array($role, $valid_roles)) {
             mkdir($mou_dir, 0755, true);
         }
 
+<<<<<<< HEAD
         ob_start();
         include '../includes/mou_template.php';
+=======
+        // Generate MOU PDF
+        ob_start();
+?>
+        <html>
+
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                @page {
+                    margin: 20mm;
+                }
+
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    color: #333;
+                }
+            </style>
+        </head>
+
+        <body>
+            <div style="text-align: center;">
+                <img src="<?php echo $logoSrc; ?>" width="150" style="margin-bottom: 20px;">
+            </div>
+            <h2 style="color: #092468; text-align: center;">Memorandum of Understanding (MOU)</h2>
+            <p style="line-height: 1.6;">
+                This document constitutes an agreement between <strong>PISHONSERV</strong> and
+                <strong><?php echo htmlspecialchars($signed_name); ?></strong>.
+            </p>
+            <p style="line-height: 1.6;">
+                By signing this document, you agree to abide by the terms of service, ensuring integrity, transparency, and
+                accuracy
+                on our platform as a registered <strong><?php echo ucfirst($role); ?></strong>.
+            </p>
+            <p style="line-height: 1.6;">
+                Any violation of these terms may result in account suspension or termination.
+            </p>
+            <p style="line-height: 1.6; margin-top: 20px;">
+                <strong>Signed Name:</strong> <?php echo htmlspecialchars($signed_name); ?><br>
+                <strong>Date:</strong> <?php echo date('F d, Y'); ?>
+            </p>
+        </body>
+
+        </html>
+<?php
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
         $html = ob_get_clean();
 
         $options = new Options();
         $options->set('isRemoteEnabled', true);
+<<<<<<< HEAD
+=======
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('dpi', 96);
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
@@ -132,6 +255,7 @@ if (!in_array($role, $valid_roles)) {
         file_put_contents($mou_path, $dompdf->output());
     }
 
+<<<<<<< HEAD
     $password = password_hash($password, PASSWORD_BCRYPT);
 
     $stmt = $conn->prepare("INSERT INTO users (name, lname, email, phone, address, state, city, nin, password, role, otp, otp_expires_at, profile_image, mou_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -139,12 +263,27 @@ if (!in_array($role, $valid_roles)) {
         throw new Exception("Database prepare error: " . $conn->error);
     }
     $stmt->bind_param("ssssssssssssss", $name, $lname, $email, $phone, $address, $state, $city, $nin, $password, $role, $otp, $otp_expires_at, $image_name, $mou_file);
+=======
+    // Hash password
+    $password = password_hash($password, PASSWORD_BCRYPT);
+
+    // Insert user
+    $stmt = $conn->prepare("INSERT INTO users (name, lname, email, phone, address, nin, password, role, otp, otp_expires_at, profile_image, mou_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    if (!$stmt) {
+        throw new Exception("Database prepare error: " . $conn->error);
+    }
+    $stmt->bind_param("ssssssssssss", $name, $lname, $email, $phone, $address, $nin, $password, $role, $otp, $otp_expires_at, $image_name, $mou_file);
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
     if (!$stmt->execute()) {
         throw new Exception("Database insert error: " . $stmt->error);
     }
     $user_id = $stmt->insert_id;
     $stmt->close();
 
+<<<<<<< HEAD
+=======
+    // Zoho CRM Sync
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
     try {
         $zoho_lead_id = createZohoLead($name, $lname, $email, $phone, $role);
         if ($zoho_lead_id) {
@@ -152,6 +291,7 @@ if (!in_array($role, $valid_roles)) {
             $stmt->bind_param("si", $zoho_lead_id, $user_id);
             $stmt->execute();
             $stmt->close();
+<<<<<<< HEAD
 
             // Auto convert to contact after lead creation
             $zoho_contact_id = convertZohoLeadToContact($zoho_lead_id, $email);
@@ -177,6 +317,24 @@ if (!in_array($role, $valid_roles)) {
     $mail->Port = 465;
     $mail->setFrom('pishonserv@pishonserv.com', 'PISHONSERV');
 
+=======
+        }
+    } catch (Exception $e) {
+        error_log("Zoho sync failed: " . $e->getMessage());
+    }
+
+    // Initialize PHPMailer
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtppro.zoho.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'pishonserv@pishonserv.com';
+    $mail->Password = 'Serv@4321@Ikeja';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->setFrom('pishonserv@pishonserv.com', 'PISHONSERV');
+
+>>>>>>> 925fad23b7575f6fea4244a291821886eff718c5
     // Send OTP email (to user only)
     try {
         $mail->clearAllRecipients();

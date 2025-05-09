@@ -6,13 +6,19 @@ include 'includes/navbar.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - PishonServ Real Estate</title>
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
     body {
@@ -41,6 +47,7 @@ include 'includes/navbar.php';
             opacity: 0;
             transform: translateY(30px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -52,6 +59,7 @@ include 'includes/navbar.php';
             opacity: 0;
             transform: scale(0.9);
         }
+
         to {
             opacity: 1;
             transform: scale(1);
@@ -161,8 +169,8 @@ include 'includes/navbar.php';
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-10">
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.2s;">
-                <img src="public/teams/team1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mx-auto mb-4" loading="lazy"
-                    onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
+                <img src="public/teams/team1.jpg" alt="Jane Doe" class="w-24 h-24 rounded-full mx-auto mb-4"
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">Jane Doe</h3>
                 <p class="text-gray-600 mb-3">Founder & CEO</p>
                 <div class="flex justify-center space-x-4">
@@ -179,8 +187,8 @@ include 'includes/navbar.php';
             </div>
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.4s;">
-                <img src="public/teams/team2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mx-auto mb-4" loading="lazy"
-                    onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
+                <img src="public/teams/team2.jpg" alt="John Smith" class="w-24 h-24 rounded-full mx-auto mb-4"
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">John Smith</h3>
                 <p class="text-gray-600 mb-3">Chief Operations Officer</p>
                 <div class="flex justify-center space-x-4">
@@ -197,8 +205,8 @@ include 'includes/navbar.php';
             </div>
             <div class="team-card bg-white p-6 rounded-lg shadow-md text-center animate-card"
                 style="animation-delay: 0.6s;">
-                <img src="public/teams/team3.jpg" alt="Emily Johnson" class="w-24 h-24 rounded-full mx-auto mb-4" loading="lazy"
-                    onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
+                <img src="public/teams/team3.jpg" alt="Emily Johnson" class="w-24 h-24 rounded-full mx-auto mb-4"
+                    loading="lazy" onerror="this.src='public/uploads/67dc6fe3e95bd.jpg'">
                 <h3 class="text-xl font-semibold text-[#092468]">Emily Johnson</h3>
                 <p class="text-gray-600 mb-3">Head of Sales</p>
                 <div class="flex justify-center space-x-4">
@@ -237,26 +245,30 @@ include 'includes/navbar.php';
 
     <!-- Page-Specific JavaScript Error Handling -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ensure Zoho SalesIQ loads
-            if (!window.$zoho || !window.$zoho.salesiq) {
-                console.warn('Zoho SalesIQ not initialized. Loading fallback...');
-                window.$zoho = window.$zoho || {};
-                window.$zoho.salesiq = window.$zoho.salesiq || { ready: function() {} };
-                var zohoScript = document.createElement('script');
-                zohoScript.id = 'zsiqscript';
-                zohoScript.src = 'https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78';
-                zohoScript.async = true;
-                document.body.appendChild(zohoScript);
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ensure Zoho SalesIQ loads
+        if (!window.$zoho || !window.$zoho.salesiq) {
+            console.warn('Zoho SalesIQ not initialized. Loading fallback...');
+            window.$zoho = window.$zoho || {};
+            window.$zoho.salesiq = window.$zoho.salesiq || {
+                ready: function() {}
+            };
+            var zohoScript = document.createElement('script');
+            zohoScript.id = 'zsiqscript';
+            zohoScript.src =
+                'https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78';
+            zohoScript.async = true;
+            document.body.appendChild(zohoScript);
+        }
 
-            // Timeout to check if Zoho loaded
-            setTimeout(function() {
-                if (!document.querySelector('.zsiq_floatmain')) {
-                    console.error('Zoho SalesIQ widget failed to load on About page.');
-                }
-            }, 5000);
-        });
+        // Timeout to check if Zoho loaded
+        setTimeout(function() {
+            if (!document.querySelector('.zsiq_floatmain')) {
+                console.error('Zoho SalesIQ widget failed to load on About page.');
+            }
+        }, 5000);
+    });
     </script>
 </body>
+
 </html>

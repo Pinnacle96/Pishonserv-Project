@@ -5,7 +5,16 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', '../logs/php_errors.log');
 
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', '../logs/php_errors.log');
+
 include '../includes/db_connect.php';
+include '../includes/zoho_functions.php';
+
+$log_prefix = date('Y-m-d H:i:s') . " [Zoho Sync Script] ";
+error_log($log_prefix . "Script started for session: " . session_id());
 include '../includes/zoho_functions.php';
 
 $log_prefix = date('Y-m-d H:i:s') . " [Zoho Sync Script] ";
@@ -43,8 +52,8 @@ while ($column = $columns_result->fetch_assoc()) {
 // Fetch the property
 $propertyQuery = "SELECT p.id, p.title, p.price, p.location, p.listing_type, p.status, p.type, 
                          p.bedrooms, p.bathrooms, p.size, p.description, p.garage, p.owner_id, 
-                         u.zoho_lead_id, p.zoho_product_id" . 
-               ($has_zoho_deal_id ? ", p.zoho_deal_id" : ($has_zoho_property_id ? ", p.zoho_property_id" : "")) . "
+                         u.zoho_lead_id, p.zoho_product_id" .
+    ($has_zoho_deal_id ? ", p.zoho_deal_id" : ($has_zoho_property_id ? ", p.zoho_property_id" : "")) . "
                   FROM properties p
                   JOIN users u ON p.owner_id = u.id
                   WHERE p.id = $property_id_to_sync";
@@ -66,7 +75,7 @@ try {
     if ($action === 'approve') {
         // Approve the property
         $stmt = $conn->prepare("UPDATE properties SET admin_approved = 1, status = 'available' WHERE id = ?");
-    $stmt->bind_param("i", $property_id);
+        $stmt->bind_param("i", $property_id);
         $stmt->execute();
         $stmt->close();
 
@@ -80,23 +89,23 @@ try {
             }
 
             $success = createZohoProperty(
-    $property['title'],
-    $property['price'],
-    $property['location'],
-    $property['listing_type'],
-    $property['status'],
-    $property['type'],
-    $property['bedrooms'],
-    $property['bathrooms'],
-    $property['size'],
-    $property['description'],
-    $property['garage'],
-    $property['zoho_lead_id'],
-    $property['owner_id'],
-    $property['id'],
-    empty($property['zoho_product_id']), // create_product flag
-    empty($deal_id)                      // create_deal flag
-);
+                $property['title'],
+                $property['price'],
+                $property['location'],
+                $property['listing_type'],
+                $property['status'],
+                $property['type'],
+                $property['bedrooms'],
+                $property['bathrooms'],
+                $property['size'],
+                $property['description'],
+                $property['garage'],
+                $property['zoho_lead_id'],
+                $property['owner_id'],
+                $property['id'],
+                empty($property['zoho_product_id']), // create_product flag
+                empty($deal_id)                      // create_deal flag
+            );
 
 
             if (!$success) {
@@ -106,7 +115,6 @@ try {
         } else {
             error_log($log_prefix . "Property already synced to Zoho: Product and Deal exist.");
         }
-
     } elseif ($action === 'reject') {
         // Reject the property
         $stmt = $conn->prepare("UPDATE properties SET admin_approved = 2 WHERE id = ?");
@@ -121,7 +129,6 @@ try {
     }
 
     $conn->commit();
-
 } catch (Exception $e) {
     $conn->rollback();
     $sync_success = false;
@@ -134,34 +141,37 @@ error_log($log_prefix . "Script completed. Success=" . ($sync_success ? 'true' :
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Zoho Property Process</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-<script>
+    <script>
     <?php if ($sync_success): ?>
-        Swal.fire({
-            title: "Success ✅",
-            text: "Property <?php echo htmlspecialchars(ucfirst($action)); ?> completed successfully.",
-            icon: "success",
-            timer: 3000,
-            showConfirmButton: false
-        }).then(() => {
-            window.location.href = "admin_properties.php"; // Redirect to property list
-        });
+    Swal.fire({
+        title: "Success ✅",
+        text: "Property <?php echo htmlspecialchars(ucfirst($action)); ?> completed successfully.",
+        icon: "success",
+        timer: 3000,
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = "admin_properties.php"; // Redirect to property list
+    });
     <?php else: ?>
-        Swal.fire({
-            title: "Completed with Errors ⚠️",
-            html: "<?php echo implode('<br>', array_map('htmlspecialchars', $error_messages)); ?>",
-            icon: "warning",
-            timer: 5000,
-            showConfirmButton: true
-        }).then(() => {
-            window.location.href = "admin_properties.php"; // Redirect back
-        });
+    Swal.fire({
+        title: "Completed with Errors ⚠️",
+        html: "<?php echo implode('<br>', array_map('htmlspecialchars', $error_messages)); ?>",
+        icon: "warning",
+        timer: 5000,
+        showConfirmButton: true
+    }).then(() => {
+        window.location.href = "admin_properties.php"; // Redirect back
+    });
     <?php endif; ?>
-</script>
+    </script>
 </body>
+
 </html>

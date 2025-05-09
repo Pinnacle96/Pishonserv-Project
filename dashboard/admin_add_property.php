@@ -17,8 +17,7 @@ $admin_id = $_SESSION['user_id'];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // ✅ CSRF Token Check
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        $_SESSION['error'] = "Invalid CSRF token.";
-        header("Location: admin_add_property.php");
+        echo "<pre>Invalid CSRF token.</pre>";
         exit();
     }
 
@@ -31,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST['description'] ?? '');
     $bedrooms = intval($_POST['bedrooms'] ?? 0);
     $bathrooms = intval($_POST['bathrooms'] ?? 0);
-    $garage = isset($_POST['garage']) && is_numeric($_POST['garage']) ? intval($_POST['garage']) : null;
-$size = isset($_POST['size']) && is_numeric($_POST['size']) ? floatval($_POST['size']) : null;
+    $garage = intval($_POST['garage'] ?? 0);
+    $size = trim($_POST['size'] ?? '');
     $furnishing_status = trim($_POST['furnishing_status'] ?? '');
     $property_condition = trim($_POST['property_condition'] ?? '');
     $amenities = isset($_POST['amenities']) ? implode(',', $_POST['amenities']) : '';
@@ -52,8 +51,7 @@ $size = isset($_POST['size']) && is_numeric($_POST['size']) ? floatval($_POST['s
         $expiry_date = date('Y-m-d', strtotime('+30 days'));
     }
     if (empty($title) || $price <= 0 || empty($location) || empty($type) || empty($listing_type) || empty($description)) {
-        $_SESSION['error'] = "Validation failed: Missing required fields.";
-        header("Location: admin_add_property.php");
+        echo "<pre>Validation failed: Missing required fields.</pre>";
         exit();
     }
 
@@ -94,18 +92,41 @@ $size = isset($_POST['size']) && is_numeric($_POST['size']) ? floatval($_POST['s
     ) VALUES (?, ?, ?, ?, 'available', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)");
 
     if (!$stmt) {
-        $_SESSION['error'] = "Database error: " . $conn->error;
-        header("Location: admin_add_property.php");
+        echo "<pre>MySQL Prepare Failed: " . $conn->error . "</pre>";
         exit();
     }
 
-    $stmt->bind_param("sdsssssiisssssdddsisssssssis",
-        $title, $price, $location, $type, $listing_type, $description,
-        $bedrooms, $bathrooms, $garage, $size,
-        $furnishing_status, $property_condition, $amenities,
-        $maintenance_fee, $agent_fee, $caution_fee, $price_frequency,
-        $minimum_stay, $checkin_time, $checkout_time, $room_type, $star_rating, $policies,
-        $image_string, $latitude, $longitude, $admin_id, $expiry_date);
+    $stmt->bind_param(
+        "sdsssssiisssssdddsisssssssid",
+        $title,
+        $price,
+        $location,
+        $type,
+        $listing_type,
+        $description,
+        $bedrooms,
+        $bathrooms,
+        $garage,
+        $size,
+        $furnishing_status,
+        $property_condition,
+        $amenities,
+        $maintenance_fee,
+        $agent_fee,
+        $caution_fee,
+        $price_frequency,
+        $minimum_stay,
+        $checkin_time,
+        $checkout_time,
+        $room_type,
+        $star_rating,
+        $policies,
+        $image_string,
+        $latitude,
+        $longitude,
+        $admin_id,
+        $expiry_date
+    );
 
     if ($stmt->execute()) {
         $property_id = $stmt->insert_id;
@@ -121,40 +142,55 @@ $size = isset($_POST['size']) && is_numeric($_POST['size']) ? floatval($_POST['s
 
             if ($lead && !empty($lead['zoho_lead_id'])) {
                 createZohoProperty(
-                    $title, $price, $location, $listing_type, 'available', $type,
-                    $bedrooms, $bathrooms, $size, $description, $garage,
-                    $lead['zoho_lead_id'], $admin_id, $property_id
+                    $title,
+                    $price,
+                    $location,
+                    $listing_type,
+                    'available',
+                    $type,
+                    $bedrooms,
+                    $bathrooms,
+                    $size,
+                    $description,
+                    $garage,
+                    $lead['zoho_lead_id'],
+                    $admin_id,
+                    $property_id
                 );
-                $_SESSION['success'] = "Property added and synced with Zoho.";
+                $_SESSION['success'] = "<pre>✅ Property added and synced with Zoho.</pre>";
             } else {
-                $_SESSION['error'] = "Missing Zoho Lead ID for admin.";
+                $_SESSION['error'] = "<pre>⚠️ Missing Zoho Lead ID for admin.</pre>";
             }
         } catch (Exception $e) {
-            $_SESSION['error'] = "Property added but Zoho sync failed: " . $e->getMessage();
+            $_SESSION['error'] = "<pre>❌ Property added but Zoho sync failed: " . $e->getMessage() . "</pre>";
         }
-
-        header("Location: admin_properties.php");
-        exit();
     } else {
-        $_SESSION['error'] = "Insert failed: " . $stmt->error;
+        $_SESSION['error'] = "<pre>❌ Insert failed: " . $stmt->error . "</pre>";
         $stmt->close();
-        header("Location: admin_add_property.php");
-        exit();
     }
 }
 
-function compressImage($src, $dest, $targetKB = 50) {
+function compressImage($src, $dest, $targetKB = 50)
+{
     $info = getimagesize($src);
     switch ($info['mime']) {
-        case 'image/jpeg': $img = imagecreatefromjpeg($src); break;
-        case 'image/png': $img = imagecreatefrompng($src); break;
-        case 'image/gif': $img = imagecreatefromgif($src); break;
-        default: return false;
+        case 'image/jpeg':
+            $img = imagecreatefromjpeg($src);
+            break;
+        case 'image/png':
+            $img = imagecreatefrompng($src);
+            break;
+        case 'image/gif':
+            $img = imagecreatefromgif($src);
+            break;
+        default:
+            return false;
     }
     list($w, $h) = $info;
     $max = 1200;
     $ratio = min($max / $w, $max / $h, 1);
-    $nw = (int)($w * $ratio); $nh = (int)($h * $ratio);
+    $nw = (int)($w * $ratio);
+    $nh = (int)($h * $ratio);
     $resized = imagecreatetruecolor($nw, $nh);
     imagecopyresampled($resized, $img, 0, 0, 0, 0, $nw, $nh, $w, $h);
     $q = 90;
@@ -168,6 +204,7 @@ function compressImage($src, $dest, $targetKB = 50) {
     imagedestroy($img);
     return true;
 }
+
 
 // View layout
 $page_content = __DIR__ . "/admin_add_property_content.php";

@@ -142,7 +142,6 @@ function createZohoLead($name, $lname, $email, $phone, $role)
 }
 
 function createZohoProperty($title, $price, $location, $listing_type, $status, $type, $bedrooms, $bathrooms, $size, $description, $garage, $zoho_lead_id, $user_id, $property_id)
-function createZohoProperty($title, $price, $location, $listing_type, $status, $type, $bedrooms, $bathrooms, $size, $description, $garage, $zoho_lead_id, $user_id, $property_id)
 {
     global $conn;
     $log_prefix = date('Y-m-d H:i:s') . " [Zoho Sync] ";
@@ -273,7 +272,7 @@ function createZohoProperty($title, $price, $location, $listing_type, $status, $
             "Type" => ucfirst($type),
             "Contact_Name" => ["id" => $zoho_lead_id],
             "Closing_Date" => $closing_date
-            "Closing_Date" => $closing_date
+
         ]]
     ];
     error_log($log_prefix . "Deal data: " . json_encode($deal_data));
@@ -401,7 +400,7 @@ function createZohoBooking(
         return false;
     }
 
-    $service = match($booking['listing_type']) {
+    $service = match ($booking['listing_type']) {
         'for_rent' => 'Rent',
         'for_sale' => 'Buy',
         default => 'Booking',
@@ -415,8 +414,8 @@ function createZohoBooking(
             "Deal_Name" => $deal_name,
             "Amount" => $total_amount,
             "Stage" => ucfirst($status),
-            "Contact_Name" => [ "id" => $booking['client_zoho_contact_id'] ],
-            "Vendor_Contact" => [ "id" => $booking['owner_zoho_contact_id'] ],
+            "Contact_Name" => ["id" => $booking['client_zoho_contact_id']],
+            "Vendor_Contact" => ["id" => $booking['owner_zoho_contact_id']],
             "Property_Name" => $booking['property_title'],
             "Check_in_Date" => $check_in_date,
             "Check_out_Date" => $check_out_date,
@@ -427,7 +426,7 @@ function createZohoBooking(
             "Closing_Date" => date("Y-m-d", strtotime("+30 days"))
         ]]
     ];
-    
+
     // 📝 DEBUG LOGGING BEFORE API CALL
     error_log("✅ Zoho Deals API URL: " . $zoho_url);
     error_log("✅ Zoho Deals API DATA: " . json_encode($data, JSON_PRETTY_PRINT));

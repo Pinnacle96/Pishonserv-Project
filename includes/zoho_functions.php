@@ -146,36 +146,21 @@ function createZohoProperty($title, $price, $location, $listing_type, $status, $
     global $conn;
     $log_prefix = date('Y-m-d H:i:s') . " [Zoho Sync] ";
 
-    // Validate inputs
+    // Validation
     if (empty($title) || !is_numeric($price) || $price < 0 || empty($location) || empty($listing_type) || empty($status) || empty($type)) {
-        error_log($log_prefix . "Invalid core property data: title=$title, price=$price, location=$location, listing_type=$listing_type, status=$status, type=$type");
-        throw new Exception("Core property fields must be valid and non-empty.");
+        error_log($log_prefix . "Invalid property data: title=$title, price=$price, location=$location, listing_type=$listing_type, status=$status, type=$type\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("Required property fields are invalid.");
     }
+
     if (empty($zoho_lead_id) || empty($user_id) || empty($property_id)) {
-        error_log($log_prefix . "Missing required IDs: zoho_lead_id=$zoho_lead_id, user_id=$user_id, property_id=$property_id");
-        throw new Exception("Required IDs are missing.");
-    }
-    if (!is_null($bedrooms) && (!is_numeric($bedrooms) || $bedrooms < 0)) {
-        error_log($log_prefix . "Invalid bedrooms: $bedrooms");
-        throw new Exception("Bedrooms must be a non-negative number.");
-    }
-    if (!is_null($bathrooms) && (!is_numeric($bathrooms) || $bathrooms < 0)) {
-        error_log($log_prefix . "Invalid bathrooms: $bathrooms");
-        throw new Exception("Bathrooms must be a non-negative number.");
-    }
-    if (!is_null($size) && (!is_numeric($size) || $size < 0)) {
-        error_log($log_prefix . "Invalid size: $size");
-        throw new Exception("Size must be a non-negative number.");
-    }
-    if (!is_null($garage) && (!is_numeric($garage) || $garage < 0)) {
-        error_log($log_prefix . "Invalid garage_spaces: $garage");
-        throw new Exception("Garage spaces must be a non-negative number.");
+        error_log($log_prefix . "Missing IDs: zoho_lead_id=$zoho_lead_id, user_id=$user_id, property_id=$property_id\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("Missing required identifiers.");
     }
 
     $access_token = getZohoAccessToken();
     if (!$access_token) {
-        error_log($log_prefix . "Failed to obtain Zoho access token");
-        throw new Exception("Failed to obtain Zoho access token.");
+        error_log($log_prefix . "❌ Failed to obtain Zoho access token\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("Access token retrieval failed.");
     }
 
     $headers = [
@@ -190,19 +175,13 @@ function createZohoProperty($title, $price, $location, $listing_type, $status, $
         'hotel' => 'Hotel'
     ];
     $offerType = $offerTypeMap[$listing_type] ?? 'Sale';
-    error_log($log_prefix . "Mapped Offer_Type: $offerType");
-
-    // Make Product_Name unique
     $unique_title = "$title (ID $property_id)";
-    error_log($log_prefix . "Using unique Product_Name: $unique_title");
+    error_log($log_prefix . "Mapped Offer Type: $offerType\n", 3, __DIR__ . '/../logs/zoho_debug.log');
 
-    $unique_title = "$title (ID $property_id)";
-
+    // === Create Zoho Product ===
     $product_url = "https://www.zohoapis.com/crm/v2/Products";
     $product_data = [
         "data" => [[
-            "Product_Name" => $unique_title,
-            "Unit_Price" => (float)$price,
             "Product_Name" => $unique_title,
             "Unit_Price" => (float)$price,
             "Location" => $location,
@@ -212,13 +191,7 @@ function createZohoProperty($title, $price, $location, $listing_type, $status, $
             "Bedrooms" => $bedrooms !== null ? (int)$bedrooms : null,
             "Bathrooms" => $bathrooms !== null ? (int)$bathrooms : null,
             "Size" => $size !== null ? (float)$size : null,
-            "Description" => $description !== '' ? $description : null,
-            "Garage_Spaces" => $garage !== null ? (int)$garage : null,
-            "Property_Type" => $type,
-            "Bedrooms" => $bedrooms !== null ? (int)$bedrooms : null,
-            "Bathrooms" => $bathrooms !== null ? (int)$bathrooms : null,
-            "Size" => $size !== null ? (float)$size : null,
-            "Description" => $description !== '' ? $description : null,
+            "Description" => $description ?: null,
             "Garage_Spaces" => $garage !== null ? (int)$garage : null,
             "Vendor_Contact_Name" => ["id" => $zoho_lead_id],
             "Property_Active" => true,
@@ -227,116 +200,85 @@ function createZohoProperty($title, $price, $location, $listing_type, $status, $
     ];
 
     $ch = curl_init($product_url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($product_data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => json_encode($product_data),
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_SSL_VERIFYPEER => false
+    ]);
     $product_response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curl_error = curl_error($ch);
     curl_close($ch);
 
     if ($curl_error) {
-        error_log("❌ CURL Error while creating product: $curl_error");
-        throw new Exception("Zoho Product creation failed. cURL Error: $curl_error");
+        error_log($log_prefix . "❌ Product cURL error: $curl_error\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("cURL Error: $curl_error");
     }
 
     $product_result = json_decode($product_response, true);
     if ($http_code !== 201 || !isset($product_result['data'][0]['details']['id'])) {
-        $err_msg = "Zoho Product creation failed. HTTP Code: $http_code Raw Response: $product_response";
-        error_log($log_prefix . $err_msg);
-        throw new Exception($err_msg);
+        error_log($log_prefix . "❌ Product creation failed. HTTP: $http_code\nResponse: $product_response\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("Product creation failed.");
     }
-    $zoho_product_id = $product_result['data'][0]['details']['id'];
-    error_log($log_prefix . "Product created: zoho_product_id=$zoho_product_id");
-    error_log($log_prefix . "Product created: zoho_product_id=$zoho_product_id");
 
-    // Create a Deal
-    // Create a Deal
+    $zoho_product_id = $product_result['data'][0]['details']['id'];
+    error_log($log_prefix . "✅ Product created. Zoho ID: $zoho_product_id\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+
+    // === Create Deal ===
     $deal_url = "https://www.zohoapis.com/crm/v2/Deals";
-    $closing_date = ($listing_type === 'short_let' || $listing_type === 'hotel')
-        ? date("Y-m-d", strtotime("+7 days"))
-        : date("Y-m-d", strtotime("+30 days"));
-    $closing_date = ($listing_type === 'short_let' || $listing_type === 'hotel')
-        ? date("Y-m-d", strtotime("+7 days"))
-        : date("Y-m-d", strtotime("+30 days"));
+    $closing_date = in_array($listing_type, ['short_let', 'hotel']) ? date("Y-m-d", strtotime("+7 days")) : date("Y-m-d", strtotime("+30 days"));
+
     $deal_data = [
         "data" => [[
-            "Deal_Name" => $unique_title,
-            "Amount" => (float)$price,
             "Deal_Name" => $unique_title,
             "Amount" => (float)$price,
             "Stage" => ucfirst($status),
             "Type" => ucfirst($type),
             "Contact_Name" => ["id" => $zoho_lead_id],
             "Closing_Date" => $closing_date
-
         ]]
     ];
-    error_log($log_prefix . "Deal data: " . json_encode($deal_data));
-    error_log($log_prefix . "Deal data: " . json_encode($deal_data));
 
     $ch = curl_init($deal_url);
-    $ch = curl_init($deal_url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($deal_data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => json_encode($deal_data),
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_RETURNTRANSFER => true
+    ]);
     $deal_response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    error_log($log_prefix . "Deal response: HTTP $http_code, " . $deal_response);
-    error_log($log_prefix . "Deal response: HTTP $http_code, " . $deal_response);
 
     $deal_result = json_decode($deal_response, true);
     $zoho_deal_id = null;
+
     if ($http_code === 201 && isset($deal_result['data'][0]['details']['id'])) {
         $zoho_deal_id = $deal_result['data'][0]['details']['id'];
-        error_log($log_prefix . "Deal created: zoho_deal_id=$zoho_deal_id");
+        error_log($log_prefix . "✅ Deal created. Zoho Deal ID: $zoho_deal_id\n", 3, __DIR__ . '/../logs/zoho_debug.log');
     } else {
-        error_log($log_prefix . "Warning: Deal creation failed, continuing with product: " . $deal_response);
+        error_log($log_prefix . "⚠️ Deal creation failed. Continuing anyway.\nResponse: $deal_response\n", 3, __DIR__ . '/../logs/zoho_debug.log');
     }
 
-    // Update the property in DB
+    // === Update Local DB ===
     $stmt = $conn->prepare("UPDATE properties SET zoho_product_id = ?, zoho_deal_id = ? WHERE id = ?");
     if (!$stmt) {
-        error_log($log_prefix . "Database prepare error: " . $conn->error);
-        throw new Exception("Database prepare error: " . $conn->error);
-    }
-    $zoho_deal_id = null;
-    if ($http_code === 201 && isset($deal_result['data'][0]['details']['id'])) {
-        $zoho_deal_id = $deal_result['data'][0]['details']['id'];
-        error_log($log_prefix . "Deal created: zoho_deal_id=$zoho_deal_id");
-    } else {
-        error_log($log_prefix . "Warning: Deal creation failed, continuing with product: " . $deal_response);
+        error_log($log_prefix . "❌ DB prepare error: " . $conn->error . "\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        throw new Exception("DB Prepare failed: " . $conn->error);
     }
 
-    // Update the property in DB
-    $stmt = $conn->prepare("UPDATE properties SET zoho_product_id = ?, zoho_deal_id = ? WHERE id = ?");
-    if (!$stmt) {
-        error_log($log_prefix . "Database prepare error: " . $conn->error);
-        throw new Exception("Database prepare error: " . $conn->error);
-    }
     $stmt->bind_param("ssi", $zoho_product_id, $zoho_deal_id, $property_id);
     if (!$stmt->execute()) {
-        error_log($log_prefix . "Database update error: " . $stmt->error);
-        throw new Exception("Failed to update property with Zoho IDs: " . $stmt->error);
+        error_log($log_prefix . "❌ DB update error: " . $stmt->error . "\n", 3, __DIR__ . '/../logs/zoho_debug.log');
+        $stmt->close();
+        throw new Exception("DB Execution failed: " . $stmt->error);
     }
-    $stmt->close();
-    error_log($log_prefix . "Database updated: zoho_product_id=$zoho_product_id, zoho_deal_id=" . ($zoho_deal_id ?? 'null') . ", property_id=$property_id");
 
-    error_log($log_prefix . "Successfully synced property ID $property_id to Zoho");
-    if (!$stmt->execute()) {
-        error_log($log_prefix . "Database update error: " . $stmt->error);
-        throw new Exception("Failed to update property with Zoho IDs: " . $stmt->error);
-    }
     $stmt->close();
-    error_log($log_prefix . "Database updated: zoho_product_id=$zoho_product_id, zoho_deal_id=" . ($zoho_deal_id ?? 'null') . ", property_id=$property_id");
+    error_log($log_prefix . "✅ DB updated: property_id=$property_id, product_id=$zoho_product_id, deal_id=$zoho_deal_id\n", 3, __DIR__ . '/../logs/zoho_debug.log');
 
-    error_log($log_prefix . "Successfully synced property ID $property_id to Zoho");
     return true;
 }
 

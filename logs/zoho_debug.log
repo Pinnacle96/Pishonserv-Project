@@ -1,3 +1,9 @@
 🔴 Failed to refresh token. Raw response:
 
 ✅ Token refreshed successfully.
+✅ Token refreshed successfully.
+2025-05-09 12:29:49 [Zoho Sync] Mapped Offer Type: Hotel
+2025-05-09 12:29:49 [Zoho Sync] ✅ Product created. Zoho ID: 6560565000001803001
+2025-05-09 12:29:49 [Zoho Sync] ⚠️ Deal creation failed. Continuing anyway.
+Response: 
+2025-05-09 12:29:49 [Zoho Sync] ✅ DB updated: property_id=49, product_id=6560565000001803001, deal_id=

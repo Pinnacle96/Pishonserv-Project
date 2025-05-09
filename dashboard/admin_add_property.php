@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST['description'] ?? '');
     $bedrooms = intval($_POST['bedrooms'] ?? 0);
     $bathrooms = intval($_POST['bathrooms'] ?? 0);
-    $garage = intval($_POST['garage'] ?? 0);
-    $size = trim($_POST['size'] ?? '');
+    $garage = isset($_POST['garage']) && is_numeric($_POST['garage']) ? intval($_POST['garage']) : null;
+    $size = isset($_POST['size']) && is_numeric($_POST['size']) ? floatval($_POST['size']) : null;
     $furnishing_status = trim($_POST['furnishing_status'] ?? '');
     $property_condition = trim($_POST['property_condition'] ?? '');
     $amenities = isset($_POST['amenities']) ? implode(',', $_POST['amenities']) : '';
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $stmt->bind_param(
-        "sdsssssiisssssdddsisssssssid",
+        "sdsssssiisssssdddsisssssssis",
         $title,
         $price,
         $location,
@@ -157,15 +157,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $admin_id,
                     $property_id
                 );
-                $_SESSION['success'] = "<pre>✅ Property added and synced with Zoho.</pre>";
+                $_SESSION['success'] = "✅ Property added and synced with Zoho.";
             } else {
-                $_SESSION['error'] = "<pre>⚠️ Missing Zoho Lead ID for admin.</pre>";
+                $_SESSION['error'] = "⚠️ Missing Zoho Lead ID for admin.";
             }
         } catch (Exception $e) {
-            $_SESSION['error'] = "<pre>❌ Property added but Zoho sync failed: " . $e->getMessage() . "</pre>";
+            $_SESSION['error'] = "❌ Property added but Zoho sync failed: " . $e->getMessage();
         }
     } else {
-        $_SESSION['error'] = "<pre>❌ Insert failed: " . $stmt->error . "</pre>";
+        $_SESSION['error'] = "❌ Insert failed: " . $stmt->error;
         $stmt->close();
     }
 }

@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // ✅ Default role-based dashboard redirection
                 switch ($row['role']) {
                     case "buyer":
-                        $redirect_url = "../dashboard/buyer_dashboard.php";
+                        $redirect_url = "../index.php";
                         break;
                     case "agent":
                     case "owner":

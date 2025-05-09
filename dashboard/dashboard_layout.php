@@ -35,17 +35,31 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
 
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-    <?php if (isset($_SESSION['success'])): ?>
-        <script>
-            Swal.fire({
-                title: 'Success!',
-                text: '<?php echo $_SESSION['success']; ?>',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    <?php unset($_SESSION['success']);
-    endif; ?>
+<?php if (isset($_SESSION['success'])): ?>
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: <?php echo json_encode($_SESSION['success']); ?>,
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#092468'
+        });
+    </script>
+<?php unset($_SESSION['success']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error'])): ?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: <?php echo json_encode($_SESSION['error']); ?>,
+            confirmButtonColor: '#092468'
+        });
+    </script>
+<?php unset($_SESSION['error']); ?>
+<?php endif; ?>
+
 
     <div class="flex flex-col md:flex-row h-screen">
         <!-- Sidebar -->
@@ -124,15 +138,3 @@ $profile_image = $_SESSION['profile_image'] ?? 'default.png';
 </script>
 
 </html>
-
-<!-- <script>
-function toggleDropdown() {
-    document.getElementById("dropdown-menu").classList.toggle("hidden");
-}
-document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('sidebar').classList
-    .toggle('-translate-x-full'));
-document.getElementById('close-menu').addEventListener('click', () => document.getElementById('sidebar').classList.add(
-    '-translate-x-full'));
-</script>
-
-</html> -->

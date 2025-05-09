@@ -13,11 +13,16 @@ if (session_status() === PHP_SESSION_NONE) {
     }
 }
 
-// ✅ Database connection
+// ✅ Database connection live server
+// $host = "localhost";
+// $username = "u561302917_Pishonserv";
+// $password = "Pishonserv@255";
+// $database = "u561302917_Pishonserv";
+
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "real_estate_db";
+$database = "u561302917_Pishonserv";
 
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {

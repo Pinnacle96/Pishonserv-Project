@@ -1,81 +1,137 @@
 <?php
 session_start();
 
-// ✅ Enable Full Error Reporting
+// ✅ Full Debug Error Reporting
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0); // Disable for production
 ini_set('log_errors', 1);
 
-// ✅ Ensure logs folder exists
+// ✅ Ensure Logs Folder Exists
 $log_dir = "../logs";
 $log_file = $log_dir . "/paystack_errors.log";
 
 if (!file_exists($log_dir)) {
-    mkdir($log_dir, 0777, true); // Create logs directory if it doesn't exist
+    if (!mkdir($log_dir, 0777, true)) {
+        error_log("❌ Failed to create log directory: $log_dir");
+        http_response_code(500);
+        exit("Server error: Unable to initialize logging.");
+    }
 }
-
-// ✅ Set PHP to log errors
 ini_set('error_log', $log_file);
 
-// ✅ Debugging: Log Paystack Callback Trigger
-error_log("🔍 Paystack Callback Triggered with reference: " . ($_GET['reference'] ?? 'NO REFERENCE'));
+// ✅ Include Config and Functions
+$include_files = ['config.php', 'db_connect.php', 'zoho_functions.php'];
+foreach ($include_files as $file) {
+    $path = "../includes/$file"; // Assuming /dashboard/
+    if (!file_exists($path)) {
+        error_log("❌ Include file missing: $path");
+        http_response_code(500);
+        exit("Server error: Missing required file.");
+    }
+    require_once $path;
+}
 
-// ✅ Check if Reference Exists
+// ✅ Log Paystack Callback
 $reference = $_GET['reference'] ?? '';
+error_log("🔔 Paystack Callback Triggered. Reference: " . ($reference ?: 'No Reference'));
+
 if (!$reference) {
+    error_log("❌ Invalid transaction reference.");
     $_SESSION['error'] = "Invalid transaction reference.";
-    error_log("❌ Invalid transaction reference received.");
     header("Location: ../dashboard/payment_failed.php");
     exit();
 }
 
-// ✅ Include Database & Config
-include '../includes/config.php';
-include '../includes/db_connect.php';
-include '../includes/zoho_functions.php'; // Import Zoho API functions
+// ✅ Fetch Transaction from Payments
+try {
+    $stmt = $conn->prepare("SELECT * FROM payments WHERE transaction_id = ? AND status = 'pending'");
+    if (!$stmt) {
+        throw new Exception("Database prepare error: " . $conn->error);
+    }
+    $stmt->bind_param("s", $reference);
+    $stmt->execute();
+    $transaction = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
 
-// ✅ Fetch Transaction (Ensure it's still pending)
-$stmt = $conn->prepare("SELECT * FROM payments WHERE transaction_id = ? AND status = 'pending'");
-$stmt->bind_param("s", $reference);
-$stmt->execute();
-$transaction = $stmt->get_result()->fetch_assoc();
-$stmt->close();
-
-if (!$transaction) {
-    $_SESSION['error'] = "Transaction not found or already processed.";
-    error_log("❌ Transaction not found or already processed.");
-    header("Location: ../dashboard/payment_failed.php");
-    exit();
+    if (!$transaction) {
+        error_log("❌ Transaction not found or already processed. Reference: $reference");
+        $_SESSION['error'] = "Transaction not found or already processed.";
+        header("Location: ../dashboard/payment_failed.php");
+        exit();
+    }
+} catch (Exception $e) {
+    error_log("❌ Database error fetching transaction: " . $e->getMessage());
+    http_response_code(500);
+    exit("Server error: Database issue.");
 }
 
 $user_id = $transaction['user_id'];
 $property_id = $transaction['property_id'];
+$booking_id = $transaction['booking_id'];
 $total_amount = $transaction['amount'];
 
-// ✅ Fetch Property, Owner, and Zoho Details
-$stmt = $conn->prepare("SELECT p.owner_id, p.listing_type, p.zoho_property_id, u.zoho_contact_id 
-                        FROM properties p 
-                        JOIN users u ON p.owner_id = u.id 
-                        WHERE p.id = ?");
-$stmt->bind_param("i", $property_id);
-$stmt->execute();
-$property = $stmt->get_result()->fetch_assoc();
-$stmt->close();
+error_log("✅ Transaction Fetched: user_id=$user_id, property_id=$property_id, booking_id=$booking_id");
 
-if (!$property) {
-    error_log("❌ Property not found for ID: $property_id");
-    die("Error: Property not found.");
+// ✅ Fetch Property Info
+try {
+    $stmt = $conn->prepare("SELECT p.owner_id, p.listing_type, p.zoho_product_id, u.zoho_lead_id 
+                            FROM properties p 
+                            JOIN users u ON p.owner_id = u.id 
+                            WHERE p.id = ?");
+    if (!$stmt) {
+        throw new Exception("Database prepare error: " . $conn->error);
+    }
+    $stmt->bind_param("i", $property_id);
+    $stmt->execute();
+    $property = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if (!$property) {
+        throw new Exception("Property not found for ID: $property_id");
+    }
+} catch (Exception $e) {
+    error_log("❌ Error fetching property: " . $e->getMessage());
+    http_response_code(500);
+    exit("Server error: Property lookup failed.");
 }
 
 $owner_id = $property['owner_id'];
 $listing_type = $property['listing_type'];
-$zoho_property_id = $property['zoho_property_id'];
-$zoho_contact_id = $property['zoho_contact_id'];
+$zoho_product_id = $property['zoho_product_id'];
+$zoho_owner_lead_id = $property['zoho_lead_id'];
 
-// ✅ Verify Payment with Paystack API
-$paystack_secret_key = PAYSTACK_SECRET_KEY;
+error_log("✅ Property Fetched: owner_id=$owner_id, listing_type=$listing_type");
+
+// ✅ Fetch Booking Record (Double Check)
+try {
+    $stmt = $conn->prepare("SELECT id FROM bookings WHERE id = ?");
+    if (!$stmt) {
+        throw new Exception("Database prepare error: " . $conn->error);
+    }
+    $stmt->bind_param("i", $booking_id);
+    $stmt->execute();
+    $booking = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if (!$booking) {
+        throw new Exception("Booking record not found for booking_id=$booking_id");
+    }
+} catch (Exception $e) {
+    error_log("❌ Error fetching booking: " . $e->getMessage());
+    http_response_code(500);
+    exit("Server error: Booking lookup failed.");
+}
+error_log("✅ Booking Record Verified: booking_id=$booking_id");
+
+// ✅ Verify Payment with Paystack
+$paystack_secret_key = defined('PAYSTACK_SECRET_KEY') ? PAYSTACK_SECRET_KEY : '';
+if (empty($paystack_secret_key)) {
+    error_log("❌ Paystack secret key not defined in config.php");
+    http_response_code(500);
+    exit("Server error: Payment configuration issue.");
+}
+
 $paystack_url = "https://api.paystack.co/transaction/verify/{$reference}";
-
 $headers = [
     "Authorization: Bearer $paystack_secret_key",
     "Content-Type: application/json"
@@ -90,46 +146,27 @@ $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 $paystack_response = json_decode($response, true);
+error_log("📡 Paystack Response ($http_code): " . json_encode($paystack_response, JSON_PRETTY_PRINT));
 
-// ✅ Debugging: Log Paystack Response
-error_log("🔍 Paystack API HTTP Code: " . $http_code);
-error_log("🔍 Paystack Response: " . json_encode($paystack_response, JSON_PRETTY_PRINT));
-
-// 🚨 Ensure Payment is Successful
 if (!$paystack_response['status'] || $paystack_response['data']['status'] !== 'success') {
+    error_log("❌ Payment verification failed for reference: $reference");
     $_SESSION['error'] = "Payment verification failed.";
-    error_log("❌ Paystack verification failed.");
     header("Location: ../dashboard/payment_failed.php");
     exit();
 }
 
-// ✅ Log Successful Payment
 error_log("✅ Paystack Payment Verified Successfully");
 
-// ✅ Calculate Earnings (80% to Owner, 20% to Platform)
-$platform_fee = 0.20 * $total_amount;
-$owner_earnings = 0.80 * $total_amount;
-$superadmin_id = 9; // Replace with actual superadmin ID
-
-// ✅ Get the `booking_id`
-$stmt = $conn->prepare("SELECT id FROM bookings WHERE property_id = ? AND user_id = ?");
-$stmt->bind_param("ii", $property_id, $user_id);
-$stmt->execute();
-$booking = $stmt->get_result()->fetch_assoc();
-$stmt->close();
-
-if (!$booking) {
-    error_log("❌ Booking ID not found for property: $property_id and user: $user_id");
-    die("Error: Booking ID not found.");
-}
-
-$booking_id = $booking['id'];
-
-// 🚨 Begin Transaction to Ensure Atomicity
-$conn->begin_transaction();
-
+// ✅ Start Transaction
 try {
-    // ✅ Check if Wallet Exists for Owner
+    $conn->begin_transaction();
+
+    // ✅ Wallet Calculations
+    $platform_fee = 0.20 * $total_amount;
+    $owner_earnings = 0.80 * $total_amount;
+    $superadmin_id = 9; // Adjust your real Superadmin ID here
+
+    // ✅ Wallet Update for Owner
     $stmt = $conn->prepare("SELECT id FROM wallets WHERE user_id = ?");
     $stmt->bind_param("i", $owner_id);
     $stmt->execute();
@@ -137,74 +174,92 @@ try {
     $stmt->close();
 
     if ($wallet_exists) {
-        // Update existing wallet balance
         $stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
         $stmt->bind_param("di", $owner_earnings, $owner_id);
     } else {
-        // Insert new wallet record
         $stmt = $conn->prepare("INSERT INTO wallets (user_id, balance) VALUES (?, ?)");
         $stmt->bind_param("id", $owner_id, $owner_earnings);
     }
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Update Platform Wallet (Superadmin Earnings)
+    // ✅ Wallet Update for Platform
     $stmt = $conn->prepare("UPDATE wallets SET balance = balance + ? WHERE user_id = ?");
     $stmt->bind_param("di", $platform_fee, $superadmin_id);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Insert Transactions (Owner's Earnings & Platform Fee)
+    // ✅ Record Transactions
+    $description_owner = "Earnings from property booking";
     $stmt = $conn->prepare("INSERT INTO transactions (user_id, amount, transaction_type, type, status, description) 
                             VALUES (?, ?, 'booking', 'credit', 'completed', ?)");
-    $description = "Earnings from property booking";
-    $stmt->bind_param("ids", $owner_id, $owner_earnings, $description);
+    $stmt->bind_param("ids", $owner_id, $owner_earnings, $description_owner);
     $stmt->execute();
     $stmt->close();
 
+    $description_platform = "Platform commission from booking";
     $stmt = $conn->prepare("INSERT INTO transactions (user_id, amount, transaction_type, type, status, description) 
                             VALUES (?, ?, 'booking', 'credit', 'completed', ?)");
-    $description = "Platform commission from booking";
-    $stmt->bind_param("ids", $superadmin_id, $platform_fee, $description);
+    $stmt->bind_param("ids", $superadmin_id, $platform_fee, $description_platform);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Update Payment Status
+    // ✅ Update Payment
     $stmt = $conn->prepare("UPDATE payments SET status = 'completed' WHERE transaction_id = ?");
     $stmt->bind_param("s", $reference);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Update Booking Status to Confirmed
-    $stmt = $conn->prepare("UPDATE bookings SET status = 'confirmed' WHERE id = ?");
-    $stmt->bind_param("i", $booking_id);
+    // ✅ Update Booking Status and Payment Status
+    $stmt = $conn->prepare("UPDATE bookings SET status = ?, payment_status = ? WHERE id = ?");
+    $confirmed_status = 'confirmed';
+    $paid_status = 'paid';
+    $stmt->bind_param("ssi", $confirmed_status, $paid_status, $booking_id);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Sync Payment & Booking with Zoho CRM
-    if ($zoho_contact_id && $zoho_property_id) {
-        updateZohoBookingStatus($zoho_contact_id, $zoho_property_id, 'confirmed');
+    error_log("✅ Booking and Payment Updated for booking_id=$booking_id");
+
+    // ✅ Update Zoho CRM Booking Status
+    if ($booking_id) {
+        // Double-check zoho_deal_id exists
+        $stmt = $conn->prepare("SELECT zoho_deal_id FROM bookings WHERE id = ? AND zoho_deal_id IS NOT NULL");
+        $stmt->bind_param("i", $booking_id);
+        $stmt->execute();
+        $booking = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        if ($booking && !empty($booking['zoho_deal_id'])) {
+            try {
+                $zoho_update = updateZohoBookingStatus($booking_id, 'Booked');
+                if ($zoho_update) {
+                    error_log("✅ Zoho Deal updated to Confirmed for booking_id: $booking_id, zoho_deal_id: {$booking['zoho_deal_id']}");
+                } else {
+                    error_log("❌ Failed to update Zoho Deal for booking_id: $booking_id, zoho_deal_id: {$booking['zoho_deal_id']}. Check Zoho CRM API response or Booking_Status field configuration.");
+                }
+            } catch (Exception $e) {
+                error_log("❌ Zoho CRM update error for booking_id: $booking_id, zoho_deal_id: {$booking['zoho_deal_id']}. Error: " . $e->getMessage());
+            }
+        } else {
+            error_log("⚠️ zoho_deal_id missing for booking_id: $booking_id. Check checkout.php sync to ensure zoho_deal_id is set.");
+        }
     } else {
-        error_log("⚠️ Warning: Zoho CRM IDs missing, unable to sync.");
+        error_log("⚠️ booking_id missing. Skipping Zoho CRM update.");
     }
 
-    // 🚀 Commit Transaction if Everything is Successful
+    // ✅ Commit Transaction
     $conn->commit();
+    error_log("✅ Transaction committed successfully.");
 
-    // ✅ Debugging: Log Success Redirection
-    error_log("✅ Redirecting to payment_success.php");
-
-    // ✅ Redirect on Success
     $_SESSION['success'] = "Payment successful! Booking confirmed.";
     header("Location: ../dashboard/payment_success.php?reference=$reference");
     exit();
+
 } catch (Exception $e) {
-    // ❌ Rollback Changes on Failure
     $conn->rollback();
-
     error_log("❌ Transaction failed: " . $e->getMessage());
-
     $_SESSION['error'] = "Transaction failed. Please contact support.";
     header("Location: ../dashboard/payment_failed.php");
     exit();
 }
+?>

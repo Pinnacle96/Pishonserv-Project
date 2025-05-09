@@ -1,0 +1,12 @@
+# 🔒 Password protection
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile "/home/u561302917/domains/pishonserv.com/public_html/__dev/.htpasswd"
+Require valid-user
+
+# Remove .php extension from URL
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.php -f
+#RewriteRule ^([^/]+)$ $1.php [L]
+

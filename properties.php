@@ -113,6 +113,10 @@ function getLocationCoordinates($location, $api_key)
     error_log("No coordinates found for: $location - API response: " . print_r($data, true));
     return null;
 }
+// Preserve query string without page
+$query_string = $_GET;
+unset($query_string['page']);
+$base_url = 'properties.php?' . http_build_query($query_string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,31 +287,31 @@ function getLocationCoordinates($location, $api_key)
                         }
 
                         // Fetch all booking dates
-                        $booking_info = "";
-                        if ($property['status'] === 'booked') {
-                            $bookingStmt = $conn->prepare("SELECT check_in_date, check_out_date FROM bookings WHERE property_id = ? ORDER BY id DESC");
-                            $bookingStmt->bind_param('i', $property['id']);
-                            $bookingStmt->execute();
-                            $bookingResult = $bookingStmt->get_result();
+                        // $booking_info = "";
+                        // if ($property['status'] === 'booked') {
+                        //     $bookingStmt = $conn->prepare("SELECT check_in_date, check_out_date FROM bookings WHERE property_id = ? ORDER BY id DESC");
+                        //     $bookingStmt->bind_param('i', $property['id']);
+                        //     $bookingStmt->execute();
+                        //     $bookingResult = $bookingStmt->get_result();
 
-                            if ($bookingResult->num_rows > 0) {
-                                while ($bookingData = $bookingResult->fetch_assoc()) {
-                                    $start_date = !empty($bookingData['check_in_date']) ? date('M d, Y', strtotime($bookingData['check_in_date'])) : null;
-                                    $end_date = !empty($bookingData['check_out_date']) ? date('M d, Y', strtotime($bookingData['check_out_date'])) : null;
+                        //     if ($bookingResult->num_rows > 0) {
+                        //         while ($bookingData = $bookingResult->fetch_assoc()) {
+                        //             $start_date = !empty($bookingData['check_in_date']) ? date('M d, Y', strtotime($bookingData['check_in_date'])) : null;
+                        //             $end_date = !empty($bookingData['check_out_date']) ? date('M d, Y', strtotime($bookingData['check_out_date'])) : null;
 
-                                    if ($start_date && $end_date) {
-                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date to $end_date</p>";
-                                    } elseif ($start_date) {
-                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date</p>";
-                                    } elseif ($end_date) {
-                                        $booking_info .= "<p class='text-sm text-red-500 mt-1'>Available until $end_date</p>";
-                                    }
-                                }
-                            } else {
-                                $booking_info = "<p class='text-sm text-red-500 mt-1'>Currently Booked</p>";
-                            }
-                            $bookingStmt->close();
-                        }
+                        //             if ($start_date && $end_date) {
+                        //                 $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date to $end_date</p>";
+                        //             } elseif ($start_date) {
+                        //                 $booking_info .= "<p class='text-sm text-red-500 mt-1'>Booked from $start_date</p>";
+                        //             } elseif ($end_date) {
+                        //                 $booking_info .= "<p class='text-sm text-red-500 mt-1'>Available until $end_date</p>";
+                        //             }
+                        //         }
+                        //     } else {
+                        //         $booking_info = "<p class='text-sm text-red-500 mt-1'>Currently Booked</p>";
+                        //     }
+                        //     $bookingStmt->close();
+                        // }
 
                         echo "
                 <div class='property-card border rounded-lg shadow-lg bg-white'>
@@ -365,16 +369,15 @@ function getLocationCoordinates($location, $api_key)
 
             <!-- Pagination -->
             <div class="mt-10 flex justify-center gap-2">
-                <?php if ($page > 1): ?>
-                    <a href="properties.php?page=<?php echo $page - 1; ?>&<?php echo http_build_query($_GET); ?>"
-                        class="px-4 py-2 bg-gray-200 rounded-l-lg hover:bg-gray-300 text-sm md:text-base">← Previous</a>
-                <?php endif; ?>
-                <?php if ($page < $total_pages): ?>
-                    <a href="properties.php?page=<?php echo $page + 1; ?>&<?php echo http_build_query($_GET); ?>"
-                        class="px-4 py-2 bg-[#CC9933] text-white hover:bg-[#d88b1c] rounded-r-lg text-sm md:text-base">Next
-                        →</a>
-                <?php endif; ?>
-            </div>
+    <?php if ($page > 1): ?>
+        <a href="<?php echo $base_url . '&page=' . ($page - 1); ?>"
+            class="px-4 py-2 bg-gray-200 rounded-l-lg hover:bg-gray-300 text-sm md:text-base">← Previous</a>
+    <?php endif; ?>
+    <?php if ($page < $total_pages): ?>
+        <a href="<?php echo $base_url . '&page=' . ($page + 1); ?>"
+            class="px-4 py-2 bg-[#CC9933] text-white hover:bg-[#d88b1c] rounded-r-lg text-sm md:text-base">Next →</a>
+    <?php endif; ?>
+</div>
         </section>
 
 

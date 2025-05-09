@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 include '../includes/db_connect.php';
 include '../includes/config.php'; // Include LOCATIONIQ_API_KEY
 
-$allowed_roles = ['agent', 'owner', 'hotel_owner'];
+$allowed_roles = ['agent', 'owner', 'hotel_owner', 'developer'];
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], $allowed_roles)) {
     header("Location: ../auth/login.php");
     exit();

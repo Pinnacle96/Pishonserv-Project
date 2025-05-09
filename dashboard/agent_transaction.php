@@ -3,7 +3,7 @@ session_start();
 include '../includes/db_connect.php';
 
 // Restrict access to agents, owners, and hotel owners
-if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['agent', 'owner', 'hotel_owner'])) {
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['agent', 'owner', 'hotel_owner', 'developer'])) {
     header("Location: ../auth/login.php");
     exit();
 }

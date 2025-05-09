@@ -81,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 case 'agent':
                 case 'owner':
                 case 'hotel_owner':
+                case 'developer':
                     header("Location: ../dashboard/agent_dashboard.php");
                     break;
                 case 'admin':

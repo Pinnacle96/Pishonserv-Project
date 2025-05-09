@@ -111,25 +111,25 @@ $email = $user['email'] ?? die("Error: User email not found.");
 // ✅ Secure Unique Transaction Reference
 $reference = "TXN_" . bin2hex(random_bytes(10));
 
-// ✅ Insert Transaction in Payments Table
-$stmt = $conn->prepare("INSERT INTO payments (user_id, property_id, amount, transaction_id, status) 
-                        VALUES (?, ?, ?, ?, 'pending')");
-$stmt->bind_param("iids", $user_id, $property_id, $total_amount, $reference);
+$stmt = $conn->prepare("INSERT INTO payments (user_id, property_id, booking_id, amount, transaction_id, status) 
+                        VALUES (?, ?, ?, ?, ?, 'pending')");
+$stmt->bind_param("iiids", $user_id, $property_id, $booking_id, $total_amount, $reference);
+
 
 if (!$stmt->execute()) {
     die("Error: Payment record creation failed. " . $stmt->error);
 }
 $stmt->close();
 
-// ✅ Sync booking to Zoho CRM
-$zoho_booking_id = createZohoBooking($user_id, $property_id, 'pending', $check_in, $check_out, $days_booked, $total_amount);
-if (!$zoho_booking_id) {
-    error_log("⚠️ Warning: Failed to sync booking with CRM.");
-}
+// // ✅ Sync booking to Zoho CRM
+// $zoho_booking_id = createZohoBooking($user_id, $property_id, $booking_id, 'pending', $check_in, $check_out, $days_booked, $total_amount);
+// if (!$zoho_booking_id) {
+//     error_log("⚠️ Warning: Failed to sync booking with CRM.");
+// }
 
 // ✅ Process Payment with Paystack
 if ($type === 'short_let' || $type === 'hotel') {
-    $callback_url = "https://db72-102-88-43-114.ngrok-free.app/pishonserv.com/dashboard/paystack_callback.php";
+    $callback_url = "https://dev.pishonserv.com/dashboard/paystack_callback.php";
     $paystack_url = "https://api.paystack.co/transaction/initialize";
 
     // 🚀 Debugging: Verify Paystack API Key

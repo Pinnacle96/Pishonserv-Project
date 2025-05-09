@@ -5,15 +5,51 @@ include 'includes/db_connect.php';
 include 'includes/navbar.php';
 include 'includes/config.php'; // LOCATIONIQ_API_KEY
 
-function getLocationCoordinates($location, $apiKey)
+function getLocationCoordinates($property_id, $location, $apiKey, $conn)
 {
+    // Normalize location for consistency
+    $location = trim(strtolower($location));
+    if (empty($location) || empty($property_id)) {
+        return null;
+    }
+
+    // Check properties table for existing coordinates
+    $stmt = $conn->prepare("SELECT latitude, longitude FROM properties WHERE id = ? AND location = ?");
+    $stmt->bind_param("is", $property_id, $location);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        $stmt->close();
+        if (!empty($row['latitude']) && !empty($row['longitude'])) {
+            return ['lat' => $row['latitude'], 'lon' => $row['longitude']];
+        }
+    } else {
+        $stmt->close();
+    }
+
+    // Query LocationIQ if coordinates are missing
     $location = urlencode($location);
     $url = "https://us1.locationiq.com/v1/search.php?key=$apiKey&q=$location&format=json";
     $context = stream_context_create(array('http' => array('header' => "User-Agent: PHP")));
-    $response = file_get_contents($url, false, $context);
-    if ($response === FALSE) return null;
+    $response = @file_get_contents($url, false, $context);
+    if ($response === FALSE) {
+        // Log error for debugging
+        $error = error_get_last();
+        error_log(date('Y-m-d H:i:s') . " [LocationIQ] Failed for $location: " . ($error['message'] ?? 'Unknown error'));
+        return null;
+    }
     $data = json_decode($response, true);
-    return isset($data[0]) ? ['lat' => $data[0]['lat'], 'lon' => $data[0]['lon']] : null;
+    if (isset($data[0])) {
+        $lat = $data[0]['lat'];
+        $lon = $data[0]['lon'];
+        // Update properties table with coordinates
+        $stmt = $conn->prepare("UPDATE properties SET latitude = ?, longitude = ? WHERE id = ? AND location = ?");
+        $stmt->bind_param("ddis", $lat, $lon, $property_id, $location);
+        $stmt->execute();
+        $stmt->close();
+        return ['lat' => $lat, 'lon' => $lon];
+    }
+    return null;
 }
 ?>
 
@@ -21,11 +57,15 @@ function getLocationCoordinates($location, $apiKey)
 <section class="relative w-full min-h-[500px] sm:min-h-[650px] pt-20 md:pt-20 lg:pt-24 overflow-hidden">
     <div id="hero-slider" class="absolute inset-0 w-full h-full">
         <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-100"
-            style="background-image: url('public/images/hero1.jpg');"></div>
+            style="background-image: url('public/images/hero5.jpg');"></div>
         <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-0"
-            style="background-image: url('public/images/hero2.jpg');"></div>
+            style="background-image: url('public/images/hero4.jpg');"></div>
         <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-0"
-            style="background-image: url('public/images/hero3.jpg');"></div>
+            style="background-image: url('public/images/hero6.jpg');"></div>
+            <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-0"
+            style="background-image: url('public/images/hero7.jpg');"></div>
+        <div class="slide bg-cover bg-center w-full h-full absolute transition-opacity duration-1000 opacity-0"
+            style="background-image: url('public/images/hero8.jpg');"></div>
     </div>
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
@@ -65,25 +105,28 @@ function getLocationCoordinates($location, $apiKey)
                     required>
                     <option value="">Property Type</option>
                     <?php
-                    $property_types = ['apartment', 'office', 'event_center', 'hotel', 'short_stay', 'house', 'villa', 'condo', 'townhouse', 'duplex', 'penthouse', 'studio', 'bungalow', 'commercial', 'warehouse', 'retail', 'land', 'farmhouse', 'mixed_use'];
+                    $property_types = ['apartment', 'office', 'event_center', 'hotel', 'house', 'villa', 'condo', 'townhouse', 'duplex', 'penthouse', 'studio', 'bungalow', 'commercial', 'warehouse', 'retail', 'land', 'farmhouse', 'mixed_use'];
                     foreach ($property_types as $type_option) {
                         $selected = (isset($_GET['type']) && $_GET['type'] === $type_option) ? 'selected' : '';
                         echo "<option value='$type_option' $selected>" . ucwords(str_replace('_', ' ', $type_option)) . "</option>";
                     }
                     ?>
                 </select>
-
-                <select name="location"
+                 <input type="text" name="location" value="<?php echo htmlspecialchars($_GET['location'] ?? '') ?>"
+                    placeholder="Enter a location" 
                     class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">
-                    <option value="">Select Location</option>
-                    <?php
-                    $locations = ['lagos', 'abuja', 'port-harcourt'];
-                    foreach ($locations as $loc) {
-                        $selected = (isset($_GET['location']) && $_GET['location'] === $loc) ? 'selected' : '';
-                        echo "<option value='$loc' $selected>" . ucwords(str_replace('-', ' ', $loc)) . "</option>";
-                    }
-                    ?>
-                </select>
+
+                <!--<select name="location"-->
+                <!--    class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">-->
+                <!--    <option value="">Select Location</option>-->
+                <!--    <//?php-->
+                <!--    $locations = [//'lagos', 'abuja', 'port-harcourt'];-->
+                <!--    //foreach ($locations as $loc) {-->
+                <!--        $selected = //(isset($_GET['location']) && $_GET['location'] === $loc) ? 'selected' : '';-->
+                <!--        echo "<option value='$loc' $selected>" . ucwords(str_replace('-', ' ', $loc)) . "</option>";-->
+                <!--    }-->
+                <!--    ?>-->
+                <!--</select>-->
 
                 <select name="bedroom"
                     class="p-2 sm:p-3 border rounded text-sm sm:text-base w-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#CC9933]">
@@ -111,7 +154,6 @@ function getLocationCoordinates($location, $apiKey)
                     class="bg-[#CC9933] text-white px-4 py-2 sm:py-3 rounded hover:bg-[#d88b1c] text-sm sm:text-base w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-[#CC9933]">Search</button>
 
             </form>
-
 
         </div>
     </div>
@@ -154,7 +196,6 @@ setInterval(() => {
 }, 5000);
 </script>
 
-
 <section class="container mx-auto py-12 px-4 mt-2">
     <h2 class="text-4xl font-bold text-[#092468] text-center">Featured Properties</h2>
     <p class="text-gray-600 text-center">Check out some of the best listings</p>
@@ -183,26 +224,26 @@ setInterval(() => {
             $agentImage = !empty($property['agent_image']) ? "public/uploads/{$property['agent_image']}" : "public/uploads/default.png";
             $agentName = htmlspecialchars($property['agent_name'] ?? "Unknown Agent");
 
-            // Booking Details Check
-            $bookingInfo = "";
-            if ($property['status'] == 'booked') {
-                $bookingStmt = $conn->prepare("SELECT check_in_date, check_out_date FROM bookings WHERE property_id = ? ORDER BY id DESC");
-                $bookingStmt->bind_param("i", $property['id']);
-                $bookingStmt->execute();
-                $bookingRes = $bookingStmt->get_result();
-                if ($bookingRes->num_rows > 0) {
-                    $bookingInfo .= "<div class='mt-2 text-xs text-red-500'>";
-                    while ($booking = $bookingRes->fetch_assoc()) {
-                        $start_date = !empty($booking['check_in_date']) ? date('M d, Y', strtotime($booking['check_in_date'])) : '';
-                        $end_date = !empty($booking['check_out_date']) ? date('M d, Y', strtotime($booking['check_out_date'])) : '';
-                        if ($start_date && $end_date) {
-                            $bookingInfo .= "<p>Booked: {$start_date} to {$end_date}</p>";
-                        }
-                    }
-                    $bookingInfo .= "</div>";
-                }
-                $bookingStmt->close();
-            }
+            // // Booking Details Check
+            // $bookingInfo = "";
+            // if ($property['status'] == 'booked') {
+            //     $bookingStmt = $conn->prepare("SELECT check_in_date, check_out_date FROM bookings WHERE property_id = ? ORDER BY id DESC");
+            //     $bookingStmt->bind_param("i", $property['id']);
+            //     $bookingStmt->execute();
+            //     $bookingRes = $bookingStmt->get_result();
+            //     if ($bookingRes->num_rows > 0) {
+            //         $bookingInfo .= "<div class='mt-2 text-xs text-red-500'>";
+            //         while ($booking = $bookingRes->fetch_assoc()) {
+            //             $start_date = !empty($booking['check_in_date']) ? date('M d, Y', strtotime($booking['check_in_date'])) : '';
+            //             $end_date = !empty($booking['check_out_date']) ? date('M d, Y', strtotime($booking['check_out_date'])) : '';
+            //             if ($start_date && $end_date) {
+            //                 $bookingInfo .= "<p>Booked: {$start_date} to {$end_date}</p>";
+            //             }
+            //         }
+            //         $bookingInfo .= "</div>";
+            //     }
+            //     $bookingStmt->close();
+            // }
 
             // Wishlist Check
             $isInWishlist = false;
@@ -215,7 +256,7 @@ setInterval(() => {
             }
 
             // Map from LocationIQ
-            $mapUrl = getLocationCoordinates($property['location'], LOCATIONIQ_API_KEY);
+            $mapUrl = getLocationCoordinates($property['id'], $property['location'], LOCATIONIQ_API_KEY, $conn);
             $mapImage = $mapUrl ? "<img src='https://maps.locationiq.com/v3/staticmap?key=" . LOCATIONIQ_API_KEY . "&center={$mapUrl['lat']},{$mapUrl['lon']}&zoom=15&size=600x400' alt='Property Map' loading='lazy' class='mt-2'>" : "";
 
             echo "
@@ -278,12 +319,6 @@ setInterval(() => {
 
 </section>
 
-
-
-
-
-
-
 <!-- How It Works Section -->
 <section class="container mx-auto py-16 px-4">
     <h2 class="text-4xl md:text-5xl font-bold text-[#092468] text-center">How It Works</h2>
@@ -326,195 +361,213 @@ setInterval(() => {
     </div>
 </section>
 
-<!-- Testimonials Section -->
-<section class="container mx-auto py-12 sm:py-16 px-4 sm:px-6">
-    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#092468] text-center">What Our Clients Say</h2>
-    <p class="text-gray-600 dark:text-gray-300 text-base sm:text-lg text-center mt-2 mb-8 sm:mb-12 max-w-2xl mx-auto">
-        Hear from happy homeowners and renters who found their perfect property.
-    </p>
+<!-- Modern Testimonials Section -->
+<!-- Modern Testimonials Section -->
+<section class="relative py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#092468] to-[#CC9933]"></div>
+  <div class="absolute top-20 -right-20 w-64 h-64 rounded-full bg-[#092468]/5 dark:bg-[#CC9933]/10" style="filter: blur(80px);"></div>
+  <div class="absolute bottom-10 -left-20 w-64 h-64 rounded-full bg-[#CC9933]/5 dark:bg-[#092468]/10" style="filter: blur(80px);"></div>
 
-    <div class="mt-8 relative max-w-4xl mx-auto">
-        <div id="testimonial-slider" class="relative outline-none" role="region" aria-label="Testimonials Carousel"
-            tabindex="0">
-            <div id="testimonial-track" class="w-full">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-slide hidden max-w-md mx-auto" data-index="0">
-                    <div
-                        class="bg-white dark:bg-gray-800 p-4 sm:p-6 shadow-lg rounded-xl hover:shadow-2xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <img src="/public/uploads/avatar1.jpg" alt="John Doe"
-                                class="w-12 h-12 rounded-full mr-3 object-cover"
-                                onerror="this.src='/public/uploads/default.png'">
-                            <div>
-                                <h4 class="text-[#092468] dark:text-[#CC9933] font-bold">John Doe</h4>
-                                <div class="flex text-[#CC9933] text-sm" role="img" aria-label="5 star rating">
-                                    <span class="sr-only">5 stars</span>
-                                    ★★★★★
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">"Great experience! Found my perfect home easily with
-                            the help of their amazing team."</p>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="testimonial-slide hidden max-w-md mx-auto" data-index="1">
-                    <div
-                        class="bg-white dark:bg-gray-800 p-4 sm:p-6 shadow-lg rounded-xl hover:shadow-2xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <img src="/public/uploads/avatar2.jpg" alt="Sarah Williams"
-                                class="w-12 h-12 rounded-full mr-3 object-cover"
-                                onerror="this.src='/public/uploads/default.png'">
-                            <div>
-                                <h4 class="text-[#092468] dark:text-[#CC9933] font-bold">Sarah Williams</h4>
-                                <div class="flex text-[#CC9933] text-sm" role="img" aria-label="4 star rating">
-                                    <span class="sr-only">4 stars</span>
-                                    ★★★★☆
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">"Excellent service and a smooth transaction process.
-                            Highly recommend their platform!"</p>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="testimonial-slide hidden max-w-md mx-auto" data-index="2">
-                    <div
-                        class="bg-white dark:bg-gray-800 p-4 sm:p-6 shadow-lg rounded-xl hover:shadow-2xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <img src="/public/uploads/avatar3.jpg" alt="Mark Johnson"
-                                class="w-12 h-12 rounded-full mr-3 object-cover"
-                                onerror="this.src='/public/uploads/default.png'">
-                            <div>
-                                <h4 class="text-[#092468] dark:text-[#CC9933] font-bold">Mark Johnson</h4>
-                                <div class="flex text-[#CC9933] text-sm" role="img" aria-label="5 star rating">
-                                    <span class="sr-only">5 stars</span>
-                                    ★★★★★
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">"Professional team and great support throughout.
-                            Definitely my go-to for real estate!"</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <button id="prev" aria-label="Previous Testimonial"
-                class="absolute left-2 sm:-left-10 top-1/2 transform -translate-y-1/2 bg-[#092468] text-white px-3 py-2 rounded-full hover:bg-[#051B47] focus:outline-none focus:ring-2 focus:ring-[#CC9933] transition">
-                ←
-            </button>
-            <button id="next" aria-label="Next Testimonial"
-                class="absolute right-2 sm:-right-10 top-1/2 transform -translate-y-1/2 bg-[#092468] text-white px-3 py-2 rounded-full hover:bg-[#051B47] focus:outline-none focus:ring-2 focus:ring-[#CC9933] transition">
-                →
-            </button>
-        </div>
-
-        <!-- Navigation Dots -->
-        <div class="flex justify-center mt-6 space-x-2" id="testimonial-dots">
-            <button
-                class="w-3 h-3 bg-[#092468] rounded-full focus:outline-none focus:ring-2 focus:ring-[#CC9933] active"
-                data-slide="0" aria-label="Slide 1"></button>
-            <button
-                class="w-3 h-3 bg-gray-300 rounded-full hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#CC9933]"
-                data-slide="1" aria-label="Slide 2"></button>
-            <button
-                class="w-3 h-3 bg-gray-300 rounded-full hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#CC9933]"
-                data-slide="2" aria-label="Slide 3"></button>
-        </div>
+  <div class="relative max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-[#092468]/10 text-[#092468] dark:bg-[#CC9933]/20 dark:text-[#CC9933] mb-4">
+        Client Voices
+      </span>
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Trusted by <span class="text-[#092468] dark:text-[#CC9933]">Homeowners</span> Nationwide
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Don't just take our word for it. Here's what our community has to say about their experiences.
+      </p>
     </div>
+
+    <!-- Testimonial Carousel -->
+    <div class="relative group">
+      <div class="swiper testimonial-carousel max-w-4xl mx-auto">
+        <div class="swiper-wrapper pb-12">
+          <!-- Testimonial 1 -->
+          <div class="swiper-slide">
+            <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div class="absolute -top-5 left-6 text-6xl text-gray-100 dark:text-gray-700">"</div>
+              <div class="flex flex-col sm:flex-row items-start gap-6">
+                <img src="<?php echo $base_path; ?>public/uploads/67dc6fe3e95bd.jpg" alt="John Doe" 
+                     class="w-16 h-16 rounded-full object-cover border-2 border-[#092468] dark:border-[#CC9933] lazy-load"
+                     loading="lazy" onerror="this.src='<?php echo $base_path; ?>public/uploads/placeholder-user.jpg'">
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">John Doe</h4>
+                    <span class="text-xs px-2 py-1 bg-[#092468]/10 text-[#092468] dark:bg-[#CC9933]/20 dark:text-[#CC9933] rounded-full">Home Buyer</span>
+                  </div>
+                  <div class="flex text-[#CC9933] mb-3" aria-label="5 out of 5 stars">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 relative">
+                    "The team went above and beyond to help me find my dream home. Their attention to detail and market knowledge saved me both time and money in the process."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="swiper-slide">
+            <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div class="absolute -top-5 left-6 text-6xl text-gray-100 dark:text-gray-700">"</div>
+              <div class="flex flex-col sm:flex-row items-start gap-6">
+                <img src="<?php echo $base_path; ?>public/uploads/67dc6fe3e95bd.jpg" alt="Sarah Williams" 
+                     class="w-16 h-16 rounded-full object-cover border-2 border-[#092468] dark:border-[#CC9933] lazy-load"
+                     loading="lazy" onerror="this.src='<?php echo $base_path; ?>public/uploads/placeholder-user.jpg'">
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">Sarah Williams</h4>
+                    <span class="text-xs px-2 py-1 bg-[#092468]/10 text-[#092468] dark:bg-[#CC9933]/20 dark:text-[#CC9933] rounded-full">Property Investor</span>
+                  </div>
+                  <div class="flex text-[#CC9933] mb-3" aria-label="4 out of 5 stars">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 relative">
+                    "As an investor, I appreciate their data-driven approach. They helped me identify properties with the best ROI potential in emerging neighborhoods."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="swiper-slide">
+            <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div class="absolute -top-5 left-6 text-6xl text-gray-100 dark:text-gray-700">"</div>
+              <div class="flex flex-col sm:flex-row items-start gap-6">
+                <img src="<?php echo $base_path; ?>public/uploads/67dc6fe3e95bd.jpg" alt="Mark Johnson" 
+                     class="w-16 h-16 rounded-full object-cover border-2 border-[#092468] dark:border-[#CC9933] lazy-load"
+                     loading="lazy" onerror="this.src='<?php echo $base_path; ?>public/uploads/placeholder-user.jpg'">
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">Mark Johnson</h4>
+                    <span class="text-xs px-2 py-1 bg-[#092468]/10 text-[#092468] dark:bg-[#CC9933]/20 dark:text-[#CC9933] rounded-full">First-time Buyer</span>
+                  </div>
+                  <div class="flex text-[#CC9933] mb-3" aria-label="5 out of 5 stars">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927a1 1 0 011.902 0l1.286 3.97a1 1 0 00.95.69h4.147a1 1 0 01.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.286 3.97a1 1 0 01-1.54 1.118l-3.357-2.44a1 1 0 00-1.176 0l-3.357 2.44a1 1 0 01-1.54-1.118l1.286-3.97a1 1 0 00-.364-1.118L2.81 9.397a1 1 0 01.588-1.81h4.147a1 1 0 00.95-.69l1.286-3.97z"/></svg>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 relative">
+                    "Being a first-time buyer was overwhelming, but my agent patiently guided me through every step. The mortgage pre-approval assistance was particularly helpful."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Pagination -->
+        <div class="swiper-pagination !relative !mt-10"></div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button class="testimonial-carousel-prev absolute left-0 sm:-left-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center text-[#092468] dark:text-[#CC9933] hover:bg-[#092468] hover:text-white dark:hover:bg-[#CC9933] dark:hover:text-gray-900 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Previous testimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <button class="testimonial-carousel-next absolute right-0 sm:-right-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center text-[#092468] dark:text-[#CC9933] hover:bg-[#092468] hover:text-white dark:hover:bg-[#CC9933] dark:hover:text-gray-900 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Next testimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+  </div>
 </section>
 
-<style>
-.testimonial-slide.active {
-    display: block;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.testimonial-slide {
-    display: none;
-    opacity: 0;
-}
-</style>
-
+<!-- Swiper CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const dots = document.querySelectorAll('#testimonial-dots button');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoPlay;
+  try {
+    const carousel = document.querySelector('.testimonial-carousel');
+    const pagination = document.querySelector('.swiper-pagination');
+    const prevButton = document.querySelector('.testimonial-carousel-prev');
+    const nextButton = document.querySelector('.testimonial-carousel-next');
 
-    if (totalSlides === 0) {
-        document.getElementById('testimonial-slider').innerHTML =
-            '<p class="text-center text-gray-600">No testimonials available.</p>';
-        return;
+    if (!carousel || !pagination || !prevButton || !nextButton) {
+      console.error('Testimonial carousel elements missing:', {
+        carousel: !!carousel,
+        pagination: !!pagination,
+        prevButton: !!prevButton,
+        nextButton: !!nextButton
+      });
+      return;
     }
 
-    function updateSlider() {
-        slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === currentIndex);
-        });
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('bg-[#092468]', index === currentIndex);
-            dot.classList.toggle('bg-gray-300', index !== currentIndex);
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    }
-
-    function goToSlide(index) {
-        currentIndex = (index + totalSlides) % totalSlides;
-        updateSlider();
-        resetAutoPlay();
-    }
-
-    function startAutoPlay() {
-        autoPlay = setInterval(() => goToSlide(currentIndex + 1), 5000);
-    }
-
-    function resetAutoPlay() {
-        clearInterval(autoPlay);
-        startAutoPlay();
-    }
-
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => goToSlide(parseInt(dot.getAttribute('data-slide'))));
-    });
-
-    const slider = document.getElementById('testimonial-slider');
-    slider.addEventListener('mouseenter', () => clearInterval(autoPlay));
-    slider.addEventListener('mouseleave', startAutoPlay);
-
-    slider.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            goToSlide(currentIndex - 1);
-            e.preventDefault();
+    const testimonialCarousel = new Swiper(carousel, {
+      loop: true,
+      spaceBetween: 30,
+      centeredSlides: true,
+      slidesPerView: 1,
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: pagination,
+        clickable: true,
+        renderBullet: function (index, className) {
+          return `<span class="${className} w-2.5 h-2.5 bg-gray-300 dark:bg-gray-600 hover:bg-[#092468] dark:hover:bg-[#CC9933] transition-all duration-300 mx-1 inline-block rounded-full"></span>`;
+        },
+      },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+        },
+        1024: {
+          slidesPerView: 1.2,
+        },
+      },
+      on: {
+        init: function() {
+          console.log('Testimonial carousel initialized successfully.');
+        },
+        slideChange: function() {
+          console.log('Switched to slide:', this.activeIndex);
         }
-        if (e.key === 'ArrowRight') {
-            goToSlide(currentIndex + 1);
-            e.preventDefault();
-        }
+      }
     });
 
-    dots.forEach(dot => {
-        dot.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                goToSlide(parseInt(dot.getAttribute('data-slide')));
-                e.preventDefault();
-            }
-        });
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+      testimonialCarousel.autoplay.stop();
+      console.log('Autoplay paused.');
+    });
+    carousel.addEventListener('mouseleave', () => {
+      testimonialCarousel.autoplay.start();
+      console.log('Autoplay resumed.');
     });
 
-    // Show the first slide initially
-    slides[0].classList.add('active');
-    startAutoPlay();
-    updateSlider();
+    // Ensure slides are visible
+    const slides = carousel.querySelectorAll('.swiper-slide');
+    slides.forEach(slide => {
+      slide.style.display = 'block';
+      slide.style.opacity = '1';
+    });
+  } catch (error) {
+    console.error('Error initializing testimonial carousel:', error);
+  }
 });
 </script>
 <!-- Call-to-Action -->

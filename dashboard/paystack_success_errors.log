@@ -34,3 +34,870 @@
 )
 
 [20-Mar-2025 09:18:00 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 12:02:40 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 12:02:40 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_97d804a2a480b467b2c8
+)
+
+[28-Apr-2025 12:02:40 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Luke
+    [location] => Ogba
+    [price] => 450000.00
+    [amount] => 450000.00
+    [status] => completed
+    [created_at] => 2025-04-28 12:02:29
+)
+
+[28-Apr-2025 12:02:40 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 12:05:22 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 12:05:22 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_63a2e2ae2458a84eb7c1
+)
+
+[28-Apr-2025 12:05:22 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 10.00
+    [status] => completed
+    [created_at] => 2025-04-28 12:05:10
+)
+
+[28-Apr-2025 12:05:22 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 12:51:53 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 12:51:53 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_4309d57e399cb87e0f81
+)
+
+[28-Apr-2025 12:51:53 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 12:51:39
+)
+
+[28-Apr-2025 12:51:53 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 13:02:31 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 13:02:31 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_887a6e2e4c00844082f4
+)
+
+[28-Apr-2025 13:02:31 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 13:02:17
+)
+
+[28-Apr-2025 13:02:31 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:08:10 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:08:10 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_ee605dd03be502d86971
+)
+
+[28-Apr-2025 14:08:10 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:08:01
+)
+
+[28-Apr-2025 14:08:10 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:09:34 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:09:34 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_868acd36487d7d23513e
+)
+
+[28-Apr-2025 14:09:34 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:09:22
+)
+
+[28-Apr-2025 14:09:34 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:24:48 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:24:48 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_510338196e65703499ea
+)
+
+[28-Apr-2025 14:24:48 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:24:38
+)
+
+[28-Apr-2025 14:24:48 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:30:36 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:30:36 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_85d259866bc2cac8e90d
+)
+
+[28-Apr-2025 14:30:36 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:30:25
+)
+
+[28-Apr-2025 14:30:36 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:34:37 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:34:37 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_1fff21ecbb88a63ed37d
+)
+
+[28-Apr-2025 14:34:37 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 15.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:34:25
+)
+
+[28-Apr-2025 14:34:37 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:46:09 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful and booking confirmed!
+)
+
+[28-Apr-2025 14:46:09 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_a159c84bbe54574fd28a
+)
+
+[28-Apr-2025 14:46:09 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 20.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:45:57
+)
+
+[28-Apr-2025 14:46:09 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 14:56:21 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 14:56:21 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_a0cd3df347b00262f3ee
+)
+
+[28-Apr-2025 14:56:21 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 35.00
+    [status] => completed
+    [created_at] => 2025-04-28 14:56:07
+)
+
+[28-Apr-2025 14:56:21 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:01:14 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:01:14 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_81cb0024d24d6bd58814
+)
+
+[28-Apr-2025 15:01:14 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 130.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:01:04
+)
+
+[28-Apr-2025 15:01:14 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:04:38 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:04:38 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_d0315d4be23d2680be9b
+)
+
+[28-Apr-2025 15:04:38 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 165.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:04:27
+)
+
+[28-Apr-2025 15:04:38 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:05:37 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:05:37 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_ac02bf4caa8b36b8e8fa
+)
+
+[28-Apr-2025 15:05:37 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 15.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:05:27
+)
+
+[28-Apr-2025 15:05:37 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:26:56 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:26:56 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_e436113c7890e7186bdc
+)
+
+[28-Apr-2025 15:26:56 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 15.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:26:43
+)
+
+[28-Apr-2025 15:26:56 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:29:39 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:29:39 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_cedb57842f81f142efbb
+)
+
+[28-Apr-2025 15:29:39 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 10.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:29:29
+)
+
+[28-Apr-2025 15:29:39 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:31:43 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:31:43 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_d91a756fef2eddba5ef4
+)
+
+[28-Apr-2025 15:31:43 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 10.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:31:32
+)
+
+[28-Apr-2025 15:31:43 UTC] ✅ Payment Success - Displaying confirmation page
+[28-Apr-2025 15:47:20 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 4a84787b51344fa3e5d320b947266eb3595a672864f9aeed9c3738d669cf710c
+    [user_id] => 19
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67c97b6753144.jpeg
+    [initiated] => 1
+    [error] => Failed to sync booking with CRM.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[28-Apr-2025 15:47:20 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_efe20c5e585a4cb7e20c
+)
+
+[28-Apr-2025 15:47:20 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 15.00
+    [status] => completed
+    [created_at] => 2025-04-28 15:47:09
+)
+
+[28-Apr-2025 15:47:20 UTC] ✅ Payment Success - Displaying confirmation page
+[29-Apr-2025 11:01:36 UTC] 🔍 Payment Success - Session: Array
+(
+    [initiated] => 1
+    [csrf_token] => f59519799f244651d564d0d4abf12b0572a82cd7aa55bd62528bae2ecce9123e
+    [user_id] => 52
+    [name] => Stephanie
+    [email] => udomamorolake@gmail.com
+    [role] => buyer
+    [profile_image] => default.png
+    [success] => Payment successful! Booking confirmed.
+)
+
+[29-Apr-2025 11:01:36 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_4828539b0cbfd927bfde
+)
+
+[29-Apr-2025 11:01:36 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 25.00
+    [status] => completed
+    [created_at] => 2025-04-29 11:01:03
+)
+
+[29-Apr-2025 11:01:36 UTC] ✅ Payment Success - Displaying confirmation page
+[02-May-2025 12:12:21 UTC] 🔍 Payment Success - Session: Array
+(
+    [initiated] => 1
+    [csrf_token] => bd0304145ce18e97d4d7793e6a97614feb714aacb479b0529c507175143b2389
+    [redirect_after_login] => book_property.php?property_id=18
+    [user_id] => 37
+    [name] => 4steps
+    [role] => buyer
+    [profile_image] => default.png
+    [error] => Please select check-in and check-out dates.
+    [success] => Payment successful! Booking confirmed.
+)
+
+[02-May-2025 12:12:21 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_e4af3d2c61ea864a4fc5
+)
+
+[02-May-2025 12:12:21 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-05-02 12:11:09
+)
+
+[02-May-2025 12:12:21 UTC] ✅ Payment Success - Displaying confirmation page
+[06-May-2025 21:42:06 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[06-May-2025 21:42:06 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_1c37eb1d7845e41816dc
+)
+
+[06-May-2025 21:42:06 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-05-06 21:41:54
+)
+
+[06-May-2025 21:42:06 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:02:31 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:02:31 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_b0150abde0f7105c5d3f
+)
+
+[07-May-2025 07:02:31 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 15.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:02:21
+)
+
+[07-May-2025 07:02:31 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:06:17 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:06:17 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_51850683b84f0f5aa5ba
+)
+
+[07-May-2025 07:06:17 UTC] 🔍 Transaction query result: Array
+(
+    [title] => hthehee
+    [location] => Ikeja
+    [price] => 200000.00
+    [amount] => 200000.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:06:08
+)
+
+[07-May-2025 07:06:17 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:18:13 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:18:13 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_ba99b3605533fb4c5bca
+)
+
+[07-May-2025 07:18:13 UTC] 🔍 Transaction query result: Array
+(
+    [title] => hthehee
+    [location] => Ikeja
+    [price] => 200000.00
+    [amount] => 200000.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:18:03
+)
+
+[07-May-2025 07:18:13 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:21:40 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:21:40 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_9678041e3e3efbe45801
+)
+
+[07-May-2025 07:21:40 UTC] 🔍 Transaction query result: Array
+(
+    [title] => hthehee
+    [location] => Ikeja
+    [price] => 200000.00
+    [amount] => 400000.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:21:31
+)
+
+[07-May-2025 07:21:40 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:37:40 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:37:40 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_8c6c93ebc97fbad0ef0b
+)
+
+[07-May-2025 07:37:40 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Luxury Home
+    [location] => Ogba
+    [price] => 500000.00
+    [amount] => 500000.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:33:11
+)
+
+[07-May-2025 07:37:40 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 07:41:22 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 07:41:22 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_6e3a6bed89b34faea9b5
+)
+
+[07-May-2025 07:41:22 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-05-07 07:41:12
+)
+
+[07-May-2025 07:41:22 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 08:05:24 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 08:05:24 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_156a241c341f29db9dcf
+)
+
+[07-May-2025 08:05:24 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Luxury Home
+    [location] => Ogba
+    [price] => 500000.00
+    [amount] => 1000000.00
+    [status] => completed
+    [created_at] => 2025-05-07 08:05:06
+)
+
+[07-May-2025 08:05:24 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 08:11:36 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 08:11:36 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_2929493d6c13158d058b
+)
+
+[07-May-2025 08:11:36 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Luxury Home
+    [location] => Ogba
+    [price] => 500000.00
+    [amount] => 1500000.00
+    [status] => completed
+    [created_at] => 2025-05-07 08:11:23
+)
+
+[07-May-2025 08:11:36 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 08:13:41 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 08:13:41 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_c7a130e1b5feb50c4766
+)
+
+[07-May-2025 08:13:41 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-05-07 08:13:31
+)
+
+[07-May-2025 08:13:41 UTC] ✅ Payment Success - Displaying confirmation page
+[07-May-2025 08:25:22 UTC] 🔍 Payment Success - Session: Array
+(
+    [csrf_token] => 57d2b682fb727de82c7591b50c4aaae02aec598d2aa4c4bbc63167abaa8daa89
+    [initiated] => 1
+    [redirect_after_login] => book_property.php?property_id=25
+    [user_id] => 33
+    [name] => Noah
+    [role] => buyer
+    [profile_image] => 67dc7002c7019.jpg
+    [success] => Payment successful! Booking confirmed.
+)
+
+[07-May-2025 08:25:22 UTC] 🔍 Payment Success - GET: Array
+(
+    [reference] => TXN_e53c491bf8c150b59a0b
+)
+
+[07-May-2025 08:25:22 UTC] 🔍 Transaction query result: Array
+(
+    [title] => Testing
+    [location] => Ikeja
+    [price] => 5.00
+    [amount] => 5.00
+    [status] => completed
+    [created_at] => 2025-05-07 08:25:13
+)
+
+[07-May-2025 08:25:22 UTC] ✅ Payment Success - Displaying confirmation page

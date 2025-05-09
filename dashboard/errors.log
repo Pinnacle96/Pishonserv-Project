@@ -82,3 +82,943 @@
 [21-Mar-2025 12:09:27 UTC] 🔍 Paystack API HTTP Code: 200
 [21-Mar-2025 12:09:27 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/idwgay7fn1djcse","access_code":"idwgay7fn1djcse","reference":"TXN_9b5ccf5bc9af52530139"}}
 [21-Mar-2025 12:09:27 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/idwgay7fn1djcse
+[14-Apr-2025 11:13:13 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-04-12&check_out=2025-04-25&booking_id=55
+[14-Apr-2025 11:13:13 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-04-12, Check-out: 2025-04-25
+[14-Apr-2025 11:13:14 UTC] 🔑 Paystack Secret Key: SET
+[14-Apr-2025 11:13:15 UTC] 🔍 Paystack API HTTP Code: 200
+[14-Apr-2025 11:13:15 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/wo61e2ieyh72s43","access_code":"wo61e2ieyh72s43","reference":"TXN_7923d69afdd36b56fe0b"}}
+[14-Apr-2025 11:13:15 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/wo61e2ieyh72s43
+[14-Apr-2025 16:32:24 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-04-16&check_out=2025-04-30&booking_id=59
+[14-Apr-2025 16:32:24 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-04-16, Check-out: 2025-04-30
+[14-Apr-2025 16:32:25 UTC] 🔑 Paystack Secret Key: SET
+[14-Apr-2025 16:32:25 UTC] 🔍 Paystack API HTTP Code: 200
+[14-Apr-2025 16:32:25 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/r9c943sqdppvjhn","access_code":"r9c943sqdppvjhn","reference":"TXN_95a013ca2edd2a22b051"}}
+[14-Apr-2025 16:32:25 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/r9c943sqdppvjhn
+[17-Apr-2025 08:46:51 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=13&check_in=2025-04-19&check_out=2025-04-25&booking_id=61
+[17-Apr-2025 08:46:51 UTC] 🔍 Checking overlapping bookings for Property ID: 13, Check-in: 2025-04-19, Check-out: 2025-04-25
+[17-Apr-2025 08:46:52 UTC] 🔑 Paystack Secret Key: SET
+[17-Apr-2025 08:46:52 UTC] 🔍 Paystack API HTTP Code: 200
+[17-Apr-2025 08:46:52 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/twqmeo2cwqhtzeb","access_code":"twqmeo2cwqhtzeb","reference":"TXN_be1cabf816e69539a0d8"}}
+[17-Apr-2025 08:46:52 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/twqmeo2cwqhtzeb
+[28-Apr-2025 11:18:05 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=13&check_in=2025-04-30&check_out=2025-05-01&booking_id=64
+[28-Apr-2025 11:18:05 UTC] 🔍 Checking overlapping bookings for Property ID: 13, Check-in: 2025-04-30, Check-out: 2025-05-01
+[28-Apr-2025 11:18:06 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 11:18:07 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 11:18:07 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/inyohdeyhohvd2d","access_code":"inyohdeyhohvd2d","reference":"TXN_84a62068dfa6524858c9"}}
+[28-Apr-2025 11:18:07 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/inyohdeyhohvd2d
+[28-Apr-2025 11:25:43 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=13&check_in=2025-04-30&check_out=2025-05-01&booking_id=65
+[28-Apr-2025 11:25:43 UTC] 🔍 Checking overlapping bookings for Property ID: 13, Check-in: 2025-04-30, Check-out: 2025-05-01
+[28-Apr-2025 11:25:44 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 11:25:45 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 11:25:45 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/md47fnv4ubnsgba","access_code":"md47fnv4ubnsgba","reference":"TXN_15dbbdd3f2f50b0cd3b2"}}
+[28-Apr-2025 11:25:45 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/md47fnv4ubnsgba
+[28-Apr-2025 12:02:29 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=13&check_in=2025-04-30&check_out=2025-05-01&booking_id=69
+[28-Apr-2025 12:02:29 UTC] 🔍 Checking overlapping bookings for Property ID: 13, Check-in: 2025-04-30, Check-out: 2025-05-01
+[28-Apr-2025 12:02:31 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 12:02:32 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:02:32 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/jo3kalbv2rwp3yd","access_code":"jo3kalbv2rwp3yd","reference":"TXN_97d804a2a480b467b2c8"}}
+[28-Apr-2025 12:02:32 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/jo3kalbv2rwp3yd
+[28-Apr-2025 12:05:10 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-04-28&check_out=2025-04-30&booking_id=70
+[28-Apr-2025 12:05:10 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-04-28, Check-out: 2025-04-30
+[28-Apr-2025 12:05:11 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 12:05:12 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:05:12 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/1kmwxbo7vndjzwg","access_code":"1kmwxbo7vndjzwg","reference":"TXN_63a2e2ae2458a84eb7c1"}}
+[28-Apr-2025 12:05:12 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/1kmwxbo7vndjzwg
+[28-Apr-2025 12:51:39 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-02&booking_id=75
+[28-Apr-2025 12:51:39 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-02
+[28-Apr-2025 12:51:40 UTC] ❌ Zoho API Error: {"data":[{"code":"INVALID_DATA","details":{"expected_data_type":"bigint","api_name":"Property_Posted_By"},"message":"invalid data","status":"error"}]}
+[28-Apr-2025 12:51:40 UTC] ⚠️ Warning: Failed to sync booking with CRM.
+[28-Apr-2025 12:51:40 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 12:51:41 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:51:41 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/bce27fq6hty8dj1","access_code":"bce27fq6hty8dj1","reference":"TXN_4309d57e399cb87e0f81"}}
+[28-Apr-2025 12:51:41 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/bce27fq6hty8dj1
+[28-Apr-2025 13:02:17 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-02&booking_id=78
+[28-Apr-2025 13:02:17 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-02
+[28-Apr-2025 13:02:18 UTC] ❌ Zoho API Error: {"data":[{"code":"INVALID_DATA","details":{"expected_data_type":"bigint","api_name":"Property_Posted_By"},"message":"invalid data","status":"error"}]}
+[28-Apr-2025 13:02:18 UTC] ⚠️ Warning: Failed to sync booking with CRM.
+[28-Apr-2025 13:02:18 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 13:02:19 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 13:02:19 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/6nd1jy6odj27hlk","access_code":"6nd1jy6odj27hlk","reference":"TXN_887a6e2e4c00844082f4"}}
+[28-Apr-2025 13:02:19 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/6nd1jy6odj27hlk
+[28-Apr-2025 14:08:01 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-02&booking_id=83
+[28-Apr-2025 14:08:01 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-02
+[28-Apr-2025 14:08:01 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:08:01 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Property_Posted_By": {
+                "id": "6560565000001545001"
+            },
+            "Check_in_Date": "2025-05-01",
+            "Check_out_Date": "2025-05-02",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:08:01 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"INVALID_DATA","details":{"api_name":"Property_Posted_By"},"message":"invalid data","status":"error"}]}
+[28-Apr-2025 14:08:01 UTC] ❌ Zoho API Error: {"data":[{"code":"INVALID_DATA","details":{"api_name":"Property_Posted_By"},"message":"invalid data","status":"error"}]}
+[28-Apr-2025 14:08:01 UTC] ⚠️ Warning: Failed to sync booking with CRM.
+[28-Apr-2025 14:08:01 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:08:02 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:08:02 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/odcz00nfqy3g2ps","access_code":"odcz00nfqy3g2ps","reference":"TXN_ee605dd03be502d86971"}}
+[28-Apr-2025 14:08:02 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/odcz00nfqy3g2ps
+[28-Apr-2025 14:09:22 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-02&booking_id=84
+[28-Apr-2025 14:09:22 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-02
+[28-Apr-2025 14:09:23 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:09:23 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-01",
+            "Check_out_Date": "2025-05-02",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:09:24 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:09:28+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:09:28+01:00","id":"6560565000001565001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:09:24 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001565001
+[28-Apr-2025 14:09:24 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:09:24 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:09:24 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/szjqvphvbg739de","access_code":"szjqvphvbg739de","reference":"TXN_868acd36487d7d23513e"}}
+[28-Apr-2025 14:09:24 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/szjqvphvbg739de
+[28-Apr-2025 14:24:38 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-02&booking_id=85
+[28-Apr-2025 14:24:38 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-02
+[28-Apr-2025 14:24:39 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:24:39 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-01",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-02",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:24:39 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:24:44+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:24:44+01:00","id":"6560565000001559002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:24:39 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001559002
+[28-Apr-2025 14:24:39 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:24:40 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:24:40 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/52thsz68dt0pvbt","access_code":"52thsz68dt0pvbt","reference":"TXN_510338196e65703499ea"}}
+[28-Apr-2025 14:24:40 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/52thsz68dt0pvbt
+[28-Apr-2025 14:30:25 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-03&check_out=2025-05-04&booking_id=86
+[28-Apr-2025 14:30:25 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-03, Check-out: 2025-05-04
+[28-Apr-2025 14:30:26 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:30:26 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-03",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-04",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:30:27 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:30:31+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:30:31+01:00","id":"6560565000001542079","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:30:27 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001542079
+[28-Apr-2025 14:30:27 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:30:27 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:30:27 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/c6z3tj0lsh4eval","access_code":"c6z3tj0lsh4eval","reference":"TXN_85d259866bc2cac8e90d"}}
+[28-Apr-2025 14:30:27 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/c6z3tj0lsh4eval
+[28-Apr-2025 14:34:25 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-03&check_out=2025-05-06&booking_id=87
+[28-Apr-2025 14:34:25 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-03, Check-out: 2025-05-06
+[28-Apr-2025 14:34:26 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:34:26 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "15.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-03",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-06",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:34:27 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:34:31+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:34:31+01:00","id":"6560565000001564002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:34:27 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001564002
+[28-Apr-2025 14:34:27 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:34:27 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:34:27 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/tvrius40mopbo9x","access_code":"tvrius40mopbo9x","reference":"TXN_1fff21ecbb88a63ed37d"}}
+[28-Apr-2025 14:34:27 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/tvrius40mopbo9x
+[28-Apr-2025 14:45:57 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-03&check_out=2025-05-07&booking_id=88
+[28-Apr-2025 14:45:57 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-03, Check-out: 2025-05-07
+[28-Apr-2025 14:45:58 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:45:58 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "20.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-03",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-07",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:45:59 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:46:03+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:46:03+01:00","id":"6560565000001542103","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:45:59 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001542103
+[28-Apr-2025 14:45:59 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:45:59 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:45:59 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/q2c4ufj8t4dvnnb","access_code":"q2c4ufj8t4dvnnb","reference":"TXN_a159c84bbe54574fd28a"}}
+[28-Apr-2025 14:45:59 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/q2c4ufj8t4dvnnb
+[28-Apr-2025 14:56:07 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-03&check_out=2025-05-10&booking_id=89
+[28-Apr-2025 14:56:07 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-03, Check-out: 2025-05-10
+[28-Apr-2025 14:56:08 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 14:56:08 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "35.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-03",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-10",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 14:56:08 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T15:56:13+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T15:56:13+01:00","id":"6560565000001559014","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 14:56:08 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001559014
+[28-Apr-2025 14:56:08 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 14:56:09 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:56:09 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/wtx85vkfv7yw97q","access_code":"wtx85vkfv7yw97q","reference":"TXN_a0cd3df347b00262f3ee"}}
+[28-Apr-2025 14:56:09 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/wtx85vkfv7yw97q
+[28-Apr-2025 15:01:04 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-03&check_out=2025-05-29&booking_id=90
+[28-Apr-2025 15:01:04 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-03, Check-out: 2025-05-29
+[28-Apr-2025 15:01:04 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:01:04 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "130.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-03",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-29",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:01:05 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:01:09+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:01:09+01:00","id":"6560565000001552002","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:01:05 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001552002
+[28-Apr-2025 15:01:05 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:01:06 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:01:06 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/zshufd3yiyb83v6","access_code":"zshufd3yiyb83v6","reference":"TXN_81cb0024d24d6bd58814"}}
+[28-Apr-2025 15:01:06 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/zshufd3yiyb83v6
+[28-Apr-2025 15:04:27 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-04-28&check_out=2025-05-31&booking_id=91
+[28-Apr-2025 15:04:27 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-04-28, Check-out: 2025-05-31
+[28-Apr-2025 15:04:28 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:04:28 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "165.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-04-28",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-31",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:04:29 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:04:33+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:04:33+01:00","id":"6560565000001554026","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:04:29 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001554026
+[28-Apr-2025 15:04:29 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:04:30 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:04:30 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/ipd2kqosbcze43r","access_code":"ipd2kqosbcze43r","reference":"TXN_d0315d4be23d2680be9b"}}
+[28-Apr-2025 15:04:30 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/ipd2kqosbcze43r
+[28-Apr-2025 15:05:27 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-06-01&check_out=2025-06-04&booking_id=92
+[28-Apr-2025 15:05:27 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-06-01, Check-out: 2025-06-04
+[28-Apr-2025 15:05:28 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:05:28 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "15.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-06-01",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-06-04",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:05:29 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:05:33+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:05:33+01:00","id":"6560565000001567001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:05:29 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001567001
+[28-Apr-2025 15:05:29 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:05:29 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:05:29 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/phoe0j7zow3coxh","access_code":"phoe0j7zow3coxh","reference":"TXN_ac02bf4caa8b36b8e8fa"}}
+[28-Apr-2025 15:05:29 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/phoe0j7zow3coxh
+[28-Apr-2025 15:26:43 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-06-01&check_out=2025-06-04&booking_id=93
+[28-Apr-2025 15:26:43 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-06-01, Check-out: 2025-06-04
+[28-Apr-2025 15:26:43 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:26:43 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "15.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-06-01",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-06-04",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:26:44 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:26:48+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:26:48+01:00","id":"6560565000001569001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:26:44 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001569001
+[28-Apr-2025 15:26:44 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:26:46 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:26:46 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/f0yc958bfpk7b00","access_code":"f0yc958bfpk7b00","reference":"TXN_e436113c7890e7186bdc"}}
+[28-Apr-2025 15:26:46 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/f0yc958bfpk7b00
+[28-Apr-2025 15:29:29 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-04-28&check_out=2025-04-30&booking_id=95
+[28-Apr-2025 15:29:29 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-04-28, Check-out: 2025-04-30
+[28-Apr-2025 15:29:29 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:29:29 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "10.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-04-28",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-04-30",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:29:30 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:29:34+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:29:34+01:00","id":"6560565000001571001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:29:30 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001571001
+[28-Apr-2025 15:29:30 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:29:30 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:29:30 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/lfvvd0gce2qfnno","access_code":"lfvvd0gce2qfnno","reference":"TXN_cedb57842f81f142efbb"}}
+[28-Apr-2025 15:29:30 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/lfvvd0gce2qfnno
+[28-Apr-2025 15:31:32 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-01&check_out=2025-05-03&booking_id=96
+[28-Apr-2025 15:31:32 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-01, Check-out: 2025-05-03
+[28-Apr-2025 15:31:32 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:31:32 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "10.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-01",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-03",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:31:33 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:31:37+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:31:37+01:00","id":"6560565000001572001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:31:33 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001572001
+[28-Apr-2025 15:31:33 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:31:33 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:31:33 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/s09cuw8yh5aw3qv","access_code":"s09cuw8yh5aw3qv","reference":"TXN_d91a756fef2eddba5ef4"}}
+[28-Apr-2025 15:31:33 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/s09cuw8yh5aw3qv
+[28-Apr-2025 15:47:09 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-04&check_out=2025-05-07&booking_id=97
+[28-Apr-2025 15:47:09 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-04, Check-out: 2025-05-07
+[28-Apr-2025 15:47:09 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[28-Apr-2025 15:47:09 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "15.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-04",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-07",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-28",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-28"
+        }
+    ]
+}
+[28-Apr-2025 15:47:10 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:47:14+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:47:14+01:00","id":"6560565000001545041","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[28-Apr-2025 15:47:10 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001545041
+[28-Apr-2025 15:47:10 UTC] 🔑 Paystack Secret Key: SET
+[28-Apr-2025 15:47:10 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 15:47:10 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/hr39jwfjvqkv1aa","access_code":"hr39jwfjvqkv1aa","reference":"TXN_efe20c5e585a4cb7e20c"}}
+[28-Apr-2025 15:47:10 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/hr39jwfjvqkv1aa
+[29-Apr-2025 11:01:03 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-08&check_out=2025-05-13&booking_id=98
+[29-Apr-2025 11:01:03 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-08, Check-out: 2025-05-13
+[29-Apr-2025 11:01:03 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[29-Apr-2025 11:01:03 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Stephanie (Service: Booking)",
+            "Amount": "25.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001592001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-08",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-13",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-04-29",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-05-29"
+        }
+    ]
+}
+[29-Apr-2025 11:01:04 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-29T06:01:09-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-29T06:01:09-05:00","id":"6560565000001594001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[29-Apr-2025 11:01:04 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001594001
+[29-Apr-2025 11:01:04 UTC] 🔑 Paystack Secret Key: SET
+[29-Apr-2025 11:01:05 UTC] 🔍 Paystack API HTTP Code: 200
+[29-Apr-2025 11:01:05 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/fybmgtdr87t9zju","access_code":"fybmgtdr87t9zju","reference":"TXN_4828539b0cbfd927bfde"}}
+[29-Apr-2025 11:01:05 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/fybmgtdr87t9zju
+[02-May-2025 11:10:37 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-05-15&check_out=2025-05-24&booking_id=99
+[02-May-2025 11:10:37 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-05-15, Check-out: 2025-05-24
+[02-May-2025 11:10:38 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[02-May-2025 11:10:38 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "4steps (Service: Booking)",
+            "Amount": "1800000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001558001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001542027"
+            },
+            "Property_Name": "hthehee",
+            "Check_in_Date": "2025-05-15",
+            "Property_Type": "Hotel",
+            "Check_out_Date": "2025-05-24",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-02",
+            "Type": "Hotel",
+            "Closing_Date": "2025-06-01"
+        }
+    ]
+}
+[02-May-2025 11:10:38 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-02T06:10:43-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-02T06:10:43-05:00","id":"6560565000001647001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[02-May-2025 11:10:38 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001647001
+[02-May-2025 11:10:38 UTC] 🔑 Paystack Secret Key: SET
+[02-May-2025 11:10:39 UTC] 🔍 Paystack API HTTP Code: 200
+[02-May-2025 11:10:39 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/26p5ik9ryyq2vmb","access_code":"26p5ik9ryyq2vmb","reference":"TXN_a2b2566775cfaa8ea1a9"}}
+[02-May-2025 11:10:39 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/26p5ik9ryyq2vmb
+[02-May-2025 12:11:09 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-30&check_out=2025-05-31&booking_id=100
+[02-May-2025 12:11:09 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-30, Check-out: 2025-05-31
+[02-May-2025 12:11:09 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[02-May-2025 12:11:09 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "4steps (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001558001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-30",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-31",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-02",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-06-01"
+        }
+    ]
+}
+[02-May-2025 12:11:10 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-02T07:11:14-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-02T07:11:14-05:00","id":"6560565000001658001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[02-May-2025 12:11:10 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001658001
+[02-May-2025 12:11:10 UTC] 🔑 Paystack Secret Key: SET
+[02-May-2025 12:11:10 UTC] 🔍 Paystack API HTTP Code: 200
+[02-May-2025 12:11:10 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/btn24lcpt0miy5i","access_code":"btn24lcpt0miy5i","reference":"TXN_e4af3d2c61ea864a4fc5"}}
+[02-May-2025 12:11:10 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/btn24lcpt0miy5i
+[06-May-2025 21:41:54 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-14&check_out=2025-05-15&booking_id=101
+[06-May-2025 21:41:54 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-14, Check-out: 2025-05-15
+[06-May-2025 21:41:55 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[06-May-2025 21:41:55 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-14",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-15",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-06",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-06-05"
+        }
+    ]
+}
+[06-May-2025 21:41:56 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-06T16:42:00-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-06T16:42:00-05:00","id":"6560565000001695001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[06-May-2025 21:41:56 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001695001
+[06-May-2025 21:41:56 UTC] 🔑 Paystack Secret Key: SET
+[06-May-2025 21:41:56 UTC] 🔍 Paystack API HTTP Code: 200
+[06-May-2025 21:41:56 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/wme49d0b3l3xfid","access_code":"wme49d0b3l3xfid","reference":"TXN_1c37eb1d7845e41816dc"}}
+[06-May-2025 21:41:56 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/wme49d0b3l3xfid
+[07-May-2025 07:02:21 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-16&check_out=2025-05-19&booking_id=102
+[07-May-2025 07:02:21 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-16, Check-out: 2025-05-19
+[07-May-2025 07:02:21 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:02:21 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "15.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-16",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-19",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:02:22 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:02:26-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:02:26-05:00","id":"6560565000001702001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:02:22 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001702001
+[07-May-2025 07:02:22 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:02:22 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:02:22 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/ep93sjbmay8gz6u","access_code":"ep93sjbmay8gz6u","reference":"TXN_b0150abde0f7105c5d3f"}}
+[07-May-2025 07:02:22 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/ep93sjbmay8gz6u
+[07-May-2025 07:06:08 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-05-08&check_out=2025-05-09&booking_id=103
+[07-May-2025 07:06:08 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-05-08, Check-out: 2025-05-09
+[07-May-2025 07:06:09 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:06:09 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "200000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001542027"
+            },
+            "Property_Name": "hthehee",
+            "Check_in_Date": "2025-05-08",
+            "Property_Type": "Hotel",
+            "Check_out_Date": "2025-05-09",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:06:09 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:06:13-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:06:13-05:00","id":"6560565000001704001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:06:09 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001704001
+[07-May-2025 07:06:09 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:06:10 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:06:10 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/vdnsjxshlfoxh48","access_code":"vdnsjxshlfoxh48","reference":"TXN_51850683b84f0f5aa5ba"}}
+[07-May-2025 07:06:10 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/vdnsjxshlfoxh48
+[07-May-2025 07:18:03 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-05-10&check_out=2025-05-11&booking_id=104
+[07-May-2025 07:18:03 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-05-10, Check-out: 2025-05-11
+[07-May-2025 07:18:03 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:18:03 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "200000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001542027"
+            },
+            "Property_Name": "hthehee",
+            "Check_in_Date": "2025-05-10",
+            "Property_Type": "Hotel",
+            "Check_out_Date": "2025-05-11",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:18:04 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:18:08-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:18:08-05:00","id":"6560565000001705001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:18:04 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001705001
+[07-May-2025 07:18:04 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:18:04 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:18:04 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/oxbef77lb29qau1","access_code":"oxbef77lb29qau1","reference":"TXN_ba99b3605533fb4c5bca"}}
+[07-May-2025 07:18:04 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/oxbef77lb29qau1
+[07-May-2025 07:21:31 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=18&check_in=2025-05-12&check_out=2025-05-14&booking_id=105
+[07-May-2025 07:21:31 UTC] 🔍 Checking overlapping bookings for Property ID: 18, Check-in: 2025-05-12, Check-out: 2025-05-14
+[07-May-2025 07:21:32 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:21:32 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "400000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001542027"
+            },
+            "Property_Name": "hthehee",
+            "Check_in_Date": "2025-05-12",
+            "Property_Type": "Hotel",
+            "Check_out_Date": "2025-05-14",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:21:32 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:21:36-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:21:36-05:00","id":"6560565000001707001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:21:32 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001707001
+[07-May-2025 07:21:32 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:21:33 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:21:33 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/5prabc3si3ivgqu","access_code":"5prabc3si3ivgqu","reference":"TXN_9678041e3e3efbe45801"}}
+[07-May-2025 07:21:33 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/5prabc3si3ivgqu
+[07-May-2025 07:33:11 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=17&check_in=2025-05-08&check_out=2025-05-09&booking_id=106
+[07-May-2025 07:33:11 UTC] 🔍 Checking overlapping bookings for Property ID: 17, Check-in: 2025-05-08, Check-out: 2025-05-09
+[07-May-2025 07:33:12 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:33:12 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "500000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001543014"
+            },
+            "Property_Name": "Luxury Home",
+            "Check_in_Date": "2025-05-08",
+            "Property_Type": "Hotel",
+            "Check_out_Date": "2025-05-09",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:33:13 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:33:17-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:33:17-05:00","id":"6560565000001709001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:33:13 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001709001
+[07-May-2025 07:33:13 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:33:13 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:33:13 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/21lg781fq580cjm","access_code":"21lg781fq580cjm","reference":"TXN_8c6c93ebc97fbad0ef0b"}}
+[07-May-2025 07:33:13 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/21lg781fq580cjm
+[07-May-2025 07:41:12 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-20&check_out=2025-05-21&booking_id=107
+[07-May-2025 07:41:12 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-20, Check-out: 2025-05-21
+[07-May-2025 07:41:13 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 07:41:13 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-20",
+            "Property_Type": "Short_stay",
+            "Check_out_Date": "2025-05-21",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Short_stay",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 07:41:13 UTC] ✅ Zoho Deals API Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:41:18-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:41:18-05:00","id":"6560565000001695016","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 07:41:13 UTC] ✅ Zoho Booking Created. Deal ID: 6560565000001695016
+[07-May-2025 07:41:13 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 07:41:14 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 07:41:14 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/ruwp43c3n934azb","access_code":"ruwp43c3n934azb","reference":"TXN_6e3a6bed89b34faea9b5"}}
+[07-May-2025 07:41:14 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/ruwp43c3n934azb
+[07-May-2025 08:03:17 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=17&check_in=2025-05-10&check_out=2025-05-12&booking_id=109
+[07-May-2025 08:03:17 UTC] 🔍 Checking overlapping bookings for Property ID: 17, Check-in: 2025-05-10, Check-out: 2025-05-12
+[07-May-2025 08:03:17 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function createZohoBooking(), 7 passed in /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/checkout.php on line 125 and exactly 8 expected in /home/u561302917/domains/pishonserv.com/public_html/__dev/includes/zoho_functions.php:270
+Stack trace:
+#0 /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/checkout.php(125): createZohoBooking()
+#1 {main}
+  thrown in /home/u561302917/domains/pishonserv.com/public_html/__dev/includes/zoho_functions.php on line 270
+[07-May-2025 08:05:06 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=17&check_in=2025-05-10&check_out=2025-05-12&booking_id=109
+[07-May-2025 08:05:06 UTC] 🔍 Checking overlapping bookings for Property ID: 17, Check-in: 2025-05-10, Check-out: 2025-05-12
+[07-May-2025 08:05:06 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 08:05:06 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "1000000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001543014"
+            },
+            "Property_Name": "Luxury Home",
+            "Check_in_Date": "2025-05-10",
+            "Check_out_Date": "2025-05-12",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Property_Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 08:05:06 UTC] 📤 Sending to Zoho: {"data":[{"Deal_Name":"Noah (Service: Booking)","Amount":"1000000.00","Stage":"Pending","Contact_Name":{"id":"6560565000001543027"},"Vendor_Contact":{"id":"6560565000001543014"},"Property_Name":"Luxury Home","Check_in_Date":"2025-05-10","Check_out_Date":"2025-05-12","Booking_Status":"Pending","Booking_Date":"2025-05-07","Type":"Hotel","Property_Type":"Hotel","Closing_Date":"2025-06-06"}]}
+[07-May-2025 08:05:07 UTC] 📥 Zoho API Response (201): {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:05:11-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:05:11-05:00","id":"6560565000001714001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 08:05:07 UTC] ✅ Zoho Deal Created. Deal ID: 6560565000001714001 for booking ID: 109
+[07-May-2025 08:05:07 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 08:05:08 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 08:05:08 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/5fx1hknh2h6g4z0","access_code":"5fx1hknh2h6g4z0","reference":"TXN_156a241c341f29db9dcf"}}
+[07-May-2025 08:05:08 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/5fx1hknh2h6g4z0
+[07-May-2025 08:11:23 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=17&check_in=2025-05-13&check_out=2025-05-16&booking_id=110
+[07-May-2025 08:11:23 UTC] 🔍 Checking overlapping bookings for Property ID: 17, Check-in: 2025-05-13, Check-out: 2025-05-16
+[07-May-2025 08:11:24 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 08:11:24 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "1500000.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001543014"
+            },
+            "Property_Name": "Luxury Home",
+            "Check_in_Date": "2025-05-13",
+            "Check_out_Date": "2025-05-16",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Hotel",
+            "Property_Type": "Hotel",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 08:11:24 UTC] 📤 Sending to Zoho: {"data":[{"Deal_Name":"Noah (Service: Booking)","Amount":"1500000.00","Stage":"Pending","Contact_Name":{"id":"6560565000001543027"},"Vendor_Contact":{"id":"6560565000001543014"},"Property_Name":"Luxury Home","Check_in_Date":"2025-05-13","Check_out_Date":"2025-05-16","Booking_Status":"Pending","Booking_Date":"2025-05-07","Type":"Hotel","Property_Type":"Hotel","Closing_Date":"2025-06-06"}]}
+[07-May-2025 08:11:24 UTC] 📥 Zoho API Response (201): {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:11:29-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:11:29-05:00","id":"6560565000001710013","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 08:11:24 UTC] ✅ Zoho Deal Created. Deal ID: 6560565000001710013 for booking ID: 110
+[07-May-2025 08:11:24 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 08:11:25 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 08:11:25 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/djzkw89fgv4kv3w","access_code":"djzkw89fgv4kv3w","reference":"TXN_2929493d6c13158d058b"}}
+[07-May-2025 08:11:25 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/djzkw89fgv4kv3w
+[07-May-2025 08:13:31 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-22&check_out=2025-05-23&booking_id=111
+[07-May-2025 08:13:31 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-22, Check-out: 2025-05-23
+[07-May-2025 08:13:32 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[07-May-2025 08:13:32 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": "5.00",
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001543027"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001545001"
+            },
+            "Property_Name": "Testing",
+            "Check_in_Date": "2025-05-22",
+            "Check_out_Date": "2025-05-23",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-07",
+            "Type": "Short_stay",
+            "Property_Type": "Short_stay",
+            "Closing_Date": "2025-06-06"
+        }
+    ]
+}
+[07-May-2025 08:13:32 UTC] 📤 Sending to Zoho: {"data":[{"Deal_Name":"Noah (Service: Booking)","Amount":"5.00","Stage":"Pending","Contact_Name":{"id":"6560565000001543027"},"Vendor_Contact":{"id":"6560565000001545001"},"Property_Name":"Testing","Check_in_Date":"2025-05-22","Check_out_Date":"2025-05-23","Booking_Status":"Pending","Booking_Date":"2025-05-07","Type":"Short_stay","Property_Type":"Short_stay","Closing_Date":"2025-06-06"}]}
+[07-May-2025 08:13:32 UTC] 📥 Zoho API Response (201): {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:13:37-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:13:37-05:00","id":"6560565000001706025","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record added","status":"success"}]}
+[07-May-2025 08:13:32 UTC] ✅ Zoho Deal Created. Deal ID: 6560565000001706025 for booking ID: 111
+[07-May-2025 08:13:32 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 08:13:33 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 08:13:33 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/40iw6saslw0mipd","access_code":"40iw6saslw0mipd","reference":"TXN_c7a130e1b5feb50c4766"}}
+[07-May-2025 08:13:33 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/40iw6saslw0mipd
+[07-May-2025 08:25:13 UTC] 🔍 Entering checkout.php with URL: /dashboard/checkout.php?property_id=25&check_in=2025-05-24&check_out=2025-05-25&booking_id=112
+[07-May-2025 08:25:13 UTC] 🔍 Checking overlapping bookings for Property ID: 25, Check-in: 2025-05-24, Check-out: 2025-05-25
+[07-May-2025 08:25:13 UTC] 🔑 Paystack Secret Key: SET
+[07-May-2025 08:25:13 UTC] 🔍 Paystack API HTTP Code: 200
+[07-May-2025 08:25:13 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/mysftjg8h1o2d1b","access_code":"mysftjg8h1o2d1b","reference":"TXN_e53c491bf8c150b59a0b"}}
+[07-May-2025 08:25:13 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/mysftjg8h1o2d1b

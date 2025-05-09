@@ -418,3 +418,3166 @@
 [20-Mar-2025 09:17:58 UTC] ✅ Paystack Payment Verified Successfully
 [20-Mar-2025 09:18:00 UTC] ❌ Error: Zoho IDs not found for User: 6560565000000970001, Property: 6560565000000998013.
 [20-Mar-2025 09:18:00 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 11:18:19 UTC] 🔍 Paystack Callback Triggered with reference: TXN_84a62068dfa6524858c9
+[28-Apr-2025 11:18:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'p.zoho_property_id' in 'SELECT' in /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php:56
+Stack trace:
+#0 /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php(56): mysqli->prepare()
+#1 {main}
+  thrown in /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php on line 56
+[28-Apr-2025 11:24:00 UTC] 🔍 Paystack Callback Triggered with reference: TXN_84a62068dfa6524858c9
+[28-Apr-2025 11:24:00 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'u.zoho_contact_id' in 'SELECT' in /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php:56
+Stack trace:
+#0 /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php(56): mysqli->prepare()
+#1 {main}
+  thrown in /home/u561302917/domains/pishonserv.com/public_html/__dev/dashboard/paystack_callback.php on line 56
+[28-Apr-2025 11:25:13 UTC] 🔍 Paystack Callback Triggered with reference: TXN_84a62068dfa6524858c9
+[28-Apr-2025 11:25:13 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 11:25:13 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913325855,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_84a62068dfa6524858c9",
+        "receipt_number": null,
+        "amount": 45000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T11:18:22.000Z",
+        "created_at": "2025-04-28T11:18:11.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=13"
+        },
+        "log": {
+            "start_time": 1745839096,
+            "time_spent": 7,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 6
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 7
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_7j4d45gxag",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T11:18:22.000Z",
+        "createdAt": "2025-04-28T11:18:11.000Z",
+        "requested_amount": 45000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T11:18:11.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 11:25:13 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 11:25:14 UTC] ❌ Transaction failed: Unknown column 'p.zoho_property_id' in 'SELECT'
+[28-Apr-2025 11:25:57 UTC] 🔍 Paystack Callback Triggered with reference: TXN_15dbbdd3f2f50b0cd3b2
+[28-Apr-2025 11:25:57 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 11:25:57 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913356828,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_15dbbdd3f2f50b0cd3b2",
+        "receipt_number": null,
+        "amount": 45000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-04-28T11:26:00.000Z",
+        "created_at": "2025-04-28T11:25:49.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=13"
+        },
+        "log": {
+            "start_time": 1745839553,
+            "time_spent": 8,
+            "attempts": 1,
+            "authentication": "3DS",
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 5
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 5
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 7
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 8
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_tyoprzh5io",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_J5p85gPBUhAcZBi9cL5k",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T11:26:00.000Z",
+        "createdAt": "2025-04-28T11:25:49.000Z",
+        "requested_amount": 45000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T11:25:49.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 11:25:57 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 11:25:58 UTC] ❌ Transaction failed: Unknown column 'p.zoho_property_id' in 'SELECT'
+[28-Apr-2025 12:02:38 UTC] 🔍 Paystack Callback Triggered with reference: TXN_97d804a2a480b467b2c8
+[28-Apr-2025 12:02:39 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:02:39 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913500164,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_97d804a2a480b467b2c8",
+        "receipt_number": null,
+        "amount": 45000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T12:02:41.000Z",
+        "created_at": "2025-04-28T12:02:36.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=13"
+        },
+        "log": {
+            "start_time": 1745841759,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_fn0u45yvwy",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T12:02:41.000Z",
+        "createdAt": "2025-04-28T12:02:36.000Z",
+        "requested_amount": 45000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T12:02:36.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 12:02:39 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 12:02:39 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001246001.
+[28-Apr-2025 12:02:39 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 12:05:20 UTC] 🔍 Paystack Callback Triggered with reference: TXN_63a2e2ae2458a84eb7c1
+[28-Apr-2025 12:05:21 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:05:21 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913511292,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_63a2e2ae2458a84eb7c1",
+        "receipt_number": null,
+        "amount": 1000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T12:05:23.000Z",
+        "created_at": "2025-04-28T12:05:16.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745841920,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 4
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 15,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_bk5b09t1y9",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T12:05:23.000Z",
+        "createdAt": "2025-04-28T12:05:16.000Z",
+        "requested_amount": 1000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T12:05:16.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 12:05:21 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 12:05:22 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 12:05:22 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 12:51:50 UTC] 🔍 Paystack Callback Triggered with reference: TXN_4309d57e399cb87e0f81
+[28-Apr-2025 12:51:50 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 12:51:50 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913698307,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_4309d57e399cb87e0f81",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T12:51:52.000Z",
+        "created_at": "2025-04-28T12:51:45.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745844709,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_9bg1qr0y3z",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T12:51:52.000Z",
+        "createdAt": "2025-04-28T12:51:45.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T12:51:45.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 12:51:50 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 12:51:51 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 12:51:51 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 13:02:29 UTC] 🔍 Paystack Callback Triggered with reference: TXN_887a6e2e4c00844082f4
+[28-Apr-2025 13:02:29 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 13:02:29 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913727380,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_887a6e2e4c00844082f4",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T13:02:32.000Z",
+        "created_at": "2025-04-28T13:02:23.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745845347,
+            "time_spent": 6,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 6
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_6dm8gvyee9",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T13:02:32.000Z",
+        "createdAt": "2025-04-28T13:02:23.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T13:02:23.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 13:02:29 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 13:02:31 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 13:02:31 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:08:09 UTC] 🔍 Paystack Callback Triggered with reference: TXN_ee605dd03be502d86971
+[28-Apr-2025 14:08:09 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:08:09 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913913944,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_ee605dd03be502d86971",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:08:11.000Z",
+        "created_at": "2025-04-28T14:08:06.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745849290,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_nyclp81cxm",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:08:11.000Z",
+        "createdAt": "2025-04-28T14:08:06.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:08:06.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:08:09 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:08:09 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:08:09 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:09:33 UTC] 🔍 Paystack Callback Triggered with reference: TXN_868acd36487d7d23513e
+[28-Apr-2025 14:09:33 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:09:33 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913917523,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_868acd36487d7d23513e",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:09:35.000Z",
+        "created_at": "2025-04-28T14:09:28.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745849371,
+            "time_spent": 6,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 5
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 6
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_c69ulwiik1",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:09:35.000Z",
+        "createdAt": "2025-04-28T14:09:28.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:09:28.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:09:33 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:09:34 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:09:34 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:24:47 UTC] 🔍 Paystack Callback Triggered with reference: TXN_510338196e65703499ea
+[28-Apr-2025 14:24:47 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:24:47 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913949432,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_510338196e65703499ea",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:24:50.000Z",
+        "created_at": "2025-04-28T14:24:44.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745850288,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_tx8gk0ch7k",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:24:50.000Z",
+        "createdAt": "2025-04-28T14:24:44.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:24:44.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:24:47 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:24:48 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:24:48 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:30:35 UTC] 🔍 Paystack Callback Triggered with reference: TXN_85d259866bc2cac8e90d
+[28-Apr-2025 14:30:35 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:30:35 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913960633,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_85d259866bc2cac8e90d",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:30:37.000Z",
+        "created_at": "2025-04-28T14:30:32.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745850634,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 4
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_82fie6x3x6",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:30:37.000Z",
+        "createdAt": "2025-04-28T14:30:32.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:30:32.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:30:35 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:30:35 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:30:35 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:34:34 UTC] 🔍 Paystack Callback Triggered with reference: TXN_1fff21ecbb88a63ed37d
+[28-Apr-2025 14:34:34 UTC] 🔍 Paystack API HTTP Code: 200
+[28-Apr-2025 14:34:34 UTC] 🔍 Paystack Response: {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913968931,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_1fff21ecbb88a63ed37d",
+        "receipt_number": null,
+        "amount": 1500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:34:36.000Z",
+        "created_at": "2025-04-28T14:34:32.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745850874,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 23,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_uadtcrir91",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:34:36.000Z",
+        "createdAt": "2025-04-28T14:34:32.000Z",
+        "requested_amount": 1500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:34:32.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:34:34 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:34:35 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:34:35 UTC] ✅ Redirecting to payment_success.php
+[28-Apr-2025 14:46:06 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_a159c84bbe54574fd28a
+[28-Apr-2025 14:46:07 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4913993311,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_a159c84bbe54574fd28a",
+        "receipt_number": null,
+        "amount": 2000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:46:09.000Z",
+        "created_at": "2025-04-28T14:46:04.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745851567,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 30,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_p1v2muedor",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:46:09.000Z",
+        "createdAt": "2025-04-28T14:46:04.000Z",
+        "requested_amount": 2000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:46:04.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:46:07 UTC] ✅ Paystack Payment Verified Successfully.
+[28-Apr-2025 14:46:08 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:46:08 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 14:56:20 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_a0cd3df347b00262f3ee
+[28-Apr-2025 14:56:20 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914019892,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_a0cd3df347b00262f3ee",
+        "receipt_number": null,
+        "amount": 3500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T14:56:22.000Z",
+        "created_at": "2025-04-28T14:56:13.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745852177,
+            "time_spent": 7,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 6
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 7
+                }
+            ]
+        },
+        "fees": 53,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_lgh5iqwc38",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T14:56:22.000Z",
+        "createdAt": "2025-04-28T14:56:13.000Z",
+        "requested_amount": 3500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T14:56:13.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 14:56:20 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 14:56:20 UTC] ✅ Found booking ID: 70
+[28-Apr-2025 14:56:20 UTC] ⚠️ Booking update affected 0 rows. Possible already updated or mismatch.
+[28-Apr-2025 14:56:21 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 14:56:21 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:01:13 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_81cb0024d24d6bd58814
+[28-Apr-2025 15:01:13 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914030057,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_81cb0024d24d6bd58814",
+        "receipt_number": null,
+        "amount": 13000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:01:14.000Z",
+        "created_at": "2025-04-28T15:01:10.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745852473,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 195,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_3qkk8cv85i",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:01:14.000Z",
+        "createdAt": "2025-04-28T15:01:10.000Z",
+        "requested_amount": 13000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:01:10.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:01:13 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:01:13 UTC] ✅ Found booking ID: 70
+[28-Apr-2025 15:01:13 UTC] ⚠️ Booking update affected 0 rows. Forcing another manual update check...
+[28-Apr-2025 15:01:13 UTC] ❌ Booking update failed even after retry. Investigate booking ID: 70
+[28-Apr-2025 15:01:14 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:01:14 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:04:37 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_d0315d4be23d2680be9b
+[28-Apr-2025 15:04:37 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914037142,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_d0315d4be23d2680be9b",
+        "receipt_number": null,
+        "amount": 16500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:04:39.000Z",
+        "created_at": "2025-04-28T15:04:34.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745852677,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 248,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_wmwa2vh537",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:04:39.000Z",
+        "createdAt": "2025-04-28T15:04:34.000Z",
+        "requested_amount": 16500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:04:34.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:04:37 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:04:37 UTC] ✅ Found booking ID: 91
+[28-Apr-2025 15:04:37 UTC] ✅ Booking status and payment status updated successfully for ID: 91
+[28-Apr-2025 15:04:37 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:04:37 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:05:35 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_ac02bf4caa8b36b8e8fa
+[28-Apr-2025 15:05:36 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914039298,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_ac02bf4caa8b36b8e8fa",
+        "receipt_number": null,
+        "amount": 1500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:05:38.000Z",
+        "created_at": "2025-04-28T15:05:34.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745852736,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 23,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_2sw43r5wn0",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:05:38.000Z",
+        "createdAt": "2025-04-28T15:05:34.000Z",
+        "requested_amount": 1500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:05:34.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:05:36 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:05:36 UTC] ✅ Found booking ID: 91
+[28-Apr-2025 15:05:36 UTC] ⚠️ Booking update affected 0 rows. Forcing another manual update check...
+[28-Apr-2025 15:05:36 UTC] ❌ Booking update failed even after retry. Investigate booking ID: 91
+[28-Apr-2025 15:05:36 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:05:36 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:26:54 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_e436113c7890e7186bdc
+[28-Apr-2025 15:26:54 UTC] ✅ Transaction Fetched: user_id=19, property_id=25, booking_id=93
+[28-Apr-2025 15:26:54 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[28-Apr-2025 15:26:54 UTC] ✅ Booking Record Verified: booking_id=93
+[28-Apr-2025 15:26:55 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914081425,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_e436113c7890e7186bdc",
+        "receipt_number": null,
+        "amount": 1500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:26:57.000Z",
+        "created_at": "2025-04-28T15:26:50.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745854015,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 23,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_den4ywx9e2",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:26:57.000Z",
+        "createdAt": "2025-04-28T15:26:50.000Z",
+        "requested_amount": 1500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:26:50.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:26:55 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:26:55 UTC] ✅ Booking and Payment Updated for booking_id=93
+[28-Apr-2025 15:26:55 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:26:55 UTC] ✅ Zoho Booking Updated Successfully
+[28-Apr-2025 15:26:55 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:29:37 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_cedb57842f81f142efbb
+[28-Apr-2025 15:29:37 UTC] ✅ Transaction Fetched: user_id=19, property_id=25, booking_id=95
+[28-Apr-2025 15:29:37 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[28-Apr-2025 15:29:37 UTC] ✅ Booking Record Verified: booking_id=95
+[28-Apr-2025 15:29:38 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914086494,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_cedb57842f81f142efbb",
+        "receipt_number": null,
+        "amount": 1000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:29:39.000Z",
+        "created_at": "2025-04-28T15:29:35.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745854178,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 15,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_1vo0wjody7",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:29:39.000Z",
+        "createdAt": "2025-04-28T15:29:35.000Z",
+        "requested_amount": 1000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:29:35.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:29:38 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:29:38 UTC] ✅ Booking and Payment Updated for booking_id=95
+[28-Apr-2025 15:29:38 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:29:38 UTC] ✅ Zoho Booking Updated Successfully
+[28-Apr-2025 15:29:38 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:31:41 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_d91a756fef2eddba5ef4
+[28-Apr-2025 15:31:41 UTC] ✅ Transaction Fetched: user_id=19, property_id=25, booking_id=96
+[28-Apr-2025 15:31:41 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[28-Apr-2025 15:31:41 UTC] ✅ Booking Record Verified: booking_id=96
+[28-Apr-2025 15:31:42 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914090582,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_d91a756fef2eddba5ef4",
+        "receipt_number": null,
+        "amount": 1000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:31:44.000Z",
+        "created_at": "2025-04-28T15:31:38.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745854300,
+            "time_spent": 6,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 5
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 6
+                }
+            ]
+        },
+        "fees": 15,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_v1bephqj9i",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:31:44.000Z",
+        "createdAt": "2025-04-28T15:31:38.000Z",
+        "requested_amount": 1000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:31:38.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:31:42 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:31:42 UTC] ✅ Booking and Payment Updated for booking_id=96
+[28-Apr-2025 15:31:42 UTC] ❌ Error: Zoho Deal ID not found for booking ID: 6560565000001413002.
+[28-Apr-2025 15:31:42 UTC] ✅ Zoho Booking Updated Successfully
+[28-Apr-2025 15:31:42 UTC] ✅ Transaction committed successfully.
+[28-Apr-2025 15:47:17 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_efe20c5e585a4cb7e20c
+[28-Apr-2025 15:47:17 UTC] ✅ Transaction Fetched: user_id=19, property_id=25, booking_id=97
+[28-Apr-2025 15:47:17 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[28-Apr-2025 15:47:17 UTC] ✅ Booking Record Verified: booking_id=97
+[28-Apr-2025 15:47:18 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4914117373,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_efe20c5e585a4cb7e20c",
+        "receipt_number": null,
+        "amount": 1500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-28T15:47:20.000Z",
+        "created_at": "2025-04-28T15:47:15.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.108.126",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745855239,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 23,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_w1mtruy7dc",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267311148,
+            "first_name": null,
+            "last_name": null,
+            "email": "noah@example.com",
+            "customer_code": "CUS_50w93u3g8icjpea",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-28T15:47:20.000Z",
+        "createdAt": "2025-04-28T15:47:15.000Z",
+        "requested_amount": 1500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-28T15:47:15.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[28-Apr-2025 15:47:18 UTC] ✅ Paystack Payment Verified Successfully
+[28-Apr-2025 15:47:18 UTC] ✅ Booking and Payment Updated for booking_id=97
+[28-Apr-2025 15:47:19 UTC] 🔄 Zoho API HTTP Code: 200
+[28-Apr-2025 15:47:19 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-28T16:47:24+01:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-28T16:47:14+01:00","id":"6560565000001545041","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[28-Apr-2025 15:47:19 UTC] ✅ Zoho Deal successfully updated for booking ID: 97 (Deal ID: 6560565000001545041)
+[28-Apr-2025 15:47:19 UTC] ✅ Zoho Deal (Booking) status updated to Confirmed for Booking ID: 97
+[28-Apr-2025 15:47:19 UTC] ✅ Transaction committed successfully.
+[29-Apr-2025 11:01:34 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_4828539b0cbfd927bfde
+[29-Apr-2025 11:01:34 UTC] ✅ Transaction Fetched: user_id=52, property_id=25, booking_id=98
+[29-Apr-2025 11:01:34 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[29-Apr-2025 11:01:34 UTC] ✅ Booking Record Verified: booking_id=98
+[29-Apr-2025 11:01:35 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4916430458,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_4828539b0cbfd927bfde",
+        "receipt_number": null,
+        "amount": 2500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-04-29T11:01:37.000Z",
+        "created_at": "2025-04-29T11:01:10.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.89.32.203",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1745924476,
+            "time_spent": 22,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 20
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 22
+                }
+            ]
+        },
+        "fees": 38,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_k9yltygyqh",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 267697557,
+            "first_name": null,
+            "last_name": null,
+            "email": "udomamorolake@gmail.com",
+            "customer_code": "CUS_pd3lavo7vomx9y4",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-04-29T11:01:37.000Z",
+        "createdAt": "2025-04-29T11:01:10.000Z",
+        "requested_amount": 2500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-04-29T11:01:10.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[29-Apr-2025 11:01:35 UTC] ✅ Paystack Payment Verified Successfully
+[29-Apr-2025 11:01:35 UTC] ✅ Booking and Payment Updated for booking_id=98
+[29-Apr-2025 11:01:36 UTC] 🔄 Zoho API HTTP Code: 200
+[29-Apr-2025 11:01:36 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-04-29T06:01:40-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-04-29T06:01:09-05:00","id":"6560565000001594001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[29-Apr-2025 11:01:36 UTC] ✅ Zoho Deal successfully updated for booking ID: 98 (Deal ID: 6560565000001594001)
+[29-Apr-2025 11:01:36 UTC] ✅ Zoho Deal (Booking) status updated to Confirmed for Booking ID: 98
+[29-Apr-2025 11:01:36 UTC] ✅ Transaction committed successfully.
+[02-May-2025 12:12:19 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_e4af3d2c61ea864a4fc5
+[02-May-2025 12:12:19 UTC] ✅ Transaction Fetched: user_id=37, property_id=25, booking_id=100
+[02-May-2025 12:12:19 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[02-May-2025 12:12:19 UTC] ✅ Booking Record Verified: booking_id=100
+[02-May-2025 12:12:19 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4926420067,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_e4af3d2c61ea864a4fc5",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-02T12:12:21.000Z",
+        "created_at": "2025-05-02T12:11:15.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "49.36.209.120",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1746187879,
+            "time_spent": 62,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 60
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 62
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_fx0kbrda7z",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 262464312,
+            "first_name": null,
+            "last_name": null,
+            "email": "amarjeet4steps@gmail.com",
+            "customer_code": "CUS_oxkuw10uxtk7a40",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-02T12:12:21.000Z",
+        "createdAt": "2025-05-02T12:11:15.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-02T12:11:15.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[02-May-2025 12:12:19 UTC] ✅ Paystack Payment Verified Successfully
+[02-May-2025 12:12:19 UTC] ✅ Booking and Payment Updated for booking_id=100
+[02-May-2025 12:12:20 UTC] 🔄 Zoho API HTTP Code: 200
+[02-May-2025 12:12:20 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-02T07:12:24-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-02T07:11:14-05:00","id":"6560565000001658001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[02-May-2025 12:12:20 UTC] ✅ Zoho Deal successfully updated for booking ID: 100 (Deal ID: 6560565000001658001)
+[02-May-2025 12:12:20 UTC] ✅ Zoho Deal (Booking) status updated to Confirmed for Booking ID: 100
+[02-May-2025 12:12:20 UTC] ✅ Transaction committed successfully.
+[06-May-2025 21:42:04 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_1c37eb1d7845e41816dc
+[06-May-2025 21:42:04 UTC] ✅ Transaction Fetched: user_id=33, property_id=25, booking_id=101
+[06-May-2025 21:42:04 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[06-May-2025 21:42:04 UTC] ✅ Booking Record Verified: booking_id=101
+[06-May-2025 21:42:05 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4940390989,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_1c37eb1d7845e41816dc",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-06T21:42:07.000Z",
+        "created_at": "2025-05-06T21:42:01.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/auth\/login.php"
+        },
+        "log": {
+            "start_time": 1746567725,
+            "time_spent": 4,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 4
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_ppzspchjuk",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-06T21:42:07.000Z",
+        "createdAt": "2025-05-06T21:42:01.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-06T21:42:01.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[06-May-2025 21:42:05 UTC] ✅ Paystack Payment Verified Successfully
+[06-May-2025 21:42:05 UTC] ✅ Booking and Payment Updated for booking_id=101
+[06-May-2025 21:42:06 UTC] 🔄 Zoho API HTTP Code: 200
+[06-May-2025 21:42:06 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-06T16:42:10-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-06T16:42:00-05:00","id":"6560565000001695001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[06-May-2025 21:42:06 UTC] ✅ Zoho Deal successfully updated for booking ID: 101 (Deal ID: 6560565000001695001)
+[06-May-2025 21:42:06 UTC] ✅ Zoho Deal (Booking) status updated to Confirmed for Booking ID: 101
+[06-May-2025 21:42:06 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:02:29 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_b0150abde0f7105c5d3f
+[07-May-2025 07:02:29 UTC] ✅ Transaction Fetched: user_id=33, property_id=25, booking_id=102
+[07-May-2025 07:02:29 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[07-May-2025 07:02:29 UTC] ✅ Booking Record Verified: booking_id=102
+[07-May-2025 07:02:30 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941226143,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_b0150abde0f7105c5d3f",
+        "receipt_number": null,
+        "amount": 1500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:02:32.000Z",
+        "created_at": "2025-05-07T07:02:27.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1746601350,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 23,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_j363h43owr",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:02:32.000Z",
+        "createdAt": "2025-05-07T07:02:27.000Z",
+        "requested_amount": 1500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:02:27.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:02:30 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:02:30 UTC] ✅ Booking and Payment Updated for booking_id=102
+[07-May-2025 07:02:30 UTC] ❌ Error: Zoho Deal ID missing for booking ID: 6560565000001702001.
+[07-May-2025 07:02:30 UTC] ❌ Failed to update Zoho Deal for zoho_deal_id: 6560565000001702001
+[07-May-2025 07:02:30 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:06:16 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_51850683b84f0f5aa5ba
+[07-May-2025 07:06:16 UTC] ✅ Transaction Fetched: user_id=33, property_id=18, booking_id=103
+[07-May-2025 07:06:16 UTC] ✅ Property Fetched: owner_id=9, listing_type=short_let
+[07-May-2025 07:06:16 UTC] ✅ Booking Record Verified: booking_id=103
+[07-May-2025 07:06:16 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941235676,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_51850683b84f0f5aa5ba",
+        "receipt_number": null,
+        "amount": 20000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:06:19.000Z",
+        "created_at": "2025-05-07T07:06:14.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=18"
+        },
+        "log": {
+            "start_time": 1746601577,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_entwnylcyh",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:06:19.000Z",
+        "createdAt": "2025-05-07T07:06:14.000Z",
+        "requested_amount": 20000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:06:14.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:06:16 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:06:16 UTC] ✅ Booking and Payment Updated for booking_id=103
+[07-May-2025 07:06:17 UTC] ❌ Error: Zoho Deal ID missing for booking ID: 6560565000001704001.
+[07-May-2025 07:06:17 UTC] ❌ Failed to update Zoho Deal for zoho_deal_id: 6560565000001704001
+[07-May-2025 07:06:17 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:18:11 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_ba99b3605533fb4c5bca
+[07-May-2025 07:18:11 UTC] ✅ Transaction Fetched: user_id=33, property_id=18, booking_id=104
+[07-May-2025 07:18:11 UTC] ✅ Property Fetched: owner_id=9, listing_type=short_let
+[07-May-2025 07:18:11 UTC] ✅ Booking Record Verified: booking_id=104
+[07-May-2025 07:18:12 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941265738,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_ba99b3605533fb4c5bca",
+        "receipt_number": null,
+        "amount": 20000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:18:14.000Z",
+        "created_at": "2025-05-07T07:18:09.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=18"
+        },
+        "log": {
+            "start_time": 1746602292,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_kk8fttyfoj",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:18:14.000Z",
+        "createdAt": "2025-05-07T07:18:09.000Z",
+        "requested_amount": 20000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:18:09.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:18:12 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:18:12 UTC] ✅ Booking and Payment Updated for booking_id=104
+[07-May-2025 07:18:13 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 07:18:13 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:18:17-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:18:08-05:00","id":"6560565000001705001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 07:18:13 UTC] ✅ Zoho Deal successfully updated for booking ID: 104 (Deal ID: 6560565000001705001)
+[07-May-2025 07:18:13 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 104
+[07-May-2025 07:18:13 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:21:38 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_9678041e3e3efbe45801
+[07-May-2025 07:21:38 UTC] ✅ Transaction Fetched: user_id=33, property_id=18, booking_id=105
+[07-May-2025 07:21:38 UTC] ✅ Property Fetched: owner_id=9, listing_type=short_let
+[07-May-2025 07:21:38 UTC] ✅ Booking Record Verified: booking_id=105
+[07-May-2025 07:21:39 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941274506,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_9678041e3e3efbe45801",
+        "receipt_number": null,
+        "amount": 40000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:21:41.000Z",
+        "created_at": "2025-05-07T07:21:37.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=18"
+        },
+        "log": {
+            "start_time": 1746602499,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_ma57csydn4",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:21:41.000Z",
+        "createdAt": "2025-05-07T07:21:37.000Z",
+        "requested_amount": 40000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:21:37.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:21:39 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:21:39 UTC] ✅ Booking and Payment Updated for booking_id=105
+[07-May-2025 07:21:40 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 07:21:40 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:21:44-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:21:36-05:00","id":"6560565000001707001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 07:21:40 UTC] ✅ Zoho Deal successfully updated for booking ID: 105 (Deal ID: 6560565000001707001)
+[07-May-2025 07:21:40 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 105
+[07-May-2025 07:21:40 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:37:38 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_8c6c93ebc97fbad0ef0b
+[07-May-2025 07:37:38 UTC] ✅ Transaction Fetched: user_id=33, property_id=17, booking_id=106
+[07-May-2025 07:37:38 UTC] ✅ Property Fetched: owner_id=20, listing_type=short_let
+[07-May-2025 07:37:38 UTC] ✅ Booking Record Verified: booking_id=106
+[07-May-2025 07:37:38 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941305257,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_8c6c93ebc97fbad0ef0b",
+        "receipt_number": null,
+        "amount": 50000000,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:33:22.000Z",
+        "created_at": "2025-05-07T07:33:18.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=17"
+        },
+        "log": {
+            "start_time": 1746603200,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_lj78ei3hel",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:33:22.000Z",
+        "createdAt": "2025-05-07T07:33:18.000Z",
+        "requested_amount": 50000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:33:18.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:37:38 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:37:38 UTC] ✅ Booking and Payment Updated for booking_id=106
+[07-May-2025 07:37:40 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 07:37:40 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:37:44-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:33:17-05:00","id":"6560565000001709001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 07:37:40 UTC] ✅ Zoho Deal successfully updated for booking ID: 106 (Deal ID: 6560565000001709001)
+[07-May-2025 07:37:40 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 106
+[07-May-2025 07:37:40 UTC] ✅ Transaction committed successfully.
+[07-May-2025 07:41:20 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_6e3a6bed89b34faea9b5
+[07-May-2025 07:41:20 UTC] ✅ Transaction Fetched: user_id=33, property_id=25, booking_id=107
+[07-May-2025 07:41:20 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[07-May-2025 07:41:20 UTC] ✅ Booking Record Verified: booking_id=107
+[07-May-2025 07:41:21 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941329427,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_6e3a6bed89b34faea9b5",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T07:41:23.000Z",
+        "created_at": "2025-05-07T07:41:18.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1746603681,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_o6fv8gj5gq",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T07:41:23.000Z",
+        "createdAt": "2025-05-07T07:41:18.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T07:41:18.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 07:41:21 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 07:41:21 UTC] ✅ Booking and Payment Updated for booking_id=107
+[07-May-2025 07:41:22 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 07:41:22 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T02:41:26-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T02:41:18-05:00","id":"6560565000001695016","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 07:41:22 UTC] ✅ Zoho Deal successfully updated for booking ID: 107 (Deal ID: 6560565000001695016)
+[07-May-2025 07:41:22 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 107, zoho_deal_id: 6560565000001695016
+[07-May-2025 07:41:22 UTC] ✅ Transaction committed successfully.
+[07-May-2025 08:05:22 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_156a241c341f29db9dcf
+[07-May-2025 08:05:22 UTC] ✅ Transaction Fetched: user_id=33, property_id=17, booking_id=109
+[07-May-2025 08:05:22 UTC] ✅ Property Fetched: owner_id=20, listing_type=short_let
+[07-May-2025 08:05:22 UTC] ✅ Booking Record Verified: booking_id=109
+[07-May-2025 08:05:22 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941404409,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_156a241c341f29db9dcf",
+        "receipt_number": null,
+        "amount": 100000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-05-07T08:05:24.000Z",
+        "created_at": "2025-05-07T08:05:12.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=17"
+        },
+        "log": {
+            "start_time": 1746605115,
+            "time_spent": 11,
+            "attempts": 2,
+            "authentication": "3DS",
+            "errors": 1,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 3
+                },
+                {
+                    "type": "error",
+                    "message": "Error: Insufficient Funds",
+                    "time": 3
+                },
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 8
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 8
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 9
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 10
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window closed",
+                    "time": 11
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_64myz5imft",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_J5p85gPBUhAcZBi9cL5k",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T08:05:24.000Z",
+        "createdAt": "2025-05-07T08:05:12.000Z",
+        "requested_amount": 100000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T08:05:12.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 08:05:22 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 08:05:22 UTC] ✅ Booking and Payment Updated for booking_id=109
+[07-May-2025 08:05:23 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 08:05:23 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:05:27-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:05:11-05:00","id":"6560565000001714001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 08:05:23 UTC] ✅ Zoho Deal successfully updated for booking ID: 109 (Deal ID: 6560565000001714001)
+[07-May-2025 08:05:23 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 109, zoho_deal_id: 6560565000001714001
+[07-May-2025 08:05:23 UTC] ✅ Transaction committed successfully.
+[07-May-2025 08:11:34 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_2929493d6c13158d058b
+[07-May-2025 08:11:34 UTC] ✅ Transaction Fetched: user_id=33, property_id=17, booking_id=110
+[07-May-2025 08:11:34 UTC] ✅ Property Fetched: owner_id=20, listing_type=short_let
+[07-May-2025 08:11:34 UTC] ✅ Booking Record Verified: booking_id=110
+[07-May-2025 08:11:35 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941433878,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_2929493d6c13158d058b",
+        "receipt_number": null,
+        "amount": 150000000,
+        "message": "test-3ds",
+        "gateway_response": "[Test] Approved",
+        "paid_at": "2025-05-07T08:11:37.000Z",
+        "created_at": "2025-05-07T08:11:29.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=17"
+        },
+        "log": {
+            "start_time": 1746605492,
+            "time_spent": 6,
+            "attempts": 1,
+            "authentication": "3DS",
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 4
+                },
+                {
+                    "type": "auth",
+                    "message": "Authentication Required: 3DS",
+                    "time": 4
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window opened",
+                    "time": 5
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 6
+                },
+                {
+                    "type": "action",
+                    "message": "Third-party authentication window closed",
+                    "time": 6
+                }
+            ]
+        },
+        "fees": 200000,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_88qxojc5no",
+            "bin": "408408",
+            "last4": "0409",
+            "exp_month": "01",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_J5p85gPBUhAcZBi9cL5k",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T08:11:37.000Z",
+        "createdAt": "2025-05-07T08:11:29.000Z",
+        "requested_amount": 150000000,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T08:11:29.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 08:11:35 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 08:11:35 UTC] ✅ Booking and Payment Updated for booking_id=110
+[07-May-2025 08:11:36 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 08:11:36 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:11:40-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:11:29-05:00","id":"6560565000001710013","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 08:11:36 UTC] ✅ Zoho Deal successfully updated for booking ID: 110 (Deal ID: 6560565000001710013)
+[07-May-2025 08:11:36 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 110, zoho_deal_id: 6560565000001710013
+[07-May-2025 08:11:36 UTC] ✅ Transaction committed successfully.
+[07-May-2025 08:13:39 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_c7a130e1b5feb50c4766
+[07-May-2025 08:13:39 UTC] ✅ Transaction Fetched: user_id=33, property_id=25, booking_id=111
+[07-May-2025 08:13:39 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[07-May-2025 08:13:39 UTC] ✅ Booking Record Verified: booking_id=111
+[07-May-2025 08:13:40 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941441226,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_c7a130e1b5feb50c4766",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T08:13:42.000Z",
+        "created_at": "2025-05-07T08:13:37.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1746605620,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_ful91sqcnb",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T08:13:42.000Z",
+        "createdAt": "2025-05-07T08:13:37.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T08:13:37.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 08:13:40 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 08:13:40 UTC] ✅ Booking and Payment Updated for booking_id=111
+[07-May-2025 08:13:41 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 08:13:41 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:13:45-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:13:37-05:00","id":"6560565000001706025","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 08:13:41 UTC] ✅ Zoho Deal successfully updated for booking ID: 111 (Deal ID: 6560565000001706025)
+[07-May-2025 08:13:41 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 111, zoho_deal_id: 6560565000001706025
+[07-May-2025 08:13:41 UTC] ✅ Transaction committed successfully.
+[07-May-2025 08:25:19 UTC] 🔔 Paystack Callback Triggered. Reference: TXN_e53c491bf8c150b59a0b
+[07-May-2025 08:25:19 UTC] ✅ Transaction Fetched: user_id=33, property_id=25, booking_id=112
+[07-May-2025 08:25:19 UTC] ✅ Property Fetched: owner_id=50, listing_type=short_let
+[07-May-2025 08:25:19 UTC] ✅ Booking Record Verified: booking_id=112
+[07-May-2025 08:25:19 UTC] 📡 Paystack Response (200): {
+    "status": true,
+    "message": "Verification successful",
+    "data": {
+        "id": 4941468791,
+        "domain": "test",
+        "status": "success",
+        "reference": "TXN_e53c491bf8c150b59a0b",
+        "receipt_number": null,
+        "amount": 500,
+        "message": null,
+        "gateway_response": "Successful",
+        "paid_at": "2025-05-07T08:25:22.000Z",
+        "created_at": "2025-05-07T08:25:17.000Z",
+        "channel": "card",
+        "currency": "NGN",
+        "ip_address": "102.88.109.131",
+        "metadata": {
+            "referrer": "https:\/\/dev.pishonserv.com\/property.php?id=25"
+        },
+        "log": {
+            "start_time": 1746606320,
+            "time_spent": 3,
+            "attempts": 1,
+            "errors": 0,
+            "success": true,
+            "mobile": false,
+            "input": [],
+            "history": [
+                {
+                    "type": "action",
+                    "message": "Attempted to pay with card",
+                    "time": 2
+                },
+                {
+                    "type": "success",
+                    "message": "Successfully paid with card",
+                    "time": 3
+                }
+            ]
+        },
+        "fees": 8,
+        "fees_split": null,
+        "authorization": {
+            "authorization_code": "AUTH_8zzng0ubhj",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "12",
+            "exp_year": "2030",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_VIOENJ4JMQqhggQvVFAv",
+            "account_name": null,
+            "receiver_bank_account_number": null,
+            "receiver_bank": null
+        },
+        "customer": {
+            "id": 270348905,
+            "first_name": null,
+            "last_name": null,
+            "email": "noahabayomi14@gmail.com",
+            "customer_code": "CUS_78m0czt1afx7k26",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "split": [],
+        "order_id": null,
+        "paidAt": "2025-05-07T08:25:22.000Z",
+        "createdAt": "2025-05-07T08:25:17.000Z",
+        "requested_amount": 500,
+        "pos_transaction_data": null,
+        "source": null,
+        "fees_breakdown": null,
+        "connect": null,
+        "transaction_date": "2025-05-07T08:25:17.000Z",
+        "plan_object": [],
+        "subaccount": []
+    }
+}
+[07-May-2025 08:25:19 UTC] ✅ Paystack Payment Verified Successfully
+[07-May-2025 08:25:19 UTC] ✅ Booking and Payment Updated for booking_id=112
+[07-May-2025 08:25:21 UTC] 🔄 Zoho API HTTP Code: 200
+[07-May-2025 08:25:21 UTC] 🔄 Zoho Booking Update Response: {"data":[{"code":"SUCCESS","details":{"Modified_Time":"2025-05-07T03:25:25-05:00","Modified_By":{"name":"Pishonserv","id":"6560565000000494001"},"Created_Time":"2025-05-07T03:25:16-05:00","id":"6560565000001721001","Created_By":{"name":"Pishonserv","id":"6560565000000494001"}},"message":"record updated","status":"success"}]}
+[07-May-2025 08:25:21 UTC] ✅ Zoho Deal successfully updated for booking ID: 112 (Deal ID: 6560565000001721001)
+[07-May-2025 08:25:21 UTC] ✅ Zoho Deal updated to Confirmed for booking_id: 112, zoho_deal_id: 6560565000001721001
+[07-May-2025 08:25:21 UTC] ✅ Transaction committed successfully.

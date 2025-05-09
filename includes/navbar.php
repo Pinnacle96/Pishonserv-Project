@@ -18,8 +18,16 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo $base_path; ?>public/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+    .active-link {
+  color: #CC9933 !important;
+  font-weight: 600;
+}
         .slider-image {
             transition: opacity 0.5s ease-in-out;
         }
@@ -45,14 +53,18 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
 
             <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 text-lg text-[#092468] font-medium">
-                <li><a href="<?php echo $base_path; ?>index.php" class="hover:text-[#CC9933] transition">Home</a></li>
-                <li><a href="<?php echo $base_path; ?>properties.php"
-                        class="hover:text-[#CC9933] transition">Listings</a></li>
-                <li><a href="<?php echo $base_path; ?>about.php" class="hover:text-[#CC9933] transition">About</a></li>
-                <li><a href="<?php echo $base_path; ?>contact.php" class="hover:text-[#CC9933] transition">Contact</a>
+                <li><a href="<?php echo $base_path; ?>index.php" class="nav-link hover:text-[#CC9933] transition">Home</a></li>
+                <li><a href="<?php echo $base_path; ?>properties.php" class="nav-link hover:text-[#CC9933] transition">Listings</a></li>
+                <li class="relative group">
+                    <a href="#" class="nav-link hover:text-[#CC9933] transition">Interior</a>
+                    <div class="absolute left-0 hidden group-hover:block bg-white shadow-md rounded mt-1 w-40 z-10">
+                        <a href="<?php echo $base_path; ?>interior_deco.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Interior Deco</a>
+                        <a href="<?php echo $base_path; ?>furniture.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Furniture</a>
+                    </div>
                 </li>
-                <!-- <li><a href="<//?php echo $base_path; ?>career.php" class="hover:text-[#CC9933] transition">Career</a>
-                </li> -->
+                <li><a href="<?php echo $base_path; ?>about.php" class="nav-link hover:text-[#CC9933] transition">About Us</a></li>
+                <li><a href="<?php echo $base_path; ?>contact.php" class="nav-link hover:text-[#CC9933] transition">Contact</a></li>
+                <li><a href="<?php echo $base_path; ?>career.php" class="nav-link hover:text-[#CC9933] transition">Career</a></li>
             </ul>
 
             <!-- Right Section: User and Create Listing -->
@@ -97,7 +109,7 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
                                     <a href="' . $base_path . 'dashboard/buyer_profile.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Profile</a>
                                     <a href="' . $base_path . 'dashboard/buyer_security.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Security</a>
                                 ';
-                            } elseif (in_array($user_role, ['agent', 'owner', 'hotel_owner'])) {
+                            } elseif (in_array($user_role, ['agent', 'owner', 'hotel_owner','developer'])) {
                                 echo '
                                     <a href="' . $base_path . 'dashboard/agent_dashboard.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Dashboard</a>
                                     <a href="' . $base_path . 'dashboard/agent_properties.php" class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Properties</a>
@@ -153,18 +165,19 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
         <!-- Mobile Menu (Hidden by Default) -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden">
             <ul class="text-center text-[#092468] text-lg">
-                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>index.php"
-                        class="hover:text-[#CC9933]">Home</a></li>
-                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>properties.php"
-                        class="hover:text-[#CC9933]">Listings</a></li>
-                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>about.php"
-                        class="hover:text-[#CC9933]">About</a></li>
-                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>contact.php"
-                        class="hover:text-[#CC9933]">Contact</a></li>
-                <!-- <li class="py-3 border-b"><a href="<//?php echo $base_path; ?>career.php"
-                        class="hover:text-[#CC9933]">Career</a></li> -->
-                <li class="py-3"><a href="<?php echo $base_path; ?>dashboard/agent_properties.php"
-                        class="bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing +</a></li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>index.php" class="hover:text-[#CC9933]">Home</a></li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>properties.php" class="hover:text-[#CC9933]">Listings</a></li>
+                <li class="py-3 border-b relative group">
+                    <span class="inline-block w-full hover:text-[#CC9933]">Interior</span>
+                    <ul class="bg-white text-[#092468] text-sm hidden group-hover:block">
+                        <li><a href="<?php echo $base_path; ?>interior_deco.php" class="block px-4 py-2 hover:bg-gray-100">Interior Deco</a></li>
+                        <li><a href="<?php echo $base_path; ?>furniture.php" class="block px-4 py-2 hover:bg-gray-100">Furniture</a></li>
+                    </ul>
+                </li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>about.php" class="hover:text-[#CC9933]">About Us</a></li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>contact.php" class="hover:text-[#CC9933]">Contact</a></li>
+                <li class="py-3 border-b"><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933]">Career</a></li>
+                <li class="py-3"><a href="<?php echo $base_path; ?>dashboard/agent_properties.php" class="bg-[#CC9933] text-white px-6 py-3 rounded hover:bg-[#d88b1c]">Create Listing +</a></li>
             </ul>
         </div>
     </nav>

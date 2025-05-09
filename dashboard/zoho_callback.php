@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
 // Zoho API Credentials
 define('ZOHO_CLIENT_ID', '1000.2KD1I4HCI92RHHQRIS75XYH6DACN6F');
 define('ZOHO_CLIENT_SECRET', 'a72667839b8925812680e1584ec09a03958786cd28');
-define('ZOHO_REDIRECT_URI', 'https://dev.pishonserv.com/dashboard/zoho_callback.php');
+define('ZOHO_REDIRECT_URI', 'http://127.0.0.1/pishonserv/dashboard/zoho_callback.php');
 
 // Check if the authorization code is received from Zoho
 if (!isset($_GET['code'])) {
@@ -40,10 +40,15 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/x-www-form-urlencoded"]);
 
+// ⚠️ Disable SSL checks (LOCAL DEV ONLY)
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 $response = curl_exec($ch);
 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curl_error = curl_error($ch); // Capture any cURL errors
+$curl_error = curl_error($ch);
 curl_close($ch);
+
 
 // Debugging: Check if Zoho API responded
 if ($response === false) {

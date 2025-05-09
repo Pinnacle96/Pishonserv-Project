@@ -5,11 +5,34 @@ ini_set('display_errors', 1);
 session_start();
 
 include '../includes/db_connect.php';
-include '../includes/config.php'; // ✅ LOCATIONIQ_API_KEY
+include '../includes/config.php';
+include '../includes/zoho_functions.php';
+include '../includes/vision_helper.php'; // ✅ Vision API Helper
 
-// ✅ Check Request Method
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     die("Error: Invalid request method.");
+}
+
+// ✅ Timestamp
+$timestamp = date("Y-m-d H:i:s");
+
+// ✅ CSRF Token Logging
+$log_post = __DIR__ . '/debug_csrf_post.log';
+$log_session = __DIR__ . '/debug_csrf_session.log';
+$log_combined = __DIR__ . '/debug_csrf.log';
+
+file_put_contents($log_post, "[$timestamp] POST: " . json_encode($_POST) . "\n", FILE_APPEND);
+file_put_contents($log_session, "[$timestamp] SESSION: " . json_encode($_SESSION) . "\n", FILE_APPEND);
+
+$posted_token = $_POST['csrf_token'] ?? 'MISSING';
+$session_token = $_SESSION['csrf_token'] ?? 'MISSING';
+file_put_contents($log_combined, "[$timestamp] Session: $session_token | Posted: $posted_token\n", FILE_APPEND);
+
+if (empty($_POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['error'] = "File size too large. Try reducing image sizes.";
+    error_log("❌ POST is empty. Likely exceeded PHP post_max_size.");
+    header("Location: ../dashboard/agent_properties.php");
+    exit();
 }
 
 // ✅ Validate CSRF Token
@@ -37,15 +60,15 @@ $longitude = null;
 // ✅ Validate Required Fields
 if (!$title || !$price || !$location || !$listing_type || !$type || $bedrooms < 0 || $bathrooms < 0 || !$size || $garage < 0 || !$description || !$owner_id) {
     error_log("❌ Missing required fields.");
-    header("Location: ../dashboard/agent_properties.php?error=missing_fields");
+    $_SESSION['error'] = "Please fill all required fields.";
+    header("Location: ../dashboard/agent_properties.php");
     exit();
 }
 
-// 🌍 LocationIQ API: Get Coordinates
+// ✅ Get Coordinates from LocationIQ
 try {
     $encodedLocation = urlencode($location);
     $url = "https://us1.locationiq.com/v1/search.php?key=" . LOCATIONIQ_API_KEY . "&q=$encodedLocation&format=json";
-
     $response = file_get_contents($url);
     $data = json_decode($response, true);
 
@@ -57,7 +80,7 @@ try {
     error_log("⚠️ LocationIQ API error: " . $e->getMessage());
 }
 
-// ✅ Handle Images
+// ✅ Handle Image Upload
 $imagePaths = [];
 
 if (!empty($_FILES['images']['name'][0])) {
@@ -68,7 +91,8 @@ if (!empty($_FILES['images']['name'][0])) {
 
     if (count($_FILES['images']['name']) > 7) {
         error_log("❌ Too many images uploaded.");
-        header("Location: ../dashboard/agent_properties.php?error=max_files");
+        $_SESSION['error'] = "You can upload up to 7 images only.";
+        header("Location: ../dashboard/agent_properties.php");
         exit();
     }
 
@@ -79,6 +103,13 @@ if (!empty($_FILES['images']['name'][0])) {
             $filePath = $uploadDir . $uniqueName;
 
             if (move_uploaded_file($tmp_name, $filePath)) {
+                if (!isImageSafe($filePath)) {
+                    unlink($filePath);
+                    error_log("❌ Blocked illicit image: $uniqueName");
+                    $_SESSION['error'] = "One or more images contain inappropriate content.";
+                    header("Location: ../dashboard/agent_properties.php");
+                    exit();
+                }
                 $imagePaths[] = $uniqueName;
             } else {
                 error_log("❌ Failed to upload image: " . $_FILES['images']['name'][$key]);
@@ -91,21 +122,27 @@ if (!empty($_FILES['images']['name'][0])) {
 
 $imageString = count($imagePaths) > 0 ? implode(',', $imagePaths) : "default.jpg";
 
-// ✅ Insert into DB
+// ✅ Property Defaults
+$admin_approved = 1;
+$status = 'available';
+$expiry_date = in_array($listing_type, ['for_sale', 'for_rent']) ? date('Y-m-d', strtotime('+30 days')) : null;
+
+// ✅ Insert Property
 $stmt = $conn->prepare("INSERT INTO properties (
     title, price, location, listing_type, type,
     bedrooms, bathrooms, size, garage, description, images, owner_id,
-    status, admin_approved, latitude, longitude
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?)");
+    status, admin_approved, latitude, longitude, expiry_date
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 if (!$stmt) {
     error_log("❌ SQL Prepare Error: " . $conn->error);
-    header("Location: ../dashboard/agent_properties.php?error=sql_error");
+    $_SESSION['error'] = "Database error. Please try again.";
+    header("Location: ../dashboard/agent_properties.php");
     exit();
 }
 
 $stmt->bind_param(
-    "sdsssiiisssiss",
+    "sdsssiiisssisssss",
     $title,
     $price,
     $location,
@@ -118,19 +155,43 @@ $stmt->bind_param(
     $description,
     $imageString,
     $owner_id,
+    $status,
+    $admin_approved,
     $latitude,
-    $longitude
+    $longitude,
+    $expiry_date
 );
 
 if ($stmt->execute()) {
-    $_SESSION['success'] = "Property added successfully! Pending admin approval.";
-    error_log("✅ Property added with ID: " . $stmt->insert_id);
-    header("Location: ../dashboard/agent_properties.php?success=true");
+    $property_id = $stmt->insert_id;
+    $stmt->close();
+
+    // ✅ Get Zoho lead ID
+    $stmt = $conn->prepare("SELECT zoho_lead_id FROM users WHERE id = ?");
+    $stmt->bind_param("i", $owner_id);
+    $stmt->execute();
+    $stmt->bind_result($zoho_lead_id);
+    $stmt->fetch();
+    $stmt->close();
+
+    if (!empty($zoho_lead_id)) {
+        try {
+            createZohoProperty($title, $price, $location, $listing_type, $status, $type, $bedrooms, $bathrooms, $size, $description, $garage, $zoho_lead_id, $owner_id, $property_id);
+        } catch (Exception $e) {
+            error_log("❌ Zoho sync failed: " . $e->getMessage());
+        }
+    } else {
+        error_log("⚠️ Missing zoho_lead_id for user $owner_id, skipping sync.");
+    }
+
+    $_SESSION['success'] = "Property added successfully and synced to Zoho.";
+    header("Location: ../dashboard/agent_properties.php");
     ob_end_flush();
     exit();
 } else {
     error_log("❌ SQL Execution Error: " . $stmt->error);
-    header("Location: ../dashboard/agent_properties.php?error=db_insert_failed");
+    $_SESSION['error'] = "Failed to save property. Please try again.";
+    header("Location: ../dashboard/agent_properties.php");
     ob_end_flush();
     exit();
 }

@@ -1,5 +1,9 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/logs/book_property_error.log'); // Save into a separate error log
 include 'includes/db_connect.php';
 include 'includes/zoho_functions.php';
 
@@ -144,17 +148,17 @@ if (!$found_booking_id) {
 
 
 // ✅ Sync Booking to Zoho CRM
-$zoho_booking_id = createZohoBooking($user_id, $property_id, $status, $check_in, $check_out, $days, $total_price);
+$zoho_booking_id = createZohoBooking($user_id, $property_id, $booking_id, $status, $check_in, $check_out, $days, $total_price);
 if (!$zoho_booking_id) {
     $_SESSION['error'] = "Failed to sync booking with CRM.";
 }
 
-// ✅ Update Property Status
-$property_status = ($type === 'short_let') ? 'booked' : (($type === 'hotel') ? 'reserved' : 'available');
-$stmt = $conn->prepare("UPDATE properties SET status = ? WHERE id = ?");
-$stmt->bind_param("si", $property_status, $property_id);
-$stmt->execute();
-$stmt->close();
+// // ✅ Update Property Status
+// $property_status = ($type === 'short_let') ? 'booked' : (($type === 'hotel') ? 'reserved' : 'available');
+// $stmt = $conn->prepare("UPDATE properties SET status = ? WHERE id = ?");
+// $stmt->bind_param("si", $property_status, $property_id);
+// $stmt->execute();
+// $stmt->close();
 
 // ✅ Redirect to Checkout for Shortlet/Hotel Payments
 if ($type === 'short_let' || $type === 'hotel') {

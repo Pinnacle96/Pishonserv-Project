@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Define allowed roles
-$allowed_roles = ['agent', 'owner', 'hotel_owner'];
+$allowed_roles = ['agent', 'owner', 'hotel_owner', 'developer'];
 
 // Check if the user's role is allowed
 if (!in_array($_SESSION['role'], $allowed_roles)) {

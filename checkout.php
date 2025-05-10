@@ -76,8 +76,8 @@ function log_payment_error($message)
                         onchange="updateDeliveryFee()">
                         <option value="">Select State</option>
                         <?php foreach ($delivery_fees as $state => $fee): ?>
-                        <option value="<?php echo $state; ?>" data-fee="<?php echo $fee; ?>"><?php echo $state; ?>
-                        </option>
+                            <option value="<?php echo $state; ?>" data-fee="<?php echo $fee; ?>"><?php echo $state; ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                     <input type="text" name="delivery_country" placeholder="Country" value="Nigeria" required
@@ -91,17 +91,17 @@ function log_payment_error($message)
                         <?php
                         $gateways = [
                             "paystack" => "paystack.png",
-                            "flutterwave" => "flutterwave.png",
-                            "opay" => "opay.png",
-                            "palmpay" => "palmpay.png"
+                            "flutterwave" => "flutterwave.png"
+                            //"opay" => "opay.png",
+                            //"palmpay" => "palmpay.png"
                         ];
                         foreach ($gateways as $key => $icon): ?>
-                        <label
-                            class="border rounded-lg p-3 flex items-center justify-center cursor-pointer bg-white shadow hover:ring-2 hover:ring-[#F4A124] transition-all">
-                            <input type="radio" name="payment_method" value="<?php echo $key; ?>" class="hidden peer">
-                            <img src="<?php echo $base_path . 'public/icons/' . $icon; ?>"
-                                alt="<?php echo ucfirst($key); ?>" class="h-10 peer-checked:scale-110 transition">
-                        </label>
+                            <label
+                                class="border rounded-lg p-3 flex items-center justify-center cursor-pointer bg-white shadow hover:ring-2 hover:ring-[#F4A124] transition-all">
+                                <input type="radio" name="payment_method" value="<?php echo $key; ?>" class="hidden peer">
+                                <img src="<?php echo $base_path . 'public/icons/' . $icon; ?>"
+                                    alt="<?php echo ucfirst($key); ?>" class="h-10 peer-checked:scale-110 transition">
+                            </label>
                         <?php endforeach; ?>
                     </div>
 
@@ -130,103 +130,175 @@ function log_payment_error($message)
     } catch (Exception $e) {
         error_log($e->getMessage());
     } ?>
-
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
     <script>
-    const baseSubtotal = <?php echo $subtotal; ?>;
+        const baseSubtotal = <?php echo $subtotal; ?>;
 
-    function updateDeliveryFee() {
-        const selected = document.getElementById("delivery_state").selectedOptions[0];
-        const fee = parseInt(selected.dataset.fee || 0);
-        document.getElementById("delivery-fee").textContent = fee.toLocaleString();
-        document.getElementById("delivery_fee_input").value = fee;
-        document.getElementById("grand-total").textContent = (baseSubtotal + fee).toLocaleString();
-    }
+        function updateDeliveryFee() {
+            const selected = document.getElementById("delivery_state").selectedOptions[0];
+            const fee = parseInt(selected.dataset.fee || 0);
+            document.getElementById("delivery-fee").textContent = fee.toLocaleString();
+            document.getElementById("delivery_fee_input").value = fee;
+            document.getElementById("grand-total").textContent = (baseSubtotal + fee).toLocaleString();
+        }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const radios = document.querySelectorAll('input[name="payment_method"]');
-        const form = document.getElementById('checkout-form');
+        document.addEventListener('DOMContentLoaded', function() {
+            const radios = document.querySelectorAll('input[name="payment_method"]');
+            const form = document.getElementById('checkout-form');
 
-        radios.forEach(input => {
-            input.addEventListener('change', function() {
-                document.querySelectorAll('label').forEach(label => label.classList.remove(
-                    'ring-2', 'ring-[#F4A124]'));
-                this.closest('label').classList.add('ring-2', 'ring-[#F4A124]');
-            });
-        });
-
-        form.addEventListener('submit', function(e) {
-            const selected = document.querySelector('input[name="payment_method"]:checked');
-            if (!selected) {
-                e.preventDefault();
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Select Payment Method',
-                    text: 'Please choose a payment option before continuing.',
-                    confirmButtonColor: '#F4A124'
+            radios.forEach(input => {
+                input.addEventListener('change', function() {
+                    document.querySelectorAll('label').forEach(label =>
+                        label.classList.remove('ring-2', 'ring-[#F4A124]')
+                    );
+                    this.closest('label').classList.add('ring-2', 'ring-[#F4A124]');
                 });
-            }
-        });
-    });
+            });
 
-    function initiatePayment(event) {
-        event.preventDefault();
-
-        const form = document.getElementById('checkout-form');
-        const formData = new FormData(form);
-
-        fetch('payment/process_payment.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log('Payment Response:', data);
-                if (data.success && data.payment_method === 'paystack') {
-                    const handler = PaystackPop.setup({
-                        key: data.public_key,
-                        email: data.email,
-                        amount: data.amount, // already in kobo
-                        currency: "NGN",
-                        ref: data.reference,
-                        metadata: {
-                            custom_fields: [{
-                                display_name: "Customer Name",
-                                variable_name: "delivery_name",
-                                value: data.name || 'Guest'
-                            }]
-                        },
-                        callback: function(response) {
-                            window.location.href = 'payment/success_callback.php?ref=' +
-                                encodeURIComponent(response.reference);
-                        },
-                        onClose: function() {
-                            Swal.fire({
-                                icon: 'info',
-                                title: 'Payment Cancelled',
-                                text: 'You cancelled the payment.'
-                            });
-                        }
-                    });
-
-                    handler.openIframe();
-                } else {
+            form.addEventListener('submit', function(e) {
+                const selected = document.querySelector('input[name="payment_method"]:checked');
+                if (!selected) {
+                    e.preventDefault();
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: data.message || 'Failed to initiate payment.'
+                        icon: 'warning',
+                        title: 'Select Payment Method',
+                        text: 'Please choose a payment option before continuing.',
+                        confirmButtonColor: '#F4A124'
                     });
                 }
-            })
-            .catch((err) => {
-                console.error('Payment Init Error:', err);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Network Error',
-                    text: 'Unable to connect to server.'
-                });
             });
-    }
+        });
+
+        function initiatePayment(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('checkout-form');
+            const formData = new FormData(form);
+
+            fetch('payment/process_payment.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('Payment Response:', data);
+
+                    if (!data.success) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'Payment initialization failed.'
+                        });
+                        return;
+                    }
+
+                    if (data.payment_method === 'paystack') {
+                        const handler = PaystackPop.setup({
+                            key: data.public_key,
+                            email: data.email,
+                            amount: data.amount, // in kobo
+                            currency: "NGN",
+                            ref: data.reference,
+                            metadata: {
+                                custom_fields: [{
+                                    display_name: "Customer Name",
+                                    variable_name: "delivery_name",
+                                    value: data.name || 'Guest'
+                                }]
+                            },
+                            callback: function(response) {
+                                window.location.href = 'payment/success_callback.php?ref=' +
+                                    encodeURIComponent(response.reference);
+                            },
+                            onClose: function() {
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'Payment Cancelled',
+                                    text: 'You cancelled the payment.'
+                                });
+                            }
+                        });
+                        handler.openIframe();
+                    } else if (data.payment_method === 'flutterwave') {
+                        if (!data.public_key || !data.reference) {
+                            console.error("Missing required Flutterwave values", data);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Payment Info',
+                                text: 'Flutterwave credentials are incomplete or invalid.'
+                            });
+                            return;
+                        }
+
+                        const flutterAmount = parseFloat(data.amount); // amount already in Naira
+
+                        console.log("Flutterwave Payload", {
+                            key: data.public_key,
+                            tx_ref: data.reference,
+                            amount: flutterAmount,
+                            email: data.email,
+                            name: data.name
+                        });
+
+                        try {
+                            FlutterwaveCheckout({
+                                public_key: data.public_key,
+                                tx_ref: data.reference,
+                                amount: flutterAmount,
+                                currency: "NGN",
+                                customer: {
+                                    email: data.email,
+                                    name: data.name || 'Guest',
+                                },
+                                customizations: {
+                                    title: "PishonServ Payment",
+                                    description: data.description,
+                                    logo: "https://pishonserv.com/public/images/logo.png"
+                                },
+                                callback: function(response) {
+                                    if (response.status === "successful") {
+                                        window.location.href = 'payment/success_callback.php?ref=' +
+                                            encodeURIComponent(response.tx_ref);
+                                    } else {
+                                        window.location.href = 'payment/failure_callback.php?ref=' +
+                                            encodeURIComponent(response.tx_ref);
+                                    }
+                                },
+                                onclose: function() {
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Payment Cancelled',
+                                        text: 'You cancelled the payment.'
+                                    });
+                                }
+                            });
+                        } catch (err) {
+                            console.error("⚠️ FlutterwaveCheckout failed to initialize", err);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Flutterwave Init Error',
+                                text: err.message || 'Something went wrong initializing payment.'
+                            });
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Unsupported Method',
+                            text: 'This payment method is not yet implemented.'
+                        });
+                    }
+                })
+                .catch((err) => {
+                    console.error('Payment Init Error:', err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Network Error',
+                        text: 'Unable to connect to server.'
+                    });
+                });
+        }
     </script>
+
 </body>
 
 </html>

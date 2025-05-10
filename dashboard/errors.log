@@ -1034,3 +1034,22 @@ Stack trace:
 [09-May-2025 12:39:45 UTC] 🔍 Paystack API HTTP Code: 0
 [09-May-2025 12:39:45 UTC] 🔍 Paystack Response: null
 [09-May-2025 12:39:45 UTC] ❌ Paystack Payment Error: null
+[10-May-2025 05:46:06 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=49&check_in=2025-05-09&check_out=2025-05-11&booking_id=114
+[10-May-2025 05:49:45 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=61&check_in=2025-05-10&check_out=2025-05-12&booking_id=115
+[10-May-2025 05:49:45 UTC] 🔍 Checking overlapping bookings for Property ID: 61, Check-in: 2025-05-10, Check-out: 2025-05-12
+[10-May-2025 05:49:45 UTC] 🔑 Paystack Secret Key: SET
+[10-May-2025 05:49:45 UTC] 🔍 Paystack API HTTP Code: 0
+[10-May-2025 05:49:45 UTC] 🔍 Paystack Response: null
+[10-May-2025 05:49:45 UTC] ❌ Paystack Payment Error: null
+[10-May-2025 05:50:18 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=61&check_in=2025-05-10&check_out=2025-05-12&booking_id=116
+[10-May-2025 05:50:18 UTC] 🔍 Checking overlapping bookings for Property ID: 61, Check-in: 2025-05-10, Check-out: 2025-05-12
+[10-May-2025 05:50:18 UTC] 🔑 Paystack Secret Key: SET
+[10-May-2025 05:50:18 UTC] 🔍 Paystack API HTTP Code: 0
+[10-May-2025 05:50:18 UTC] 🔍 Paystack Response: null
+[10-May-2025 05:50:18 UTC] ❌ Paystack Payment Error: null
+[10-May-2025 06:25:05 UTC] 🔍 Entering checkout.php with URL: /pishonserv/dashboard/checkout.php?property_id=61&check_in=2025-05-10&check_out=2025-05-12&booking_id=117
+[10-May-2025 06:25:05 UTC] 🔍 Checking overlapping bookings for Property ID: 61, Check-in: 2025-05-10, Check-out: 2025-05-12
+[10-May-2025 06:25:05 UTC] 🔑 Paystack Secret Key: SET
+[10-May-2025 06:25:06 UTC] 🔍 Paystack API HTTP Code: 200
+[10-May-2025 06:25:06 UTC] 🔍 Paystack Response: {"status":true,"message":"Authorization URL created","data":{"authorization_url":"https:\/\/checkout.paystack.com\/eig2nwqk2jdvo0o","access_code":"eig2nwqk2jdvo0o","reference":"TXN_861bb16946cb4b3da157"}}
+[10-May-2025 06:25:06 UTC] ✅ Paystack Payment Initialized: Redirecting to https://checkout.paystack.com/eig2nwqk2jdvo0o

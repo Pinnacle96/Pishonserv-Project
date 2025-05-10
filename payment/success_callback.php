@@ -13,8 +13,12 @@ if (!isset($_GET['ref'])) {
 
 $reference = $_GET['ref'];
 
-// Fetch the order and payment by reference
-$stmt = $conn->prepare("SELECT pp.id AS payment_id, pp.order_id, po.user_id, po.status AS order_status, u.email, u.name FROM product_payments pp JOIN product_orders po ON pp.order_id = po.id JOIN users u ON po.user_id = u.id WHERE pp.payment_status = 'pending' AND pp.reference = ? LIMIT 1");
+// Fetch payment and determine the gateway
+$stmt = $conn->prepare("SELECT pp.id AS payment_id, pp.order_id, pp.payment_method, po.user_id, po.status AS order_status, u.email, u.name 
+    FROM product_payments pp 
+    JOIN product_orders po ON pp.order_id = po.id 
+    JOIN users u ON po.user_id = u.id 
+    WHERE pp.reference = ? LIMIT 1");
 $stmt->bind_param("s", $reference);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -29,28 +33,67 @@ $order_id = $row['order_id'];
 $user_id = $row['user_id'];
 $email = $row['email'];
 $name = $row['name'];
+$payment_method = $row['payment_method'];
 
-// Update payment status
+// 🔐 VERIFY BASED ON GATEWAY
+$verified = false;
+
+if ($payment_method === 'flutterwave') {
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={$reference}",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            "Authorization: Bearer " . FLW_SECRET_KEY
+        ],
+        CURLOPT_SSL_VERIFYPEER => false
+    ]);
+    $api_response = curl_exec($curl);
+    curl_close($curl);
+
+    $verify = json_decode($api_response, true);
+    $verified = isset($verify['status'], $verify['data']) && $verify['status'] === 'success' && $verify['data']['status'] === 'successful';
+} elseif ($payment_method === 'paystack') {
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.paystack.co/transaction/verify/" . urlencode($reference),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            "Authorization: Bearer " . PAYSTACK_SECRET_KEY
+        ],
+        CURLOPT_SSL_VERIFYPEER => false
+    ]);
+    $api_response = curl_exec($curl);
+    curl_close($curl);
+
+    $verify = json_decode($api_response, true);
+    $verified = isset($verify['status'], $verify['data']) && $verify['status'] === true && $verify['data']['status'] === 'success';
+} else {
+    die("Unsupported payment gateway.");
+}
+
+if (!$verified) {
+    die("Payment verification failed or incomplete.");
+}
+
+// ✅ Update payment and order
 $update_payment = $conn->prepare("UPDATE product_payments SET payment_status = 'successful', paid_at = NOW() WHERE id = ?");
 $update_payment->bind_param("i", $payment_id);
 $update_payment->execute();
 
-// Update order status
 $update_order = $conn->prepare("UPDATE product_orders SET status = 'paid' WHERE id = ?");
 $update_order->bind_param("i", $order_id);
 $update_order->execute();
 
 // Delete cart items
 $conn->query("DELETE FROM cart_items WHERE user_id = $user_id");
-
-// Clear session cart
 unset($_SESSION['cart']);
 
-// Setup log file
+// 📧 Send confirmation email
 $log_file = '../logs/email_errors.log';
 $log_handle = fopen($log_file, 'a');
-
 $mail = new PHPMailer(true);
+
 try {
     $mail->isSMTP();
     $mail->Host = 'smtppro.zoho.com';
@@ -65,47 +108,37 @@ try {
 
     $mail->setFrom('pishonserv@pishonserv.com', 'PISHONSERV');
     $mail->addAddress($email, $name);
-
     $mail->isHTML(true);
     $mail->Subject = 'PISHONSERV - Order Confirmation';
 
     $mail->Body = "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background: #f4f4f4;'>
-    <div style='text-align: center;'>
-        <img src='https://pishonserv.com/public/images/logo.png' alt='PISHONSERV Logo' style='width: 150px; margin-bottom: 20px;'>
-    </div>
-    <div style='background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>
-        <h2 style='color: #092468; margin-bottom: 10px;'>Dear {$name},</h2>
-        <p style='font-size: 16px; color: #333;'>We are pleased to confirm that we have received your payment and your order <strong>#{$order_id}</strong> has been successfully processed.</p>
-        <p style='font-size: 16px; color: #333;'>Our team is now preparing your items for delivery. You will receive an update once your order has been dispatched.</p>
-
-        <div style='text-align: center; margin: 30px 0;'>
-            <a href='https://pishonserv.com/track_order.php?order_id={$order_id}' style='background-color: #092468; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-size: 16px;'>Track My Order</a>
+        <div style='text-align: center;'>
+            <img src='https://pishonserv.com/public/images/logo.png' alt='PISHONSERV Logo' style='width: 150px; margin-bottom: 20px;'>
         </div>
+        <div style='background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>
+            <h2 style='color: #092468;'>Dear {$name},</h2>
+            <p>Thank you for your payment! Your order <strong>#{$order_id}</strong> has been successfully confirmed.</p>
+            <p>You can track your order here:</p>
+            <p style='text-align: center; margin: 20px 0;'>
+                <a href='https://pishonserv.com/track_order.php?order_id={$order_id}' style='background-color: #092468; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Track My Order</a>
+            </p>
+            <p>If you have any questions, feel free to contact us at <a href='mailto:support@pishonserv.com'>support@pishonserv.com</a>.</p>
+            <p>Best regards,<br><strong>PISHONSERV Team</strong></p>
+        </div>
+        <div style='text-align: center; font-size: 12px; color: #777; margin-top: 20px;'>&copy; " . date('Y') . " PISHONSERV. All rights reserved.</div>
+    </div>";
 
-        <p style='font-size: 16px; color: #333;'>If you have any questions or need assistance, feel free to contact our support team at <a href='mailto:support@pishonserv.com' style='color: #092468;'>support@pishonserv.com</a>.</p>
-        <p style='font-size: 16px; color: #333; margin-top: 20px;'>Thank you for choosing <strong>PISHONSERV</strong>. We value your trust and look forward to serving you again.</p>
-        <p style='font-size: 16px; color: #333; margin-top: 20px;'>Best regards,<br><strong>The PISHONSERV Team</strong></p>
-    </div>
-    <div style='text-align: center; margin-top: 20px; font-size: 12px; color: #777;'>
-        &copy; " . date('Y') . " PISHONSERV. All rights reserved.
-    </div>
-</div>";
-
-    $mail->AltBody = "Dear {$name},\n\nWe are pleased to confirm that we have received your payment and your order #{$order_id} has been successfully processed.\n\nYou can track your order here: https://pishonserv.com/track_order.php?order_id={$order_id}\n\nIf you have any questions, please contact us at support@pishonserv.com.\n\nThank you for choosing PISHONSERV.\n\nBest regards,\nThe PISHONSERV Team";
+    $mail->AltBody = "Thank you for your payment! Your order #{$order_id} has been confirmed.\nTrack it here: https://pishonserv.com/track_order.php?order_id={$order_id}";
 
     $mail->send();
-
-    $log_message = "[" . date('Y-m-d H:i:s') . "] ✅ Email sent to {$email}\n";
-    fwrite($log_handle, $log_message);
-
+    fwrite($log_handle, "[" . date('Y-m-d H:i:s') . "] ✅ Email sent to {$email}\n");
     ob_end_clean();
     fclose($log_handle);
+
     header("Location: ../thank_you.php?order_id=$order_id");
     exit();
 } catch (Exception $e) {
-    $error_message = "[" . date('Y-m-d H:i:s') . "] ❌ Email error to {$email}: {$mail->ErrorInfo}\n";
-    fwrite($log_handle, $error_message);
-
+    fwrite($log_handle, "[" . date('Y-m-d H:i:s') . "] ❌ Email error to {$email}: {$mail->ErrorInfo}\n");
     ob_end_clean();
     fclose($log_handle);
     header("Location: ../thank_you.php?order_id=$order_id");

@@ -1,0 +1,413 @@
+[2025-05-10 08:35:06] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Kano
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2662
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f0fbae1e712.10048709
+    [amount] => 32662
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 32
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 08:38:34] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Imo
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 3392
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f108a9a93c7.85719242
+    [amount] => 33392
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 33
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 08:42:09] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Jigawa
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2433
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f1161655b94.03421824
+    [amount] => 102433
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 34
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 08:47:05] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Jigawa
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2433
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f1289d8bfd8.24305918
+    [amount] => 102433
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 35
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 08:54:33] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Jigawa
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2433
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f144998bc50.95910512
+    [amount] => 102433
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 36
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 09:00:32] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Jigawa
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2433
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f15b0073f40.09463623
+    [amount] => 102433
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 37
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 09:00:56] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Jigawa
+    [delivery_country] => Nigeria
+    [payment_method] => paystack
+    [delivery_fee] => 2433
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => paystack
+    [reference] => ps_681f15c8e978c2.91124841
+    [amount] => 10243300
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 38
+    [public_key] => pk_test_91eae202800267ebc6aafb20d63995337eb67c68
+)
+
+
+[2025-05-10 09:01:35] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Gombe
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2886
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f15efa908f9.84109823
+    [amount] => 102886
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 39
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 11:56:35] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Gombe
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2886
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f3ef320a6b6.36478776
+    [amount] => 122886
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 40
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 11:58:34] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => dffg
+    [delivery_city] => uii
+    [delivery_state] => Gombe
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2886
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f3f6a5ab1d1.22955194
+    [amount] => 122886
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 41
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+
+[2025-05-10 11:59:46] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Imo
+    [delivery_country] => Nigeria
+    [payment_method] => paystack
+    [delivery_fee] => 3392
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => paystack
+    [reference] => ps_681f3fb2ef6bc2.65187947
+    [amount] => 15339200
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 42
+    [public_key] => pk_test_91eae202800267ebc6aafb20d63995337eb67c68
+)
+
+
+[2025-05-10 12:14:07] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Imo
+    [delivery_country] => Nigeria
+    [payment_method] => paystack
+    [delivery_fee] => 0
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => paystack
+    [reference] => ps_681f430f4461e1.76939199
+    [amount] => 15000000
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 43
+    [public_key] => pk_test_91eae202800267ebc6aafb20d63995337eb67c68
+)
+
+
+[2025-05-10 12:14:46] Incoming POST:
+Array
+(
+    [delivery_name] => Noah
+    [delivery_phone] => 07032078859
+    [delivery_email] => noah.poeni@gmail.com
+    [delivery_address] => ls
+    [delivery_city] => uii
+    [delivery_state] => Abia
+    [delivery_country] => Nigeria
+    [payment_method] => flutterwave
+    [delivery_fee] => 2024
+    [order_description] => Interior Product Payment
+)
+
+Response:
+Array
+(
+    [success] => 1
+    [payment_method] => flutterwave
+    [reference] => ps_681f4336f28474.40077301
+    [amount] => 102024
+    [email] => noah.poeni@gmail.com
+    [name] => Noah
+    [phone] => 07032078859
+    [description] => Interior Product Payment
+    [order_id] => 44
+    [public_key] => FLWPUBK_TEST-85fed0f30009f4844c19530687d075d8-X
+    [redirect_url] => http://127.0.0.1/pishonserv/payment/success_callback.php
+)
+
+

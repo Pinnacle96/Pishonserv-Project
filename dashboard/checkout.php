@@ -153,6 +153,11 @@ if ($type === 'short_let' || $type === 'hotel') {
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // 🚨 Disable SSL verification for local testing only (INSECURE for production!)
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
     $response = curl_exec($ch);
 
     // 🚀 Capture HTTP response code
@@ -161,7 +166,6 @@ if ($type === 'short_let' || $type === 'hotel') {
     curl_close($ch);
 
     $paystack_response = json_decode($response, true);
-
     // 🚨 Debugging: Log Paystack API response
     error_log("🔍 Paystack API HTTP Code: " . $http_code);
     error_log("🔍 Paystack Response: " . json_encode($paystack_response));

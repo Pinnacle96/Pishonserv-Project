@@ -69,17 +69,17 @@
 </footer>
 
 <!-- ✅ Zoho SalesIQ Chatbot -->
-<!-- <script>
+<script>
     window.$zoho = window.$zoho || {};
     $zoho.salesiq = $zoho.salesiq || {
         ready: function() {}
     };
-</script> -->
-<!-- <script id="zsiqscript"
+</script>
+<script id="zsiqscript"
     src="https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78"
     defer></script>
 
-<//?php if (isset($_SESSION['name']) && isset($_SESSION['user_id'])): ?>
+<?php if (isset($_SESSION['name']) && isset($_SESSION['user_id'])): ?>
     <script>
         window.$zoho = window.$zoho || {};
         $zoho.salesiq = $zoho.salesiq || {
@@ -89,7 +89,7 @@
             }
         };
     </script>
-<//?php endif; ?> -->
+<?php endif; ?>
 
 <!-- Your Project Scripts -->
 <script src="<?php echo $base_path; ?>public/js/slider.js"></script>

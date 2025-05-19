@@ -22,24 +22,26 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-    .active-link {
-        color: #CC9933 !important;
-        font-weight: 600;
-    }
+        .active-link {
+            color: #CC9933 !important;
+            font-weight: 600;
+        }
 
-    .slider-image {
-        transition: opacity 0.5s ease-in-out;
-    }
+        .slider-image {
+            transition: opacity 0.5s ease-in-out;
+        }
 
-    .property-details p {
-        line-height: 1.6;
-    }
+        .property-details p {
+            line-height: 1.6;
+        }
 
-    .key-features li {
-        margin-bottom: 0.5rem;
-    }
+        .key-features li {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 
@@ -81,17 +83,17 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
                 <div class="relative">
                     <button id="user-menu-btn" class="flex items-center text-[#092468] focus:outline-none">
                         <?php if (isset($_SESSION['user_id']) && isset($_SESSION['name']) && isset($_SESSION['profile_image'])): ?>
-                        <!-- Logged In: Show User Image and Name -->
-                        <img src="<?php echo $base_path . 'public/uploads/' . htmlspecialchars($_SESSION['profile_image']); ?>"
-                            alt="Profile" class="w-8 h-8 rounded-full mr-2 object-cover">
-                        <span class="text-lg font-medium"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
+                            <!-- Logged In: Show User Image and Name -->
+                            <img src="<?php echo $base_path . 'public/uploads/' . htmlspecialchars($_SESSION['profile_image']); ?>"
+                                alt="Profile" class="w-8 h-8 rounded-full mr-2 object-cover">
+                            <span class="text-lg font-medium"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
                         <?php else: ?>
-                        <!-- Not Logged In: Show User Icon -->
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
+                            <!-- Not Logged In: Show User Icon -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
                         <?php endif; ?>
                     </button>
 
@@ -99,14 +101,14 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
                     <div id="user-dropdown"
                         class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-50">
                         <?php if (!isset($_SESSION['user_id'])): ?>
-                        <!-- Not Logged In -->
-                        <a href="<?php echo $base_path; ?>auth/login.php"
-                            class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign In</a>
-                        <a href="<?php echo $base_path; ?>auth/register.php"
-                            class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign Up</a>
+                            <!-- Not Logged In -->
+                            <a href="<?php echo $base_path; ?>auth/login.php"
+                                class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign In</a>
+                            <a href="<?php echo $base_path; ?>auth/register.php"
+                                class="block px-4 py-2 text-[#092468] hover:bg-gray-100">Sign Up</a>
                         <?php else: ?>
-                        <!-- Logged In (Role-Based Menu) -->
-                        <?php
+                            <!-- Logged In (Role-Based Menu) -->
+                            <?php
                             $user_role = isset($_SESSION['role']) ? $_SESSION['role'] : 'buyer'; // Default to 'buyer'
                             if ($user_role === 'buyer') {
                                 echo '
@@ -147,15 +149,15 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
                                 ';
                             }
                             ?>
-                        <a href="<?php echo $base_path; ?>process/logout.php"
-                            class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a>
-                        <!-- <a href="<?php echo $base_path; ?>process/logout.php"
+                            <a href="<?php echo $base_path; ?>process/logout.php"
+                                class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a>
+                            <!-- <a href="<?php echo $base_path; ?>process/logout.php"
                             class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a> -->
                         <?php endif; ?>
                     </div>
                 </div>
                 <?php if (isset($_SESSION['user_id'])): ?>
-                <?php
+                    <?php
                     $cart_count = 0;
 
                     // If session cart exists, count items
@@ -177,16 +179,16 @@ include __DIR__ . '/../includes/secure_headers.php'; // Import Zoho CRM function
                     }
                     ?>
 
-                <!-- Cart Icon -->
-                <a href="<?php echo $base_path; ?>cart.php"
-                    class="relative text-[#092468] hover:text-[#CC9933] transition">
-                    <i class="fas fa-shopping-cart text-2xl"></i>
-                    <?php if ($cart_count > 0): ?>
-                    <span class="absolute -top-2 -right-2 bg-[#F4A124] text-white text-xs rounded-full px-2 py-0.5">
-                        <?php echo $cart_count; ?>
-                    </span>
-                    <?php endif; ?>
-                </a>
+                    <!-- Cart Icon -->
+                    <a href="<?php echo $base_path; ?>cart.php"
+                        class="relative text-[#092468] hover:text-[#CC9933] transition">
+                        <i class="fa fa-shopping-cart text-2xl"></i>
+                        <?php if ($cart_count > 0): ?>
+                            <span class="absolute -top-2 -right-2 bg-[#F4A124] text-white text-xs rounded-full px-2 py-0.5">
+                                <?php echo $cart_count; ?>
+                            </span>
+                        <?php endif; ?>
+                    </a>
                 <?php endif; ?>
 
 

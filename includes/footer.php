@@ -25,7 +25,8 @@
                 <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="<?php echo $base_path; ?>index.php" class="hover:text-[#CC9933]">Home</a></li>
-                    <li><a href="<?php echo $base_path; ?>properties.php" class="hover:text-[#CC9933]">Properties</a></li>
+                    <li><a href="<?php echo $base_path; ?>properties.php" class="hover:text-[#CC9933]">Properties</a>
+                    </li>
                     <li><a href="<?php echo $base_path; ?>about.php" class="hover:text-[#CC9933]">About Us</a></li>
                     <li><a href="<?php echo $base_path; ?>contact.php" class="hover:text-[#CC9933]">Contact</a></li>
                     <li><a href="<?php echo $base_path; ?>career.php" class="hover:text-[#CC9933]">Career</a></li>
@@ -60,23 +61,25 @@
         </div>
     </div>
 
-    <!-- Optional: WhatsApp Button -->
-    <a href="https://wa.me/+2348150829549?text=Hi%20I%20need%20support"
+    <!-- Optional: WhatsApp Button-->
+    <!-- <a href="https://wa.me/+2348150829549?text=Hi%20I%20need%20support"
         class="bg-[#CC9933] text-white px-4 py-2 rounded hover:bg-[#d88b1c] fixed bottom-4 right-4 shadow-lg z-50">
         Chat on WhatsApp
-    </a>
+    </a> -->
 </footer>
 
 <!-- ✅ Zoho SalesIQ Chatbot -->
-<script>
+<!-- <script>
     window.$zoho = window.$zoho || {};
     $zoho.salesiq = $zoho.salesiq || {
         ready: function() {}
     };
-</script>
-<script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78" defer></script>
+</script> -->
+<!-- <script id="zsiqscript"
+    src="https://salesiq.zohopublic.com/widget?wc=siqbf4b21531e2ec082c78d765292863df4a9787c4f0ba205509de7585b7a8d3e78"
+    defer></script>
 
-<?php if (isset($_SESSION['name']) && isset($_SESSION['user_id'])): ?>
+<//?php if (isset($_SESSION['name']) && isset($_SESSION['user_id'])): ?>
     <script>
         window.$zoho = window.$zoho || {};
         $zoho.salesiq = $zoho.salesiq || {
@@ -86,11 +89,11 @@
             }
         };
     </script>
-<?php endif; ?>
+<//?php endif; ?> -->
 
 <!-- Your Project Scripts -->
 <script src="<?php echo $base_path; ?>public/js/slider.js"></script>
 <script src="<?php echo $base_path; ?>public/js/script.js"></script>
 <script src="<?php echo $base_path; ?>public/js/navbar.js"></script>
 <script src="<?php echo $base_path; ?>public/js/search.js"></script>
-<!-- <script src="<?php echo $base_path; ?>public/js/testimonials.js"></script> -->
+<script src="<?php echo $base_path; ?>public/js/testimonials.js"></script>

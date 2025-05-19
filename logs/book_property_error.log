@@ -931,3 +931,31 @@ Stack trace:
 [10-May-2025 06:25:05 UTC] 📥 Zoho API Response (0): 
 [10-May-2025 06:25:05 UTC] ❌ Zoho API Error: null
 [10-May-2025 06:25:05 UTC] 🔄 Redirecting to: dashboard/checkout.php?property_id=61&check_in=2025-05-10&check_out=2025-05-12&booking_id=117
+[15-May-2025 10:20:54 UTC] ✅ Zoho Deals API URL: https://www.zohoapis.com/crm/v2/Deals
+[15-May-2025 10:20:54 UTC] ✅ Zoho Deals API DATA: {
+    "data": [
+        {
+            "Deal_Name": "Noah (Service: Booking)",
+            "Amount": 22275,
+            "Stage": "Pending",
+            "Contact_Name": {
+                "id": "6560565000001557001"
+            },
+            "Vendor_Contact": {
+                "id": "6560565000001542027"
+            },
+            "Property_Name": "dfasdfgfhhagfg",
+            "Check_in_Date": "2025-05-15",
+            "Check_out_Date": "2025-05-20",
+            "Booking_Status": "Pending",
+            "Booking_Date": "2025-05-15",
+            "Type": "Hotel",
+            "Property_Type": "Hotel",
+            "Closing_Date": "2025-06-14"
+        }
+    ]
+}
+[15-May-2025 10:20:54 UTC] 📤 Sending to Zoho: {"data":[{"Deal_Name":"Noah (Service: Booking)","Amount":22275,"Stage":"Pending","Contact_Name":{"id":"6560565000001557001"},"Vendor_Contact":{"id":"6560565000001542027"},"Property_Name":"dfasdfgfhhagfg","Check_in_Date":"2025-05-15","Check_out_Date":"2025-05-20","Booking_Status":"Pending","Booking_Date":"2025-05-15","Type":"Hotel","Property_Type":"Hotel","Closing_Date":"2025-06-14"}]}
+[15-May-2025 10:20:54 UTC] 📥 Zoho API Response (0): 
+[15-May-2025 10:20:54 UTC] ❌ Zoho API Error: null
+[15-May-2025 10:20:54 UTC] 🔄 Redirecting to: dashboard/checkout.php?property_id=61&check_in=2025-05-15&check_out=2025-05-20&booking_id=118

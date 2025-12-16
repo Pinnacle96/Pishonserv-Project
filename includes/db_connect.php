@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "u561302917_Pishonserv";
+$database = "Pishonserv";
 
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {

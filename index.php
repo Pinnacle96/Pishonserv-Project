@@ -51,7 +51,18 @@ function getLocationCoordinates($property_id, $location, $apiKey, $conn)
     }
     return null;
 }
+
+
+function shorten_location_words($location){
+    $words = explode(' ', $location);
+    if (count($words) > 5) {
+        return implode(' ', array_slice($words, 0,5)) . '...';
+    }
+    return $location;
+}
 ?>
+
+
 
 <!-- Hero Section with Slider -->
 <section class="relative w-full min-h-[500px] sm:min-h-[650px] pt-20 md:pt-20 lg:pt-24 overflow-hidden">
@@ -278,7 +289,7 @@ setInterval(() => {
             <div class='p-4'>
                 <p class='text-[#CC9933] font-semibold text-lg'>₦" . number_format($property['price'], 2) . "</p>
                 <h3 class='text-[#092468] text-xl font-bold'>{$property['title']}</h3>
-                <p class='text-gray-600'>" . htmlspecialchars($property['location']) . "</p>
+                <p class='text-gray-600'>" . htmlspecialchars(shorten_location_words($property['location'])) . "</p>
                 {$bookingInfo}
 
                 <div class='mt-2 flex flex-wrap text-gray-500 text-sm'>

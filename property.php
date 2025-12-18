@@ -48,6 +48,15 @@ function formatDescription($description)
     }
     return $formatted;
 }
+
+function shorten_location_words($location){
+    $words = explode(' ', $location);
+    if (count($words) > 5) {
+        return implode(' ', array_slice($words, 0,5)) . '...';
+    }
+    return $location;
+}
+
 ?>
 
 <body class="bg-[#f5f7fa] text-[#092468] min-h-screen">
@@ -88,7 +97,7 @@ function formatDescription($description)
                 ₦<?php echo number_format($property['price'], 2); ?> per <?php echo in_array($property['listing_type'], ['short_let', 'hotel']) ? 'day' : 'unit'; ?>
             </p>
 
-            <p class="text-gray-600 mt-2"><?php echo htmlspecialchars($property['location']); ?></p>
+            <p class="text-gray-600 mt-2"><?php echo htmlspecialchars(shorten_location_words($property['location'])); ?></p>
 
             <?php echo formatDescription($property['description']); ?>
 
@@ -153,7 +162,7 @@ function formatDescription($description)
                 <div class='p-4'>
                     <h3 class='text-[#092468] text-xl font-bold'>" . htmlspecialchars($similar['title']) . "</h3>
                     <p class='text-[#CC9933] font-semibold'>₦" . number_format($similar['price'], 2) . "</p>
-                    <p class='text-gray-600'>" . htmlspecialchars($similar['location']) . "</p>
+                    <p class='text-gray-600'>" . htmlspecialchars(shorten_location_words($similar['location'])) . "</p>
                     <a href='property.php?id={$similar['id']}' class='mt-2 block text-center bg-[#CC9933] text-white px-4 py-2 rounded hover:bg-[#d88b1c]'>
                         View Details
                     </a>
